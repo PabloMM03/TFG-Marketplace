@@ -38,8 +38,8 @@
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
   
-              <a href="/" style="text-decoration:none" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Tienda</a>
-  
+              <a href="/" style="text-decoration:none" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Inicio</a>
+              <a href="/" style="text-decoration:none" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Categorías</a>
               {{-- <a href="#" style="text-decoration:none" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>  --}}
                 
                 {{-- @foreach ($productos as $producto)
