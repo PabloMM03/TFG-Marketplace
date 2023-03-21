@@ -21,11 +21,11 @@
             {{-- Contenido Principal --}}
             <div class="lg:col-span-2">
                 <figure> 
-                    @if ($product->image)
-    <img class="w-full h-72 object-cover object-center" src="{{Storage::url($product->image->url)}}" alt="">
+                    @if ($product->product_image)
+    <img class="w-full h-72 object-cover object-center" src="{{asset('storage/products/'. $product->product_image)}}" alt="">
         
     @else
-    <img class="w-full h-72 object-cover object-center" src="https://cdn.pixabay.com/photo/2022/03/23/18/56/beach-7087722_1280.jpg" alt="">
+    <img class="w-full h-72 object-cover object-center" src="{{asset('img/default_product.jpg')}}" alt="">
     
     @endif
                 </figure>
@@ -45,10 +45,10 @@
                     @foreach ($relacionados as $relacionado)
                         <li class="mb-4">
                             <a style="text-decoration: none" class="flex" href="{{route('publicaciones.show', $relacionado)}}">
-                                @if ($relacionado->image)
-                                <img class="w-40 h-25 object-cover object-center" src="{{Storage::url($relacionado->image->url)}}" alt="">
+                                @if ($relacionado->product_image)
+                                <img class="w-40 h-25 object-cover object-center" src="{{asset('storage/products/'. $product->product_image)}}" alt="">
                                 @else
-                                    <img class="w-40 h-25 object-cover object-center" src="https://cdn.pixabay.com/photo/2022/03/23/18/56/beach-7087722_1280.jpg" alt="">
+                                    <img class="w-40 h-25 object-cover object-center" src="{{asset('img/default_product.jpg')}}" alt="">
                                 @endif
                                 <span class="ml-2 text-gray-600">{{$relacionado->name}}</span>
                             </a>

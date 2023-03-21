@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>ID Categoria</th>
@@ -22,6 +23,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{$product->id}}</td>
+                            <td><img src="{{asset('storage/products/'.$product->product_image)}}" width="80px" height="70px" alt="Image"></td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->price}} €</td>
                             <td>{{$product->category_id}}</td>

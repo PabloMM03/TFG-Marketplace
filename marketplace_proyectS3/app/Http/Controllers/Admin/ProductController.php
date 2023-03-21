@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Requests\ProductRequest;
 
@@ -119,28 +119,30 @@ class ProductController extends Controller
         $this->authorize('author', $product); // Solo los usuarios  a los que pertenezca el producto podra actualizarlos
         $product->update($request->all());
 
-        if($request->file('file')){
-        $url = Storage::put('public/products', $request->file('file'));
 
-        if($product->image){
-            Storage::delete($product->image->url);
-
-            $product->image->update([
-                'url' => $url,
-            ]);
-       
-        }else{
-          $product->image()->create([
-            'url' => $url,
-          ]);
+        /**
+        * Almacenar imagen en storage
+        */
+       if($request->hasfile('file'))
+       {
+        $destination = 'storage/products/'.$product->product_image;
+        if(File::exists($destination)){
+            File::delete($destination);
         }
-    }
+        $url = $request->file('file');
+        $extension = $url->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $url->move('storage/products/', $filename);
+        $product->product_image = $filename;
+       }
 
-    if($request->tags){
-        $product->tags()->sync($request->tags);
-        
-   }
+       if($request->tags){
+            $product->tags()->attach($request->tags);
+            
+       }
+    
 
+        $product->update();
         return redirect()->route('admin.products.edit', $product)->with('info', 'Producto actualizado correctamente');
     }
 
@@ -152,11 +154,15 @@ class ProductController extends Controller
      */
 
      /**
-      * Eliminar producto
+      * Delete product
       */
     public function destroy(Product $product)
     {
         $this->authorize('author', $product);  // Solo los usuarios  a los que pertenezca el producto podra eliminarlos
+        $destination = 'storage/products/'.$product->product_image;
+        if(File::exists($destination)){
+           File::delete($destination);
+        }
         $product->delete();
         return redirect()->route('admin.products.index')->with('info', 'Producto eliminado correctamente');
     }

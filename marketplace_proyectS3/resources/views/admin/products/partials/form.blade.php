@@ -66,9 +66,9 @@
       <div class="col">
           <div class="image-wrapper" >
               @isset ($product->product_image)
-              <img id="imagenProd" src="{{Storage::url($product->product_image)}}" alt="">                  
+              <img id="imagenProd" src="{{asset('storage/products/'. $product->product_image)}}" alt="">                  
               @else
-                  <img src="https://cdn.pixabay.com/photo/2022/03/23/18/56/beach-7087722_1280.jpg" alt="Imagen por defecto">
+                  <img src="{{asset('img/default_product.jpg')}}    " alt="Imagen por defecto">
               @endisset
           </div>
       </div>
