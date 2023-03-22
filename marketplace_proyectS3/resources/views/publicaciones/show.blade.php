@@ -19,15 +19,11 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {{-- Contenido Principal --}}
+            
             <div class="lg:col-span-2">
                 <figure> 
-                    @if ($product->product_image)
-    <img class="w-full h-72 object-cover object-center" src="{{asset('storage/products/'. $product->product_image)}}" alt="">
-        
-    @else
-    <img class="w-full h-72 object-cover object-center" src="{{asset('img/default_product.jpg')}}" alt="">
-    
-    @endif
+                    <img class="card-img-top" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} 
+                    @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
                 </figure>
                 <div class="text-2xl text-gray-500 mt-4">
                     {{$product->price}} €
@@ -46,7 +42,7 @@
                         <li class="mb-4">
                             <a style="text-decoration: none" class="flex" href="{{route('publicaciones.show', $relacionado)}}">
                                 @if ($relacionado->product_image)
-                                <img class="w-40 h-25 object-cover object-center" src="{{asset('storage/products/'. $product->product_image)}}" alt="">
+                                <img class="w-40 h-25 object-cover object-center" src="{{asset('storage/products/'. $relacionado->product_image)}}" alt="">
                                 @else
                                     <img class="w-40 h-25 object-cover object-center" src="{{asset('img/default_product.jpg')}}" alt="">
                                 @endif

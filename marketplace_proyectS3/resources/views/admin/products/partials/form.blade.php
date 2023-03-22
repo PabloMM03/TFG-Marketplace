@@ -64,11 +64,11 @@
 
   <div class="row mb-3">
       <div class="col">
-          <div class="image-wrapper" >
+          <div class="image-wrapper">
               @isset ($product->product_image)
               <img id="imagenProd" src="{{asset('storage/products/'. $product->product_image)}}" alt="">                  
               @else
-                  <img src="{{asset('img/default_product.jpg')}}    " alt="Imagen por defecto">
+                  <img id="imagenProd" src="{{asset('img/default_product.jpg')}}    " alt="Imagen por defecto">
               @endisset
           </div>
       </div>

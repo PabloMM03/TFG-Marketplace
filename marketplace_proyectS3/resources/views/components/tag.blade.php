@@ -1,12 +1,14 @@
 @props(['product'])
 
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
-    @if ($product->image)
-    <img class="w-full h-72 object-cover object-center" src="{{Storage::url($product->image->url)}}" alt="">
-        
+    @if ($product->product_image)
+    <div class="ml-20 mt-20">
+        <img class="w-85 h-80 object-cover object-center" src="{{asset('storage/products/'.$product->product_image)}}" alt="">
+    </div>
     @else
-    <img class="w-full h-72 object-cover object-center" src="https://cdn.pixabay.com/photo/2022/03/23/18/56/beach-7087722_1280.jpg" alt="">
-    
+    <div class="ml-20 mt-20">
+        <img class="w-85 h-80 object-cover object-center" src="{{asset('img/default_product.jpg')}}" alt="">
+    </div>
     @endif
     <div class="px-6 py-4">
         <h1 class="font-bold text-xl mb-2">
