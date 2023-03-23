@@ -20,4 +20,7 @@ class CartComponent extends Component
     {
         return view('livewire.shop.cart-component');
     }
+
+    
+
 }

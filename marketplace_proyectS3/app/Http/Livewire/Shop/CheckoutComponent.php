@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Shop;
 
 use App\Mail\OrderPagada;
 use App\Models\Order;
-use Darryldecode\Cart\Cart;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\Component;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
@@ -44,7 +44,7 @@ class CheckoutComponent extends Component
         $order->user_id = auth()->id();
         $order->order_number = uniqid('OrderNumber-');
         //Total de productos del carrito
-        $order->item_count = \Cart::session(auth()->id())->getContent()->count();
+        $order->item_count = Cart::session(auth()->id())->getContent()->count();
 
         $order->shipping_fullname = $this->fullname;
         $order->shipping_address  = $this->address;
@@ -73,13 +73,13 @@ class CheckoutComponent extends Component
 
         $order->payment_method = $this->payment_method;
         //Obtener total del carritod e compra
-        $order->total = \Cart::session(auth()->id())->getTotal();
+        $order->total = Cart::session(auth()->id())->getTotal();
         $order->save(); //Guardar cambios del pedido
         // $order->is_paid,
 
         //Creacion de items que estan en el carrito para la orden del pedido
 
-        $cartItems = \Cart::session(auth()->id())->getContent();
+        $cartItems = Cart::session(auth()->id())->getContent();
 
         foreach ($cartItems as $key => $item) {
             $order->items()->attach($item->id, [
@@ -98,7 +98,7 @@ class CheckoutComponent extends Component
             Mail::to($order->user->email)->send(new OrderPagada($order));
 
             $order->save();
-            \Cart::session(auth()->id())->clear(); //Vaciar carrito
+            Cart::session(auth()->id())->clear(); //Vaciar carrito
             return redirect()->route('shop.index')->with('info', 'Compra realizada correctamente, pronto le llagará su pedido');;
         }
     }

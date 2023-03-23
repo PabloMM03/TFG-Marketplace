@@ -63,5 +63,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'cart.is.empty'=> \App\Http\Middleware\CartIsEmpty::class,
+        'auth.redirect' => \App\Http\Middleware\RedirectIfNotAuthenticated::class,
     ];
+
+    
 }

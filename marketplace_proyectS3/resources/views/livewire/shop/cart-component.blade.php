@@ -16,7 +16,7 @@
      <!--  Obtiene el total completo-->
 <!--Acceder de nuevo a la tienda -->
 @auth
-<i style="color:white">{{\Cart::session(auth()->id())->getTotalQuantity()}} </i> 
+<i style="color:white">{{Cart::session(auth()->id())->getTotalQuantity()}} </i> 
     
 @else
  0

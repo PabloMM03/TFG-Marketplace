@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\OrderPagada;
 use App\Models\Order;
-use Darryldecode\Cart\Cart;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -53,7 +53,7 @@ public function getExpressCheckoutSuccess(Request $request, $orderId)
             //php artisan make:mail OrderPagada --markdown=mail.order.paid
 
             Mail::to($order->user->email)->send(new OrderPagada($order));
-            \Cart::session(auth()->id())->clear(); //Vaciar carrito
+            Cart::session(auth()->id())->clear(); //Vaciar carrito
 
             //En caso de que se efectue con exito
             return  redirect()->route('shop.index')->whithMessage('Pago realizado con exito');
@@ -74,7 +74,7 @@ dd('cancelado');
 
 public function checkoutData($orderId)
 {
-    $cart = \Cart::session(auth()->id()); //Contenido de carrito
+    $cart = Cart::session(auth()->id()); //Contenido de carrito
 
     //
     $cartItems =  array_map(function($item){

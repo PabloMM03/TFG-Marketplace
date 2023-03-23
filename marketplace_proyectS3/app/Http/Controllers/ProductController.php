@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 
 class ProductController extends Controller
@@ -52,5 +53,22 @@ class ProductController extends Controller
        return view('publicaciones.tag', compact('products','tag'));
     }
 
+    public function add_to_cart(Product $product){
+        // dd($product); -< comprobar
+
+            // add the product to cart 
+    Cart::session(auth()->id())->add(array( //Obtenemos el usuario loguedado
+        'id' => $product->id,
+        'name' => $product->name,
+        'price' => $product->price,
+        'quantity' => 1,
+        'attributes' => array(),
+        'associatedModel' => $product
+    ));
+
+    //Mensaje de confirmacion
+    $this->emit('message', 'El producto se ha añadido correctemente.');
+    $this->emitTo('shop.cart-component', 'add_to_cart');
+}
 
 }

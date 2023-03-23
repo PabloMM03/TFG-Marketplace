@@ -37,20 +37,24 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function(){
 
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Ruta del carrito
-Route::get('/cart', CartIndexComponent::class)->name('cart');
 
-//Ruta Pagar
-Route::get('/checkout', CheckoutComponent::class)->name('checkout');
+Route::middleware(['cart.is.empty'])->group(function(){
+    //Ruta del carrito
+    Route::get('/cart', CartIndexComponent::class)->name('cart');
+    //Ruta Pagar
+    Route::get('/checkout', CheckoutComponent::class)->name('checkout');
+    //Pagos Paypal
+    Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
+    Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
+    Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
 
-//Pagos Paypal
-Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
-Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
-Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
+});
 
-//filtrar por categorias
+
+
+//filtrar por categorias y etiquetas
 Route::get('category/{category}', [ProductController::class, 'category'])->name('products.category');
-
 Route::get('tags/{tag}', [ProductController::class, 'tag'])->name('products.tag');
