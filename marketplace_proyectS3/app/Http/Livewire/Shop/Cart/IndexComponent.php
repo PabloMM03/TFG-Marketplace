@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Shop\Cart;
 
 use App\Models\Product;
-use Illuminate\Notifications\Notification;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
