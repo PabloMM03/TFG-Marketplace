@@ -49,8 +49,37 @@
                    @endforeach
                </ul>
            </aside>
+    <div>
+            <div class="comment-area mt-4">
+                <div class="card card-body">
+                    <h6 class="card-title">Leave Comment</h6>
+                    <form action="" method="POST">
+                        <textarea name="comment-body" class="form-control" rows="3"></textarea>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+           <div class="card card-body shadow-sm mt-4">
+                <div class="detail-area">
+                    <h6 class="user-name mb-1">
+                        User One
+                        <small class="ms-3 text-primary">Commented on: </small>
+                    </h6>
+                    <p class="user-comment mb-1">
+                        dataassssssssssssssssssssssssssss
+                    </p>
+                </div>
+                <div>
+                    <a href="" class="btn btn-primary btn-sm me2">Edit</a>
+                    <a href="" class="btn btn-danger btn-sm me2">Delete</a>
+                </div>
+            
+           </div>
 
        </div>
+       
+    </div>
        @endcan
 
    </div>
