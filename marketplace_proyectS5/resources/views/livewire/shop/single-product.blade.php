@@ -62,7 +62,7 @@
                         @csrf
                         <input type="hidden" name="product_slug" value="{{$product->slug}}">
                         <textarea name="comment_body" class="form-control" rows="3"></textarea>
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3 me-2">Comentar</button>
                     </form>
                 </div>
             </div>
@@ -76,18 +76,22 @@
                         @if ($comment->user)
                             {{$comment->user->name}}
                         @endif
-                        <small class="ms-3 text-primary">Publicado el: {{$comment->created_at->format('d-m-Y | H:m')}}</small>
+                        <small class="ms-3 text-primary">Publicado el: {{$comment->created_at}}</small>
                     </h6>
                     <p class="user-comment mb-1">
                         {!! $comment->comment_body !!}
                     </p>
                 </div>
-                @if (Auth::check() && Auth::id() == $comment->user_id)        
+                {{-- @if (Auth::check() && Auth::id() == $comment->user_id)        
                 <div>
-                    <a href="" class="btn btn-primary btn-sm me2">Edit</a>
-                    <a href="" class="btn btn-danger btn-sm me2">Delete</a>
+                    <form action="{{url('delets')}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="button" class="btn btn-danger btn-sm me-2">Eliminar</button>  
+                    </form>
+                                     
                 </div>
-                @endif
+                @endif --}}
            </div>
            <br>
            
@@ -103,5 +107,7 @@
        @endcan
 
    </div>
+
+ 
 
 
