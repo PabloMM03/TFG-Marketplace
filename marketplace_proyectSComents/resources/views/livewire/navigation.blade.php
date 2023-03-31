@@ -26,6 +26,8 @@
           </button>
         </div>
 
+        <a href="/" style="text-decoration:none" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">TradeHive</a>
+        
         {{-- logotipo --}}
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start ml-20">
           <a href="/" class="flex flex-shrink-0 items-center ml-20">
@@ -37,7 +39,6 @@
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-  
               <a href="/" style="text-decoration:none" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Inicio</a>
               <a href="/" style="text-decoration:none" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Categorías</a>
               {{-- <a href="#" style="text-decoration:none" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>  --}}

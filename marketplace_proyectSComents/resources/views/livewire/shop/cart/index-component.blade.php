@@ -23,20 +23,10 @@
                           <h6 class="text-muted" style="text-align: center">{{$item->name}}</h6>
                           <h6 class="text-black mb-0" style="text-align: center">{!!$item->description!!}</h6>
                         </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <button class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                            <i class="fas fa-minus"></i>
-                          </button>
-    
-                          <input id="form1" min="0" name="quantity" value="1" type="number"
-                            class="form-control form-control-sm" />
-    
-                          <button class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                            <i class="fas fa-plus"></i>
-                          </button>
-                          {{$item->quantity}} 
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex"> 
+                          {{-- <input type="number" id="v{{$item->id}}" wire:change="update_quantity($('#v' + {{$item->id}}).val())" class="form-control form-control-sm" value="{{$item->quantity}}"> --}}
+
+                         <input type="number" id="v{{$item->id}}" wire:change="update_quantity({{ $item->id }}, $event.target.value)" class="form-control form-control-sm" value="{{$item->quantity}}">
                         </div>
                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                           <h6 class="mb-0">€{{Cart::session(auth()->id())->get($item->id)->getPriceSum()}}</h6>
@@ -57,6 +47,7 @@
                     </div> --}}
                   </div>
                 <div>
+                  <h3 class="mb-0 ml-9 mb-10 ">€{{Cart::session(auth()->id())->getTotal()}}</h3><br>
                     <a  href="{{route('checkout')}}"  class="btn btn-dark btn-block btn-lg ml-9 mb-10"
                     data-mdb-ripple-color="dark">Pagar</a>
                 </div>

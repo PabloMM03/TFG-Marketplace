@@ -15,35 +15,21 @@ class IndexComponent extends Component
         return view('livewire.shop.cart.index-component', compact('cart_items'))->extends('layouts.app')->section('content');
     }
 
-    //Funcion para actuzalizar el precio del carrito segun los productos añadidos
-    // public function update_quantity($itemId, $quantity){
-
-
-    //     \Cart::session(auth()->id())->update($itemId, [
-    //         'quantity' => array(
-    //             'relative' => false,
-    //             'value' => $quantity
-    //         ),
-
-    //     ]);
-    // }
-
+    
+    //Delete Cart Item
         public function delete_item($itemId){
-
             Cart::session(auth()->id())->remove($itemId);
-
-            
         }
 
-        public function decrease(Product $product, Request $request)
-    {
-        $cart = $request->session()->get('cart');
-
-        if (isset($cart[$product->id]) && $cart[$product->id]['quantity'] > 1) {
-            $cart[$product->id]['quantity']--;
-        }
-
-        $request->session()->put('cart', $cart);
+        //Update Cart Item //Funcion para actuzalizar el precio del carrito segun los productos añadidos
+        public function update_quantity($itemId, $quantity)
+        {
+        Cart::session(auth()->id())->update($itemId,[
+            'quantity' => array(
+            'relative' => false,
+            'value' => $quantity
+            ),
+        ]);
 
         return redirect()->back();
     }
