@@ -58,7 +58,7 @@ class RoleController extends Controller
 
        $role->permissions()->sync($request->permisos);
 
-       return redirect()->route('admin.roles.edit', $role)->with('info', 'Rol creado correctamente');
+       return redirect()->route('admin.roles.edit', $role)->with('crear', 'Rol creado correctamente');
     }
 
     /**
@@ -102,7 +102,7 @@ class RoleController extends Controller
 
       $role->permissions()->sync($request->permisos);
 
-      return redirect()->route('admin.roles.edit', $role)->with('info', 'Rol actualizado correctamente');
+      return redirect()->route('admin.roles.edit', $role)->with('actualizar', 'Rol actualizado correctamente');
     }
 
     /**
@@ -115,6 +115,6 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('admin.roles.index')->with('info', 'Rol eliminado correctamente');
+        return redirect()->route('admin.roles.index')->with('eliminar', 'Rol eliminado correctamente');
     }
 }

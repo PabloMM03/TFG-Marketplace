@@ -34,11 +34,10 @@
                 @endforeach
             </div>
 
-                {!! Form::submit('Crear Rol', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Crear Rol', ['class' => 'btn btn-primary formulario-crear']) !!}
             {!! Form::close() !!}
         </div>
     </div>
 
 
 @stop
-

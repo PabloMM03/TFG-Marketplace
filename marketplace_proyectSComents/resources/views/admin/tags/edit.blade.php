@@ -20,7 +20,7 @@
         {!! Form::model($tag, ['route' => ['admin.tags.update',$tag], 'method' => 'PUT']) !!}
 
             @include('admin.tags.partials.form')
-            {!! Form::submit('Actualizar Etiqueta', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Actualizar Etiqueta', ['class' => 'btn btn-primary formulario-editar']) !!}
 
         {!! Form::close() !!}
     </div>
@@ -43,4 +43,36 @@
 
     </script>
 
+{{--Update--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('editar') == 'La etiqueta se actualizo correctamente')
+<script>
+ Swal.fire(
+   'Etiqueta actualizada!',
+   'La etiqueta ha sido actualizada.',
+   'success'
+)
+</script>
+@endif
+<script>
+    $('.formulario-editar').submit(function(e){
+        e.preventDefault();
+
+        Swal.fire({
+title: 'Estás seguro?',
+text: "Esta categoria se actualizará!",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si, actualizar!',
+cancelButtonText: 'Cancelar!'
+}).then((result) => {
+if (result.isConfirmed) {
+this.submit();
+}
+})
+    });
+</script>
 @endsection

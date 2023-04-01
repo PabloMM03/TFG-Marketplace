@@ -25,7 +25,7 @@
 
         @include('admin.products.partials.form')
 
-        {!! Form::submit('Crear producto', ['class' => 'btn btn-primary btn-sm ']) !!}
+        {!! Form::submit('Crear producto', ['class' => 'btn btn-primary btn-sm formulario-crear']) !!}
         {!! Form::close() !!}
     </div>
 </div>

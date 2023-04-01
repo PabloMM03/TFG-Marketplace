@@ -39,7 +39,7 @@
                     </span>       
                 @enderror
             </div>
-            {!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary btn-sm']) !!}
+            {!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary btn-sm formulario-editar']) !!}
 
         {!! Form::close() !!}
     </div>
@@ -62,4 +62,36 @@
 
     </script>
 
+{{--Update--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('editar') == 'Categoria actualizada correctamente')
+<script>
+ Swal.fire(
+   'Categoria actualizada!',
+   'La categoria ha sido actualizada.',
+   'success'
+)
+</script>
+@endif
+<script>
+    $('.formulario-editar').submit(function(e){
+        e.preventDefault();
+
+        Swal.fire({
+title: 'Estás seguro?',
+text: "Esta categoria se actualizará!",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si, actualizar!',
+cancelButtonText: 'Cancelar!'
+}).then((result) => {
+if (result.isConfirmed) {
+this.submit();
+}
+})
+    });
+</script>
 @endsection

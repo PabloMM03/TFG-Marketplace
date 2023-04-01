@@ -34,7 +34,7 @@
                                     <a href="{{route('admin.roles.edit', $role)}}" class="btn btn-primary btn-sm">Editar</a>
                                 </td>
                                 <td width="10">
-                                    <form action="{{route('admin.roles.destroy', $role)}}" method="POST">
+                                    <form action="{{route('admin.roles.destroy', $role)}}" method="POST" class="formulario-eliminar">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
@@ -48,4 +48,40 @@
         </div>
     </div>
 @stop
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{{--Delete--}}
+
+@if (session('eliminar') == 'Rol eliminado correctamente')
+<script>
+     Swal.fire(
+       'Eliminado!',
+       'El rol ha sido eliminado.',
+       'success'
+    )
+</script>
+ @endif
+    <script>
+        $('.formulario-eliminar').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+  title: 'Estás seguro?',
+  text: "Este rol se eliminará definitivamente!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, eliminar!',
+  cancelButtonText: 'Cancelar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.submit();
+  }
+})
+        });
+    </script>
+@endsection
 

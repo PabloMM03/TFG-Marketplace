@@ -24,7 +24,7 @@
 
         @include('admin.products.partials.form')
 
-        {!! Form::submit('Actualizar producto', ['class' => 'btn btn-primary btn-sm']) !!}
+        {!! Form::submit('Actualizar producto', ['class' => 'btn btn-primary btn-sm formulario-editar']) !!}
         {!! Form::close() !!}
     </div>
 </div>
@@ -35,5 +35,36 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+    {{--Update--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('info') == 'Producto actualizado correctamente')
+<script>
+ Swal.fire(
+   'Producto actualizado!',
+   'El producto ha sido actualizado.',
+   'success'
+)
+</script>
+@endif
+<script>
+    $('.formulario-editar').submit(function(e){
+        e.preventDefault();
+
+        Swal.fire({
+title: 'Estás seguro?',
+text: "Esta categoria se actualizará!",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si, actualizar!',
+cancelButtonText: 'Cancelar!'
+}).then((result) => {
+if (result.isConfirmed) {
+this.submit();
+}
+})
+    });
+</script>
+@endsection

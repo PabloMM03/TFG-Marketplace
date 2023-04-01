@@ -164,6 +164,6 @@ class ProductController extends Controller
            File::delete($destination);
         }
         $product->delete();
-        return redirect()->route('admin.products.index')->with('info', 'Producto eliminado correctamente');
+        return redirect()->route('admin.products.index')->with('eliminar', 'Producto eliminado correctamente');
     }
 }

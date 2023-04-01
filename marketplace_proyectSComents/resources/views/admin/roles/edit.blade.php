@@ -21,7 +21,7 @@
 
             @include('admin.roles.partials.form')
 
-                {!! Form::submit('Actualizar Rol', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Actualizar Rol', ['class' => 'btn btn-primary formulario-editar']) !!}
                 <a href="{{url('/admin/roles')}}" class="btn btn-primary">Cancelar</a>
 
             {!! Form::close() !!}
@@ -30,4 +30,36 @@
 
 
 @stop
+{{--Update--}}
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('actualizar') == 'Rol actualizado correctamente')
+<script>
+     Swal.fire(
+       'Actualizado!',
+       'El rol ha sido actualizado.',
+       'success'
+    )
+</script>
+ @endif
+    <script>
+        $('.formulario-editar').submit(function(e){
+            e.preventDefault();
 
+            Swal.fire({
+  title: 'Estás seguro?',
+  text: "Este rol se actualizará!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, actualizar!',
+  cancelButtonText: 'Cancelar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.submit();
+  }
+})
+        });
+    </script>
+    @endsection

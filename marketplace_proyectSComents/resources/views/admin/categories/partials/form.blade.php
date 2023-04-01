@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('name', 'Nombre') !!}
-    {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Introduzca el nombre de etiqueta']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Introduzca el nombre de categoria']) !!}
 
     @error('name')
         <span class="text-danger">
@@ -10,7 +10,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('slug', 'Slug') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control','placeholder' => 'Introduzca el slug de etiqueta', 'readonly']) !!}
+    {!! Form::text('slug', null, ['class' => 'form-control','placeholder' => 'Introduzca el slug de categoria', 'readonly']) !!}
 
     @error('slug')
         <span class="text-danger">
@@ -22,11 +22,11 @@
 {{--Add--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if (session('crear') == 'Etiqueta creada correctamente')
+@if (session('crear') == 'Categoria creada correctamente')
 <script>
  Swal.fire(
-   'Etiqueta creada!',
-   'La etiqueta ha sido creada.',
+   'Categoria creada!',
+   'La categoria ha sido creada.',
    'success'
 )
 </script>
@@ -37,12 +37,12 @@
 
         Swal.fire({
 title: 'Estás seguro?',
-text: "Esta categoria se actualizará!",
+text: "Esta categoria se creará!",
 icon: 'warning',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
-confirmButtonText: 'Si, actualizar!',
+confirmButtonText: 'Si, crear!',
 cancelButtonText: 'Cancelar!'
 }).then((result) => {
 if (result.isConfirmed) {

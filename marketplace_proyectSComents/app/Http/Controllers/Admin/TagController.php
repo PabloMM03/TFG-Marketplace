@@ -59,7 +59,7 @@ class TagController extends Controller
 
       $tag = Tag::create($request->all());
 
-      return redirect()->route('admin.tags.edit', $tag)->with('info', 'Etiqueta creada correctamente');
+      return redirect()->route('admin.tags.edit', $tag)->with('crear', 'Etiqueta creada correctamente');
     }
 
     /**
@@ -89,7 +89,7 @@ class TagController extends Controller
 
         $tag->update($request->all());
 
-        return redirect()->route('admin.tags.edit',$tag)->with('info', 'La etiqueta se actualizo correctamente');
+        return redirect()->route('admin.tags.edit',$tag)->with('editar', 'La etiqueta se actualizo correctamente');
     }
 
     /**
@@ -101,6 +101,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('admin.tags.index')->with('info', 'Etiqueta eliminada correctamente');
+        return redirect()->route('admin.tags.index')->with('eliminar', 'Etiqueta eliminada correctamente');
     }
 }

@@ -9,12 +9,12 @@
 
 @section('content')
 {{--Alerta de confirmacion de eliminacion producto--}}
-@if (session('info'))
+{{-- @if (session('info'))
     <div class="alert alert-success">
         <strong>{{session('info')}}</strong>
     </div>
     
-@endif
+@endif --}}
 
     @livewire('admin.products-index')
 @stop
@@ -23,6 +23,3 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop

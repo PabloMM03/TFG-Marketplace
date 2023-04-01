@@ -26,3 +26,39 @@
         <br>
     @endforeach
 </div>
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{{--Create--}}
+
+@if (session('crear') == 'Rol creado correctamente')
+<script>
+     Swal.fire(
+       'Creado!',
+       'El rol ha sido creado.',
+       'success'
+    )
+</script>
+ @endif
+    <script>
+        $('.formulario-crear').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+  title: 'Estás seguro?',
+  text: "Este rol se creará!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, crear!',
+  cancelButtonText: 'Cancelar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.submit();
+  }
+})
+        });
+    </script>
+@endsection

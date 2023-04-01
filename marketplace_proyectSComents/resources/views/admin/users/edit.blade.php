@@ -32,7 +32,7 @@
                 </div>
             @endforeach
 
-            {!! Form::submit('Asignar rol', ['class' => 'btn btn-primary mt-2 btn-sm']) !!}
+            {!! Form::submit('Asignar rol', ['class' => 'btn btn-primary mt-2 btn-sm formulario-asignar']) !!}
         {!! Form::close() !!}
     </div>
 </div>
@@ -43,5 +43,41 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+    {{--Update--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('asignar') == 'Rol asignado correctamente!')
+<script>
+     Swal.fire(
+       'Rol Asignado!',
+       'El rol ha sido asignado.',
+       'success'
+    )
+</script>
+ @endif
+    <script>
+        $('.formulario-asignar').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+  title: 'Estás seguro?',
+  text: "Este rol se asignará!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, asginar!',
+  cancelButtonText: 'Cancelar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+    this.submit();
+  }
+})
+        });
+    </script>
+@endsection

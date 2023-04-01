@@ -13,7 +13,7 @@
             {!! Form::open(['route' => 'admin.tags.store']) !!}
 
             @include('admin.tags.partials.form')
-                {!! Form::submit('Crear Etiquetas', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Crear Etiquetas', ['class' => 'btn btn-primary btn-sm formulario-crear']) !!}
 
             {!! Form::close() !!}
         </div>

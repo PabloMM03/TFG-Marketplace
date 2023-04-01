@@ -43,7 +43,7 @@
                             @endcan
                             <td width="10px">
                                 @can('admin.tags.destroy')
-                                <form action="{{route('admin.tags.destroy', $tag)}}" method="POST">
+                                <form action="{{route('admin.tags.destroy', $tag)}}" method="POST" class="formulario-eliminar">
                                     @csrf    
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -64,4 +64,41 @@
 </div> --}}
 
 @stop
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+@if (session('eliminar') == 'Etiqueta eliminada correctamente')
+<script>
+     Swal.fire(
+       'Eliminada!',
+       'Tu etiqueta ha sido eliminada.',
+       'success'
+    )
+</script>
+ @endif
+    <script>
+        $('.formulario-eliminar').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+  title: 'Estás seguro?',
+  text: "Esta etiqueta se eliminará definitivamente!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, eliminar!',
+  cancelButtonText: 'Cancelar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+    this.submit();
+  }
+})
+        });
+    </script>
+@endsection
