@@ -3,6 +3,7 @@
 @section('title', 'Tienda PM')
 
 @section('content_header')
+<a class="btn btn-primary btn-sm float-right" href="{{route('admin.roles.create')}}">Añadir Rol</a>
     <h1>Editar Rol</h1>
 @stop
 
@@ -30,36 +31,3 @@
 
 
 @stop
-{{--Update--}}
-@section('js')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@if (session('actualizar') == 'Rol actualizado correctamente')
-<script>
-     Swal.fire(
-       'Actualizado!',
-       'El rol ha sido actualizado.',
-       'success'
-    )
-</script>
- @endif
-    <script>
-        $('.formulario-editar').submit(function(e){
-            e.preventDefault();
-
-            Swal.fire({
-  title: 'Estás seguro?',
-  text: "Este rol se actualizará!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, actualizar!',
-  cancelButtonText: 'Cancelar!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-})
-        });
-    </script>
-    @endsection

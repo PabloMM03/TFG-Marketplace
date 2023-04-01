@@ -3,6 +3,9 @@
 @section('title', 'Tienda PM')
 
 @section('content_header')
+@can('admin.tags.create')
+<a class="btn btn-primary btn-sm float-right" href="{{route('admin.tags.create')}}">Añadir Etiqueta</a>
+@endcan
     <h1>Editar Etiqueta</h1>
 @stop
 
