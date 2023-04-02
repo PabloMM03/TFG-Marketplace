@@ -71,11 +71,6 @@
   cancelButtonText: 'Cancelar!'
 }).then((result) => {
   if (result.isConfirmed) {
-    // Swal.fire(
-    //   'Deleted!',
-    //   'Your file has been deleted.',
-    //   'success'
-    // )
     this.submit();
   }
 })

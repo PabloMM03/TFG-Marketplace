@@ -28,7 +28,6 @@ class SingleProduct extends Component
                                       ->get();
     }
 
-
 /**
  * Show the product in detail
  */
@@ -42,7 +41,7 @@ class SingleProduct extends Component
 
 
      /**
-     * filtrar por categoria los productos mendiante consulta
+     * Filter by category the products mendiante query
      */
     public function category(Category $category){
         // return  $category;
@@ -54,7 +53,7 @@ class SingleProduct extends Component
         return view('livewire.shop.category-component', compact('products','category'));
     }
 
-    /**Filtrar por etiqueta */
+    /**Filter by tag */
     public function tag(Tag $tag){
         $products =  $tag->products()->where('status',2)
                                 ->latest('id')
@@ -83,5 +82,18 @@ class SingleProduct extends Component
     //Confirmation message
     $this->emit('message', 'El producto se ha añadido correctemente.');
     $this->emitTo('shop.cart-component', 'add_to_cart');
+}
+
+ //Update Cart Item //Function to update the price of the cart according to the added products
+ public function update_quantity($productID, $quantity)
+ {
+ Cart::session(auth()->id())->update($productID,[
+     'quantity' => array(
+     'relative' => false,
+     'value' => $quantity
+     ),
+ ]);
+
+ return redirect()->back();
 }
 }

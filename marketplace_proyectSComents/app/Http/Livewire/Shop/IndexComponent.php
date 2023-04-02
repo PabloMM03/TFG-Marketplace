@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Shop;
 
 use App\Models\Product;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 class IndexComponent extends Component
@@ -35,9 +34,10 @@ class IndexComponent extends Component
             
                     //Mensaje de confirmacion
                     $this->emit('message', 'El producto se ha añadido correctemente.');
-                    $this->emitTo('shop.cart-component', 'add_to_cart');
+                    $this->emitTo('shop.cart-component', 'add_to_cart');   
+                                     
                 }
-
+                
 
     }
 

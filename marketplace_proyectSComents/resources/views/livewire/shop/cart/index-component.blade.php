@@ -17,7 +17,7 @@
     
                           @foreach ($cart_items->sortBy('id') as $key => $item)
                       <div class="col-md-2 col-lg-2 col-xl-2 mb-3">
-                         <img  src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                        <img class="card-img-top" src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
                       </div>
                         <div class="col-md-3 col-lg-3 col-xl-3">
                           <h6 class="text-muted" style="text-align: center">{{$item->name}}</h6>
@@ -40,11 +40,11 @@
     
                       <hr class="my-4">
     
-                      {{-- <div class="pt-5">
-                        <h6 class="mb-0"><a href="#!" class="text-body"><i
-                              class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                       <div class="pt-5">
+                        <h6 class="mb-0"><a style="text-decoration: none" href="/" class="text-body"><i
+                              class="bi-cart-fill me-1"></i>Back to shop</a></h6>
                       </div>
-                    </div> --}}
+                    </div> 
                   </div>
                 <div>
                   <h3 class="mb-0 ml-9 mb-10 ">€{{Cart::session(auth()->id())->getTotal()}}</h3><br>

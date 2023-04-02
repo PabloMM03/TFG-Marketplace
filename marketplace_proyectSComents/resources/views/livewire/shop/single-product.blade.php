@@ -52,8 +52,10 @@
                 </div>
                 <p class="lead">{!!$product->description!!}</p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0" wire:click="add_to_cart({{$product->id}})" type="button">
+                    
+                    <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" class="form-control text-center me-3 " value="1">
+                    {{-- <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" /> --}}
+                    <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
                     </button>
@@ -68,7 +70,9 @@
     
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Productos relacionados: {{$product->category->name}}</h2>
+        
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
             @foreach ($relacionados as $relacionado)
             <div class="col mb-5">
                 <div class="card h-100">
@@ -98,7 +102,7 @@
                     </div>
                     
                 </div>
-            </div>
+            </div>         
             @endforeach
 </section>
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -128,7 +132,7 @@
                 @if ($comment->user)
                     {{$comment->user->name}}
                 @endif
-                <small class="ms-3 text-primary">Publicado el: {{$comment->created_at}}</small>
+                <small class="ms-3 text-primary">Publicado el: {{$comment->created_at->format('d-m-Y')}}</small>
             </h6>
             <p class="user-comment mb-1">
                 {!! $comment->comment_body !!}
@@ -152,3 +156,4 @@
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeHive 2023</p></div>
 </footer>
+

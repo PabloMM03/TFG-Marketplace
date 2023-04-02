@@ -2,10 +2,8 @@
 
 namespace App\Http\Livewire\Shop\Cart;
 
-use App\Models\Product;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
-use Illuminate\Http\Request;
 
 class IndexComponent extends Component
 {
@@ -21,7 +19,7 @@ class IndexComponent extends Component
             Cart::session(auth()->id())->remove($itemId);
         }
 
-        //Update Cart Item //Funcion para actuzalizar el precio del carrito segun los productos añadidos
+        //Update Cart Item //Function to update the price of the cart according to the added products
         public function update_quantity($itemId, $quantity)
         {
         Cart::session(auth()->id())->update($itemId,[
