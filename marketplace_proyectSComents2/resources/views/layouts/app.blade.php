@@ -25,6 +25,8 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+
     @livewireStyles
 
     <!-- Scripts -->
@@ -39,13 +41,14 @@
         {{-- @livewire('nav-panel-left') --}}
             
         <div class="relative h-screen ">
+          
             <!-- Panel lateral -->
             <div class="w-64 bg-gray-900" >
                 @yield('sidebar')
             </div>
           
             <!-- Contenido principal -->
-            <div class="ml-64">
+            <div class="ml-0">
               <h1 class="text-2xl font-bold text-gray-900 p-4">@yield('title')</h1>
               <div class="p-4">
                 <!-- Contenido aquí -->

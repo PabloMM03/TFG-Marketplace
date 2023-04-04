@@ -10,7 +10,7 @@ class IndexComponent extends Component
 {
     public function render()
     {
-        $products = Product::where('status', 2)->latest('id')->paginate(6);
+        $products = Product::where('status', 2)->latest('id')->paginate(50);
         return view('livewire.shop.index-component',compact('products'))->extends('layouts.app')->section('content');
     }
 

@@ -26,7 +26,7 @@
           </button>
         </div>
 
-        <a href="/" style="text-decoration:none" class=" btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">TradeHive</a>
+        <a href="/" style="text-decoration:none" class=" btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">TradeVibes</a>
         
         {{-- logotipo --}}
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
