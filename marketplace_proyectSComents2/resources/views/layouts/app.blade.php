@@ -42,20 +42,13 @@
             
         <div class="relative h-screen ">
           
-            <!-- Panel lateral -->
-            <div class="w-64 bg-gray-900" >
-                @yield('sidebar')
-            </div>
-          
-            <!-- Contenido principal -->
-            <div class="ml-0">
+            <!-- Contenido principal --> 
               <h1 class="text-2xl font-bold text-gray-900 p-4">@yield('title')</h1>
               <div class="p-4">
                 <!-- Contenido aquí -->
                 @yield('content')
                 
               </div>
-            </div>
           </div>
           
     </div>

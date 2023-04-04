@@ -38,7 +38,7 @@
             
             @foreach ($relacionados as $relacionado)
             <div class="col mb-5">
-                <div class="card h-100">
+                <div class="card h-100 mb-50">
                     <!-- Product image-->
                     
                     <a style="text-decoration: none" class="flex" href="{{route('publicaciones.show', $relacionado)}}">
