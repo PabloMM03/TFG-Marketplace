@@ -17,7 +17,6 @@
      <!-- Header-->
    <section class="py-5 bg-light">
 
-    
     @if ($products->count())  
     
     
