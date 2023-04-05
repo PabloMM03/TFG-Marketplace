@@ -24,7 +24,7 @@ class RatingController extends Controller
 
         if($verify_purchease->count() > 0)
         {
-            $existing_rating = Rating::where('user_id', Auth::id())->where('prod_id', $product_id)->exists();
+            $existing_rating = Rating::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
             if($existing_rating)
             {
                 $existing_rating->stars_rated = $stars_rated;
@@ -36,13 +36,13 @@ class RatingController extends Controller
                     'stars_rated' => $stars_rated,
                 ]);
             }
-           return redirect()->back()->with('status', "Producto calificado, Gracias por su calificación");
+           return redirect()->back()->with('caliOk', "Producto calificado, Gracias por su calificación");
 
         }else{
-            return redirect()->back()->with('status', "No puedes valorar este producto sin haberlo comprado");
+            return redirect()->back()->with('caliError', "No puedes valorar este producto sin haberlo comprado");
         }
        }else{
-        return redirect()->back()->with('status', "El enlace que ha seguido no esta operativo");
+        return redirect()->back()->with('caliError2', "El enlace que ha seguido no esta operativo");
     }
        
     }

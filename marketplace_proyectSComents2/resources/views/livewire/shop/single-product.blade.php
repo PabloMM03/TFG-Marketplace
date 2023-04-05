@@ -37,9 +37,11 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
+
             <div class="col-md-6"><img class="card-img-top" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} 
                 @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap"></div>
             <div class="col-md-6">
+
                 <div class="small mb-1">SKU: BST-498</div>
                 <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
                 <div class="fs-5 mb-5">
@@ -70,11 +72,13 @@
       <div class="modal-content">
         <form action="{{url('/add-rating')}}" method="POST"> 
             @csrf
+
             <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Calificar {{ $product->name }}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Calificar: {{ $product->name }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
+
         <div class="modal-body">
             <div class="rating-css">
                 <div class="star-icon">
@@ -103,9 +107,10 @@
                 </div>
             </div>
         </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="button" class="btn btn-outline-dark flex-shrink-0 " data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-outline-dark flex-shrink-0 formulario-calificar">Guardar cambios</button>
         </div>
     </form> 
       </div>
@@ -129,7 +134,6 @@
             </div>
         </div>
     </div>
-
   
 </section>
 <!-- Related items section-->
@@ -227,3 +231,38 @@
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
 </footer>
 
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('caliOk') == 'Producto calificado, Gracias por su calificación')
+<script>
+     Swal.fire(
+       'Calificado!',
+       'El producto ha sido calificado.',
+       'success'
+    )
+</script>
+ @endif
+    <script>
+        $('.formulario-calificar').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+  title: 'Estás seguro?',
+  text: "Este producto se calificará!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, calificar!',
+  cancelButtonText: 'Cancelar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.submit();
+  }
+})
+        });
+    </script>
+
+    
+@endsection
