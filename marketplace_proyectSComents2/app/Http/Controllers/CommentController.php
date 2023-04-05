@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    /**
+     * You create a comment system, which if the user is identified can give an opinion about that product
+     */
     public function store(Request $request)
     {
         if(Auth::check())
@@ -20,7 +23,7 @@ class CommentController extends Controller
 
             if($validator->fails())
             {
-                return redirect()->back()->with('message', 'El area del comentario es mandatoria');
+                return redirect()->back()->with('message', 'El area del comentario es mandatoria.');
             }
             $product = Product::where('slug', $request->product_slug)
                                 ->where('status', '2')->first();
@@ -33,15 +36,15 @@ class CommentController extends Controller
 
                 ]);
 
-                return  redirect()->back()->with('message', 'Comentario creado correctamente');
+                return  redirect()->back()->with('message', 'Comentario creado correctamente.');
 
             }
             else{
-              return  redirect()->back()->with('message', 'No se a encotrado el producto');
+              return  redirect()->back()->with('message', 'No se a encotrado el producto.');
             }              
         }
         else{
-           return redirect('login')->with('message', 'Debes hacer el login primero');
+           return redirect('login')->with('message', 'Debes hacer el login primero.');
         }
     }
 

@@ -36,13 +36,13 @@ class RatingController extends Controller
                     'stars_rated' => $stars_rated,
                 ]);
             }
-           return redirect()->back()->with('caliOk', "Producto calificado, Gracias por su calificación");
+           return redirect()->back()->with('status', "Producto calificado, Gracias por su calificación.");
 
         }else{
-            return redirect()->back()->with('caliError', "No puedes valorar este producto sin haberlo comprado");
+            return redirect()->back()->with('status', "No puedes valorar este producto sin haberlo comprado.");
         }
        }else{
-        return redirect()->back()->with('caliError2', "El enlace que ha seguido no esta operativo");
+        return redirect()->back()->with('status', "El enlace que ha seguido no esta operativo.");
     }
        
     }

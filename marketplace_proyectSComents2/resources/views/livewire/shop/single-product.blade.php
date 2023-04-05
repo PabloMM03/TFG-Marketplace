@@ -131,6 +131,9 @@
                         Calificar
                       </button>
                 </div>
+                @if (session('status'))
+                <h6 class="alert alert-warning mb-3 mt-3">{{session('status')}}</h6>
+                @endif
             </div>
         </div>
     </div>
@@ -168,6 +171,32 @@
                             {{$relacionado->price}} €
                         </div>
                     </div>
+
+                    <div class="product-action mb-2 ml-7">
+                        <a title="View" style="text-decoration: none" class="mr-1 ml-20" href="{{route('publicaciones.show',$relacionado)}}"><i class="bi-eye"></i></a>
+                        <a title="Wishlist" href="#"><i class=" bi-heart "></i></a>
+                    </div>
+                    
+                    @php $ratenum  = number_format($rating_value) @endphp
+                <div class="rating ml-20 mb-2">
+                    @for($i = 1; $i<= $ratenum; $i++)
+                    <i class=" fa bi-star checked"></i>
+                    @endfor
+                    @for($j = $ratenum+1; $j <= 5; $j++)
+                    <i class=" fa bi-star"></i>
+                    @endfor
+                    <br>
+                    <span>
+                        @if($ratings->count() > 0)
+                        {{$ratings->count()}} Calificaciones
+                        @else
+                        Sin calificaciones.
+                        @endif
+                    </span>
+                </div>
+
+
+
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('publicaciones.show', $relacionado)}}">View</a></div>
@@ -231,38 +260,3 @@
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
 </footer>
 
-@section('js')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-@if (session('caliOk') == 'Producto calificado, Gracias por su calificación')
-<script>
-     Swal.fire(
-       'Calificado!',
-       'El producto ha sido calificado.',
-       'success'
-    )
-</script>
- @endif
-    <script>
-        $('.formulario-calificar').submit(function(e){
-            e.preventDefault();
-
-            Swal.fire({
-  title: 'Estás seguro?',
-  text: "Este producto se calificará!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, calificar!',
-  cancelButtonText: 'Cancelar!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-})
-        });
-    </script>
-
-    
-@endsection
