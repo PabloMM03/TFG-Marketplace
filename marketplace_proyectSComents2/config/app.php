@@ -196,6 +196,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        willvincent\Rateable\RateableServiceProvider::class,
+
     ],
 
     /*

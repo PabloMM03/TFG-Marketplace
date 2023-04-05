@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Shop;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Rating;
 use App\Models\Tag;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Support\Facades\Auth;
 
 class SingleProduct extends Component
 {
@@ -19,6 +21,20 @@ class SingleProduct extends Component
     public function mount(Product $product){
         
         $this->product = $product;
+
+        //System Rating products
+        $this->ratings = Rating::where('prod_id', $product->id)->get();
+        $this->rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+       
+        $this->user_rating = Rating::where('prod_id', $product->id)->where('user_id', Auth::id())->first();
+
+        if($this->ratings->count() > 0)
+        {
+            $this->rating_value = $this->rating_sum/$this->ratings->count();
+        }else{
+            $this->rating_value = 0;
+        }
+
 
         $this->relacionados = Product::where('category_id', $product->category_id)
                                       ->where('status', 2)
@@ -34,8 +50,9 @@ class SingleProduct extends Component
 
     public function render()
     {
-       
-        return view('livewire.shop.single-product', ['product' => $this->product, 'relacionados' => $this->relacionados])->extends('layouts.app')->section('content');
+        return view('livewire.shop.single-product', ['product' => $this->product, 'relacionados' => $this->relacionados, 'ratings' 
+                                                               => $this->ratings, 'rating_value' => $this->rating_value, 'user_rating' => $this->user_rating])
+                                                    ->extends('layouts.app')->section('content');
 
     }
 
@@ -96,4 +113,5 @@ class SingleProduct extends Component
 
  return redirect()->back();
 }
+
 }

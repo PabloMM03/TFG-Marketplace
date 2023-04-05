@@ -1,4 +1,37 @@
 <div class="container" py-8>
+    <style>
+        /* rating */
+.rating-css div {
+    color: #ffe400;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 0;
+  }
+  .rating-css input {
+    display: none;
+  }
+  .rating-css input + label {
+    font-size: 60px;
+    text-shadow: 1px 1px 0 #8f8420;
+    cursor: pointer;
+  }
+  .rating-css input:checked + label ~ label {
+    color: #b4afaf;
+  }
+  .rating-css label:active {
+    transform: scale(0.8);
+    transition: 0.3s ease;
+  }
+  .checked{
+    color:#ffd900
+  }
+
+/* End of Star Rating */
+    </style>
+
     @can('published', $product)
 <!-- Product section-->
 <section class="py-5">
@@ -13,7 +46,74 @@
                     <span class="text-decoration-line-through">$45.00</span>
                     <span>{{$product->price}} €</span>
                 </div>
+                {{--Ratings--}}
+           @php $ratenum  = number_format($rating_value) @endphp
+                <div class="rating">
+                    @for($i = 1; $i<= $ratenum; $i++)
+                    <i class=" fa bi-star checked"></i>
+                    @endfor
+                    @for($j = $ratenum+1; $j <= 5; $j++)
+                    <i class=" fa bi-star"></i>
+                    @endfor
+                    <span>
+                        @if($ratings->count() > 0)
+                        {{$ratings->count()}} Calificaciones
+                        @else
+                        Sin calificaciones.
+                        @endif
+                    </span>
+                </div>
+                
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="{{url('/add-rating')}}" method="POST"> 
+            @csrf
+            <input type="hidden" name="product_id" value="{{$product->id}}">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Calificar {{ $product->name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+            <div class="rating-css">
+                <div class="star-icon">
+                    @if($user_rating)
+                        @for($i = 1; $i<= $user_rating->stars_rated; $i++)
+                        <input type="radio" value="{{$i}}" name="product_rating" checked id="rating{{$i}}">
+                        <label for="rating{{$i}}" class="fa bi-star"></label>
+                        @endfor
+                        @for($j = $user_rating->stars_rated+1; $j <= 5; $j++)
+                        <input type="radio" value="{{$j}}" name="product_rating" id="rating{{$j}}">
+                        <label for="rating{{$j}}" class="fa bi-star"></label>
+                        @endfor
+                    
+                    @else
+                    <input type="radio" value="1" name="product_rating" checked id="rating1">
+                    <label for="rating1" class="fa bi-star"></label>
+                    <input type="radio" value="2" name="product_rating" id="rating2">
+                    <label for="rating2" class="fa bi-star"></label>
+                    <input type="radio" value="3" name="product_rating" id="rating3">
+                    <label for="rating3" class="fa bi-star"></label>
+                    <input type="radio" value="4" name="product_rating" id="rating4">
+                    <label for="rating4" class="fa bi-star"></label>
+                    <input type="radio" value="5" name="product_rating" id="rating5">
+                    <label for="rating5" class="fa bi-star"></label>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+    </form> 
+      </div>
+    </div>
+  </div>
                 <p class="lead">{!!$product->description!!}</p>
+                <hr>
+                    
                 <div class="d-flex">
                     
                     <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" class="form-control text-center me-3 " value="1">
@@ -22,10 +122,15 @@
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
                     </button>
+                    <button type="button" class="btn btn-outline-dark flex-shrink-0 ml-60" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Calificar
+                      </button>
                 </div>
             </div>
         </div>
     </div>
+
+  
 </section>
 <!-- Related items section-->
 
@@ -68,6 +173,8 @@
             </div>         
             @endforeach
 </section>
+
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 {{--Comment system to the published product--}}
 <div>   
@@ -81,7 +188,7 @@
                 @csrf
                 <input type="hidden" name="product_slug" value="{{$product->slug}}">
                 <textarea name="comment_body" class="form-control" rows="3"></textarea>
-                <button type="submit" class="btn btn-primary mt-3 me-2">Comentar</button>
+                <button type="submit" class="btn btn-outline-dark flex-shrink-0 me-2 mt-4">Comentar</button>
             </form>
         </div>
     </div>

@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 class IndexComponent extends Component
 {
     use WithPagination;
+    
     public $search;
 
     public function updatingSearch()

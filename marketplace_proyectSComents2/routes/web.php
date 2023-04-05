@@ -1,8 +1,8 @@
 <?php
 
-
-
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\RatingController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\IndexComponent;
@@ -63,4 +63,7 @@ Route::get('tags/{tag}', [SingleProduct::class, 'tag'])->name('products.tag');
 
 //Comment System
 
-Route::post('comments', [App\Http\Controllers\CommentController::class, 'store']);
+Route::post('comments', [CommentController::class, 'store']);
+
+//rating system
+Route::post('add-rating' ,[RatingController::class, 'add']);
