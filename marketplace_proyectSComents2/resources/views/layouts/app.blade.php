@@ -25,17 +25,13 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <!-- Agrega el enlace al archivo de jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Agrega el enlace al archivo de Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  
 
     @livewireStyles
 
     <!-- Scripts -->
-
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 </head>
 <body>
 
@@ -65,6 +61,5 @@
     {{-- Alpine --}}
     <script src="https://unpkg.com/alpinejs" defer></script>
 
-    
 </body>
 </html>
