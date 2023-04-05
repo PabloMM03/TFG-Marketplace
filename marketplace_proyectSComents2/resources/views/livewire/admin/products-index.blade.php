@@ -55,6 +55,7 @@
 
  @endif 
 </div>
+
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -82,11 +83,6 @@
   cancelButtonText: 'Cancelar!'
 }).then((result) => {
   if (result.isConfirmed) {
-    // Swal.fire(
-    //   'Deleted!',
-    //   'Your file has been deleted.',
-    //   'success'
-    // )
     this.submit();
   }
 })

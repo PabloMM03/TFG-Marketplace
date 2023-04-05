@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class ProductsIndex extends Component

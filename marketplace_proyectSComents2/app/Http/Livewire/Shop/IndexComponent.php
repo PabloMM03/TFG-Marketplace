@@ -5,12 +5,24 @@ namespace App\Http\Livewire\Shop;
 use App\Models\Product;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Livewire\WithPagination;
 
 class IndexComponent extends Component
 {
+    use WithPagination;
+    public $search;
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $products = Product::where('status', 2)->latest('id')->paginate(50);
+        $products = Product::where('status', 2)
+                            ->where('name', 'LIKE','%'.$this->search . '%')
+                            ->latest('id')
+                            ->paginate(50);
         return view('livewire.shop.index-component',compact('products'))->extends('layouts.app')->section('content');
     }
 
