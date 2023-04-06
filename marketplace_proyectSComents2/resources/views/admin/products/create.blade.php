@@ -7,12 +7,12 @@
 @stop
 
 @section('content')
-@if (session('info'))
+{{-- @if (session('info'))
     <div class="alert alert-success">
         <strong>{{session('info')}}</strong>
     </div>
     
-@endif
+@endif --}}
 <div class="card">
     <div class="card-body">
         {{--No autocompletar al excribir--}}
@@ -30,6 +30,4 @@
     </div>
 </div>
 @stop
-
-
 

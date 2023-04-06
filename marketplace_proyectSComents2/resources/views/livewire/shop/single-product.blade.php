@@ -34,6 +34,7 @@
 
     @can('published', $product)
 <!-- Product section-->
+
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
@@ -118,11 +119,10 @@
   </div>
                 <p class="lead">{!!$product->description!!}</p>
                 <hr>
-                    
+                
+
                 <div class="d-flex">
-                    
                     <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" class="form-control text-center me-3 " value="1">
-                    {{-- <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" /> --}}
                     <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
@@ -259,4 +259,3 @@
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
 </footer>
-

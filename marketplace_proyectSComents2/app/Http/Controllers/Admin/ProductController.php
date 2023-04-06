@@ -80,7 +80,7 @@ class ProductController extends Controller
        }
 
        $product->save();
-       return redirect()->route('admin.products.edit', $product)->with('info', 'Producto creado correctamente');
+       return redirect()->route('admin.products.edit', $product)->with('crear', 'Producto creado correctamente');
     }
 
 

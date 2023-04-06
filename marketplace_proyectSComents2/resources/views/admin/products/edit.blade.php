@@ -39,7 +39,7 @@
     {{--Update--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if (session('info') == 'Producto actualizado correctamente')
+@if (session('edit') == 'Producto actualizado correctamente')
 <script>
  Swal.fire(
    'Producto actualizado!',
@@ -68,4 +68,3 @@ this.submit();
 })
     });
 </script>
-@endsection

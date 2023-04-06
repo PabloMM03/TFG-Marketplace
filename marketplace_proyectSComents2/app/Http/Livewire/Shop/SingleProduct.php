@@ -114,4 +114,5 @@ class SingleProduct extends Component
  return redirect()->back();
 }
 
+
 }

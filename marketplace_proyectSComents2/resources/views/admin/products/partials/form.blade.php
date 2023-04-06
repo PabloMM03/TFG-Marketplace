@@ -164,8 +164,7 @@
 
 @endsection
 
-@section('js')
-    {{--Update--}}
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if (session('crear') == 'Producto creado correctamente')
@@ -177,24 +176,3 @@
 )
 </script>
 @endif
-<script>
-    $('.formulario-crear').submit(function(e){
-        e.preventDefault();
-
-        Swal.fire({
-title: 'Estás seguro?',
-text: "Esta categoria se actualizará!",
-icon: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Si, actualizar!',
-cancelButtonText: 'Cancelar!'
-}).then((result) => {
-if (result.isConfirmed) {
-this.submit();
-}
-})
-    });
-</script>
-@endsection
