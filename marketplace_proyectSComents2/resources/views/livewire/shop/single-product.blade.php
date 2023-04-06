@@ -131,9 +131,9 @@
                         Calificar
                       </button>
                 </div>
-                @if (session('status'))
+                {{-- @if (session('status'))
                 <h6 class="alert alert-warning mb-3 mt-3">{{session('status')}}</h6>
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>
@@ -212,9 +212,9 @@
 {{--Comment system to the published product--}}
 <div>   
     <div class="comment-area mt-4">
-        @if (session('message'))
+        {{-- @if (session('message'))
         <h6 class="alert alert-warning mb-3">{{session('message')}}</h6>
-         @endif
+         @endif --}}
         <div class="card card-body">
             <h6 class="card-title">Leave Comment</h6>
             <form action="{{url('comments')}}" method="POST">
@@ -259,3 +259,73 @@
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
 </footer>
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@if (session('status') == "Producto calificado, Gracias por su calificación.")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif(session('status') == "No puedes valorar este producto sin haberlo comprado.")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "El enlace que ha seguido no esta operativo.")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@endif
+
+{{--Comments message--}}
+
+@if (session('message') == "Comentario creado correctamente.")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Comentario creado correctamente.',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif(session('message') == "El area del comentario es mandatoria.")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'El area del comentario es mandatoria.',
+})
+</script>
+@elseif(session('message') == "No se a encotrado el producto.")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'No se a encotrado el producto.',
+})
+</script>
+@elseif(session('message') == "Debes hacer el login primero.")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Debes hacer el login primero.',
+})
+</script>
+@endif

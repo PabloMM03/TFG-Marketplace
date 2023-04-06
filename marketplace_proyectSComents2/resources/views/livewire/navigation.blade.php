@@ -59,14 +59,6 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#!">Todos los Productos</a></li>
                       <li><hr class="dropdown-divider" /></li>
-                      
-                      @foreach ($productos as $producto)
-
-                      <li><a class="dropdown-item" href="{{route('products.category', $producto)}}">{{$producto->name}}</a></li>
-              
-                      @endforeach
-
-                      <li><hr class="dropdown-divider" /></li>
                       <li><a class="dropdown-item" href="#!">Productos Populares</a></li>
                       <li><a class="dropdown-item" href="#!">Nuevos Productos</a></li>
                   </ul>
