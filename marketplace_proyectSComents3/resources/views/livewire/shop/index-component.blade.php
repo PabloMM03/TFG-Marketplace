@@ -88,3 +88,17 @@
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
 </footer>
 </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@if (session('message') == "El producto se ha añadido correctemente.")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@endif
