@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 @section('content')
 
 <div>
@@ -102,3 +104,5 @@ Swal.fire({
 })
 </script>
 @endif
+
+@endsection
