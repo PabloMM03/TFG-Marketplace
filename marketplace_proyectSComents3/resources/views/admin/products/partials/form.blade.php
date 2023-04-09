@@ -44,6 +44,16 @@
   </div>
 
   <div class="form-group">
+    {!! Form::label('brand', 'Marca:') !!}
+    {!! Form::text('brand', null, ['class' => 'form-control']) !!}
+
+    @error('brand')
+        <small class="text-danger">{{$message}}</small>
+    @enderror
+
+  </div>
+
+  <div class="form-group">
       <p class="font-weight-bold">Estado de publicación</p>
       <label class="mr-2" for="">
           {!! Form::radio('status', 1, true) !!}
@@ -61,6 +71,25 @@
       @enderror
 
   </div>
+
+  <div class="form-group">
+    <p class="font-weight-bold">Es Popular?</p>
+    <label class="mr-2" for="">
+        {!! Form::radio('trending', 1, true) !!}
+        No popular
+    </label>
+
+    <label for="">
+        {!! Form::radio('trending', 2) !!}
+        Popular
+    </label>
+
+    @error('trending')
+        <br>
+        <small class="text-danger">{{$message}}</small>
+    @enderror
+
+</div>
 
   <div class="row mb-3">
       <div class="col">
@@ -90,8 +119,19 @@
       @enderror
 
   </div>
+
   <div class="form-group">
-      {!! Form::label('price', 'Precio €:') !!}
+    {!! Form::label('original_price', 'Precio original €:') !!}
+    {!! Form::text('original_price', null, ['class' => 'form-control']) !!}
+
+    @error('price')
+        <small class="text-danger">{{$message}}</small>
+    @enderror
+
+ </div>
+
+  <div class="form-group">
+      {!! Form::label('price', 'Precio de venta €:') !!}
       {!! Form::text('price', null, ['class' => 'form-control']) !!}
 
       @error('price')
@@ -99,6 +139,17 @@
       @enderror
 
   </div>
+
+  <div class="form-group">
+    {!! Form::label('qty', 'Cantidad:') !!}
+    <br>
+    {!! Form::number('qty', null) !!}
+
+    @error('qty')
+        <small class="text-danger">{{$message}}</small>
+    @enderror
+
+ </div>
 
   @section('css')
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}

@@ -7,7 +7,7 @@ use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\IndexComponent;
 use App\Http\Livewire\Shop\SingleProduct;
-
+use App\Http\Livewire\Shop\TrendingProduct;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 //Ruta de la tienda
 Route::get('/', IndexComponent::class)->name('shop.index');
-
+Route::get('trending', [IndexComponent::class, 'trending']);
 //Publicaciones /articulos
 Route::get('products/{product}', SingleProduct::class)->name('publicaciones.show');
 

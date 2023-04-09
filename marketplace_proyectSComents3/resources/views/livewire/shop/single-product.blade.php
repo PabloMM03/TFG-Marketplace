@@ -43,10 +43,12 @@
                 @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap"></div>
             <div class="col-md-6">
 
-                <div class="small mb-1">SKU: BST-498</div>
+                <div class="small mb-1">@if($product->brand){{$product->brand}} @else SKU: BST-498 @endif</div>
+                <div class="small mb-1">@if($product->qty){{$product->qty}} @else 10 @endif Unidades</div>
+                
                 <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$45.00</span>
+                    <span class="text-decoration-line-through">{{$product->original_price}}€</span>
                     <span>{{$product->price}} €</span>
                 </div>
                 {{--Ratings--}}

@@ -17,11 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('brand')->nullable();
             $table->string('description')->nullable();
             $table->string('product_image')->nullable();
             $table->float('price')->nullable();
+            $table->float('original_price')->nullable();
+            $table->string('qty')->nullable();
             // $table->string('cover_img')->nullable();
             $table->enum('status', [1,2])->default(1); //Estado publicado o en espera
+            $table->enum('trending', [1,2])->default(1);
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');

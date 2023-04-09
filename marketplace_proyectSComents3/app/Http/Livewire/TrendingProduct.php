@@ -20,12 +20,14 @@ class IndexComponent extends Component
 
     public function render()
     {
-        $products = Product::where('status', 2)
-                            ->where('name', 'LIKE','%'.$this->search . '%')
-                            ->orWhere('price', 'LIKE', '%'.$this->search.'%')
-                            ->latest('id')
-                            ->paginate(50);
-        return view('livewire.shop.index-component',compact('products'))->extends('layouts.app')->section('content');
+
+            $products = Product::where('trending', 2)
+                    ->where('name', 'LIKE','%'.$this->search . '%')
+                    ->orWhere('price', 'LIKE', '%'.$this->search.'%')
+                    ->latest('id')
+                    ->paginate(50);
+            return view('livewire.shop.trending-component', compact('products'))->extends('layouts.app')->section('content');
+        
     }
 
     public function add_to_cart(Product $product){
@@ -55,15 +57,7 @@ class IndexComponent extends Component
 
     }
 
-    public function trending(){
-
-        $products = Product::where('trending', 2)
-                ->where('name', 'LIKE','%'.$this->search . '%')
-                ->orWhere('price', 'LIKE', '%'.$this->search.'%')
-                ->latest('id')
-                ->paginate(50);
-        return view('livewire.shop.trending-component', compact('products'))->extends('layouts.app')->section('content');
-    }
+    
 
 
     
