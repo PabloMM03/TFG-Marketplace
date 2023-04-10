@@ -52,8 +52,7 @@
                         @endforeach
 
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Categorías Populares</a></li>
-                        <li><a class="dropdown-item" href="#!">Nuevas Categorías</a></li>
+                        
                     </ul>
                     <a class="nav-link dropdown-toggle btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
