@@ -33,6 +33,7 @@ class ProductRequest extends FormRequest
             'name' => 'required',
             'slug' => 'required|unique:products',
             'status' => 'required|in:1,2',
+            'trending' => 'required|in:1,2',
             'file' => 'image'
         ];
 
@@ -47,7 +48,10 @@ class ProductRequest extends FormRequest
                 'category_id' => 'required',
                 'tags' => 'required',
                 'description' => 'required',
-                'price' => 'required'
+                'price' => 'required',
+                'original_price' => 'required',
+                'brand' => 'required',
+                'qty' => 'required'
             ]);
         }
 

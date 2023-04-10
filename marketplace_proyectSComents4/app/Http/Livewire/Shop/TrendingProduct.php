@@ -7,7 +7,7 @@ use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\WithPagination;
 
-class IndexComponent extends Component
+class TrendingProduct extends Component
 {
     use WithPagination;
     
@@ -20,12 +20,15 @@ class IndexComponent extends Component
 
     public function render()
     {
+        //Get the most popular products
 
-            $products = Product::where('trending', 2)
+            $products = Product::where('status', 2)    
                     ->where('name', 'LIKE','%'.$this->search . '%')
                     ->orWhere('price', 'LIKE', '%'.$this->search.'%')
                     ->latest('id')
-                    ->paginate(50);
+                    ->paginate(50)
+                    ->where('trending', 2);
+                    
             return view('livewire.shop.trending-component', compact('products'))->extends('layouts.app')->section('content');
         
     }

@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 @section('content')
 
 <div>
@@ -7,7 +5,7 @@
     <div class="card-header mb-4 w-50 ml-16">
         <input class="form-control" placeholder="Introduzca el nombre del Producto" type="text" wire:model="search">
     </div>
-
+{{-- 
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
@@ -15,7 +13,7 @@
                 <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
             </div>
         </div>
-    </header>
+    </header> --}}
      <!-- Header-->
    <section class="py-5 bg-light">
 
@@ -70,11 +68,11 @@
     </div>
 
     @endforeach
-</div>
+{{-- </div>
 
     {{$products->links()}} 
 
-</div>
+</div> --}}
 
 @else
     <div class="card-body">
@@ -104,5 +102,3 @@ Swal.fire({
 })
 </script>
 @endif
-
-@endsection

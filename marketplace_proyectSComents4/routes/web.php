@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 //Ruta de la tienda
 Route::get('/', IndexComponent::class)->name('shop.index');
-Route::get('trending', [IndexComponent::class, 'trending']);
+Route::get('trending', TrendingProduct::class)->name('shop.trending');
 //Publicaciones /articulos
 Route::get('products/{product}', SingleProduct::class)->name('publicaciones.show');
 

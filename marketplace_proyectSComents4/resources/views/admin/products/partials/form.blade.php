@@ -124,7 +124,7 @@
     {!! Form::label('original_price', 'Precio original €:') !!}
     {!! Form::text('original_price', null, ['class' => 'form-control']) !!}
 
-    @error('price')
+    @error('original_price')
         <small class="text-danger">{{$message}}</small>
     @enderror
 

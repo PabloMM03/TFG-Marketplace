@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('qty')->nullable();
             // $table->string('cover_img')->nullable();
             $table->enum('status', [1,2])->default(1); //Estado publicado o en espera
-            $table->enum('trending', [1,2])->default(1);
+            $table->enum('trending', [1,2])->default(1); //Estado popular o no popular
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');

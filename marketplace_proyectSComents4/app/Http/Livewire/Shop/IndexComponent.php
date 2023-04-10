@@ -41,6 +41,7 @@ class IndexComponent extends Component
                         'id' => $product->id,
                         'name' => $product->name,
                         'price' => $product->price,
+                        'image' => $product->product_image,
                         'quantity' => 1,
                         'attributes' => array(),
                         'associatedModel' => $product
@@ -53,16 +54,6 @@ class IndexComponent extends Component
                 }
 
 
-    }
-
-    public function trending(){
-
-        $products = Product::where('trending', 2)
-                ->where('name', 'LIKE','%'.$this->search . '%')
-                ->orWhere('price', 'LIKE', '%'.$this->search.'%')
-                ->latest('id')
-                ->paginate(50);
-        return view('livewire.shop.trending-component', compact('products'))->extends('layouts.app')->section('content');
     }
 
 
