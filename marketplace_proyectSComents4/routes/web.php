@@ -60,7 +60,6 @@ Route::middleware(['cart.is.empty'])->group(function(){
 Route::get('category/{category}', [SingleProduct::class, 'category'])->name('products.category');
 Route::get('tags/{tag}', [SingleProduct::class, 'tag'])->name('products.tag');
 
-
 //Comment System
 
 Route::post('comments', [CommentController::class, 'store']);

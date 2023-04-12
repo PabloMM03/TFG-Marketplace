@@ -53,7 +53,23 @@
 
                         <li><hr class="dropdown-divider" /></li>
                         
+                       
                     </ul>
+                    <a class="nav-link dropdown-toggle btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Etiquetas</a> 
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Todas las Etiquetas</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    
+                    @foreach ($tags as $tag)
+
+                    <li><a class="dropdown-item" href="{{route('products.tag', $tag)}}">{{$tag->name}}</a></li>
+            
+                    @endforeach
+
+                    <li><hr class="dropdown-divider" /></li>
+                  </ul>
+
+
                     <a class="nav-link dropdown-toggle btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="/">Todos los Productos</a></li>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Tag;
 
 class Navigation extends Component
 {
@@ -13,6 +14,7 @@ class Navigation extends Component
     {
         $productos = Product::all();
         $categories = Category::all();
-        return view('livewire.navigation', compact('productos', 'categories'));
+        $tags = Tag::all();
+        return view('livewire.navigation', compact('productos', 'categories', 'tags'));
     }
 }

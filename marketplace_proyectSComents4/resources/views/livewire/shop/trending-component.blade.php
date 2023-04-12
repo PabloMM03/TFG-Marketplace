@@ -76,7 +76,7 @@
 
 @else
     <div class="card-body">
-        <strong>No hay ningun producto con el nombre indicado.</strong>
+        <strong>No hay ningun producto por el momento en esta sección.</strong>
     </div>
         
  @endif 
