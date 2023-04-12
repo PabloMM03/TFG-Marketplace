@@ -306,7 +306,7 @@ Swal.fire({
   timer: 2000
 })
 </script>
-@elseif(session('message') == "El area del comentario es mandatoria.")
+@elseif(session('message') == "El area del comentario es obligatoria.")
 <script> 
     Swal.fire({
   icon: 'error',
@@ -314,12 +314,12 @@ Swal.fire({
   text: 'El area del comentario es mandatoria.',
 })
 </script>
-@elseif(session('message') == "No se a encotrado el producto.")
+@elseif(session('message') == "No puedes opinar sobre este producto sin haberlo comprado.")
 <script> 
     Swal.fire({
   icon: 'error',
   title: 'Oops...',
-  text: 'No se a encotrado el producto.',
+  text: 'No puedes opinar sobre este producto sin haberlo comprado.',
 })
 </script>
 @elseif(session('message') == "Debes hacer el login primero.")

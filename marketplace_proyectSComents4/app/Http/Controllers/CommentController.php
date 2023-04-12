@@ -23,7 +23,7 @@ class CommentController extends Controller
 
             if($validator->fails())
             {
-                return redirect()->back()->with('message', 'El area del comentario es mandatoria.');
+                return redirect()->back()->with('message', 'El area del comentario es obligatoria.');
             }
             $product = Product::where('slug', $request->product_slug)
                                 ->where('status', '2')->first();
@@ -40,7 +40,7 @@ class CommentController extends Controller
 
             }
             else{
-              return  redirect()->back()->with('message', 'No se a encotrado el producto.');
+              return  redirect()->back()->with('message', 'No puedes opinar sobre este producto sin haberlo comprado.');
             }              
         }
         else{
