@@ -33,7 +33,7 @@
                         </div>
                         
                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                            <button type="button" class="fas fa-times text-muted" wire:click="delete_item({{$item->id}})">Eliminar</button>
+                            <button type="button" class="fas fa-times text-muted" wire:click="delete_item({{$item->id}})"><i class="bi bi-trash"></i></button>
                         </div>
                         @endforeach
                       </div>
@@ -43,6 +43,9 @@
                        <div class="pt-5">
                         <h6 class="mb-0"><a style="text-decoration: none" href="/" class="text-body"><i
                               class="bi-cart-fill me-1"></i>Back to shop</a></h6>
+                      </div>
+                      <div class="pt-5">
+                        <button type="button" wire:click="vaciar_carrito()" class="fas fa-times text-muted"><i class="bi bi-trash"></i>Vaciar carrito</button>
                       </div>
                     </div> 
                   </div>

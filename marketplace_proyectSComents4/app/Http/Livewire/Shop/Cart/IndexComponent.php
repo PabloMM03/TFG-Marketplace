@@ -19,6 +19,10 @@ class IndexComponent extends Component
             Cart::session(auth()->id())->remove($itemId);
         }
 
+        public function vaciar_carrito(){
+            Cart::session(auth()->id())->clear(); //Vaciar carrito
+        }
+
         //Update Cart Item //Function to update the price of the cart according to the added products
         public function update_quantity($itemId, $quantity)
         {
