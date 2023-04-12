@@ -90,7 +90,6 @@ class SingleProduct extends Component
 
        return view('livewire.shop.tag-component', compact('products','tag'));
     }
-
     /**
      * Add the product to cart
      */
