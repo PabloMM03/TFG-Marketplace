@@ -48,16 +48,31 @@
                      <span class="text-decoration-line-through">@if($product->original_price){{$product->original_price}}@else {{$product->original_price = 764.20}}@endif €</span>
                     <span>{{$product->price}} €</span>
 
+                    <div class="col-md-9 ml-6">
+                        @if($product->qty > 0)
+                        <label class="badge bg-success">In stock</label>
+                        @else
+                        <label class="badge bg-danger">Out of stock</label>
+                        @endif
+                    </div>
+
                     <div class="button-head">
                         <div class="product-action mt-2 mb-2">
                             <a title="View" style="text-decoration: none" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
                             <a title="Wishlist" href="#"><i class=" bi-heart "></i></a>
                         </div>
                         <div class="product-action-2">
+                            @if($product->qty >0)
                             <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
+                            @else
+                            <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$product->id}})" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>   
+                            @endif
                         </div>
                     </div>
                 </div>
