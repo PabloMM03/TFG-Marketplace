@@ -87,6 +87,7 @@ class CheckoutComponent extends Component
                 'price' => $item->price,             //Datos a mostrar
                 'quantity' => $item->quantity,
             ]);
+            //Reducir productos mendiante se vayan agotando
             $prod = Product::where('id', $item->id)->first();
             $prod->qty = $prod->qty - $item->quantity;
             $prod->update();
