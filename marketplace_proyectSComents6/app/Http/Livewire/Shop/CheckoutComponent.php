@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Shop;
 
 use App\Mail\OrderPagada;
 use App\Models\Order;
+use App\Models\Product;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\Component;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -86,6 +87,9 @@ class CheckoutComponent extends Component
                 'price' => $item->price,             //Datos a mostrar
                 'quantity' => $item->quantity,
             ]);
+            $prod = Product::where('id', $item->id)->first();
+            $prod->qty = $prod->qty - $item->quantity;
+            $prod->update();
         }
 
         //Comprobar metodo de pago
