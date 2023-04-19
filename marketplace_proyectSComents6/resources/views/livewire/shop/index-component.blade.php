@@ -3,7 +3,7 @@
 <div>
     {{--Browser--}}
     <div class="card-header mb-4 w-50 ml-16">
-        <input class="form-control" placeholder="Introduzca el nombre del Producto" type="text" wire:model="search">
+        {{-- <i class="fa-thin bi-magnifying-glass"></i> <input class="form-control" placeholder=" Introduzca el nombre del Producto" type="text" wire:model="search"> --}}
     </div>
 
     <header class="bg-dark py-5">
