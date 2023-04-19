@@ -3,16 +3,18 @@
 <div>
     {{--Browser--}}
     <div class="card-header mb-4 w-50 ml-16">
-        {{-- <i class="fa-thin bi-magnifying-glass"></i> <input class="form-control" placeholder=" Introduzca el nombre del Producto" type="text" wire:model="search"> --}}
+        
+        {{-- <i class="fa-thin bi-magnifying-glass"></i> --}}<input class="form-control" placeholder=" Introduzca el nombre del Producto" type="text" wire:model="search"> 
     </div>
 
     <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
+        {{-- <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Shop in style</h1>
                 <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
             </div>
-        </div>
+        </div> --}}
+        @include('livewire.shop.slider')
     </header>
      <!-- Header-->
    <section class="py-5 bg-light">
@@ -118,3 +120,14 @@ Swal.fire({
 })
 </script>
 @endif
+
+<script>
+    $(document).ready(function(){
+      $("#carouselExampleIndicators").carousel({interval: 3000});
+    });
+    
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
