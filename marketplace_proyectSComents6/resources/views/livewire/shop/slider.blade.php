@@ -56,3 +56,17 @@
         <span class="sr-only">Siguiente</span>
       </a>
     </div>
+
+    {{-- <div class="owl-carousel featured-carousel owl-theme">
+        @foreach   ($products as $product)
+        <div class="item">
+            <div class="card">
+                <img src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                <div class="card-body">
+                    <h5>{{$product->name}}</h5>
+                    <small>{{$product->price}}</small>
+                </div>
+            </div>
+        </div>
+        @endforeach
+            </div> --}}

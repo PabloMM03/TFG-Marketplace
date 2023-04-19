@@ -21,15 +21,15 @@
     <link href="https://unpkg.com/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{--Carrousel--}}
+   
 
   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
 
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
+    
 
     @livewireStyles
 
@@ -64,6 +64,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-+NS5k/g0hJfV7Bk8YYv11k7hACoYjKlJ1W8+gJtw7HzfmF0chXwehWx2Q/0GknD0Z/DhLK7Vg/W+8LJo7Nq3zg==" crossorigin="anonymous"></script>
     {{-- Alpine --}}
     <script src="https://unpkg.com/alpinejs" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{--Carrousel--}}
+    <link rel="stylesheet" href="{{asset('frontend/js/jquery-3.6.4.min.js')}}">
+    <link rel="stylesheet" href="{{asset('frontend/js/owl.carousel.min.js')}}">
+   
 </body>
 </html>
