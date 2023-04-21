@@ -110,11 +110,13 @@ class SingleProduct extends Component
         'attributes' => array(),
         'associatedModel' => $product
     ));
+    
 
     //Confirmation message
     $this->emit('message', 'El producto se ha añadido correctemente.');
     $this->emitTo('shop.cart-component', 'add_to_cart');
-}
+
+ }
 }
 
  //Update Cart Item //Function to update the price of the cart according to the added products

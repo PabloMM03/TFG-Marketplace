@@ -107,7 +107,7 @@ class CheckoutComponent extends Component
 
             $order->save();
             Cart::session(auth()->id())->clear(); //Vaciar carrito
-            return redirect()->route('shop.index')->with('info', 'Compra realizada correctamente, pronto le llegará su pedido');
+            return redirect('/')->with('info', 'Compra realizada correctamente, pronto le llegará su pedido');
         }
     }
 }

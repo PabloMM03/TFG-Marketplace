@@ -18,14 +18,30 @@ class IndexComponent extends Component
         $this->resetPage();
     }
 
+    // public function mount(Product $products){
+
+    //     $products = Product::where('status', 2)
+    //                 ->where('name', 'LIKE','%'.$this->search . '%')
+    //                 ->orWhere('price', 'LIKE', '%'.$this->search.'%')
+    //                 ->latest('id')
+    //                 ->paginate(50);
+    //    $this->products = $products;
+                        
+
+    //     $this->featured_products = Product::where('trending', 1)
+    //                                 ->take(15)->get();
+    // }
+
     public function render()
     {
-        $products = Product::where('status', 2)
-                            ->where('name', 'LIKE','%'.$this->search . '%')
-                            ->orWhere('price', 'LIKE', '%'.$this->search.'%')
-                            ->latest('id')
-                            ->paginate(50);
+         $products = Product::where('status', 2)
+                             ->where('name', 'LIKE','%'.$this->search . '%')
+                             ->orWhere('price', 'LIKE', '%'.$this->search.'%')
+                             ->latest('id')
+                             ->paginate(50);
         return view('livewire.shop.index-component',compact('products'))->extends('layouts.app')->section('content');
+
+        // return view('livewire.shop.index-component', ['products' => $this->products, 'featured_products' => $this->featured_products])->extends('layouts.app')->section('content');
     }
 
     public function add_to_cart(Product $product){

@@ -6,6 +6,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\IndexComponent;
+use App\Http\Livewire\Shop\PruebaComponent;
 use App\Http\Livewire\Shop\SingleProduct;
 use App\Http\Livewire\Shop\TrendingProduct;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +26,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//Ruta de la tienda
+//Store Route
 Route::get('/', IndexComponent::class)->name('shop.index');
 Route::get('trending', TrendingProduct::class)->name('shop.trending');
-//Publicaciones /articulos
+//Publications /articles
 Route::get('products/{product}', SingleProduct::class)->name('publicaciones.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cart', function(){
@@ -43,11 +44,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::middleware(['cart.is.empty'])->group(function(){
-    //Ruta del carrito
+    //Cart route
     Route::get('/cart', CartIndexComponent::class)->name('cart');
-    //Ruta Pagar
+    //Pay Route
     Route::get('/checkout', CheckoutComponent::class)->name('checkout');
-    //Pagos Paypal
+    //Payments PayPal
     Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
     Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
     Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
@@ -56,7 +57,7 @@ Route::middleware(['cart.is.empty'])->group(function(){
 
 
 
-//filtrar por categorias y etiquetas
+//Filter by categories and tags
 Route::get('category/{category}', [SingleProduct::class, 'category'])->name('products.category');
 Route::get('tags/{tag}', [SingleProduct::class, 'tag'])->name('products.tag');
 
@@ -66,3 +67,6 @@ Route::post('comments', [CommentController::class, 'store']);
 
 //rating system
 Route::post('add-rating' ,[RatingController::class, 'add']);
+
+//Test path
+Route::get('pruebaCarrousel', PruebaComponent::class)->name('prueba.index');

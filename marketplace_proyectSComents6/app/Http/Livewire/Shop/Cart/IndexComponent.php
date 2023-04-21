@@ -21,6 +21,7 @@ class IndexComponent extends Component
 
         public function vaciar_carrito(){
             Cart::session(auth()->id())->clear(); //Vaciar carrito
+            return redirect('/')->with('info', 'Carrito vaciado correctamente');
         }
 
         //Update Cart Item //Function to update the price of the cart according to the added products
