@@ -140,7 +140,7 @@
         </div>
 
 <!-- Header-->
-    <header class="w-100">
+    <header>
         <h3 style="color:black; text-align:center"><b>Los más populares</b></h3>
         <div class="container" style="border-radius:10px">
             {{--We go through with a foreach the popular products to obtain their data and display them in the carousel of images--}}
@@ -159,7 +159,7 @@
                                             <div class="card-img">
                                                 <a style="text-decoration: none" href="{{route('publicaciones.show',$item)}}">
                                                     <img src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-70 w-90" alt="Card image cap">
-                                                </a>
+                                                </a>  
                                             </div>
                                             <div>
                                                 @if($item->trending)
