@@ -76,6 +76,59 @@
   z-index: 1;
 }
 
+.carousel-control-prev {
+  margin-left: 50px;
+  border: 2px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev:before {
+  content: "";
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent white transparent transparent ;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.carousel-control-next {
+  margin-right: 50px;
+  border: 2px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.carousel-control-next:before {
+  content: "";
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent white;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 </style>
 @endsection
 <div>
