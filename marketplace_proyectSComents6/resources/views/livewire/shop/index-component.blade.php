@@ -206,6 +206,7 @@
         <div class="card ">
             <a style="text-decoration: none" href="{{route('publicaciones.show',$product)}}">
                 <img class="card-img-top h-40 w-90" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                {{--If the product is in the category of Most Popular a message is displayed indicating it --}}
                 <div class="info">
                     @if($product->trending == 2)
                     <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
