@@ -46,7 +46,7 @@
         </div>
 
     </center>
-        </div>
+</div>
 <div class="container" style="background-color:black; border-radius:10px">
     <h3 style="color:white; text-align:center" ><b>Los mas populares</b></h3>
         
@@ -104,7 +104,7 @@
     
 
     </div>
-</div>
+
 
 
 <script>
