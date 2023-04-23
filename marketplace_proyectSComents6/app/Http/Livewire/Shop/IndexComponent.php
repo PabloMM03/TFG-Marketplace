@@ -28,7 +28,7 @@ class IndexComponent extends Component
                              ->paginate(50);
 
         $featured_products = Product::where('status', 2)
-                                    ->where('trending' ,2)
+                                    ->where('trending' ,1)
                                     ->take(15)->get();
 
         return view('livewire.shop.index-component',compact('products', 'featured_products'))->extends('layouts.app')->section('content');

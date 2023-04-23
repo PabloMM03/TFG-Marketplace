@@ -140,12 +140,11 @@
         </div>
 
 <!-- Header-->
-    <header>
-        <h3 style="color:black; text-align:center"><b>Los más populares</b></h3>
-        <div class="container" style="border-radius:10px">
-            {{--We go through with a foreach the popular products to obtain their data and display them in the carousel of images--}}
-                
-            <div class="container text-center mr-5">
+ 
+            <h3 style="color:black; text-align:center" class="mt-4"><b>Los más populares</b></h3>
+
+            {{--We go through with a foreach the popular products to obtain their data and display them in the carousel of images--}}         
+            <div class="text-center mr-5">
                 <div class="row mx-auto my-auto justify-content-center">
                     <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
@@ -154,13 +153,11 @@
                             <?php $count = $count + 1;
                             if($count == 1){ ?>
                                 <div class="carousel-item active">
-                                    <div class="col-md-3 mr-4">
-                                        <div class="">
+                                    <div class="col-md-3 mr-4">                                       
                                             <div class="card-img">
                                                 <a style="text-decoration: none" href="{{route('publicaciones.show',$item)}}">
                                                     <img src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-70 w-90" alt="Card image cap">
-                                                </a>  
-                                            </div>
+                                                </a>                                              
                                             <div>
                                                 @if($item->trending)
                                                 <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
@@ -181,18 +178,18 @@
     
                                                     @endif                                                
                                             </div>
-                                        </div>
+                                        
+                                    </div>
                                     </div>
                                 </div>
                             <?php }else{ ?>
                                 <div class="carousel-item">
-                                    <div class="col-md-3 mr-4">
-                                        <div class="">
+                                    <div class="col-md-3 mr-4">            
                                             <div class="card-img">
                                                 <a style="text-decoration: none" href="{{route('publicaciones.show',$item)}}">
                                                     <img src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-70 w-90" alt="Card image cap">
                                                 </a>
-                                                </div>
+                                                
                                                 <div>
                                                     @if($item->trending)
                                                     <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
@@ -213,9 +210,8 @@
                                                     @endif
                                                     
                                                 </div>
-                                                     
-
                                         </div>
+                                    
                                     </div>
                                 </div>
                             <?php } ?>
@@ -233,12 +229,8 @@
                     </div>
                 </div>
             </div>
-                
-            
-        
-            </div>
-    </header>
-     
+
+  
    <section class="py-5 bg-light">
 
     @if ($products->count())  
@@ -361,6 +353,7 @@ Swal.fire({
 </script>
 @endif
 
+@endsection
 
 
 
@@ -381,4 +374,3 @@ Swal.fire({
         
     });
 </script>
-@endsection

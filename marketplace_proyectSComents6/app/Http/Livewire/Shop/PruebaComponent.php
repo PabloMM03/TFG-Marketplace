@@ -12,7 +12,7 @@ class PruebaComponent extends Component
 
     public function render()
     {
-        $featured_products = Product::where('trending', 2)
+        $featured_products = Product::where('trending', 1)
                                     ->take(15)->get();
         return view('livewire.shop.prueba-component', compact('featured_products'))->extends('layouts.app')->section('content');
     }
