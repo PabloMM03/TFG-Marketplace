@@ -75,9 +75,9 @@
                       <li><a class="dropdown-item" href="/">Todos los Productos</a></li>
                       <li><hr class="dropdown-divider" /></li>
                       <li><a class="dropdown-item" href="{{route('shop.trending')}}">Productos Populares</a></li>
-                      <li><a class="dropdown-item" href="#!">Nuevos Productos</a></li>
+                      <li><a class="dropdown-item" href="{{route('shop.recents')}}">Nuevos Productos</a></li>
                   </ul>
-                    <a href="{{route('prueba.index')}}" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sobre nosotros</a> 
+                    <a href="" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sobre nosotros</a> 
                     <a href="/" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Pedidos y devoluciones</a>
               
             </div>
