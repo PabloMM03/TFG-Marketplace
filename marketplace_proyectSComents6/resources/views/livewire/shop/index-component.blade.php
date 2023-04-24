@@ -377,7 +377,7 @@
 
                          {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                             however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                    <div class="col-md-9 ml-6">
+                    <div class="col-md-9 ml-10">
                         @if($product->qty > 0)
                         <label class="badge bg-success">In stock</label>
                         @else
