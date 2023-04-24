@@ -28,10 +28,15 @@ class IndexComponent extends Component
                              ->paginate(50);
 
         $featured_products = Product::where('status', 2)
-                                    ->where('trending' ,1)
+                                    ->where('trending' ,2)
                                     ->take(15)->get();
 
-        return view('livewire.shop.index-component',compact('products', 'featured_products'))->extends('layouts.app')->section('content');
+        $products_news = Product::latest()
+                        ->where('status', 2)
+                        ->where('name', 'LIKE','%'.$this->search . '%')
+                        ->take(20)->get();
+
+        return view('livewire.shop.index-component',compact('products', 'featured_products', 'products_news'))->extends('layouts.app')->section('content');
 
         // return view('livewire.shop.index-component', ['products' => $this->products, 'featured_products' => $this->featured_products])->extends('layouts.app')->section('content');
     }
