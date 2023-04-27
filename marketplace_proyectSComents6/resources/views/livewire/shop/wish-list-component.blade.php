@@ -50,7 +50,7 @@
                     @endif
                         </div>
                         <div class="col-md-2 my-auto">
-                            <button type="button" class="fas fa-times text-muted" wire:click="delete_item({{$item->products->id}})"><i class="bi bi-trash"></i></button>
+                            <button type="button" class="fas fa-times text-muted" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button>
                         </div>
                         <div class="mb-4 mr-4"></div>
                         @endforeach

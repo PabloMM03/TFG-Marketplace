@@ -416,4 +416,14 @@ Swal.fire({
   text: '{{session('status')}}',
 })
 </script>
+@elseif(session('status') == "El producto ya está en su Wishlist")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
 @endif
+
+

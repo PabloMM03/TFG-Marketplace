@@ -22,24 +22,45 @@ class WishListComponent extends Component
     public function add(Request $request){
         if(auth()->check()){
             $product_id = $request->input('product_id');
+            $user_id = Auth::id();
+    
+            $existingWish = Wishlist::where('user_id', $user_id)->where('prod_id', $product_id)->first();
+            if($existingWish){
+                // El producto ya está en la lista de deseos del usuario
+                return redirect()->back()->with('status', "El producto ya está en su Wishlist");
+            }else{
+
             if(Product::find($product_id)){
                 $wish = new Wishlist();
                 $wish->prod_id = $product_id;
-                $wish->user_id = Auth::id();
+                $wish->user_id = $user_id;
                 $wish->save();
-
+    
                 return redirect()->back()->with('status', "Producto añadido correctamente a su Wishlist"); 
             }else{
                 return redirect()->back()->with('status', "El producto no existe"); 
             }
+        }
         }else{
             return redirect()->back()->with('status', "Necesita hacer el login para continuar"); 
         }
     }
+    
 
     //Delete Cart Item
-    public function delete_item($itemId){
-        Cart::session(auth()->id())->remove($itemId);
+    public function deleteItem(Request $request){
+        
+        if(Auth::check()){
+            $product_id = $request->input('prod_id');
+            if(Wishlist::where('prod_id', $product_id)->where('user_id', Auth::id())->exists()){
+                $wish = Wishlist::where('prod_id', $product_id)->where('user_id', Auth::id())->first();
+                $wish->delete();
+                return redirect()->back()->with('status', "Producto eliminado correctamente"); 
+            }
+        }else{
+            return redirect()->back()->with('status', "Necesita hacer el login para continuar"); 
+        }
+
     }
 
     public function vaciar_carrito(){

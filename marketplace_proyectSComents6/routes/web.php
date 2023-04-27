@@ -76,3 +76,4 @@ Route::get('recents', ProducRecentComponent::class)->name('shop.recents');
 //WishList
 Route::get('wishlist',WishListComponent::class);
 Route::post('add-to-wishlist', [WishListComponent::class, 'add']);
+Route::post('delete-wishlist-item', [WishListComponent::class], 'deleteItem');
