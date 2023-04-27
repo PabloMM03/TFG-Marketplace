@@ -115,7 +115,7 @@ class SingleProduct extends Component
     //Confirmation message
     $this->emit('message', 'El producto se ha añadido correctemente.');
     $this->emitTo('shop.cart-component', 'add_to_cart');
-
+    return redirect()->back()->with('status', "Producto añadido correctamente"); 
  }
 }
 

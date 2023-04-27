@@ -17,6 +17,7 @@ class IndexComponent extends Component
     //Delete Cart Item
         public function delete_item($itemId){
             Cart::session(auth()->id())->remove($itemId);
+            return redirect()->back()->with('status', "Producto eliminado correctamente"); 
         }
 
         public function vaciar_carrito(){

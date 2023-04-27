@@ -150,10 +150,10 @@
                 </div>
                 <form action="{{url('add-to-wishlist')}}" method="POST">
                     @csrf
-                    <input type="hidden" name="product_slug" value="{{$product->slug}}">
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
                     <button type="submit" class="btn btn-outline-dark flex-shrink-0 me-2 mt-4 addToWishlist">Add to Wishlist</button>
                 </form>
-
+                
                 {{-- <div class="d-flex">
                     <button class="btn btn-outline-dark flex-shrink-0 mt-5"   type="button">
                         Add to Wishlist

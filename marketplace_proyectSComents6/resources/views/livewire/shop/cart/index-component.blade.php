@@ -61,5 +61,19 @@
           </div>
         </div>
       </div>
+
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      @if (session('status') == "Producto eliminado correctamente")
+      <script> 
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{session('status')}}',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      </script>
+      @endif
 </section>
 

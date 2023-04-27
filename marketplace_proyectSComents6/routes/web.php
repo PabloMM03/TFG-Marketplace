@@ -3,13 +3,14 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\WishListController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\IndexComponent;
 use App\Http\Livewire\Shop\ProducRecentComponent;
 use App\Http\Livewire\Shop\SingleProduct;
 use App\Http\Livewire\Shop\TrendingProduct;
-use App\Http\Livewire\Shop\WhishlistController;
+use App\Http\Livewire\Shop\WishListComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,5 +73,6 @@ Route::post('add-rating' ,[RatingController::class, 'add']);
 //Test path
 Route::get('recents', ProducRecentComponent::class)->name('shop.recents');
 
-Route::get('wishlist', WhishlistController::class);
-Route::post('add-to-wishlist', [WhishlistController::class, 'add']);
+//WishList
+Route::get('wishlist',WishListComponent::class);
+Route::post('add-to-wishlist', [WishListComponent::class, 'add']);
