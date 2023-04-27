@@ -9,6 +9,7 @@ use App\Http\Livewire\Shop\IndexComponent;
 use App\Http\Livewire\Shop\ProducRecentComponent;
 use App\Http\Livewire\Shop\SingleProduct;
 use App\Http\Livewire\Shop\TrendingProduct;
+use App\Http\Livewire\Shop\WhishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,3 +71,6 @@ Route::post('add-rating' ,[RatingController::class, 'add']);
 
 //Test path
 Route::get('recents', ProducRecentComponent::class)->name('shop.recents');
+
+Route::get('wishlist', WhishlistController::class);
+Route::post('add-to-wishlist', [WhishlistController::class, 'add']);

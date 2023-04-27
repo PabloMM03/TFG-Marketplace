@@ -44,7 +44,7 @@ class CommentController extends Controller
             }              
         }
         else{
-           return redirect('login')->with('message', 'Debes hacer el login primero.');
+           return redirect()->back()->with('message', 'Debes hacer el login primero.');
         }
     }
 

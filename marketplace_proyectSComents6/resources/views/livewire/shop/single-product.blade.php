@@ -143,10 +143,23 @@
                         Add to cart
                     </button>   
                     @endif
+                    
                     <button type="button" class="btn btn-outline-dark flex-shrink-0 ml-60" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Valorar
                     </button>
                 </div>
+                <form action="{{url('add-to-wishlist')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_slug" value="{{$product->slug}}">
+                    <button type="submit" class="btn btn-outline-dark flex-shrink-0 me-2 mt-4 addToWishlist">Add to Wishlist</button>
+                </form>
+
+                {{-- <div class="d-flex">
+                    <button class="btn btn-outline-dark flex-shrink-0 mt-5"   type="button">
+                        Add to Wishlist
+                    </button>
+                </div> --}}
+                
                 {{-- @if (session('status'))
                 <h6 class="alert alert-warning mb-3 mt-3">{{session('status')}}</h6>
                 @endif --}}
@@ -349,6 +362,58 @@ Swal.fire({
   icon: 'error',
   title: 'Oops...',
   text: 'Debes hacer el login primero.',
+})
+</script>
+@endif
+
+{{-- <script>
+    $('.addToWishlist').click(function(e){
+        e.preventDefault();
+
+        let product_id = $(this).closet('product_data').find('product_id').val();
+
+        $.ajax({
+            method: "POST",
+            url: "/add-to-wishlist",
+            data: {
+                'product_id': product_id,
+            },
+            success: function(response){
+                swal(response.status);
+            }
+        })
+
+
+    });
+</script>  --}}
+
+{{--Wishlist--}}
+
+
+@if (session('status') == "Producto añadido correctamente a su Wishlist")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif(session('status') == "El producto no existe")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "Necesita hacer el login para continuar")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
 })
 </script>
 @endif
