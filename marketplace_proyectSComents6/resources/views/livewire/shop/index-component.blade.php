@@ -387,8 +387,15 @@
                         <!-- Product actions-->
                     <div class="button-head">
                         <div class="product-action mt-2 mb-2">
-                            <a title="View" style="text-decoration: none" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
-                            <a title="Wishlist" href="#"><i class=" bi-heart "></i></a>
+                            <span>
+                                <a title="View" style="text-decoration: none" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
+                                <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <button type="submit" style="background: none; border: none;"><i class="bi-heart"></i></button>
+                                </form>
+                            </span>
+                            
                         </div>
                         <div class="product-action-2">
                             @if($product->qty >0)
@@ -468,4 +475,44 @@ Swal.fire({
         
     });
 </script>
+
+{{--Wishlist--}}
+
+
+@if (session('status') == "Producto añadido correctamente a su Wishlist")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif(session('status') == "El producto no existe")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "Necesita hacer el login para continuar")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "El producto ya está en su Wishlist")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@endif
 @endsection
+

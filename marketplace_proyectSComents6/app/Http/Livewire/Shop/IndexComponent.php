@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Models\Product;
+use App\Models\Wishlist;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class IndexComponent extends Component
@@ -67,6 +70,33 @@ class IndexComponent extends Component
                 }
 
 
+    }
+
+    public function add(Request $request){
+        if(auth()->check()){
+            $product_id = $request->input('product_id');
+            $user_id = Auth::id();
+    
+            $existingWish = Wishlist::where('user_id', $user_id)->where('prod_id', $product_id)->first();
+            if($existingWish){
+                // El producto ya está en la lista de deseos del usuario
+                return redirect()->back()->with('status', "El producto ya está en su Wishlist");
+            }else{
+
+            if(Product::find($product_id)){
+                $wish = new Wishlist();
+                $wish->prod_id = $product_id;
+                $wish->user_id = $user_id;
+                $wish->save();
+    
+                return redirect()->back()->with('status', "Producto añadido correctamente a su Wishlist"); 
+            }else{
+                return redirect()->back()->with('status', "El producto no existe"); 
+            }
+        }
+        }else{
+            return redirect()->back()->with('status', "Necesita hacer el login para continuar"); 
+        }
     }
 
 
