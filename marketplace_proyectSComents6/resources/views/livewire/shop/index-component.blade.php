@@ -148,7 +148,7 @@
             <h3 style="color:black; text-align:center" class="mt-4"><b>Los más populares</b></h3>        
             <div class="text-center mr-5">
                 <div class="row mx-auto my-auto justify-content-center card">
-                    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">           
                         <div class="carousel-inner" role="listbox">
                             <?php $count = 0;?>
                             @foreach ($featured_products as $item)
@@ -331,13 +331,12 @@
             </div>
 
   
-   <section class="py-5 bg-light">
+   <section class="py-5">
 
     @if ($products->count())  
     
     
     {{-- Store with products and information is displayed --}}
-    {{--container?--}}
     <div class="px-4 px-lg-10 mt-5">
     
         <div class="row gx-4 gx-lg-10 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center">
