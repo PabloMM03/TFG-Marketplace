@@ -79,7 +79,7 @@
 }
 
 .carousel-control-prev {
-  margin-left: 50px;
+  margin-left: 120px;
   border: 2px solid white;
   width: 40px;
   height: 40px;
@@ -95,7 +95,7 @@
   content: "";
   border-style: solid;
   border-width: 6px 8px 6px 0;
-  border-color: transparent white transparent transparent ;
+  border-color: transparent  transparent transparent ;
   display: inline-block;
   height: 0;
   width: 0;
@@ -110,7 +110,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.5);
+  background: white;
   position: absolute;
   top: 50%;
   right: 0;
@@ -121,7 +121,7 @@
   content: "";
   border-style: solid;
   border-width: 6px 0 6px 8px;
-  border-color: transparent transparent transparent white;
+  border-color: transparent transparent transparent;
   display: inline-block;
   height: 0;
   width: 0;
@@ -226,6 +226,7 @@
                             @endforeach
         
                         </div>
+                        
                         <a href="#recipeCarousel" role="button" data-bs-slide="prev" class="carousel-control-prev bg-transparent w-aut">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
@@ -345,11 +346,10 @@
             {{--PRODUCTS--}}
     @foreach ($products as $product)
         
-    <div class="col mb-5">
 
-        <div class="card">
+        <div class="card col-md-2 m-5">
             <a style="text-decoration: none" href="{{route('publicaciones.show',$product)}}">
-                <img class="card-img-top h-70 w-90" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                <img class="mt-4  d-block mx-auto" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
                 {{--If the product is in the category of Most Popular a message is displayed indicating it --}}
                 <div class="info">
                     @if($product->trending == 2)
@@ -364,7 +364,7 @@
                 
                 <div class="text-center">
                     <!-- Product name-->
-                    <h5 class="fw-bolder">{{$product->name}}</h5>
+                    <h5 style="color:gray" class="fw-bolder">{{$product->name}}</h5>
                      <!-- Product price-->
                      @if ($product->original_price)
                      <span style="color:red;" class="mr-2 fw-bolder">{{$product->price}} €</span>
@@ -377,7 +377,7 @@
 
                          {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                             however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                    <div class="col-md-9 ml-10">
+                    <div class="col-md-9 ml-7 mt-2">
                         @if($product->qty > 0)
                         <label class="badge bg-success">In stock</label>
                         @else
@@ -386,9 +386,9 @@
                     </div>
                         <!-- Product actions-->
                     <div class="button-head">
-                        <div class="product-action mt-2 mb-2">
+                        <div class="product-action mt-2 mb-16">
                             <span>
-                                <a title="View" style="text-decoration: none" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
+                                <a title="View" style="text-decoration: none; color:#000" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
                                 <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -399,12 +399,12 @@
                         </div>
                         <div class="product-action-2">
                             @if($product->qty >0)
-                            <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
+                            <button class="btn btn-outline-dark flex-shrink-0 mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product->id}})" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
                             @else
-                            <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$product->id}})" type="button">
+                            <button class="btn btn-outline-dark flex-shrink-0 disabled mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product->id}})" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>   
@@ -417,7 +417,6 @@
             
         </div>
 
-    </div>
 
     @endforeach
 
@@ -516,3 +515,8 @@ Swal.fire({
 @endif
 @endsection
 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+{{-- 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  --}}
