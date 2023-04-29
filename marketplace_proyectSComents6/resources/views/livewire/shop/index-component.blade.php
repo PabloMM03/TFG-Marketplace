@@ -162,16 +162,16 @@
                                                 </a>                                              
                                             <div>
                                                 @if($item->trending == 2)
-                                                <label class="badge bg-warning mt-2 mb-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
                                                 <i class="bi bi-info-circle"></i> </label>   
                                                 @else             
                                                 <label for=""></label>                                       
                                                 @endif
                                             </div>
-                                            <div style="color:gray"class="fw-bolder">
+                                            <div style="color:gray"class="fw-bolder ml-20">
                                                 <h5>{{$item->name}}</h5>
                                             </div>
-                                            <div class="fw-bolder">
+                                            <div class="fw-bolder ml-20">
                                                 @if ($item->original_price)
                                                     <span style="color:red; font-size:20px" class="mr-2">{{$item->price}} €</span>
                                                     <span class="text-decoration-line-through">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
@@ -196,16 +196,16 @@
                                                 
                                                 <div>
                                                     @if($item->trending == 2)
-                                                    <label class="badge bg-warning mt-2 mb-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                    <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
                                                     <i class="bi bi-info-circle"></i> </label> 
                                                     @else         
                                                     <label for=""></label>                                             
                                                     @endif
                                                 </div>
-                                                <div style="color:gray" class="fw-bolder">
+                                                <div style="color:gray" class="fw-bolder ml-20">
                                                     <h5> {{$item->name}}</h5>
                                                 </div>
-                                                <div class="fw-bolder">
+                                                <div class="fw-bolder ml-20">
                                                     @if ($item->original_price)
                                                     <span style="color:red; font-size:20px" class="mr-2">{{$item->price}} €</span>
                                                     <span class="text-decoration-line-through">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
@@ -255,16 +255,16 @@
                                                 </a>                                              
                                             <div>
                                                 @if($product_new->trending == 2)
-                                                <label class="badge bg-warning mt-2 mb-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
                                                 <i class="bi bi-info-circle"></i> </label>                                          
                                                 @else    
                                                 <label for=""></label>                                     
                                                 @endif
                                             </div>
-                                            <div style="color:gray"class="fw-bolder">
+                                            <div style="color:gray"class="fw-bolder ml-20">
                                                 <h5>{{$product_new->name}}</h5>
                                             </div>
-                                            <div class="fw-bolder">
+                                            <div class="fw-bolder ml-20">
                                                 @if ($product_new->original_price)
                                                     <span style="color:red; font-size:20px" class="mr-2">{{$product_new->price}} €</span>
                                                     <span class="text-decoration-line-through">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
@@ -289,17 +289,17 @@
                                                 
                                                 <div>
                                                     @if($product_new->trending == 2)
-                                                    <label class="badge bg-warning mt-2 mb-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                    <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
                                                     <i class="bi bi-info-circle"></i> 
                                                     </label>   
                                                     @else    
                                                     <label for=""></label>                                                                                                             
                                                     @endif
                                                 </div>
-                                                <div style="color:gray" class="fw-bolder">
+                                                <div style="color:gray" class="fw-bolder ml-20">
                                                     <h5> {{$product_new->name}}</h5>
                                                 </div>
-                                                <div class="fw-bolder">
+                                                <div class="fw-bolder ml-20">
                                                     @if ($product_new->original_price)
                                                     <span style="color:red; font-size:20px" class="mr-2">{{$product_new->price}} €</span>
                                                     <span class="text-decoration-line-through">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
