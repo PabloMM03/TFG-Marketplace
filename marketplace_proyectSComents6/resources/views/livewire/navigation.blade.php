@@ -149,9 +149,7 @@
         <a href="/" style="text-decoration: none" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Tienda</a>
   
         <a href="#" style="text-decoration: none" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-  
-        {{-- <a href="#" style="text-decoration: none" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a> --}}
-  
+    
         <a href="#" style="text-decoration: none" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
       </div>
     </div>
