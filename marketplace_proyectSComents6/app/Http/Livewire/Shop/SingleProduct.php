@@ -70,7 +70,6 @@ class SingleProduct extends Component
      * Filter by category the products mendiante query
      */
     public function category(Category $category){
-        // return  $category;
     $products = Product::where('category_id', $category->id)
                         ->where('name', 'LIKE','%'.$this->search . '%')
                         ->where('status', 2)

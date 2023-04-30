@@ -13,6 +13,7 @@ use Livewire\WithPagination;
 class IndexComponent extends Component
 {
     use WithPagination;
+    public $search;
 
     public function updatingSearch()
     {
@@ -23,6 +24,8 @@ class IndexComponent extends Component
     {
         
          $products = Product::where('status', 2)
+                             ->where('name', 'LIKE','%'.$this->search . '%')
+                             ->orWhere('price', 'LIKE', '%'.$this->search.'%')
                              ->latest('id')
                              ->paginate(50);
 

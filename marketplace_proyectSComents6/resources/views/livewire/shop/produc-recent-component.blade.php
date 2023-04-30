@@ -1,11 +1,6 @@
 @section('content')
 
 <div>
-    {{--Browser--}}
-    <div class="card-header mb-4 w-50 ml-16 d-flex">
-        <input class="form-control mr-2" type="search" placeholder=" Introduzca el nombre del producto" wire:model="search"> 
-        <button class="btn btn-outline-info" type="submit"><i class="bi bi-search"></i></button>
-</div>
 
    <section class="py-5 bg-light">
 

@@ -7,18 +7,21 @@
                 <div class="row g-0">
                   <div class="col-lg-8">
                     <div class="p-5">
+
                       <div class="d-flex justify-content-between align-items-center mb-5">
                         <h1 class="fw-bold mb-0 text-black">Wishlist</h1>
                       </div>
                       <hr class="my-4">
-    
+
+                        {{--Foreach that goes through all the data of a product and then shows them little by little--}}
                       <div class="row mb-4 d-flex justify-content-between align-items-center">
     
                           @foreach ($wishlist->sortBy('id') as $key => $item)
                       <div class="col-md-2 my-auto">
                         <a style="text-decoration: none" href="{{route('publicaciones.show',$item->products)}}">
                         <img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
-                        </a>    
+                        </a> 
+                           {{--Shows the products that are popular--}}
                         <div class="info">
                             @if($item->products->trending == 2)
                             <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
@@ -29,6 +32,7 @@
                         <div class="col-md-2 my-auto">
                           <h6 class="text-muted" style="text-align: center">{{$item->products->name}}</h6>
                         </div>
+                        {{--Shows if products are in stock--}}
                         <div class="col-md-2 my-auto " style="text-align: center">
                             @if($item->products->qty > 0)
                             <label class="badge bg-success">In stock</label>
@@ -74,7 +78,10 @@
           </div>
         </div>
       </div>
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{{--Dynamic alert messages--}}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @if (session('status') == "Producto añadido correctamente")
 <script> 

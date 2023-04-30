@@ -153,16 +153,6 @@
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <button type="submit" class="btn btn-outline-dark flex-shrink-0 me-2 mt-4 addToWishlist">Add to Wishlist</button>
                 </form>
-                
-                {{-- <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0 mt-5"   type="button">
-                        Add to Wishlist
-                    </button>
-                </div> --}}
-                
-                {{-- @if (session('status'))
-                <h6 class="alert alert-warning mb-3 mt-3">{{session('status')}}</h6>
-                @endif --}}
             </div>
         </div>
     </div>
@@ -288,7 +278,7 @@
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
 </footer>
 
-
+{{--Dynamic alert messages--}}
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -365,27 +355,6 @@ Swal.fire({
 })
 </script>
 @endif
-
-{{-- <script>
-    $('.addToWishlist').click(function(e){
-        e.preventDefault();
-
-        let product_id = $(this).closet('product_data').find('product_id').val();
-
-        $.ajax({
-            method: "POST",
-            url: "/add-to-wishlist",
-            data: {
-                'product_id': product_id,
-            },
-            success: function(response){
-                swal(response.status);
-            }
-        })
-
-
-    });
-</script>  --}}
 
 {{--Wishlist--}}
 

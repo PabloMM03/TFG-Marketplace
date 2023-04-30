@@ -46,10 +46,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::middleware(['cart.is.empty'])->group(function(){
+    
     //Cart route
     Route::get('/cart', CartIndexComponent::class)->name('cart');
+
     //Pay Route
     Route::get('/checkout', CheckoutComponent::class)->name('checkout');
+
     //Payments PayPal
     Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
     Route::get('/paypal-success/{order}', [PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
@@ -78,6 +81,6 @@ Route::get('wishlist',WishListComponent::class);
 Route::post('add-to-wishlist', [WishListComponent::class, 'add']);
 Route::post('delete-wishlist-item', [WishListComponent::class], 'deleteItem');
 
+//Browser 
 Route::get('product-list', [IndexComponent::class,'productlistAjax']);
-
 Route::post('searchproduct', [IndexComponent::class,'searchProduct']);
