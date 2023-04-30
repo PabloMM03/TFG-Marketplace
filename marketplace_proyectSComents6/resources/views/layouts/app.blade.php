@@ -20,11 +20,11 @@
     <!-- Agrega los estilos de Tailwind CSS -->
     <link href="https://unpkg.com/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
 
     @livewireStyles
@@ -62,9 +62,30 @@
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> 
 
+    {{--Search system with autocomplete method--}}
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
+    <script>
+        let availableTags = [];
+    $.ajax({
+      method:"GET",
+      url: "/product-list",
+      success: function(response){
+        console.log(response);
+        startAutoComplete(response);
+      }
+    });
 
+    function startAutoComplete(availableTags){
+        $( "#search_product" ).autocomplete({
+          source: availableTags
+        });
+    }
+      </script>
 
 </body>
 </html>

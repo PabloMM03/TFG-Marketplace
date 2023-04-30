@@ -99,6 +99,16 @@ class IndexComponent extends Component
         }
     }
 
+    public function productlistAjax(){
+
+        $products = Product::select('name')->where('status' , '2')->get();
+        $data = [];
+
+        foreach($products as $item){
+            $data[] = $item['name'];
+        }
+        return $data;
+    }
 
     
 }
