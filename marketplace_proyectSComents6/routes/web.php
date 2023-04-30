@@ -3,7 +3,6 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RatingController;
-use App\Http\Controllers\WishListController;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\IndexComponent;
@@ -11,6 +10,7 @@ use App\Http\Livewire\Shop\ProducRecentComponent;
 use App\Http\Livewire\Shop\SingleProduct;
 use App\Http\Livewire\Shop\TrendingProduct;
 use App\Http\Livewire\Shop\WishListComponent;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
