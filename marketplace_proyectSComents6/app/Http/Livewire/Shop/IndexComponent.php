@@ -13,8 +13,6 @@ use Livewire\WithPagination;
 class IndexComponent extends Component
 {
     use WithPagination;
-    
-    public $search;
 
     public function updatingSearch()
     {
@@ -25,8 +23,6 @@ class IndexComponent extends Component
     {
         
          $products = Product::where('status', 2)
-                             ->where('name', 'LIKE','%'.$this->search . '%')
-                             ->orWhere('price', 'LIKE', '%'.$this->search.'%')
                              ->latest('id')
                              ->paginate(50);
 
@@ -36,12 +32,10 @@ class IndexComponent extends Component
 
         $products_news = Product::latest()
                         ->where('status', 2)
-                        ->where('name', 'LIKE','%'.$this->search . '%')
                         ->take(20)->get();
 
         return view('livewire.shop.index-component',compact('products', 'featured_products', 'products_news'))->extends('layouts.app')->section('content');
 
-        // return view('livewire.shop.index-component', ['products' => $this->products, 'featured_products' => $this->featured_products])->extends('layouts.app')->section('content');
     }
 
     public function add_to_cart(Product $product){
@@ -72,6 +66,10 @@ class IndexComponent extends Component
 
     }
 
+
+    /**
+     * Method to add products to the wishlist
+     */
     public function add(Request $request){
         if(auth()->check()){
             $product_id = $request->input('product_id');
@@ -99,6 +97,10 @@ class IndexComponent extends Component
         }
     }
 
+    /**
+     * Method to obtain all products with published status and add them to a search engine
+     */
+
     public function productlistAjax(){
 
         $products = Product::select('name')->where('status' , '2')->get();
@@ -110,5 +112,24 @@ class IndexComponent extends Component
         return $data;
     }
 
-    
+    /**
+     * Method that allows you to search for the products of the store
+     */
+
+    public function searchproduct(Request $request){
+
+        $searched_product = $request->product_name;
+
+        if($searched_product != ""){ 
+            $product = Product::where("name", "LIKE", '%'. $searched_product . '%')->first();
+            if($product){
+                return redirect('products/'.$product->id);
+            }else{
+                return redirect()->back()->with("status", "No hay productos con ese nombre");
+            }
+
+        }else{
+            return redirect()->back();
+        }
+    }
 }

@@ -75,7 +75,7 @@
       method:"GET",
       url: "/product-list",
       success: function(response){
-        console.log(response);
+        // console.log(response);
         startAutoComplete(response);
       }
     });

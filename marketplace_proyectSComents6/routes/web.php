@@ -79,3 +79,5 @@ Route::post('add-to-wishlist', [WishListComponent::class, 'add']);
 Route::post('delete-wishlist-item', [WishListComponent::class], 'deleteItem');
 
 Route::get('product-list', [IndexComponent::class,'productlistAjax']);
+
+Route::post('searchproduct', [IndexComponent::class,'searchProduct']);

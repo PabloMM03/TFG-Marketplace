@@ -27,14 +27,14 @@
       </div>        
       {{-- logotipo --}}
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
-         {{-- <a href="/" class="flex flex-shrink-0 items-center">
-          <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-          <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-        </a>  --}}
-      
-
         <div class="hidden sm:ml-60 sm:block mt-2">
+          
           <div class="flex space-x-4">
+            <a href="/" class="flex flex-shrink-0 items-center mr-3">
+              <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+              <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+            </a>  
+
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Inicio</a>
             <a class="nav-link dropdown-toggle btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
@@ -79,21 +79,25 @@
 
           </div>
         </div>
+
         {{--Browser--}}
         <div class="search-bar">
+          <form action="{{url('searchproduct')}}" method="POST">
+            @csrf
           <div class="input-group ml-3 mr-4 mt-2">
-            <input type="search" class="form-control" id="search_product" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="search" class="form-control" id="search_product" name="product_name" placeholder="Search products" required aria-describedby="basic-addon1">
                {{-- <span class="input-group-text" id="basic-addon1">@</span>  --}}
-              <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+              <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
           </div>
+         </form>
         </div>
         
       </div>
 
-      @auth {{--Comprueba si esta autentificado , si es asi se muestran los datos de la barra de nav --}}
+      @auth {{--Check if it is authenticated, if so the data of the nav bar is displayed --}}
 
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          @livewire('shop.cart-component'){{--No se ve el numero de productos por el colo de la barra nav --}}
+          @livewire('shop.cart-component')
 
         <!-- Profile dropdown -->
         <div class="relative ml-3 mr-40" x-data="{ open: false }">
@@ -191,3 +195,21 @@
 
 </style>
 
+
+{{--Alert message--}}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+@if(session('status') == "No hay productos con ese nombre")
+<script> 
+Swal.fire({
+  position: 'top-center',
+  icon: 'error',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+
+@endif
