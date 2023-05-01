@@ -20,6 +20,7 @@ class WishListComponent extends Component
     }
 
     public function add(Request $request){
+        
         if(auth()->check()){
             $product_id = $request->input('product_id');
             $user_id = Auth::id();
@@ -79,15 +80,14 @@ class WishListComponent extends Component
                 if (!auth()->check()) {
                     return redirect()->guest('login');
                 }else{
-
-    Cart::session(auth()->id())->add(array( //We get the user logged in
-        'id' => $product->id,
-        'name' => $product->name,
-        'price' => $product->price,
-        'quantity' => 1,
-        'attributes' => array(),
-        'associatedModel' => $product
-    ));
+                    Cart::session(auth()->id())->add(array( //We get the user logged in
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'price' => $product->price,
+                        'quantity' => 1,
+                        'attributes' => array(),
+                        'associatedModel' => $product
+                    ));
     
 
     //Confirmation message

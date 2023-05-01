@@ -53,9 +53,9 @@ class SingleProduct extends Component
                                       ->get();
     }
 
-/**
- * Show the product in detail
- */
+    /**
+     * Show the product in detail
+     */
 
     public function render()
     {
@@ -101,20 +101,20 @@ class SingleProduct extends Component
                     return redirect()->guest('login');
                 }else{
 
-    Cart::session(auth()->id())->add(array( //We get the user logged in
-        'id' => $product->id,
-        'name' => $product->name,
-        'price' => $product->price,
-        'quantity' => 1,
-        'attributes' => array(),
-        'associatedModel' => $product
-    ));
-    
+                Cart::session(auth()->id())->add(array( //We get the user logged in
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'quantity' => 1,
+                    'attributes' => array(),
+                    'associatedModel' => $product
+                ));
+                
 
-    //Confirmation message
-    $this->emit('message', 'El producto se ha añadido correctemente.');
-    $this->emitTo('shop.cart-component', 'add_to_cart');
-    return redirect()->back()->with('status', "Producto añadido correctamente"); 
+            //Confirmation message
+            $this->emit('message', 'El producto se ha añadido correctemente.');
+            $this->emitTo('shop.cart-component', 'add_to_cart');
+            return redirect()->back()->with('status', "Producto añadido correctamente"); 
  }
 }
 
