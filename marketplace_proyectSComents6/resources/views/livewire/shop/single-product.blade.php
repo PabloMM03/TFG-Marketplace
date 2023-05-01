@@ -216,7 +216,8 @@
                                     <button type="submit" style="background: none; border: none;"><i class="bi-heart"></i></button>
                                 </form>
                             </span>
-                                          
+
+                            {{--Rating--}}        
                         </div>
                         @php $ratenum  = number_format($rating_value) @endphp
                         <div class="rating  mb-2">
@@ -294,7 +295,7 @@
   @endcan
   </div>
   <br>
-  
+
   <!-- Footer-->
   <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
