@@ -45,7 +45,9 @@
   border-radius: 5px;
   padding: 5px;
 }
-
+/**
+*Icon
+*/
 
     .info-icon {
   position: relative;
@@ -77,6 +79,10 @@
   padding: 10px;
   z-index: 1;
 }
+
+/**
+*Careousel
+*/
 
 .carousel-control-prev {
   margin-left: 120px;
@@ -133,6 +139,7 @@
 
 </style>
 @endsection
+
 <div>
             {{--We go through with a foreach the popular products to obtain their data and display them in the carousel of images--}}         
 
