@@ -74,9 +74,10 @@
                     <li><a class="dropdown-item" href="{{route('shop.trending')}}">Productos Populares</a></li>
                     <li><a class="dropdown-item" href="{{route('shop.recents')}}">Nuevos Productos</a></li>
                   </ul>
-                  <a href="" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sobre nosotros</a> 
+                  <a href="/" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sobre nosotros</a> 
+                 @auth
                   <a href="{{url('wishlist')}}" style="text-decoration:none" class="btn btn-outline-dark text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Wishlist</a>
-
+                @endauth
           </div>
         </div>
 
