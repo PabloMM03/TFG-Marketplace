@@ -116,6 +116,7 @@
             {{-- <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Perfil</a> --}}
             {{-- <a href="#" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Ajustes</a> --}}
 
+            <a href="{{url('my-orders')}}" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Mis pedidos</a>
 
             @can('admin.home')
             <a href="{{route('admin.home')}}" style="text-decoration:none" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Admin Panel</a>
@@ -128,7 +129,7 @@
                onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               
-              {{ __('Cerrar Sesión') }}</a>
+              {{ __('Cerrar Sesión') }}</a> 
           </form>
 
           </div>

@@ -6,7 +6,7 @@
     
         <div class="form-group">
           <label for="">Nombre completo</label>
-          <input type="text" class="form-control  @error('fullname') is-invalid @enderror"  wire:model="fullname">
+          <input type="text" class="form-control  @error('fullname') is-invalid @enderror" wire:model="fullname">
 
           @error('fullname')
           <span class="invalid-feedback" role="alert">

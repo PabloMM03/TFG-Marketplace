@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RatingController;
@@ -9,6 +10,7 @@ use App\Http\Livewire\Shop\IndexComponent;
 use App\Http\Livewire\Shop\ProducRecentComponent;
 use App\Http\Livewire\Shop\SingleProduct;
 use App\Http\Livewire\Shop\TrendingProduct;
+use App\Http\Livewire\Shop\UserConmponent;
 use App\Http\Livewire\Shop\WishListComponent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +61,10 @@ Route::middleware(['cart.is.empty'])->group(function(){
     Route::get('/paypal-cancel', [PayPalController::class, 'cancelPage'])->name('paypal.cancel');
 
 });
+
+//Orders System
+Route::get('my-orders', [UserConmponent::class, 'render']);
+Route::get('view-order', [UserConmponent::class, 'view']);
 
 
 
