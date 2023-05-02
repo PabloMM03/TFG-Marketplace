@@ -22,7 +22,7 @@ class CartIsEmpty
 
         if($cart < 1){
             
-            return redirect()->route('shop.index');
+            return redirect()->back()->with('status', "El carrito está vacio");
         }
 
 

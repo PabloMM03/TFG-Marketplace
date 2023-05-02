@@ -419,3 +419,12 @@ text: '{{session('status')}}',
 @endif
 
 
+@if(session('status') == "El carrito está vacio")
+<script> 
+  Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '{{session('status')}}',
+})
+</script>
+@endif

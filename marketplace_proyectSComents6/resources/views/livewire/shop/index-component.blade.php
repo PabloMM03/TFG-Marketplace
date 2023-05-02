@@ -512,6 +512,16 @@ Swal.fire({
 </script>
 @endif
 
+@if(session('status') == "El carrito está vacio")
+<script> 
+  Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '{{session('status')}}',
+})
+</script>
+@endif
+
 @endsection
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
