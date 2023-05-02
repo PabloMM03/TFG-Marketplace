@@ -20,6 +20,7 @@
                                 <th>Fecha del pedido</th>
                                 <th>Order Number</th>
                                 <th>Total Price</th>
+                                <th>Payment Method</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -30,6 +31,7 @@
                                 <td>{{date('d-m-y', strtotime($order->created_at))}}</td>
                                 <td>{{$order->order_number}}</td>
                                 <td>{{$order->status}}</td>
+                                <td>{{$order->payment_method}}</td>
                                 <td>{{$order->total}} €</td>
                                 <td>
                                     <a href="{{url('view-order/'.$order->id)}}" class="btn btn-primary">View</a>
