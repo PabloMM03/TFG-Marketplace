@@ -54,11 +54,8 @@
                     </button>   
                     @endif
                         </div>
-                        <div class="col-md-2 my-auto">
-                          
-                            <button type="submit" class="fas fa-times text-muted remove-wishlist-item" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button>
-                        
-                            {{-- <button type="button" class="fas fa-times text-muted" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button> --}}
+                        <div class="col-md-2 my-auto">                     
+                            <button type="submit" class="fas fa-times text-muted remove-wishlist-item" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button>                       
                         </div>
                         <div class="mb-4 mr-4"></div>
                         @endforeach
@@ -98,6 +95,9 @@ Swal.fire({
 })
 </script>
 @endif
+
+{{--Script that removes product from the wish list--}}
+
 
 <script>
   $.('.remove-wishlist-item').click(function(e){

@@ -98,14 +98,4 @@ class WishListComponent extends Component
 }
 
 
-
-    // public function destroy(Wishlist $wish)
-    // {
-    //     $wish->delete();
-    //     return redirect()->route('livewire.shop.wish-list-component')->with('eliminar', 'Producto eliminado correctamente de la lista de deseados');
-        
-    // }
-
-
-
 }

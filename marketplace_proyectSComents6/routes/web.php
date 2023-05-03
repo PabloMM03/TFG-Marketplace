@@ -68,8 +68,6 @@ Route::middleware(['cart.is.empty'])->group(function(){
 Route::get('my-orders', [UserConmponent::class, 'render']);
 Route::get('view-order/{order}', [UserConmponent::class, 'view']);
 
-
-
 //Filter by categories and tags
 Route::get('category/{category}', [SingleProduct::class, 'category'])->name('products.category');
 Route::get('tags/{tag}', [SingleProduct::class, 'tag'])->name('products.tag');
@@ -78,7 +76,7 @@ Route::get('tags/{tag}', [SingleProduct::class, 'tag'])->name('products.tag');
 
 Route::post('comments', [CommentController::class, 'store']);
 
-//rating system
+//Rating system
 Route::post('add-rating' ,[RatingController::class, 'add']);
 
 //Test path

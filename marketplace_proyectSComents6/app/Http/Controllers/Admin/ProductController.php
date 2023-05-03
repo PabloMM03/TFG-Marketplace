@@ -14,6 +14,7 @@ use App\Http\Requests\ProductRequest;
 class ProductController extends Controller
 {
 
+    //Permissions
     public function __construct()
     {
         $this->middleware('can:admin.products.index')->only('index');
@@ -41,7 +42,7 @@ class ProductController extends Controller
      */
 
      /**
-      * Crear un nuevo producto
+      * Create a new product
       */
     public function create()
     {
@@ -53,7 +54,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  
      * @return \Illuminate\Http\Response
      */
 
@@ -64,7 +65,7 @@ class ProductController extends Controller
        $product = Product::create($request->all());
 
        /**
-        * Almacenar imagen en storage
+        * Store image in storage
         */
        if($request->hasfile('file')){
        $url = $request->file('file');
@@ -92,12 +93,13 @@ class ProductController extends Controller
      */
 
     /**
-     * AEditar producto
+     * Edit Product
      */
     public function edit(Product $product)
     {
+        //Only users to whom the product belongs can edit them
 
-        $this->authorize('author', $product);// Solo los usuarios  a los que pertenezca el producto podra editarlos
+        $this->authorize('author', $product);
         $tags = Tag::all();
         $categories = Category::pluck('name', 'id');
         return view('admin.products.edit', compact('product','categories', 'tags'));
@@ -112,16 +114,18 @@ class ProductController extends Controller
      */
 
      /**
-      * Actualizar producto y comprobar si tiene una imagen asignada 
+      * Update product and check if it has an image assigned to it
       */
     public function update(ProductRequest $request, Product $product)
     {
-        $this->authorize('author', $product); // Solo los usuarios  a los que pertenezca el producto podra actualizarlos
+        //Only users to whom the product belongs can update them
+
+        $this->authorize('author', $product); 
         $product->update($request->all());
 
 
         /**
-        * Almacenar imagen en storage
+        * Store image in storage
         */
        if($request->hasfile('file'))
        {
@@ -158,7 +162,9 @@ class ProductController extends Controller
       */
     public function destroy(Product $product)
     {
-        $this->authorize('author', $product);  // Solo los usuarios  a los que pertenezca el producto podra eliminarlos
+        //Only users to whom the product belongs can delete them
+        
+        $this->authorize('author', $product);  
         $destination = 'storage/products/'.$product->product_image;
         if(File::exists($destination)){
            File::delete($destination);

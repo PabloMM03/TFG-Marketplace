@@ -8,13 +8,13 @@ use Livewire\WithPagination;
 
 class ProductsIndex extends Component
 {
-    //Hacer paginacion 
+    //Make pagination
     
     use WithPagination;
     protected $paginationTheme = "bootstrap";
     public $search;
 
-    //Resetear pagina para buscar productos 
+    //Reset page to search for products
     
     public function updatingSearch()
     {
@@ -23,7 +23,7 @@ class ProductsIndex extends Component
 
     public function render()
     {
-        //obtener listado de productos segun cuenta
+        //Get list of products according to account
         $products = Product::where('user_id', auth()->user()->id)
                             ->where('name', 'LIKE','%'.$this->search . '%')
                             ->latest('id')

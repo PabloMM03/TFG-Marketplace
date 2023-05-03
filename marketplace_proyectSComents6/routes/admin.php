@@ -8,19 +8,20 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 
-//Rutas admin
+//Admin routes
 Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
 
-//Ruta Users
+//Users Path
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'destroy'])->names('admin.users');
 
-//Ruta categorias
+//Route categories
 Route::resource('categories', CategoryController::class)->except('show')->names('admin.categories');
 
-//Ruta tags
+//Route tags
 Route::resource('tags', TagController::class)->except('show')->names('admin.tags');
 
-//Ruta admin creacion productos
+//Route admin product creation
 Route::resource('products', ProductController::class)->except('show')->names('admin.products');
 
+//User Roles Path
 Route::resource('roles', RoleController::class)->names('admin.roles');
