@@ -64,7 +64,7 @@ Route::middleware(['cart.is.empty'])->group(function(){
 
 //Orders System
 Route::get('my-orders', [UserConmponent::class, 'render']);
-Route::get('view-order', [UserConmponent::class, 'view']);
+Route::get('view-order/{order}', [UserConmponent::class, 'view']);
 
 
 

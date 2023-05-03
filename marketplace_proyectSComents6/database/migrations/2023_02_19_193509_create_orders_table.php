@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        //Tabla ordenenes para pagar y sus metodos
+        //Table orders to pay and its methods
         Schema::create('orders', function (Blueprint $table) {
 
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('order_number');
-            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending'); //Proceso de pago
+            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending'); //Payment process
             $table->integer('item_count');
-            $table->boolean('is_paid')->default(true); //Si esta pagado
-            $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('cash_on_delivery'); // metodo de pago
+            $table->boolean('is_paid')->default(true); //If paid
+            $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('cash_on_delivery'); // Payment method
 
 
-            //campos formulario de relleno
+            //Fill Form fields
             
 
             $table->string('shipping_fullname');

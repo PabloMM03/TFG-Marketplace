@@ -12,8 +12,9 @@ class Order extends Model
 
     public function items()
     {
-        //Ralacion entre tablas de ordenes, productos
-        //Se le especifica con withPivot a que campos se va a acceder
+       /**
+        * Relationship between tables of orders, products You are specified with withPivot which fields to access
+        */
         return $this->belongsToMany(Product::class, 'order_items', 'order_id', 'product_id')->withPivot('price', 'quantity');
     }
 

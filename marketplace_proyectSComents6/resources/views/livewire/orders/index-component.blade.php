@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
-@section('title')
-    My Orders
-@endsection
-
 @section('content')
+{{--View of orders placed by the user--}}
 
 <div class="container py-5">
     <div class="row">
@@ -29,12 +26,12 @@
                             @foreach ($orders as $order)                                      
                             <tr>
                                 <td>{{date('d-m-y', strtotime($order->created_at))}}</td>
-                                <td>{{$order->order_number}}</td>
-                                <td>{{$order->status}}</td>
-                                <td>{{$order->payment_method}}</td>
+                                <td>{{$order->order_number}}</td>   
                                 <td>{{$order->total}} €</td>
+                                <td>{{$order->payment_method}}</td>
+                                <td>{{$order->status}}</td>
                                 <td>
-                                    <a href="{{url('view-order/'.$order->id)}}" class="btn btn-primary">View</a>
+                                    <a href="{{url('view-order/'.$order->id)}}" class="btn btn-outline-dark flex-shrink-0">Ver</a>
                                 </td>
                             </tr>
                             @endforeach
