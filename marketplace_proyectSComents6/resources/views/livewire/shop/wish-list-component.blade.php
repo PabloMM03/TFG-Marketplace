@@ -18,6 +18,7 @@
     
                           @foreach ($wishlist->sortBy('id') as $key => $item)
                       <div class="col-md-2 my-auto">
+                        <input type="hidden" class="prod_id" value="{{$item->prod_id}}">
                         <a style="text-decoration: none" href="{{route('publicaciones.show',$item->products)}}">
                         <img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
                         </a> 
@@ -54,7 +55,10 @@
                     @endif
                         </div>
                         <div class="col-md-2 my-auto">
-                            <button type="button" class="fas fa-times text-muted" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button>
+                          
+                            <button type="submit" class="fas fa-times text-muted remove-wishlist-item" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button>
+                        
+                            {{-- <button type="button" class="fas fa-times text-muted" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button> --}}
                         </div>
                         <div class="mb-4 mr-4"></div>
                         @endforeach
@@ -94,6 +98,28 @@ Swal.fire({
 })
 </script>
 @endif
+
+<script>
+  $.('.remove-wishlist-item').click(function(e){
+    e.preventDefault();
+
+    let prod_id = $(this).closest('.product_data').find('.prod_id').val();
+
+    $.ajax({
+      method: "POST",
+      url: "delete-wishlist-item",
+      data: {
+        'prod_id': prod_id,
+
+      },
+      success:function(response){
+        window.location.reload();
+        swal("",response.status, "success");
+      }
+    });
+  });
+</script>
+
 
 </section>
 

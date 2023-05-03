@@ -90,10 +90,22 @@ class WishListComponent extends Component
                     ));
     
 
-    //Confirmation message
-    $this->emit('message', 'El producto se ha añadido correctemente.');
-    $this->emitTo('shop.wish-list-component', 'add_to_cart');
-    return redirect()->back()->with('status', "Producto añadido correctamente"); 
+            //Confirmation message
+            $this->emit('message', 'El producto se ha añadido correctemente.');
+            $this->emitTo('shop.wish-list-component', 'add_to_cart');
+            return redirect()->back()->with('status', "Producto añadido correctamente"); 
  }
 }
+
+
+
+    // public function destroy(Wishlist $wish)
+    // {
+    //     $wish->delete();
+    //     return redirect()->route('livewire.shop.wish-list-component')->with('eliminar', 'Producto eliminado correctamente de la lista de deseados');
+        
+    // }
+
+
+
 }

@@ -30,9 +30,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
 //Store Route
 Route::get('/', IndexComponent::class)->name('shop.index');
 Route::get('trending', TrendingProduct::class)->name('shop.trending');
+
 //Publications /articles
 Route::get('products/{product}', SingleProduct::class)->name('publicaciones.show');
 

@@ -51,7 +51,7 @@
                                         <td>{{$order->quantity}}</td>
                                         <td>{{$order->products->price}} €</td>
                                         <td>
-                                            <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="50px" alt="Product image">
+                                            <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="70px" alt="Product image">
                                             
                                         </td>
                                     </tr>
