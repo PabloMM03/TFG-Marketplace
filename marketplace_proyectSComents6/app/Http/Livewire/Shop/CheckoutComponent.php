@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 
 class CheckoutComponent extends Component
 {
-    //declaracion de variables
+    //Declaration of variables
     public  $fullname, $address, $city, $state, $zipcode, $phone;
 
     public $billing_fullname, $billing_address, $billing_city, $billing_state, $billing_zipcode, $billing_phonde;
@@ -25,7 +25,7 @@ class CheckoutComponent extends Component
     {
         return view('livewire.shop.checkout-component')->extends('layouts.app')->section('content');
     }
-    //funcion para crear una orden y validar los datos implementados por el cliente
+    //Function to create an order and validate the data implemented by the client
     public function make_order()
     {
         $this->validate([
@@ -38,13 +38,13 @@ class CheckoutComponent extends Component
             'payment_method' => 'required'
         ]);
 
-        ///////////////////////Ordenes a realizar y sus datos/////////////////////////////////
+        ///////////////////////Orders to be made and their data/////////////////////////////////
 
         $order = new Order();
 
         $order->user_id = auth()->id();
         $order->order_number = uniqid('OrderNumber-');
-        //Total de productos del carrito
+        //Total products in the cart
         $order->item_count = Cart::session(auth()->id())->getContent()->count();
 
         $order->shipping_fullname = $this->fullname;
@@ -73,40 +73,40 @@ class CheckoutComponent extends Component
 
 
         $order->payment_method = $this->payment_method;
-        //Obtener total del carritod e compra
+        //Get total cart and purchase
         $order->total = Cart::session(auth()->id())->getTotal();
-        $order->save(); //Guardar cambios del pedido
+        $order->save(); //Save order changes
         // $order->is_paid,
 
-        //Creacion de items que estan en el carrito para la orden del pedido
+        //Creation of items that are in the cart for the order of the order
 
         $cartItems = Cart::session(auth()->id())->getContent();
             //$cartItems as $key => $item
         foreach ($cartItems as  $item) {
             $order->items()->attach($item->id, [
-                'price' => $item->price,             //Datos a mostrar
+                'price' => $item->price,             //Data to display
                 'quantity' => $item->quantity,
             ]);
-            //Reducir productos mendiante se vayan agotando
+            //Reduce products as they run out
             $prod = Product::where('id', $item->id)->first();
             $prod->qty = $prod->qty - $item->quantity;
             $prod->update();
         }
 
-        //Comprobar metodo de pago
+        //Check payment method
         if ($this->payment_method == 'paypal') {
             Mail::to($order->user->email)->send(new OrderPagada($order));
 
             $order->save();
-            Cart::session(auth()->id())->clear(); //Vaciar carrito
+            Cart::session(auth()->id())->clear(); //Empty cart
             return redirect()->route('paypal.checkout', $order->id);
         }
         if ($this->payment_method == 'cash_on_delivery') {
-            //Enviar correo de confirmacion de pago a usuario
+            //Send payment confirmation email to user
             Mail::to($order->user->email)->send(new OrderPagada($order));
 
             $order->save();
-            Cart::session(auth()->id())->clear(); //Vaciar carrito
+            Cart::session(auth()->id())->clear(); //Empty cart
             return redirect('/')->with('info', 'Compra realizada correctamente, pronto le llegará su pedido');
         }
     }
