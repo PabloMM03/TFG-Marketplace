@@ -26,7 +26,7 @@ return new class extends Migration
 
 
             //Fill Form fields
-            
+
             
 
             $table->string('shipping_fullname');
@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('shipping_zipcode');
             $table->string('shipping_phone');
 
+            
             //notas
             $table->string('notes')->nullable();
 
