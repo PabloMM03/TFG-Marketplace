@@ -28,14 +28,7 @@ class CheckoutComponent extends Component
         
         return view('livewire.shop.checkout-component')->extends('layouts.app')->section('content');
     }
-
-    public function view($id)
-    {
-        
-        $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
-        return view('livewire.shop.checkout-component', compact('orders'))->extends('layouts.app')->section('content');
-    }
-
+    
     //Function to create an order and validate the data implemented by the client
     public function make_order()
     {

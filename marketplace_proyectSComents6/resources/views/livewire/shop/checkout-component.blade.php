@@ -103,17 +103,17 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                       {{-- @foreach ($orders as $item)                                      
+                                        {{-- @foreach ($orders->orderitems as $item)                                      
                                       <tr>
                                           <td>{{$item->products->name}}</td>
                                           <td>{{$item->quantity}}</td>
                                           <td>{{$item->products->price}} €</td>
                                           <td>
-                                              <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="70px" alt="Product image">
+                                              <img src="{{asset('storage/products/'. $item->products->product_image)}}" width="70px" alt="Product image">
                                               
                                           </td>
                                       </tr>
-                                      @endforeach  --}}
+                                      @endforeach   --}}
                                   </tbody>
                               </table>
   
