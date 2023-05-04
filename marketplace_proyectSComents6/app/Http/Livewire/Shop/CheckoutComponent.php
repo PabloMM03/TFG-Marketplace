@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Shop;
 use App\Mail\OrderPagada;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\Component;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class CheckoutComponent extends Component
@@ -23,8 +25,17 @@ class CheckoutComponent extends Component
 
     public function render()
     {
+        
         return view('livewire.shop.checkout-component')->extends('layouts.app')->section('content');
     }
+
+    public function view($id)
+    {
+        
+        $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
+        return view('livewire.shop.checkout-component', compact('orders'))->extends('layouts.app')->section('content');
+    }
+
     //Function to create an order and validate the data implemented by the client
     public function make_order()
     {
@@ -71,6 +82,17 @@ class CheckoutComponent extends Component
             $order->billing_phone = $this->billing_phone;
         }
 
+        if(Auth::user()->billing_address == NULL)
+        {
+            $user = User::where('id', Auth::id())->first();
+            $user->billing_fullname = $this->fullname;
+            $user->shipping_address  = $this->address;
+            $user->shipping_city = $this->city;
+            $user->shipping_state = $this->state;
+            $user->shipping_zipcode = $this->zipcode;
+            $user->shipping_phone = $this->phone;
+            $user->update();
+        }
 
         $order->payment_method = $this->payment_method;
         //Get total cart and purchase

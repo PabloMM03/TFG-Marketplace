@@ -7,14 +7,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary">
-                    <h4 class="text-white">Pedido {{$orders->order_number}}
+                    <h4 class="text-white mt-2">Pedido {{$orders->order_number}}
                         <a href="{{url('my-orders')}}" class="btn btn-warning text-white float-end">Back</a>
                     </h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 order-details">
-                            <h4>Detallas de envío</h4>
+                            <h4>Detalles de envío</h4>
                             <hr>
                         <label for="">Nombre Completo</label>
                         <div class="border">{{$orders->shipping_fullname}}</div>
@@ -33,7 +33,7 @@
                         </div>
                         
                         <div class="col-md-6">
-                            <h4>Detalles de pedido</h4>
+                            <h4>Detalles del pedido</h4>
                             <hr>
                             <table class="table table-bordered">
                                 <thead>
