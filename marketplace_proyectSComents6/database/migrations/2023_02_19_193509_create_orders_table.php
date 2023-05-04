@@ -27,6 +27,7 @@ return new class extends Migration
 
             //Fill Form fields
             
+            
 
             $table->string('shipping_fullname');
             $table->string('shipping_address');
