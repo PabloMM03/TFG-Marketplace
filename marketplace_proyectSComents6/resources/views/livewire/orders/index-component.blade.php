@@ -28,8 +28,16 @@
                                 <td>{{date('d-m-y', strtotime($order->created_at))}}</td>
                                 <td>{{$order->order_number}}</td>   
                                 <td>{{$order->total}} €</td>
-                                <td>{{$order->payment_method}}</td>
-                                <td>{{$order->status}}</td>
+                                <?php if($order->payment_method == "cash_on_delivery"){?> 
+                                    <td>En efectivo</td> <?php
+                                }elseif ($order->payment_method == "paypal") {
+                                    ?> <td>Paypal</td> <?php
+                                }?>
+                                <?php if($order->status == "processing"){?> 
+                                    <td>En proceso</td> <?php
+                                }elseif ($order->status == "pending") {
+                                    ?> <td>Pendiente</td> <?php
+                                }?>
                                 <td>
                                     <a href="{{url('view-order/'.$order->id)}}" class="btn btn-outline-dark flex-shrink-0">Ver</a>
                                 </td>

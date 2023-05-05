@@ -29,7 +29,11 @@
                         <label for="">Código postal</label>
                         <div class="border ">{{$orders->shipping_zipcode}}</div>
                         <label for="">Método de Pago</label>
-                        <div class="border ">{{$orders->payment_method}}</div>
+                        <?php if($orders->payment_method == "cash_on_delivery"){?> 
+                            <div class="border ">En efectivo</div><?php
+                        }elseif ($orders->payment_method == "paypal") {
+                            ?><div class="border ">Paypal</div> <?php
+                        }?>
                         </div>
                         
                         <div class="col-md-6">

@@ -90,3 +90,4 @@ Route::post('delete-wishlist-item', [WishListComponent::class], 'deleteItem');
 //Browser 
 Route::get('product-list', [IndexComponent::class,'productlistAjax']);
 Route::post('searchproduct', [IndexComponent::class,'searchProduct']);
+

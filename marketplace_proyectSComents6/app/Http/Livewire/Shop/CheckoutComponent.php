@@ -75,17 +75,7 @@ class CheckoutComponent extends Component
             $order->billing_phone = $this->billing_phone;
         }
 
-        if(Auth::user()->billing_address == NULL)
-        {
-            $user = User::where('id', Auth::id())->first();
-            $user->billing_fullname = $this->fullname;
-            $user->shipping_address  = $this->address;
-            $user->shipping_city = $this->city;
-            $user->shipping_state = $this->state;
-            $user->shipping_zipcode = $this->zipcode;
-            $user->shipping_phone = $this->phone;
-            $user->update();
-        }
+      
 
         $order->payment_method = $this->payment_method;
         //Get total cart and purchase
@@ -112,17 +102,23 @@ class CheckoutComponent extends Component
         if ($this->payment_method == 'paypal') {
             Mail::to($order->user->email)->send(new OrderPagada($order));
 
+            $order->status = "processing";
             $order->save();
-            Cart::session(auth()->id())->clear(); //Empty cart
+            Cart::session(auth()->id())->clear(); //Empty cart              
             return redirect()->route('paypal.checkout', $order->id);
         }
         if ($this->payment_method == 'cash_on_delivery') {
             //Send payment confirmation email to user
             Mail::to($order->user->email)->send(new OrderPagada($order));
 
+            $order->status = "pending";
             $order->save();
             Cart::session(auth()->id())->clear(); //Empty cart
             return redirect('/')->with('info', 'Compra realizada correctamente, pronto le llegará su pedido');
         }
     }
+
+    
+
+
 }
