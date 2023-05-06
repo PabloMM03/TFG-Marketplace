@@ -1,0 +1,715 @@
+@section('content')
+
+@section('style')
+<style>
+    @media (max-width:767px){
+        .carousel-inner .carousel-item > div{
+            display: none;
+        }
+
+        .carousel-inner .carousel-item > div:first-child {
+            display: block;
+        }
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev{
+        display: flex;
+    }
+
+    @media (min-width:760px){
+        .carousel-inner .carousel-item-end.active,
+        .carousel-inner .carousel-item-next {
+            transform: translateX(25%);
+        }
+
+        .carousel-inner .carousel-item-start.active,
+        .carousel-inner .carousel-item-prev {
+            transform: translateX(-25%);
+        }
+    }
+
+    .carousel-inner .carousel-item-end,
+    .carousel-inner .carousel-item-start {
+        transform: translateX(0);
+    }
+
+    
+
+
+    .badge:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+/**
+*Icon
+*/
+
+    .info-icon {
+  position: relative;
+}
+
+.info-icon:hover .info-text {
+  display: block;
+}
+
+.info-text {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  left: -80px;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 1;
+}
+
+/**
+*Careousel
+*/
+
+.carousel-control-prev {
+  margin-left: 120px;
+  border: 2px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev:before {
+  content: "";
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent  transparent transparent ;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.carousel-control-next {
+  margin-right: 50px;
+  border: 2px solid white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.carousel-control-next:before {
+  content: "";
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
+@endsection
+
+<div>
+            {{--We go through with a foreach the popular products to obtain their data and display them in the carousel of images--}}         
+
+            {{--POPULAR PRODUCTS--}}
+            <h3 style="color:black; text-align:center" class="mt-4"><b>Los más populares</b></h3>        
+            <div class="text-center mr-5">
+                <div class="row mx-auto my-auto justify-content-center card">
+                    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">           
+                        <div class="carousel-inner" role="listbox">
+                            <?php $count = 0;?>
+                            @foreach ($featured_products as $item)
+                            <?php $count = $count + 1;
+                            if($count == 1){ ?>
+                                <div class="carousel-item active">
+                                    <div class="col-md-3 mr-4">                                       
+                                            <div class="card-body">
+                                                <a style="text-decoration: none" href="{{route('publicaciones.show',$item)}}">
+                                                    <img src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-50 w-90" alt="Card image cap">
+                                                </a>                                              
+                                            <div>
+                                                @if($item->trending == 2)
+                                                <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                <i class="bi bi-info-circle"></i> </label>   
+                                                @else             
+                                                <label for=""></label>                                       
+                                                @endif
+                                            </div>
+                                            <div style="color:gray"class="fw-bolder ml-20">
+                                                <h5>{{$item->name}}</h5>
+                                            </div>
+                                            <div class="fw-bolder ml-20">
+                                                @if ($item->original_price)
+                                                    <span style="color:red; font-size:20px" class="mr-2">{{$item->price}} €</span>
+                                                    <span class="text-decoration-line-through">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
+                                                
+                                                    @else
+                                                    <span style="font-size:20px" class="mr-2">{{$item->price}} €</span>
+                                                    <span class="text-decoration-line-through">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
+    
+                                                    @endif                                                
+                                            </div>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                            <?php }else{ ?>
+                                <div class="carousel-item">
+                                    <div class="col-md-3 mr-4">            
+                                            <div class="card-body">
+                                                <a style="text-decoration: none" href="{{route('publicaciones.show',$item)}}">
+                                                    <img src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-50 w-90" alt="Card image cap">
+                                                </a>
+                                                
+                                                <div>
+                                                    @if($item->trending == 2)
+                                                    <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                    <i class="bi bi-info-circle"></i> </label> 
+                                                    @else         
+                                                    <label for=""></label>                                             
+                                                    @endif
+                                                </div>
+                                                <div style="color:gray" class="fw-bolder ml-20">
+                                                    <h5> {{$item->name}}</h5>
+                                                </div>
+                                                <div class="fw-bolder ml-20">
+                                                    @if ($item->original_price)
+                                                    <span style="color:red; font-size:20px" class="mr-2">{{$item->price}} €</span>
+                                                    <span class="text-decoration-line-through">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
+
+                                                        @else
+                                                        <span style="font-size:20px" class="mr-2">{{$item->price}} €</span>
+                                                        <span class="text-decoration-line-through">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
+                                                    @endif
+                                                    
+                                                </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            
+        
+                            @endforeach
+        
+                        </div>
+                        
+                        <a href="#recipeCarousel" role="button" data-bs-slide="prev" class="carousel-control-prev bg-transparent w-aut">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a href="#recipeCarousel" role="button" data-bs-slide="next" class="carousel-control-next bg-transparent w-aut">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {{--NEW PRODUCTS--}}
+            <h3 style="color:black; text-align:center" class="mt-4"><b>Nuevos Productos</b></h3>
+            <div class="text-center mr-5">
+                <div class="row mx-auto my-auto justify-content-center card">
+                    <div id="recipeCarousel2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <?php $count = 0;?>
+                            @foreach ($products_news as $product_new)
+                            <?php $count = $count + 1;
+                            if($count == 1){ ?>
+                                <div class="carousel-item active">
+                                    <div class="col-md-3 mr-4">                                       
+                                            <div class="card-body">
+                                                <a style="text-decoration: none" href="{{route('publicaciones.show',$product_new)}}">
+                                                    <img src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-50 w-90" alt="Card image cap">
+                                                </a>                                              
+                                            <div>
+                                                @if($product_new->trending == 2)
+                                                <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                <i class="bi bi-info-circle"></i> </label>                                          
+                                                @else    
+                                                <label for=""></label>                                     
+                                                @endif
+                                            </div>
+                                            <div style="color:gray"class="fw-bolder ml-20">
+                                                <h5>{{$product_new->name}}</h5>
+                                            </div>
+                                            <div class="fw-bolder ml-20">
+                                                @if ($product_new->original_price)
+                                                    <span style="color:red; font-size:20px" class="mr-2">{{$product_new->price}} €</span>
+                                                    <span class="text-decoration-line-through">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
+                                                
+                                                    @else
+                                                    <span style="font-size:20px" class="mr-2">{{$product_new->price}} €</span>
+                                                    <span class="text-decoration-line-through">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
+    
+                                                    @endif                                                
+                                            </div>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                            <?php }else{ ?>
+                                <div class="carousel-item">
+                                    <div class="col-md-3 mr-4">            
+                                            <div class="card-body">
+                                                <a style="text-decoration: none" href="{{route('publicaciones.show',$product_new)}}">
+                                                    <img src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" class="img-fluid ml-5 mt-4 card-img-top h-70 w-90" alt="Card image cap">
+                                                </a>
+                                                
+                                                <div>
+                                                    @if($product_new->trending == 2)
+                                                    <label class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
+                                                    <i class="bi bi-info-circle"></i> 
+                                                    </label>   
+                                                    @else    
+                                                    <label for=""></label>                                                                                                             
+                                                    @endif
+                                                </div>
+                                                <div style="color:gray" class="fw-bolder ml-20">
+                                                    <h5> {{$product_new->name}}</h5>
+                                                </div>
+                                                <div class="fw-bolder ml-20">
+                                                    @if ($product_new->original_price)
+                                                    <span style="color:red; font-size:20px" class="mr-2">{{$product_new->price}} €</span>
+                                                    <span class="text-decoration-line-through">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
+
+                                                        @else
+                                                        <span style="font-size:20px" class="mr-2">{{$product_new->price}} €</span>
+                                                        <span class="text-decoration-line-through">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
+                                                    @endif
+                                                    
+                                                </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            
+        
+                            @endforeach
+        
+                        </div>
+                        <a href="#recipeCarousel2" role="button" data-bs-slide="prev" class="carousel-control-prev bg-transparent w-aut">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a href="#recipeCarousel2" role="button" data-bs-slide="next" class="carousel-control-next bg-transparent w-aut">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+  
+   <section class="py-5">
+
+    @if ($products->count())  
+    
+    
+    {{-- Store with products and information is displayed --}}
+    <div class="px-4 px-lg-10 mt-5">
+    
+        <div class="row gx-4 gx-lg-10 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center">
+
+        
+            {{--PRODUCTS--}}
+    @foreach ($products as $product)
+        
+
+        <div class="card col-md-2 m-5">
+            <a style="text-decoration: none" href="{{route('publicaciones.show',$product)}}">
+                <img class="mt-4  d-block mx-auto" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                {{--If the product is in the category of Most Popular a message is displayed indicating it --}}
+                <div class="info">
+                    @if($product->trending == 2)
+                    <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
+                    </label>                                                  
+                    @endif
+                </div>
+            </a>
+            
+            <!-- Product details-->
+            <div class="card-body">
+                
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 style="color:gray" class="fw-bolder">{{$product->name}}</h5>
+                     <!-- Product price-->
+                     @if ($product->original_price)
+                     <span style="color:red;" class="mr-2 fw-bolder">{{$product->price}} €</span>
+                     <span class="text-decoration-line-through">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
+
+                         @else
+                         <span class="mr-2 fw-bolder">{{$product->price}} €</span>
+                         <span class="text-decoration-line-through">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
+                         @endif                     
+
+                         {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
+                            however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                    <div class="col-md-9 ml-7 mt-2">
+                        @if($product->qty > 0)
+                        <label class="badge bg-success">In stock</label>
+                        @else
+                        <label class="badge bg-danger">Out of stock</label>
+                        @endif
+                    </div>
+                        <!-- Product actions-->
+                    <div class="button-head">
+                        <div class="product-action mt-2 mb-16">
+                            <span>
+                                <a title="View" style="text-decoration: none; color:#000" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
+                                <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <button type="submit" style="background: none; border: none;"><i class="bi-heart"></i></button>
+                                </form>
+                            </span>
+                            
+                        </div>
+                        <div class="product-action-2">
+                            @if($product->qty >0)
+                            <button class="btn btn-outline-dark flex-shrink-0 mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product->id}})" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>
+                            @else
+                            <button class="btn btn-outline-dark flex-shrink-0 disabled mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product->id}})" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>   
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+
+
+    @endforeach
+
+    <div class="sidebar-widget price_range range mb-30">
+        <div class="widget-header position-relative mb-20 pb-10">
+            <h5 class="widget-title mb-10">Filter by price</h5>
+            <div class="bt-1 border-color-1"></div>
+        </div>
+        <div class="price-filter">
+            <div class="price-filter-inner">
+                <div id="slider-range" wire:ignore></div>
+                <div class="price_slider_amount">
+                    <div class="label-input">
+                        <span>Range:</span><span class="text-info">{{$min_value}}€</span> - <span class="text-info">{{$max_value}}€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    {{$products->links()}} 
+</div>
+
+
+@else
+    <div class="card-body">
+        <strong>No hay ningun producto con el nombre indicado.</strong>
+    </div>   
+ @endif 
+
+</section>
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
+</footer>
+</div>
+
+@push('scripts')
+    <script>
+        let sliderrange = $('#slider-range');
+        let amountprice = $('#amount');
+        $(function(){
+            sliderrange.slider({
+                range:true,
+                min:0,
+                max:1000,
+                values:[0,1000],
+                slide:function(event, ui){
+                    //amountprice.val("$" + ui.values[0] + "- $" + ui.values[1]);
+                    @this.set('min_value', ui.values[0]);
+                    @this.set('max_value', ui.values[1]);
+                }
+            });
+
+});
+    </script>
+@endpush
+
+
+{{--JAVASCRIPT--}}
+
+@section('js')
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@if (session('message') == "El producto se ha añadido correctemente.")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@endif
+
+<script>
+    let items = document.querySelectorAll('.carousel .carousel-item')
+
+    items.forEach((el) => {
+        const minPerSlide = 4;
+        let next = el.nextElementSibling;
+        for(var i =1; i<minPerSlide; i++){
+            if(!next){
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
+        
+    });
+</script>
+
+{{--Wishlist--}}
+
+
+@if (session('status') == "Producto añadido correctamente a su Wishlist")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif(session('status') == "El producto no existe")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "Necesita hacer el login para continuar")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "El producto ya está en su Wishlist")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@endif
+
+@if(session('status') == "El carrito está vacio")
+<script> 
+  Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '{{session('status')}}',
+})
+</script>
+@endif
+
+
+<script>
+
+$('.product-slider-active-1').slick({
+    slidesToShow:5,
+    slidesToScroll:1,
+    autoplay:true,
+    fade:false,
+    loop:true,
+    dots:false,
+    arrows:true,
+    prevArrow:'<span class="pro-icon-1-prev"><i class="fi-rs-angle-small-left"></i></span>',
+    nextArrow:'<span class="pro-icon-1-next"><i class="fi-rs-angle-small-right"></i></span>',
+    responsive: [
+        {
+            breakpoint:1199,
+            settings:{
+                slidesToShow:3,
+            }
+        },
+        {
+            breakpoint:991,
+            settings:{
+                slidesToShow:2,
+            }
+        },
+        {
+            breakpoint:767,
+            settings:{
+                slidesToShow:2,
+            }
+        },
+        {
+            breakpoint:575,
+            settings:{
+                slidesToShow:1,
+            }
+        },
+    ]
+
+});
+
+
+$('.testimonial-active-1').slick({
+    slidesToShow:3,
+    slidesToScroll:1,
+    fade:false,
+    loop:true,
+    dots:false,
+    arrows:true,
+    prevArrow:'<span class="pro-icon-1-prev"><i class="fi-rs-angle-small-left"></i></span>',
+    nextArrow:'<span class="pro-icon-1-next"><i class="fi-rs-angle-small-right"></i></span>',
+    responsive: [
+        {
+            breakpoint:1199,
+            settings:{
+                slidesToShow:3,
+            }
+        },
+        {
+            breakpoint:991,
+            settings:{
+                slidesToShow:2,
+            }
+        },
+        {
+            breakpoint:767,
+            settings:{
+                slidesToShow:1,
+            }
+        },
+        {
+            breakpoint:575,
+            settings:{
+                slidesToShow:1,
+            }
+        },
+    ]
+
+});
+
+
+$('.testimonial-active-3').slick({
+    slidesToShow:3,
+    slidesToScroll:1,
+    fade:false,
+    loop:true,
+    dots:true,
+    arrows:false,
+    responsive: [
+        {
+            breakpoint:1199,
+            settings:{
+                slidesToShow:3,
+            }
+        },
+        {
+            breakpoint:991,
+            settings:{
+                slidesToShow:2,
+            }
+        },
+        {
+            breakpoint:767,
+            settings:{
+                slidesToShow:1,
+            }
+        },
+        {
+            breakpoint:575,
+            settings:{
+                slidesToShow:1,
+            }
+        },
+    ]
+
+});
+
+
+/*-------------------------
+  Category Toggle function
+---------------------------*/
+
+let searchToggle = $(.'categori-button-active');
+searchToggle.on('click', function(e){
+    e.preventDefault();
+    if($(this).hasClass('open')){
+        $(this).removeClass('open');
+        $(this).siblings('.categori-dropdown-active-large').removeClass('open');
+    }else{
+        $(this).addClass('open');
+        $(this).siblings('.categori-dropdown-active-large').addClass('open');
+
+    }
+})
+
+
+/*---------------------
+    Price Range
+----------------------*/
+
+
+</script>
+
+
+@endsection
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+{{-- 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  --}}
