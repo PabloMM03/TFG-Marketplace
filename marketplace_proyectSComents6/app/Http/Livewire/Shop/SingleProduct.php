@@ -67,7 +67,7 @@ class SingleProduct extends Component
 
 
      /**
-     * Filter by category the products mendiante query
+     * Filter by category the products 
      */
     public function category(Category $category){
      $products = Product::where('category_id', $category->id)
