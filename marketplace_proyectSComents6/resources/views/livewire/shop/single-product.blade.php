@@ -40,7 +40,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow">Inicio</a>
+                <a href="/" rel="nofollow">Inicio</a>
                 <span></span> {{$product->id}}
                 <span></span> {{$product->name}}
             </div>
@@ -110,17 +110,32 @@
                                             <span> Marcas: <a href="shop.html">{{$product->brand}}</a></span>
                                         </div>
                                         <div class="product-rate-cover text-end">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width:90%">
-                                                </div>
+                                          {{-- <div class="product-rate d-inline-block"></div> --}}
+                                            <div>
+                                              {{--Ratings--}}
+                                              @php $ratenum  = number_format($rating_value) @endphp
+                                              <div class="rating">
+                                                  @for($i = 1; $i<= $ratenum; $i++)
+                                                  <i class=" fa bi-star checked"></i>
+                                                  @endfor
+                                                  @for($j = $ratenum+1; $j <= 5; $j++)
+                                                  <i class=" fa bi-star"></i>
+                                                  @endfor
+                                              </div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (25 reviews)</span>
+                                            <span class="font-small ml-5 text-muted"> 
+                                              @if($ratings->count() > 0)
+                                                  {{$ratings->count()}} reviews
+                                                  @else
+                                                  0 reviews
+                                                  @endif
+                                              </span>                                        
                                         </div>
                                     </div>
                                     <div class="clearfix product-price-cover">
                                         <div class="product-price primary-color float-left">
                                             <ins><span class="text-brand">{{$product->price}} €</span></ins>
-                                            <ins><span class="old-price font-md ml-15">{{$product->original_price}} €</span></ins>
+                                            <ins><span class="old-price font-md ml-15">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span></ins>
                                             <span class="save-price  font-md color3 ml-15">25% Off</span>
                                         </div>
                                     </div>
@@ -164,23 +179,21 @@
                                         <div class="product-extra-link2">
                                             @if($product->qty >0)
                                             <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
-                                                <i class="bi-cart-fill me-1"></i>
                                                 Add to cart
                                             </button>
                                             @else
                                             <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$product->id}})" type="button">
-                                                <i class="bi-cart-fill me-1"></i>
                                                 Add to cart
                                             </button>   
                                             @endif
                                             <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Compare" class="action-btn hover-up" href="#"><i class="fi-rs-shuffle"></i></a>
                                         </div>
                                     </div>
                                     <ul class="product-meta font-xs color-grey mt-50">
-                                        <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
+                                        <li class="mb-5">SKU: <a href="#">@if($product->brand){{$product->brand}} @else SKU: BST-498 @endif</a></li>
                                         <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li>
-                                        <li>Availability:<span class="in-stock text-success ml-5">8 Items In Stock</span></li>
+                                        <li>Availability:<span class="in-stock text-success ml-5">@if($product->qty > 0){{$product->qty}} @else {{$product->qty = 0}} @endif Items In Stock</span></li>
                                     </ul>
                                 </div>
                                 <!-- Detail Info -->
@@ -189,29 +202,25 @@
                         <div class="tab-style3">
                             <ul class="nav nav-tabs text-uppercase">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
+                                    <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Descripción</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
+                                    <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Información adicional</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab entry-main-content">
+                              {{--Description--}}
                                 <div class="tab-pane fade show active" id="Description">
                                     <div class="">
-                                        <p>Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop
-                                            tightly neurotic hungrily some and dear furiously this apart.</p>
-                                        <p>Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped
-                                            besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.
-                                        </p>
+                                        <p>{{$product->description}}</p>
+                                        
                                         <ul class="product-more-infor mt-30">
-                                            <li><span>Type Of Packing</span> Bottle</li>
+                                            <li><span>Tipo de empaquetado</span> Bottle</li>
                                             <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
-                                            <li><span>Quantity Per Case</span> 100ml</li>
-                                            <li><span>Ethyl Alcohol</span> 70%</li>
-                                            <li><span>Piece In One</span> Carton</li>
+                                            <li><span>Cantidad por caja</span> 100ml</li>
                                         </ul>
                                         <hr class="wp-block-separator is-style-dots">
                                         <p>Laconic overheard dear woodchuck wow this outrageously taut beaver hey hello far meadowlark imitatively egregiously hugged that yikes minimally unanimous pouted flirtatiously as beaver beheld above forward
@@ -227,6 +236,7 @@
                                         </p>
                                     </div>
                                 </div>
+                                {{--Additional info--}}
                                 <div class="tab-pane fade" id="Additional-info">
                                     <table class="font-md">
                                         <tbody>
@@ -317,18 +327,24 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {{--Reviews--}}
                                 <div class="tab-pane fade" id="Reviews">
                                     <!--Comments-->
                                     <div class="comments-area">
                                         <div class="row">
                                             <div class="col-lg-8">
-                                                <h4 class="mb-30">Customer questions & answers</h4>
+                                                <h4 class="mb-30">Preguntas y respuestas de los clientes</h4>
                                                 <div class="comment-list">
+
+                                                  @forelse ($product->comments as $comment)                                         
                                                     <div class="single-comment justify-content-between d-flex">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="assets/imgs/page/avatar-6.jpg" alt="">
-                                                                <h6><a href="#">Jacky Chan</a></h6>
+                                                                <img src="{{asset('assets/imgs/page/avatar-6.jpg')}}" alt="">
+                                                                <h6><a href="#"> 
+                                                                  @if ($comment->user)
+                                                                  {{$comment->user->name}}
+                                                                  @endif</a></h6>
                                                                 <p class="font-xxs">Since 2012</p>
                                                             </div>
                                                             <div class="desc">
@@ -336,62 +352,22 @@
                                                                     <div class="product-rating" style="width:90%">
                                                                     </div>
                                                                 </div>
-                                                                <p>Thank you very fast shipping from Poland only 3days.</p>
+                                                                <p>{!! $comment->comment_body !!}</p>
                                                                 <div class="d-flex justify-content-between">
                                                                     <div class="d-flex align-items-center">
-                                                                        <p class="font-xs mr-30">December 4, 2020 at 3:12 pm </p>
+                                                                        <p class="font-xs mr-30">{{$comment->created_at->format('d-m-Y')}} December 4, 2020 at 3:12 pm </p>
                                                                         <a href="#" class="text-brand btn-reply">Reply <i class="fi-rs-arrow-right"></i> </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--single-comment -->
-                                                    <div class="single-comment justify-content-between d-flex">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/page/avatar-7.jpg" alt="">
-                                                                <h6><a href="#">Ana Rosie</a></h6>
-                                                                <p class="font-xxs">Since 2008</p>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="product-rate d-inline-block">
-                                                                    <div class="product-rating" style="width:90%">
-                                                                    </div>
-                                                                </div>
-                                                                <p>Great low price and works well.</p>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <p class="font-xs mr-30">December 4, 2020 at 3:12 pm </p>
-                                                                        <a href="#" class="text-brand btn-reply">Reply <i class="fi-rs-arrow-right"></i> </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    @empty
+                                                    <div class="card card-body shadow-sm mt-3">
+                                                    <h6>Sin comentarios hasta el momento.</h6>
                                                     </div>
-                                                    <!--single-comment -->
-                                                    <div class="single-comment justify-content-between d-flex">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/page/avatar-8.jpg" alt="">
-                                                                <h6><a href="#">Steven Keny</a></h6>
-                                                                <p class="font-xxs">Since 2010</p>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="product-rate d-inline-block">
-                                                                    <div class="product-rating" style="width:90%">
-                                                                    </div>
-                                                                </div>
-                                                                <p>Authentic and Beautiful, Love these way more than ever expected They are Great earphones</p>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <p class="font-xs mr-30">December 4, 2020 at 3:12 pm </p>
-                                                                        <a href="#" class="text-brand btn-reply">Reply <i class="fi-rs-arrow-right"></i> </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforelse
+                                                   
                                                     <!--single-comment -->
                                                 </div>
                                             </div>
@@ -430,16 +406,72 @@
                                     </div>
                                     <!--comment form-->
                                     <div class="comment-form">
-                                        <h4 class="mb-15">Add a review</h4>
-                                        <div class="product-rate d-inline-block mb-30">
-                                        </div>
+                                        <h4 class="mb-15">Añadir una review</h4>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <form action="{{url('/add-rating')}}" method="POST"> 
+                                                  @csrf
+
+                                                  <input type="hidden" name="product_id" value="{{$product->id}}">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Valorar: {{ $product->name }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                              </div>
+
+                                              <div class="modal-body">
+                                                  <div class="rating-css">
+                                                      <div class="star-icon">
+                                                          @if($user_rating)
+                                                              @for($i = 1; $i<= $user_rating->stars_rated; $i++)
+                                                              <input type="radio" value="{{$i}}" name="product_rating" checked id="rating{{$i}}">
+                                                              <label for="rating{{$i}}" class="fa bi-star"></label>
+                                                              @endfor
+                                                              @for($j = $user_rating->stars_rated+1; $j <= 5; $j++)
+                                                              <input type="radio" value="{{$j}}" name="product_rating" id="rating{{$j}}">
+                                                              <label for="rating{{$j}}" class="fa bi-star"></label>
+                                                              @endfor
+                                                          
+                                                          @else
+                                                          <input type="radio" value="1" name="product_rating" checked id="rating1">
+                                                          <label for="rating1" class="fa bi-star"></label>
+                                                          <input type="radio" value="2" name="product_rating" id="rating2">
+                                                          <label for="rating2" class="fa bi-star"></label>
+                                                          <input type="radio" value="3" name="product_rating" id="rating3">
+                                                          <label for="rating3" class="fa bi-star"></label>
+                                                          <input type="radio" value="4" name="product_rating" id="rating4">
+                                                          <label for="rating4" class="fa bi-star"></label>
+                                                          <input type="radio" value="5" name="product_rating" id="rating5">
+                                                          <label for="rating5" class="fa bi-star"></label>
+                                                          @endif
+                                                      </div>
+                                                  </div>
+                                              </div>
+
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-dark flex-shrink-0 " data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-outline-dark flex-shrink-0 formulario-calificar">Guardar cambios</button>
+                                              </div>
+                                          </form> 
+                                            </div>
+                                          </div>
+                                        </div>                                           
+                                        <button type="button" class="btn btn-outline-dark flex-shrink-0 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Valorar
+                                        </button>
+                         
+                                        {{-- <div class="product-rate d-inline-block mb-30">
+                                        </div> --}}
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
-                                                <form class="form-contact comment_form" action="#" id="commentForm">
+                                              <form class="form-contact comment_form" action="{{url('comments')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_slug" value="{{$product->slug}}">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                                              <textarea class="form-control w-100" name="comment_body" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -456,11 +488,10 @@
                                                             <div class="form-group">
                                                                 <input class="form-control" name="website" id="website" type="text" placeholder="Website">
                                                             </div>
-                                                        </div>
+                                                        </div> 
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="button button-contactForm">Submit
-                                                            Review</button>
+                                                      <button type="submit" class="button button-contactForm">Comentar</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -475,130 +506,74 @@
                             </div>
                             <div class="col-12">
                                 <div class="row related-products">
+                                  @foreach ($relacionados as $relacionado)
                                     <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                         <div class="product-cart-wrap small hover-up">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-2-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="">
+                                                        <img class="default-img" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                                                        {{-- <img class="hover-img" src="{{asset('assets/imgs/shop/product-2-2.jpg')}}" alt=""> --}}
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn small hover-up" href="{{route('publicaciones.show',$relacionado)}}"><i class="fi-rs-search"></i></a>
+                                                    <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
+                                                      @csrf
+                                                      <input type="hidden" name="product_id" value="{{$relacionado->id}}">
+                                                      <button type="hidden" class="action-btn small hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
+                                                    </form>
+                                                    <a aria-label="Compare" class="action-btn small hover-up" href="#" tabindex="0"><i class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="hot">Hot</span>
+                                                  <div class="info">
+                                                    @if($relacionado->trending == 2)
+                                                    <span class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
+                                                    </span>                                                  
+                                                    @endif
+                                                </div>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">Ulstra Bass Headphone</a></h2>
-                                                <div class="rating-result" title="90%">
+                                                <h2><a href="{{route('publicaciones.show',$relacionado)}}" tabindex="0">{{$relacionado->name}}</a></h2>
+                                                {{-- <div class="rating-result" title="90%"> --}}
+                                                  @php $ratenum  = number_format($rating_value) @endphp
+                                                  <div class="rating  mb-2">
+                                                      @for($i = 1; $i<= $ratenum; $i++)
+                                                      <i class=" fa bi-star checked"></i>
+                                                      @endfor
+                                                      @for($j = $ratenum+1; $j <= 5; $j++)
+                                                      <i class=" fa bi-star"></i>
+                                                      @endfor
+                                                      <br>
+                                                      <span>
+                                                          @if($ratings->count() > 0)
+                                                          {{$ratings->count()}} reviews
+                                                          @else
+                                                          0 reviews
+                                                          @endif
+                                                      </span>
+                                                  </div>
                                                     <span>
                                                     </span>
-                                                </div>
                                                 <div class="product-price">
-                                                    <span>$238.85 </span>
-                                                    <span class="old-price">$245.8</span>
+                                                    <span>{{$relacionado->price}} €</span>
+                                                    <span class="old-price">@if($relacionado->original_price){{$relacionado->original_price}} € @else {{$relacionado->original_price = ""}}@endif </span>
+                                                </div>
+                                                {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
+                                                      however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                                                <div class="col-md-9 ml-15 mt-2">
+                                                  @if($relacionado->qty > 0)
+                                                  <label class="badge bg-success">In stock</label>
+                                                  @else
+                                                  <label class="badge bg-danger">Out of stock</label>
+                                                  @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-3-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="sale">-12%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">Smart Bluetooth Speaker</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$138.85 </span>
-                                                    <span class="old-price">$145.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-4-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">HomeSpeak 12UEA Goole</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$738.85 </span>
-                                                    <span class="old-price">$1245.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                        <div class="product-cart-wrap small hover-up mb-0">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-5-1.jpg" alt="">
-                                                        <img class="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-                                                    <span class="hot">Hot</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <h2><a href="product-details.html" tabindex="0">Dadua Camera 4K 2022EF</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>$89.8 </span>
-                                                    <span class="old-price">$98.8</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach                
+
                                 </div>
                             </div>
                         </div>                            
@@ -711,314 +686,6 @@
 </main>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Product section-->
-
-<section class="py-5">
-  <div class="container px-4 px-lg-5 my-5">
-      <div class="row gx-4 gx-lg-5 align-items-center">
-
-          <div class="col-md-6"><img class="card-img-top" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} 
-              @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap"></div>
-          <div class="col-md-6">
-
-              <div class="small mb-1">@if($product->brand){{$product->brand}} @else SKU: BST-498 @endif</div>
-              <div class="small mb-1">@if($product->qty > 0){{$product->qty}} @else {{$product->qty = 0}} @endif Unidades</div>
-              
-              <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
-              <div class="fs-5 mb-5">
-                  <span class="text-decoration-line-through">@if($product->original_price){{$product->original_price}}@else 540.50 @endif €</span>
-                  <span>@if($product->price){{$product->price}}@else 764.25 @endif €</span>
-              </div>
-              <div class="col-md-9">
-                  @if($product->qty > 0)
-                  <label class="badge bg-success">In stock</label>
-                  @else
-                  <label class="badge bg-danger">Out of stock</label>
-                  @endif
-              </div>
-              {{--Ratings--}}
-         @php $ratenum  = number_format($rating_value) @endphp
-              <div class="rating">
-                  @for($i = 1; $i<= $ratenum; $i++)
-                  <i class=" fa bi-star checked"></i>
-                  @endfor
-                  @for($j = $ratenum+1; $j <= 5; $j++)
-                  <i class=" fa bi-star"></i>
-                  @endfor
-                  <span>
-                      @if($ratings->count() > 0)
-                      {{$ratings->count()}} Valoraciones
-                      @else
-                      Sin valoraciones.
-                      @endif
-                  </span>
-              </div>
-              
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form action="{{url('/add-rating')}}" method="POST"> 
-          @csrf
-
-          <input type="hidden" name="product_id" value="{{$product->id}}">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Valorar: {{ $product->name }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-
-      <div class="modal-body">
-          <div class="rating-css">
-              <div class="star-icon">
-                  @if($user_rating)
-                      @for($i = 1; $i<= $user_rating->stars_rated; $i++)
-                      <input type="radio" value="{{$i}}" name="product_rating" checked id="rating{{$i}}">
-                      <label for="rating{{$i}}" class="fa bi-star"></label>
-                      @endfor
-                      @for($j = $user_rating->stars_rated+1; $j <= 5; $j++)
-                      <input type="radio" value="{{$j}}" name="product_rating" id="rating{{$j}}">
-                      <label for="rating{{$j}}" class="fa bi-star"></label>
-                      @endfor
-                  
-                  @else
-                  <input type="radio" value="1" name="product_rating" checked id="rating1">
-                  <label for="rating1" class="fa bi-star"></label>
-                  <input type="radio" value="2" name="product_rating" id="rating2">
-                  <label for="rating2" class="fa bi-star"></label>
-                  <input type="radio" value="3" name="product_rating" id="rating3">
-                  <label for="rating3" class="fa bi-star"></label>
-                  <input type="radio" value="4" name="product_rating" id="rating4">
-                  <label for="rating4" class="fa bi-star"></label>
-                  <input type="radio" value="5" name="product_rating" id="rating5">
-                  <label for="rating5" class="fa bi-star"></label>
-                  @endif
-              </div>
-          </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark flex-shrink-0 " data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-outline-dark flex-shrink-0 formulario-calificar">Guardar cambios</button>
-      </div>
-  </form> 
-    </div>
-  </div>
-</div>
-              <p class="lead">{!!$product->description!!}</p>
-              <hr>
-              
-
-              <div class="d-flex">
-                  <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" class="form-control text-center me-3 " value="1">
-                  @if($product->qty >0)
-                  <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
-                      <i class="bi-cart-fill me-1"></i>
-                      Add to cart
-                  </button>
-                  @else
-                  <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$product->id}})" type="button">
-                      <i class="bi-cart-fill me-1"></i>
-                      Add to cart
-                  </button>   
-                  @endif
-                  
-                  <button type="button" class="btn btn-outline-dark flex-shrink-0 ml-60" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Valorar
-                  </button>
-              </div>
-              <form action="{{url('add-to-wishlist')}}" method="POST">
-                  @csrf
-                  <input type="hidden" name="product_id" value="{{$product->id}}">
-                  <button type="submit" class="btn btn-outline-dark flex-shrink-0 me-2 mt-4 addToWishlist">Add to Wishlist</button>
-              </form>
-          </div>
-      </div>
-  </div>
-
-</section>
-<!-- Related items section-->
-
-<section class="py-5 bg-light">
-  
-  <div class="container px-4 px-lg-5 mt-5">
-      <h2 class="fw-bolder mb-4">Productos relacionados: {{$product->category->name}}</h2>
-      
-      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-          
-          @foreach ($relacionados as $relacionado)
-          <div class="card col-md-2 m-5">
-            <a style="text-decoration: none" href="{{route('publicaciones.show',$relacionado)}}">
-                <img class="mt-4  d-block mx-auto" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
-                {{--If the product is in the category of Most Popular a message is displayed indicating it --}}
-                <div class="info">
-                    @if($relacionado->trending == 2)
-                    <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-                    </label>                                                  
-                    @endif
-                </div>
-            </a>
-            
-            <!-- Product details-->
-            <div class="card-body">
-                
-                <div class="text-center">
-                    <!-- Product name-->
-                    <h5 style="color:gray" class="fw-bolder">{{$relacionado->name}}</h5>
-                     <!-- Product price-->
-                     @if ($relacionado->original_price)
-                     <span style="color:red;" class="mr-2 fw-bolder">{{$relacionado->price}} €</span>
-                     <span class="text-decoration-line-through">@if($relacionado->original_price){{$relacionado->original_price}} € @else {{$relacionado->original_price = ""}}@endif </span>
-
-                         @else
-                         <span class="mr-2 fw-bolder">{{$relacionado->price}} €</span>
-                         <span class="text-decoration-line-through">@if($relacionado->original_price){{$relacionado->original_price}} € @else {{$relacionado->original_price = ""}}@endif </span>
-                         @endif                     
-
-                         {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
-                            however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                    <div class="col-md-9 ml-7 mt-2">
-                        @if($relacionado->qty > 0)
-                        <label class="badge bg-success">In stock</label>
-                        @else
-                        <label class="badge bg-danger">Out of stock</label>
-                        @endif
-                    </div>
-                        <!-- Product actions-->
-                    <div class="button-head">
-                        <div class="product-action mt-2 mb-2">
-                            <span>
-                                <a title="View" style="text-decoration: none; color:#000" class="mr-1" href="{{route('publicaciones.show',$relacionado)}}"><i class="bi-eye"></i></a>
-                                <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{$relacionado->id}}">
-                                    <button type="submit" style="background: none; border: none;"><i class="bi-heart"></i></button>
-                                </form>
-                            </span>
-
-                            {{--Rating--}}        
-                        </div>
-                        @php $ratenum  = number_format($rating_value) @endphp
-                        <div class="rating  mb-2">
-                            @for($i = 1; $i<= $ratenum; $i++)
-                            <i class=" fa bi-star checked"></i>
-                            @endfor
-                            @for($j = $ratenum+1; $j <= 5; $j++)
-                            <i class=" fa bi-star"></i>
-                            @endfor
-                            <br>
-                            <span>
-                                @if($ratings->count() > 0)
-                                {{$ratings->count()}} Valoraciones
-                                @else
-                                Sin valoraciones.
-                                @endif
-                            </span>
-                        </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('publicaciones.show', $relacionado)}}">View</a></div>
-                            </div>
-                        
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>        
-          @endforeach
-</section>
-
-
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-{{--Comment system to the published product--}}
-<div>   
-  <div class="comment-area mt-4">
-      <div class="card card-body">
-          <h6 class="card-title">Leave Comment</h6>
-          <form action="{{url('comments')}}" method="POST">
-              @csrf
-              <input type="hidden" name="product_slug" value="{{$product->slug}}">
-              <textarea name="comment_body" class="form-control" rows="3"></textarea>
-              <button type="submit" class="btn btn-outline-dark flex-shrink-0 me-2 mt-4">Comentar</button>
-          </form>
-      </div>
-  </div>
-
-
-  @forelse ($product->comments as $comment)
-      
- <div class="card card-body shadow-sm mt-4">
-      <div class="detail-area">
-          <h6 class="user-name mb-1">
-              @if ($comment->user)
-                  {{$comment->user->name}}
-              @endif
-              <small class="ms-3 text-primary">Publicado el: {{$comment->created_at->format('d-m-Y')}}</small>
-          </h6>
-          <p class="user-comment mb-1">
-              {!! $comment->comment_body !!}
-          </p>
-      </div>
- </div>
- <br>
- 
- @empty
-  <div class="card card-body shadow-sm mt-3">
-  <h6>Sin comentarios hasta el momento.</h6>
-  </div>
-  @endforelse
  
   </div>
   </div>
@@ -1026,10 +693,6 @@
   </div>
   <br>
 
-  <!-- Footer-->
-  <footer class="py-5 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
-  </footer>
 
 {{--Dynamic alert messages--}}
 

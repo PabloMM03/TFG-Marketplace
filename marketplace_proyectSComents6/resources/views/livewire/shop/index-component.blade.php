@@ -273,6 +273,7 @@
           </ul>
           <a href="#" class="view-more d-none d-md-flex">View More<i class="fi-rs-angle-double-small-right"></i></a>
       </div>
+
       <!--End nav-tabs-->
       <div class="tab-content wow fadeIn animated" id="myTabContent">
           <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
@@ -289,7 +290,7 @@
                                   </a>
                               </div>
                               <div class="product-action-1">
-                                  <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" href="{{route('publicaciones.show',$product)}}"><i class="fi-rs-eye"></i></a>
+                                <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product)}}"><i class="fi-rs-eye"></i></a>
                                   <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                       @csrf
                                       <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -367,7 +368,7 @@
                                 </a>
                             </div>
                             <div class="product-action-1">
-                                <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" href="{{route('publicaciones.show',$item)}}"><i class="fi-rs-eye"></i></a>
+                                <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$item)}}"><i class="fi-rs-eye"></i></a>
                                 <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{$item->id}}">
@@ -443,7 +444,7 @@
                                 </a>
                             </div>
                             <div class="product-action-1">
-                                <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" href="{{route('publicaciones.show',$product_new)}}"><i class="fi-rs-eye"></i></a>
+                                <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product_new)}}"><i class="fi-rs-eye"></i></a>
                                 <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{$product_new->id}}">
