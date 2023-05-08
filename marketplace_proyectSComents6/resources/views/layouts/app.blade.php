@@ -12,9 +12,9 @@
 <meta property="og:type" content="">
 <meta property="og:url" content="">
 <meta property="og:image" content="">
-<link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.ico">
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/custom.css"></head>
+<link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/imgs/theme/favicon.ico')}}">
+<link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"></head>
 
 <body>
 
@@ -56,29 +56,30 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
      <!-- Vendor JS-->
-<script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-<script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-<script src="assets/js/plugins/slick.js"></script>
-<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-<script src="assets/js/plugins/wow.js"></script>
-<script src="assets/js/plugins/jquery-ui.js"></script>
-<script src="assets/js/plugins/perfect-scrollbar.js"></script>
-<script src="assets/js/plugins/magnific-popup.js"></script>
-<script src="assets/js/plugins/select2.min.js"></script>
-<script src="assets/js/plugins/waypoints.js"></script>
-<script src="assets/js/plugins/counterup.js"></script>
-<script src="assets/js/plugins/jquery.countdown.min.js"></script>
-<script src="assets/js/plugins/images-loaded.js"></script>
-<script src="assets/js/plugins/isotope.js"></script>
-<script src="assets/js/plugins/scrollup.js"></script>
-<script src="assets/js/plugins/jquery.vticker-min.js"></script>
-<script src="assets/js/plugins/jquery.theia.sticky.js"></script>
-<script src="assets/js/plugins/jquery.elevatezoom.js"></script>
+     
+<script src="{{asset('assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/vendor/jquery-migrate-3.3.0.min.js')}}"></script>
+<script src="{{asset('assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/slick.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jquery.syotimer.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/wow.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jquery-ui.js')}}"></script>
+<script src="{{asset('assets/js/plugins/perfect-scrollbar.js')}}"></script>
+<script src="{{asset('assets/js/plugins/magnific-popup.js')}}"></script>
+<script src="{{asset('assets/js/plugins/select2.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/waypoints.js')}}"></script>
+<script src="{{asset('assets/js/plugins/counterup.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/images-loaded.js')}}"></script>
+<script src="{{asset('assets/js/plugins/isotope.js')}}"></script>
+<script src="{{asset('assets/js/plugins/scrollup.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jquery.vticker-min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jquery.theia.sticky.js')}}"></script>
+<script src="{{asset('assets/js/plugins/jquery.elevatezoom.js')}}"></script>
 <!-- Template  JS -->
-<script src="assets/js/main.js?v=3.3"></script>
-<script src="assets/js/shop.js?v=3.3"></script>    
+<script src="{{asset('assets/js/main.js?v=3.3')}}"></script>
+<script src="{{asset('assets/js/shop.js?v=3.3')}}"></script>    
     
     <script>
         let availableTags = [];
@@ -109,7 +110,7 @@
               <div class="col-lg-7 mb-md-3 mb-lg-0">
                   <div class="row align-items-center">
                       <div class="col flex-horizontal-center">
-                          <img class="icon-email" src="assets/imgs/theme/icons/icon-email.svg" alt="">
+                          <img class="icon-email" src="{{asset('assets/imgs/theme/icons/icon-email.svg')}}" alt="">
                           <h4 class="font-size-20 mb-0 ml-3">Sign up to Newsletter</h4>
                       </div>
                       <div class="col my-4 my-md-0 des">
@@ -148,11 +149,11 @@
                       </p>
                       <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
                       <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
-                          <a href="#"><img src="assets/imgs/theme/icons/icon-facebook.svg" alt=""></a>
-                          <a href="#"><img src="assets/imgs/theme/icons/icon-twitter.svg" alt=""></a>
-                          <a href="#"><img src="assets/imgs/theme/icons/icon-instagram.svg" alt=""></a>
-                          <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
-                          <a href="#"><img src="assets/imgs/theme/icons/icon-youtube.svg" alt=""></a>
+                          <a href="#"><img src="{{asset('assets/imgs/theme/icons/icon-facebook.svg')}}" alt=""></a>
+                          <a href="#"><img src="{{asset('assets/imgs/theme/icons/icon-twitter.svg')}}" alt=""></a>
+                          <a href="#"><img src="{{asset('assets/imgs/theme/icons/icon-instagram.svg')}}" alt=""></a>
+                          <a href="#"><img src="{{asset('assets/imgs/theme/icons/icon-pinterest.svg')}}" alt=""></a>
+                          <a href="#"><img src="{{asset('assets/imgs/theme/icons/icon-youtube.svg')}}" alt=""></a>
                       </div>
                   </div>
               </div>
@@ -182,13 +183,13 @@
                       <div class="col-md-8 col-lg-12">
                           <p class="wow fadeIn animated">From App Store or Google Play</p>
                           <div class="download-app wow fadeIn animated mob-app">
-                              <a href="#" class="hover-up mb-sm-4 mb-lg-0"><img class="active" src="assets/imgs/theme/app-store.jpg" alt=""></a>
-                              <a href="#" class="hover-up"><img src="assets/imgs/theme/google-play.jpg" alt=""></a>
+                              <a href="#" class="hover-up mb-sm-4 mb-lg-0"><img class="active" src="{{asset('assets/imgs/theme/app-store.jpg')}}" alt=""></a>
+                              <a href="#" class="hover-up"><img src="{{asset('assets/imgs/theme/google-play.jpg')}}" alt=""></a>
                           </div>
                       </div>
                       <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
                           <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
-                          <img class="wow fadeIn animated" src="assets/imgs/theme/payment-method.png" alt="">
+                          <img class="wow fadeIn animated" src="{{asset('assets/imgs/theme/payment-method.png')}}" alt="">
                       </div>
                   </div>
               </div>
