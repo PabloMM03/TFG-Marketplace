@@ -44,6 +44,11 @@ class SingleProduct extends Component
             $this->rating_value = 0;
         }
 
+        $this->categories = Category::all();
+
+        $this->products_news = Product::latest()
+                                ->where('status', 2)
+                                ->take(3)->get();
 
         $this->relacionados = Product::where('category_id', $product->category_id)
                                       ->where('status', 2)
@@ -59,8 +64,10 @@ class SingleProduct extends Component
 
     public function render()
     {
+        
         return view('livewire.shop.single-product', ['product' => $this->product, 'relacionados' => $this->relacionados, 'ratings' 
-                                                               => $this->ratings, 'rating_value' => $this->rating_value, 'user_rating' => $this->user_rating])
+                                                               => $this->ratings, 'rating_value' => $this->rating_value, 'user_rating' => $this->user_rating, 
+                                                               'categories' => $this->categories, 'products_news' => $this->products_news])
                                                     ->extends('layouts.app')->section('content');
 
     }

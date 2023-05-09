@@ -647,8 +647,7 @@
                           </a> --}}
                       </div>
                       <div class="product-action-1">
-                          <a href="{{route('publicaciones.show',$product_new)}}" aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                              <i class="fi-rs-eye"></i></a>
+                        <a aria-label="Quick view" class="action-btn small hover-up" href="{{route('publicaciones.show',$product_new)}}"><i class="fi-rs-eye"></i></a>
                           {{-- <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a> --}}
 
                           <form action="{{url('add-to-wishlist')}}" method="POST">

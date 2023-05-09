@@ -32,27 +32,25 @@
                 <div class="form-outline mb-4">
                   <form method="POST" action="{{ route('login') }}">
                     @csrf
-                  <input type="email"  id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
+                  <input type="email" placeholder="{{ __('Email Address') }}"  id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
                   @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                  <label class="form-label" for="email">{{ __('Email Address') }}</label>                    
                 </div>
   
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
+                  <input type="password" placeholder="{{ __('Password') }}" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
                   @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                  <label class="form-label" for="password">{{ __('Password') }}</label>
                     
                 @if (Route::has('password.request'))
-                <a class="btn btn-link" style="text-decoration: none" href="{{ route('password.request') }}">
+                <a  href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
                 @endif
@@ -60,11 +58,10 @@
   
                 <!-- Checkbox -->
                 <div class="row mb-3">
-                      <div class="form-check d-flex justify-content-center mb-4">
+                      <div>
                           <input class="form-check-input me-2" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
                           <label class="form-check-label" for="remember">
-                              {{ __('Remember Me') }}
+                              {{ __('Recuerdame') }}
                           </label>
                       </div>             
               </div>
@@ -78,28 +75,16 @@
                       </button>
                   </div>
               </div>
-             <p class="text-center text-muted mt-5 mb-0">New to TradeVibes? <a href="{{ route('register') }}"
-              class="fw-bold text-body"><u>{{ __('Create an account.') }}</u></a></p>
+             <p class="text-center text-muted mt-5 mb-0">Nuevo en TradeVibes? <a href="{{ route('register') }}"
+              class="fw-bold text-body"><u>{{ __('Crear cuenta.') }}</u></a></p>
 
                 <!-- Register buttons -->
                 <div class="text-center">
                   <p>or login with:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    {{-- <i class="fab fa-facebook-f"></i> --}}
                     <a href="https://es-es.facebook.com"><i class="bi bi-facebook"></i></a>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
                     <a href="https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1"><i class="bi bi-google"></i></a>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
                     <a href="https://twitter.com/i/flow/login"><i class="bi bi-twitter"></i></a>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
                     <a href="https://github.com/login"><i class="bi bi-github"></i></a>
-                  </button>
                 </div>
               </form>
             </div>

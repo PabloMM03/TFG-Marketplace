@@ -43,19 +43,19 @@
                         </div>
                         <div class="col-md-3 my-auto">
                             @if($item->products->qty >0)
-                    <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$item->products->id}})" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>
-                    @else
-                    <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$item->products->id}})" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>   
-                    @endif
+                            <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$item->products->id}})" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>
+                            @else
+                            <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$item->products->id}})" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>   
+                            @endif
                         </div>
                         <div class="col-md-2 my-auto">                     
-                            <button type="submit" class="fas fa-times text-muted remove-wishlist-item" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></button>                       
+                            <a type="submit" class="remove-wishlist-item" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></a>                       
                         </div>
                         <div class="mb-4 mr-4"></div>
                         @endforeach
@@ -68,7 +68,7 @@
                               class="bi-cart-fill me-1"></i>Back to shop</a></h6>
                       </div>
                       <div class="pt-5">
-                        <button type="button" wire:click="vaciar_carrito()" class="fas fa-times text-muted"><i class="bi bi-trash"></i>Vaciar</button>
+                        <a type="button" wire:click="vaciar_carrito()" ><i class="bi bi-trash"></i>Vaciar</a>
                       </div>
                     </div> 
                   </div>

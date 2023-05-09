@@ -43,87 +43,74 @@
 }
 </style>
 
-<div class="card col-md-2 m-5"> 
-    <a style="text-decoration: none" href="{{route('publicaciones.show',$product)}}">
-        <img class="mt-4  d-block mx-auto" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
-        {{--If the product is in the category of Most Popular a message is displayed indicating it --}}
-        <div class="info">
-            @if($product->trending == 2)
-            <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-            </label>                                                  
-            @endif
-        </div>
-    </a>
-    
-    <!-- Product details-->
-    <div class="card-body">
-        
-        <div class="text-center">
-            <!-- Product name-->
-            <h5 style="color:gray" class="fw-bolder">{{$product->name}}</h5>
-             <!-- Product price-->
-             @if ($product->original_price)
-             <span style="color:red;" class="mr-2 fw-bolder">{{$product->price}} €</span>
-             <span class="text-decoration-line-through">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
 
-                 @else
-                 <span class="mr-2 fw-bolder">{{$product->price}} €</span>
-                 <span class="text-decoration-line-through">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
-                 @endif                     
-
-                 {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
-                    however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-            <div class="col-md-9 ml-7 mt-2">
-                @if($product->qty > 0)
-                <label class="badge bg-success">In stock</label>
-                @else
-                <label class="badge bg-danger">Out of stock</label>
-                @endif
-            </div>
-                <!-- Product actions-->
-            <div class="button-head">
-                <div class="product-action mt-2 mb-16">
-                    <span>
-                        <a title="View" style="text-decoration: none; color:#000" class="mr-1" href="{{route('publicaciones.show',$product)}}"><i class="bi-eye"></i></a>
+<div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+    <div class="row product-grid-4">
+            <div class="product-cart-wrap mb-30">
+                <div class="product-img-action-wrap">
+                    <div class="product-img product-img-zoom">
+                        <a href="{{route('publicaciones.show',$product)}}">
+                            <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                            <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="product-action-1">
+                      <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product)}}"><i class="fi-rs-eye"></i></a>
                         <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <button type="submit" style="background: none; border: none;"><i class="bi-heart"></i></button>
+                            <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                         </form>
-                    </span>
-                    
-                    <div class="mt-2">
-                        @foreach ($product->tags as $tags)
-                        <a style="text-decoration:none" href="{{route('products.tag', $tags)}}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2">{{$tags->name}}</a>
-                        @endforeach
+
+                        {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
+                        <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                    </div>
+                    <div class="product-badges product-badges-position product-badges-mrg">
+                      @if($product->trending == 2)
+                      <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
+                      </span>                                 
+                      @endif
+                        {{-- <span class="hot">Hot</span> --}}
                     </div>
                 </div>
-                
-                <div class="product-action-2">
-                    @if($product->qty >0)
-                    <button class="btn btn-outline-dark flex-shrink-0 mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product->id}})" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>
+                <div class="product-content-wrap">
+                    <div class="product-category">
+                        <a href="shop.html">Clothing</a>
+                    </div>
+                    <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
+                    <div class="rating-result" title="90%">
+                        <span>
+                            <span>90%</span>
+                        </span>
+                        
+                    </div>
+                    {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
+                  however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                    @if($product->qty > 0)
+                    <label class="badge bg-success">In stock</label>
                     @else
-                    <button class="btn btn-outline-dark flex-shrink-0 disabled mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product->id}})" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>   
+                    <label class="badge bg-danger">Out of stock</label>
                     @endif
+                    <div class="product-price">
+                        <span>{{$product->price}} €</span>
+                        <span class="old-price">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
+                    </div>
+                    <div class="product-action-1 show">
+                      @if($product->qty >0)
+                        <button class="action-btn hover-up" wire:click="add_to_cart({{$product->id}})" type="button" aria-label="Add To Cart">
+                            <i class="fi-rs-shopping-bag-add"></i>
+                        </button>
+                        @else
+                        <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
+                            <i class="fi-rs-shopping-bag-add"></i>
+                        </button>   
+                        @endif
+                        {{-- <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i class="fi-rs-shopping-bag-add"></i></a> --}}
+                    </div>
                 </div>
             </div>
-        </div>
-    </div> 
+
+    </div>
+
+    <!--End product-grid-4-->
 </div>
-
-
-
-
-
-
-
-
-
-
- 

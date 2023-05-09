@@ -24,7 +24,7 @@
                           <ul>
                               <li>Get great devices up to 50% off <a href="shop.html">View details</a></li>
                               <li>Supper Value Deals - Save more with coupons</li>
-                              <li>Trendy 25silver jewelry, save up 35% off today <a href="shop.html">Shop now</a></li>
+                              <li>Trendy 25silver jewelry, save up 35% off today <a href="#">Shop now</a></li>
                           </ul>
                       </div>
                   </div>
@@ -137,7 +137,7 @@
                       <div class="categori-dropdown-wrap categori-dropdown-active-large">
                           <ul>
                               <li class="has-children">
-                                  <a href="shop.html"><i class="surfsidemedia-font-dress"></i>Women's Clothing</a>
+                                  <a href="#"><i class="surfsidemedia-font-dress"></i>Women's Clothing</a>
                                   <div class="dropdown-menu">
                                       <ul class="mega-menu d-lg-flex">
                                           <li class="mega-menu-col col-lg-7">
@@ -192,7 +192,7 @@
                                   </div>
                               </li>
                               <li class="has-children">
-                                  <a href="shop.html"><i class="surfsidemedia-font-tshirt"></i>Men's Clothing</a>
+                                  <a href="#"><i class="surfsidemedia-font-tshirt"></i>Men's Clothing</a>
                                   <div class="dropdown-menu">
                                       <ul class="mega-menu d-lg-flex">
                                           <li class="mega-menu-col col-lg-7">
@@ -238,7 +238,7 @@
                                   </div>
                               </li>
                               <li class="has-children">
-                                  <a href="shop.html"><i class="surfsidemedia-font-smartphone"></i> Cellphones</a>
+                                  <a href="#"><i class="surfsidemedia-font-smartphone"></i> Cellphones</a>
                                   <div class="dropdown-menu">
                                       <ul class="mega-menu d-lg-flex">
                                           <li class="mega-menu-col col-lg-7">
@@ -292,19 +292,15 @@
                                       </ul>
                                   </div>
                               </li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-desktop"></i>Computer & Office</a></li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-cpu"></i>Consumer Electronics</a></li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-diamond"></i>Jewelry & Accessories</a></li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-home"></i>Home & Garden</a></li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-high-heels"></i>Shoes</a></li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-teddy-bear"></i>Mother & Kids</a></li>
-                              <li><a href="shop.html"><i class="surfsidemedia-font-kite"></i>Outdoor fun</a></li>
+                                @foreach ($categories as $category)
+                                    <li><a href="{{route('products.category', $category)}}"><i class="surfsidemedia-font-desktop"></i>{{$category->name}}</a></li>                         
+                                @endforeach
                               <li>
                                   <ul class="more_slide_open" style="display: none;">
-                                      <li><a href="shop.html"><i class="surfsidemedia-font-desktop"></i>Beauty, Health</a></li>
-                                      <li><a href="shop.html"><i class="surfsidemedia-font-cpu"></i>Bags and Shoes</a></li>
-                                      <li><a href="shop.html"><i class="surfsidemedia-font-diamond"></i>Consumer Electronics</a></li>
-                                      <li><a href="shop.html"><i class="surfsidemedia-font-home"></i>Automobiles & Motorcycles</a></li>
+                                      <li><a href="#"><i class="surfsidemedia-font-desktop"></i>Beauty, Health</a></li>
+                                      <li><a href="#"><i class="surfsidemedia-font-cpu"></i>Bags and Shoes</a></li>
+                                      <li><a href="#"><i class="surfsidemedia-font-diamond"></i>Consumer Electronics</a></li>
+                                      <li><a href="#"><i class="surfsidemedia-font-home"></i>Automobiles & Motorcycles</a></li>
                                   </ul>
                               </li>
                           </ul>
@@ -405,12 +401,7 @@
                                       @can('admin.home')
                                       <li><a href="{{route('admin.home')}}">Admin Panel</a></li>
                                       @endcan
-                                    
-                                      <li><a href="#">Dashboard</a></li>
                                       <li><a href="#">Products</a></li>
-                                      <li><a href="#">Categories</a></li>
-                                      <li><a href="#">Coupons</a></li>
-                                      <li><a href="#">Customers</a></li>
                                    
                                       {{-- Accion de logout--}}
                                         <form id="logout-form"  action="{{ route('logout') }}" method="POST">
@@ -530,23 +521,23 @@
                   </a>
                   <div class="categori-dropdown-wrap categori-dropdown-active-small">
                       <ul>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-dress"></i>Women's Clothing</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-tshirt"></i>Men's Clothing</a></li>
-                          <li> <a href="shop.html"><i class="surfsidemedia-font-smartphone"></i> Cellphones</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-desktop"></i>Computer & Office</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-cpu"></i>Consumer Electronics</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-home"></i>Home & Garden</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-high-heels"></i>Shoes</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-teddy-bear"></i>Mother & Kids</a></li>
-                          <li><a href="shop.html"><i class="surfsidemedia-font-kite"></i>Outdoor fun</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-dress"></i>Women's Clothing</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-tshirt"></i>Men's Clothing</a></li>
+                          <li> <a href="#"><i class="surfsidemedia-font-smartphone"></i> Cellphones</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-desktop"></i>Computer & Office</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-cpu"></i>Consumer Electronics</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-home"></i>Home & Garden</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-high-heels"></i>Shoes</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-teddy-bear"></i>Mother & Kids</a></li>
+                          <li><a href="#"><i class="surfsidemedia-font-kite"></i>Outdoor fun</a></li>
                       </ul>
                   </div>
               </div>
               <!-- mobile menu start -->
               <nav>
                   <ul class="mobile-menu">
-                      <li class="menu-item-has-children"><span class="menu-expand"></span><a href="index.html">Home</a></li>
-                      <li class="menu-item-has-children"><span class="menu-expand"></span><a href="shop.html">shop</a></li>
+                      <li class="menu-item-has-children"><span class="menu-expand"></span><a href="/">Home</a></li>
+                      <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">shop</a></li>
                       <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Our Collections</a>
                           <ul class="dropdown">
                               <li class="menu-item-has-children"><span class="menu-expand"></span><a class="menu-title" href="#">Categorias</a>

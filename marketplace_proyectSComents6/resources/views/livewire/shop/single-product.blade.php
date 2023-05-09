@@ -192,7 +192,6 @@
                                     </div>
                                     <ul class="product-meta font-xs color-grey mt-50">
                                         <li class="mb-5">SKU: <a href="#">@if($product->brand){{$product->brand}} @else SKU: BST-498 @endif</a></li>
-                                        <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li>
                                         <li>Availability:<span class="in-stock text-success ml-5">@if($product->qty > 0){{$product->qty}} @else {{$product->qty = 0}} @endif Items In Stock</span></li>
                                     </ul>
                                 </div>
@@ -345,17 +344,27 @@
                                                                   @if ($comment->user)
                                                                   {{$comment->user->name}}
                                                                   @endif</a></h6>
-                                                                <p class="font-xxs">Since 2012</p>
+                                                                <p class="font-xxs">Since {{$comment->user->created_at->format('d-m-Y')}}</p>
                                                             </div>
                                                             <div class="desc">
-                                                                <div class="product-rate d-inline-block">
-                                                                    <div class="product-rating" style="width:90%">
+                                                                <div class="d-inline-block">
+                                                                    {{-- <div class="product-rating" style="width:90%">
+                                                                    </div> --}}
+                                                                    @php $ratenum  = number_format($rating_value) @endphp
+                                                                    <div class="rating  mb-2">
+                                                                        @for($i = 1; $i<= $ratenum; $i++)
+                                                                        <i class=" fa bi-star checked"></i>
+                                                                        @endfor
+                                                                        @for($j = $ratenum+1; $j <= 5; $j++)
+                                                                        <i class=" fa bi-star"></i>
+                                                                        @endfor
+                                                                        <br>
                                                                     </div>
                                                                 </div>
                                                                 <p>{!! $comment->comment_body !!}</p>
                                                                 <div class="d-flex justify-content-between">
                                                                     <div class="d-flex align-items-center">
-                                                                        <p class="font-xs mr-30">{{$comment->created_at->format('d-m-Y')}} December 4, 2020 at 3:12 pm </p>
+                                                                        <p class="font-xs mr-30">{{$comment->created_at->format('d-m-Y')}} {{$comment->created_at->format('l jS \\of F Y')}} </p>
                                                                         <a href="#" class="text-brand btn-reply">Reply <i class="fi-rs-arrow-right"></i> </a>
                                                                     </div>
                                                                 </div>
@@ -511,7 +520,7 @@
                                         <div class="product-cart-wrap small hover-up">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="product-details.html" tabindex="0">
+                                                    <a href="{{route('publicaciones.show',$relacionado)}}" tabindex="0">
                                                         <img class="default-img" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
                                                         {{-- <img class="hover-img" src="{{asset('assets/imgs/shop/product-2-2.jpg')}}" alt=""> --}}
                                                     </a>
@@ -581,21 +590,18 @@
                 </div>
                 <div class="col-lg-3 primary-sidebar sticky-sidebar">
                     <div class="widget-category mb-30">
-                        <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
-                        <ul class="categories">
-                            <li><a href="shop.html">Shoes & Bags</a></li>
-                            <li><a href="shop.html">Blouses & Shirts</a></li>
-                            <li><a href="shop.html">Dresses</a></li>
-                            <li><a href="shop.html">Swimwear</a></li>
-                            <li><a href="shop.html">Beauty</a></li>
-                            <li><a href="shop.html">Jewelry & Watch</a></li>
-                            <li><a href="shop.html">Accessories</a></li>
+                        <h5 class="section-title style-1 mb-30 wow fadeIn animated">Categorias</h5>
+                        @foreach ($categories as $category)
+                        <ul class="categories">       
+                            <li><a href="{{route('products.category', $category)}}">{{$category->name}}</a></li>
+                            
                         </ul>
+                        @endforeach
                     </div>
                     <!-- Fillter By Price -->
                     <div class="sidebar-widget price_range range mb-30">
                         <div class="widget-header position-relative mb-20 pb-10">
-                            <h5 class="widget-title mb-10">Fill by price</h5>
+                            <h5 class="widget-title mb-10">Filtrar por precio</h5>
                             <div class="bt-1 border-color-1"></div>
                         </div>
                         <div class="price-filter">
@@ -603,7 +609,7 @@
                                 <div id="slider-range"></div>
                                 <div class="price_slider_amount">
                                     <div class="label-input">
-                                        <span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price">
+                                        <span>Rango:</span><input type="text" id="amount" name="price" placeholder="Add Your Price">
                                     </div>
                                 </div>
                             </div>
@@ -639,45 +645,25 @@
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                         <div class="widget-header position-relative mb-20 pb-10">
-                            <h5 class="widget-title mb-10">New products</h5>
+                            <h5 class="widget-title mb-10">Nuevos productos</h5>
                             <div class="bt-1 border-color-1"></div>
                         </div>
+                        @foreach ($products_news as $product_new)
                         <div class="single-post clearfix">
                             <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-3.jpg" alt="#">
+                            <a href="{{route('publicaciones.show',$product_new)}}">
+                                <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                            </a>
                             </div>
                             <div class="content pt-10">
-                                <h5><a href="product-details.html">Chen Cardigan</a></h5>
-                                <p class="price mb-0 mt-5">$99.50</p>
+                                <h5><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h5>
+                                <p class="price mb-0 mt-5">{{$product_new->price}} €</p>
                                 <div class="product-rate">
                                     <div class="product-rating" style="width:90%"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-4.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="product-details.html">Chen Sweater</a></h6>
-                                <p class="price mb-0 mt-5">$89.50</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width:80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-post clearfix">
-                            <div class="image">
-                                <img src="assets/imgs/shop/thumbnail-5.jpg" alt="#">
-                            </div>
-                            <div class="content pt-10">
-                                <h6><a href="product-details.html">Colorful Jacket</a></h6>
-                                <p class="price mb-0 mt-5">$25</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width:60%"></div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>                        
                 </div>
             </div>

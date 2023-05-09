@@ -30,9 +30,51 @@
         </center>  
      @endif 
 
-<!-- Footer-->
-<footer class="py-5 bg-dark" style="position: absolute; bottom: 0; width: 100%;">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
-</footer>
+     @if (session('status') == "Producto añadido correctamente a su Wishlist")
+     <script> 
+     Swal.fire({
+       position: 'top-end',
+       icon: 'success',
+       title: '{{session('status')}}',
+       showConfirmButton: false,
+       timer: 2000
+     })
+     </script>
+     @elseif(session('status') == "El producto no existe")
+     <script> 
+         Swal.fire({
+       icon: 'error',
+       title: 'Oops...',
+       text: '{{session('status')}}',
+     })
+     </script>
+     @elseif(session('status') == "Necesita hacer el login para continuar")
+     <script> 
+         Swal.fire({
+       icon: 'error',
+       title: 'Oops...',
+       text: '{{session('status')}}',
+     })
+     </script>
+     @elseif(session('status') == "El producto ya está en su Wishlist")
+     <script> 
+         Swal.fire({
+       icon: 'error',
+       title: 'Oops...',
+       text: '{{session('status')}}',
+     })
+     </script>
+     @endif
+     
+     @if(session('status') == "El carrito está vacio")
+     <script> 
+       Swal.fire({
+     icon: 'error',
+     title: 'Oops...',
+     text: '{{session('status')}}',
+     })
+     </script>
+     @endif
+
 @endsection
 

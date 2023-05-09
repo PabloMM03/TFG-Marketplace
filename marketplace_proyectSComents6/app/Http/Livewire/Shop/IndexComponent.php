@@ -22,6 +22,8 @@ class IndexComponent extends Component
 
     public function render()
     {
+
+        /**All products */
         
          $products = Product::where('status', 2)
                              ->where('name', 'LIKE','%'.$this->search . '%')
@@ -29,10 +31,12 @@ class IndexComponent extends Component
                              ->latest('id')
                              ->paginate(50);
 
+        /*Featured products */
         $featured_products = Product::where('status', 2)
                                     ->where('trending' ,2)
                                     ->take(15)->get();
 
+         /**Products news */                           
         $products_news = Product::latest()
                         ->where('status', 2)
                         ->take(20)->get();

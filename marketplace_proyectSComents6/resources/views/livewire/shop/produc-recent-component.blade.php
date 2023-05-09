@@ -40,92 +40,94 @@
     @if ($recents->count())  
     
     
+    <section class="product-tabs section-padding position-relative wow fadeIn animated">
+        <div class="bg-square"></div>
+        <div class="container">
+          <!--En tab one (Popular)-->
+          <div class="row product-grid-4">
 
-    {{-- Store with products and information is displayed --}}
-    <div class="container px-4 px-lg-5 mt-5">
-    
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-        
-    @foreach ($recents as $product_recent)
-        
-    
-    <div class="card col-md-2 m-5">
-        <a style="text-decoration: none" href="{{route('publicaciones.show',$product_recent)}}">
-            <img class="mt-4  d-block mx-auto" src="@if($product_recent->product_image) {{asset('storage/products/'. $product_recent->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
-            {{--If the product is in the category of Most Popular a message is displayed indicating it --}}
-            <div class="info">
-                @if($product_recent->trending == 2)
-                <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-                </label>                                                  
-                @endif
-            </div>
-        </a>
-        
-        <!-- Product details-->
-        <div class="card-body">
-            
-            <div class="text-center">
-                <!-- Product name-->
-                <h5 style="color:gray" class="fw-bolder">{{$product_recent->name}}</h5>
-                 <!-- Product price-->
-                 @if ($product_recent->original_price)
-                 <span style="color:red;" class="mr-2 fw-bolder">{{$product_recent->price}} €</span>
-                 <span class="text-decoration-line-through">@if($product_recent->original_price){{$product_recent->original_price}} € @else {{$product_recent->original_price = ""}}@endif </span>
-
-                     @else
-                     <span class="mr-2 fw-bolder">{{$product_recent->price}} €</span>
-                     <span class="text-decoration-line-through">@if($product_recent->original_price){{$product_recent->original_price}} € @else {{$product_recent->original_price = ""}}@endif </span>
-                     @endif                     
-
-                     {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
-                        however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                <div class="col-md-9 ml-7 mt-2">
-                    @if($product_recent->qty > 0)
-                    <label class="badge bg-success">In stock</label>
-                    @else
-                    <label class="badge bg-danger">Out of stock</label>
-                    @endif
-                </div>
-                    <!-- Product actions-->
-                <div class="button-head">
-                    <div class="product-action mt-2 mb-16">
-                        <span>
-                            <a title="View" style="text-decoration: none; color:#000" class="mr-1" href="{{route('publicaciones.show',$product_recent)}}"><i class="bi-eye"></i></a>
+            @foreach ($recents as $product_new)
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                <div class="product-cart-wrap mb-30">
+                    <div class="product-img-action-wrap">
+                        <div class="product-img product-img-zoom">
+                            <a href="{{route('publicaciones.show',$product_new)}}">
+                                <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                                <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="product-action-1">
+                            <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product_new)}}"><i class="fi-rs-eye"></i></a>
                             <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                 @csrf
-                                <input type="hidden" name="product_id" value="{{$product_recent->id}}">
-                                <button type="submit" style="background: none; border: none;"><i class="bi-heart"></i></button>
+                                <input type="hidden" name="product_id" value="{{$product_new->id}}">
+                                <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                             </form>
-                        </span>
-                        
+
+                            {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
+                            <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                        </div>
+                        <div class="product-badges product-badges-position product-badges-mrg">
+                          @if($product_new->trending == 2)
+                          <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
+                          </span>    
+                          @elseif($product_new->id == 'latest')
+                          <span class="new">New</span>                                  
+                          @endif
+                            {{-- <span class="hot">Hot</span> --}}
+                        </div>
                     </div>
-                    <div class="product-action-2">
-                        @if($product_recent->qty >0)
-                        <button class="btn btn-outline-dark flex-shrink-0 mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product_recent->id}})" type="button">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>
+                    <div class="product-content-wrap">
+                        <div class="product-category">
+                            <a href="shop.html">Clothing</a>
+                        </div>
+                        <h2><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h2>
+                        <div class="rating-result" title="90%">
+                            <span>
+                                <span>90%</span>
+                            </span>
+                            
+                        </div>
+                        {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
+                      however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                        @if($product_new->qty > 0)
+                        <label class="badge bg-success">In stock</label>
                         @else
-                        <button class="btn btn-outline-dark flex-shrink-0 disabled mb-4" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);" wire:click="add_to_cart({{$product_recent->id}})" type="button">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>   
+                        <label class="badge bg-danger">Out of stock</label>
                         @endif
+                        <div class="product-price">
+                            <span>{{$product_new->price}} €</span>
+                            <span class="old-price">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
+                        </div>
+                        <div class="product-action-1 show">
+                          @if($product_new->qty >0)
+                            <button class="action-btn hover-up" wire:click="add_to_cart({{$product_new->id}})" type="button" aria-label="Add To Cart">
+                                <i class="fi-rs-shopping-bag-add"></i>
+                            </button>
+                            @else
+                            <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
+                                <i class="fi-rs-shopping-bag-add"></i>
+                            </button>   
+                            @endif
+                            {{-- <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i class="fi-rs-shopping-bag-add"></i></a> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        
-    </div>
 
-    @endforeach
-{{-- </div>
+            @endforeach
+              </div>
 
-    {{$products->links()}} 
+          </div>
 
-</div> --}}
+</section>
+
+
+ {{-- </div>
+
+    {{$recents->links()}} 
+
+</div>  --}}
 
 @else
     <div class="card-body">
@@ -136,11 +138,6 @@
 
 </section>
 
-<!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeVibes 2023</p></div>
-</footer>
-</div>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

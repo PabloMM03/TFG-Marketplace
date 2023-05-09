@@ -37,7 +37,7 @@ class RatingController extends Controller
                     'stars_rated' => $stars_rated,
                 ]);
             }
-           return redirect()->back()->with('status', "Producto calificado, Gracias por su calificación.");
+           return redirect()->back()->with('status', "Producto valorado, Gracias por su valoración.");
 
         }else{
             return redirect()->back()->with('status', "No puedes valorar este producto sin haberlo comprado.");

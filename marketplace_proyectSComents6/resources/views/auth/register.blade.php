@@ -30,45 +30,41 @@
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                        <input type="text" id="name" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus" />
+                        <input type="text" placeholder="{{ __('Name') }}" id="name" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus" />
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                  <label class="form-label" for="form3Example1cg">{{ __('Name') }}</label>
                     </div>
                   </div>
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                        <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" placeholder="{{ __('Email Address') }}" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    <label class="form-label" for="form3Example3cg">{{ __('Email Address') }}</label>
                     </div>
                   </div>
                 </div>
   
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <input id="password" placeholder="{{ __('Password') }}" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                <label class="form-label" for="form3Example4cg">{{ __('Password') }}</label>
                 </div>
   
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password">
-                    <label class="form-label" for="form3Example4cdg">{{ __('Confirm Password') }}</label>
+                    <input id="password-confirm" placeholder="{{ __('Confirm Password') }}" type="password" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password">
                 </div>
   
                 <!-- Checkbox -->
@@ -84,28 +80,16 @@
                     {{ __('Register') }}
                 </button>
   
-                <p class="text-center text-muted mt-5 mb-0" >Have already an account? <a href="{{ route('login') }}"
+                <p class="text-center text-muted mt-5 mb-0" >Ya tienes cuenta? <a href="{{ route('login') }}"
                     class="fw-bold text-body"><u>{{ __('Login here.') }}</u></a></p>
               
                 <!-- Register buttons -->
                 <div class="text-center">
                     <p>or sign up with:</p>
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                      {{-- <i class="fab fa-facebook-f"></i> --}}
-                      <a href="https://es-es.facebook.com"><i class="bi bi-facebook"></i></a>
-                    </button>
-    
-                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <a href="https://es-es.facebook.com"><i class="bi bi-facebook"></i></a>    
                       <a href="https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1"><i class="bi bi-google"></i></a>
-                    </button>
-    
-                    <button type="button" class="btn btn-link btn-floating mx-1">
-                      <a href="https://twitter.com/i/flow/login"><i class="bi bi-twitter"></i></a>
-                    </button>
-    
-                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <a href="https://twitter.com/i/flow/login"><i class="bi bi-twitter"></i></a>    
                       <a href="https://github.com/login"><i class="bi bi-github"></i></a>
-                    </button>
                   </div>
               </form>
             </div>
