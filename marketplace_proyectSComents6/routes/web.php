@@ -4,10 +4,13 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RatingController;
+use App\Http\Livewire\Shop\About;
 use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
+use App\Http\Livewire\Shop\ContactComponent;
 use App\Http\Livewire\Shop\IndexComponent;
 use App\Http\Livewire\Shop\ProducRecentComponent;
+use App\Http\Livewire\Shop\ShopComponent;
 use App\Http\Livewire\Shop\SingleProduct;
 use App\Http\Livewire\Shop\TrendingProduct;
 use App\Http\Livewire\Shop\UserConmponent;
@@ -91,3 +94,10 @@ Route::post('delete-wishlist-item', [WishListComponent::class], 'deleteItem');
 Route::get('product-list', [IndexComponent::class,'productlistAjax']);
 Route::post('searchproduct', [IndexComponent::class,'searchProduct']);
 
+//About Us Section
+Route::get('about', About::class);
+
+//Contact Section
+Route::get('contact', ContactComponent::class);
+
+Route::get('shop', ShopComponent::class)->name('view.more');

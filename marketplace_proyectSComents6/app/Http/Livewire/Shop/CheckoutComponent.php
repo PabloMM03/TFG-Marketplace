@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Shop;
 use App\Mail\OrderPagada;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\Component;
 use Srmklive\PayPal\Services\ExpressCheckout;

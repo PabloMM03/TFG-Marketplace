@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header bg-primary">
                     <h4 class="text-white mt-2">Pedido {{$orders->order_number}}
-                        <a href="{{url('my-orders')}}" class="btn btn-warning text-white float-end">Back</a>
+                        <a href="{{url('my-orders')}}" class="btn btn-warning text-white float-end">Volver</a>
                     </h4>
                 </div>
                 <div class="card-body">

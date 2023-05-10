@@ -311,8 +311,8 @@
                       <nav>
                           <ul>
                               <li><a class="active" href="/">Inicio </a></li>
-                              <li><a href="about.html">About</a></li>
-                              <li><a href="shop.html">Tienda</a></li>
+                              <li><a href="{{url('about')}}">About</a></li>
+                              <li><a href="{{url('shop')}}">Tienda</a></li>
                               <li class="position-static"><a href="#">Nuestras colecciones <i class="fi-rs-angle-down"></i></a>
                                   <ul class="mega-menu">
                                     <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -392,7 +392,7 @@
                                 </ul>
                             </li>        
                                                       
-                              <li><a href="contact.html">Contact</a></li>
+                              <li><a href="{{url('contact')}}">Contact</a></li>
                               @auth
                               <li><a href="#">Mi cuenta<i class="fi-rs-angle-down"></i></a>
                                   <ul class="sub-menu">

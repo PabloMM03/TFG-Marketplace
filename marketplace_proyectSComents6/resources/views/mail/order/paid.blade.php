@@ -1,9 +1,10 @@
 <x-mail::message>
-# factura 
+# Factura 
 
 Gracias pro la compra
-Aquí esta su factura
+aquí esta su factura
 
+{{--Invoice generation--}}
 <table class="table">
     <thead>
         <tr>
@@ -29,6 +30,7 @@ Total: {{$order->total}} €
 Button Text
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+Gracias,<br>
+{{-- {{ config('app.name') }} --}}
+TradeVibes 
 </x-mail::message>
