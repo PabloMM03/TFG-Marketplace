@@ -105,8 +105,46 @@
         });
     }
       </script>
-
       
+
+      {{--Wishlist--}}
+
+
+@if (session('status') == "Producto añadido correctamente a su Wishlist")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif(session('status') == "El producto no existe")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "Necesita hacer el login para continuar")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@elseif(session('status') == "El producto ya está en su Wishlist")
+<script> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: '{{session('status')}}',
+})
+</script>
+@endif
 
 </body>
 

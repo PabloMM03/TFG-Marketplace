@@ -19,9 +19,10 @@ class IndexComponent extends Component
             Cart::session(auth()->id())->remove($itemId);
             return redirect()->back()->with('status', "Producto eliminado correctamente"); 
         }
-
+        
+        //Vaciar carrito
         public function vaciar_carrito(){
-            Cart::session(auth()->id())->clear(); //Vaciar carrito
+            Cart::session(auth()->id())->clear(); 
             return redirect('/')->with('info', 'Carrito vaciado correctamente');
         }
 

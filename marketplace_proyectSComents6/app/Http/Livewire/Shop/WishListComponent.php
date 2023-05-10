@@ -48,11 +48,11 @@ class WishListComponent extends Component
     }
     
 
-    //Delete Cart Item
+    //Delete Wishlist Item
     public function deleteItem(Request $request){
         
-        if(Auth::check()){
-            $product_id = $request->input('prod_id');
+        if(auth()->check()){
+            $product_id = $request->input('product_id');
             if(Wishlist::where('prod_id', $product_id)->where('user_id', Auth::id())->exists()){
                 $wish = Wishlist::where('prod_id', $product_id)->where('user_id', Auth::id())->first();
                 $wish->delete();
@@ -62,11 +62,6 @@ class WishListComponent extends Component
             return redirect()->back()->with('status', "Necesita hacer el login para continuar"); 
         }
 
-    }
-
-    public function vaciar_carrito(){
-        Cart::session(auth()->id())->clear(); //Vaciar carrito
-        return redirect('/')->with('info', 'Carrito vaciado correctamente');
     }
 
     /**

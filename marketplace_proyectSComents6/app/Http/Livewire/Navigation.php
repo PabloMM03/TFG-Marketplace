@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Wishlist;
 
 class Navigation extends Component
 {
@@ -14,7 +15,8 @@ class Navigation extends Component
     {
         $productos = Product::all();
         $categories = Category::all();
+        $wishlist = Wishlist::all();
         $tags = Tag::all();
-        return view('livewire.navigation', compact('productos', 'categories', 'tags'));
+        return view('livewire.navigation', compact('productos', 'categories', 'tags', 'wishlist'));
     }
 }

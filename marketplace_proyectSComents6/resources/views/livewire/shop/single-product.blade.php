@@ -186,7 +186,11 @@
                                                 Add to cart
                                             </button>   
                                             @endif
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a>
+                                            <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
+                                            </form>
                                             <a aria-label="Compare" class="action-btn hover-up" href="#"><i class="fi-rs-shuffle"></i></a>
                                         </div>
                                     </div>
@@ -757,46 +761,6 @@ text: 'Debes hacer el login primero.',
 })
 </script>
 @endif
-
-{{--Wishlist--}}
-
-
-@if (session('status') == "Producto añadido correctamente a su Wishlist")
-<script> 
-Swal.fire({
-position: 'top-end',
-icon: 'success',
-title: '{{session('status')}}',
-showConfirmButton: false,
-timer: 2000
-})
-</script>
-@elseif(session('status') == "El producto no existe")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "Necesita hacer el login para continuar")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "El producto ya está en su Wishlist")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@endif
-
 
 @if(session('status') == "El carrito está vacio")
 <script> 

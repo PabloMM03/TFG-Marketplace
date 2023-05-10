@@ -1,4 +1,5 @@
 <section class="h-100 h-custom">
+  @if($wishlist->count() > 0) 
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12">
@@ -9,7 +10,7 @@
                     <div class="p-5">
 
                       <div class="d-flex justify-content-between align-items-center mb-5">
-                        <h1 class="fw-bold mb-0 text-black">Wishlist</h1>
+                        <h1 class="fw-bold mb-0 text-black">Lista de deseados</h1>
                       </div>
                       <hr class="my-4">
 
@@ -55,7 +56,11 @@
                             @endif
                         </div>
                         <div class="col-md-2 my-auto">                     
-                            <a type="submit" class="remove-wishlist-item" wire:click="deleteItem({{$item->products->id}})"><i class="bi bi-trash"></i></a>                       
+                        <form action="{{url('delete-wishlist-item')}}" method="POST" style="display: inline;">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$item->products->id}}">
+                            <button type="submit" class="action-btn hover-up remove-wishlist-item" aria-label="Delete To Wishlist"><i class="bi bi-trash"></i></button>
+                        </form>                       
                         </div>
                         <div class="mb-4 mr-4"></div>
                         @endforeach
@@ -67,9 +72,9 @@
                         <h6 class="mb-0"><a style="text-decoration: none" href="/" class="text-body"><i
                               class="bi-cart-fill me-1"></i>Back to shop</a></h6>
                       </div>
-                      <div class="pt-5">
-                        <a type="button" wire:click="vaciar_carrito()" ><i class="bi bi-trash"></i>Vaciar</a>
-                      </div>
+                      {{-- <div class="pt-5">
+                        <a type="button" wire:click="vaciar_Wishlist()" class="fas fa-times text-muted"><i class="fi-rs-cross-small"></i>Vaciar Wishlist</a>
+                      </div> --}}
                     </div> 
                   </div>
                   
@@ -79,6 +84,10 @@
           </div>
         </div>
       </div>
+
+      @else
+      <h4>No hay productos en su lista de deseados de momento.</h4>
+      @endif
 
 {{--Dynamic alert messages--}}
 
@@ -96,10 +105,35 @@ Swal.fire({
 </script>
 @endif
 
+
+@if (session('status') == "Producto eliminado correctamente")
+<script> 
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@elseif (session('status') == "Necesita hacer el login para continuar")
+<script> 
+  Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '{{session('status')}}',
+})
+</script>
+@endif
+
+
+</section>
+
 {{--Script that removes product from the wish list--}}
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+
 
 <script>
   $.('.remove-wishlist-item').click(function(e){
@@ -120,8 +154,4 @@ Swal.fire({
       }
     });
   });
-</script>
-
-
-</section>
-
+</script> --}}

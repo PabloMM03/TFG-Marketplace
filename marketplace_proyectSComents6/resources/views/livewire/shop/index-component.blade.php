@@ -630,12 +630,11 @@
                         <a aria-label="Quick view" class="action-btn small hover-up" href="{{route('publicaciones.show',$product_new)}}"><i class="fi-rs-eye"></i></a>
                           {{-- <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a> --}}
 
-                          <form action="{{url('add-to-wishlist')}}" method="POST">
+                        <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <button type="button" class="action-btn small hover-up" tabindex="0" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
+                            <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                         </form>
-
                           <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
                       </div>
                       <div class="product-badges product-badges-position product-badges-mrg">
@@ -736,44 +735,6 @@ Swal.fire({
     });
 </script>
 
-{{--Wishlist--}}
-
-
-@if (session('status') == "Producto añadido correctamente a su Wishlist")
-<script> 
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: '{{session('status')}}',
-  showConfirmButton: false,
-  timer: 2000
-})
-</script>
-@elseif(session('status') == "El producto no existe")
-<script> 
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "Necesita hacer el login para continuar")
-<script> 
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "El producto ya está en su Wishlist")
-<script> 
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: '{{session('status')}}',
-})
-</script>
-@endif
 
 @if(session('status') == "El carrito está vacio")
 <script> 

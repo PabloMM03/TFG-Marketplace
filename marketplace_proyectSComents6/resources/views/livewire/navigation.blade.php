@@ -70,7 +70,7 @@
                           <div class="header-action-icon-2">
                               <a href="{{url('wishlist')}}">
                                   <img class="svgInject" alt="" src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}">
-                                  <span class="pro-count blue">4</span>
+                                  <span class="pro-count blue">{{$wishlist->count()}}</span>
                               </a>
                           </div>
                           {{--Cart--}}
