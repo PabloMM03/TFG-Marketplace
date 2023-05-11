@@ -18,6 +18,30 @@ class CartComponent extends Component
     }
 
 /**function that allows us to add products to the cart */
+    public function addProductToSingle(Request $request){
+        $product_id = $request->input('product_id');
+        $product_qty = $request->input('product_qty');
+
+        if(Auth::check()){
+            $prod_check = Product::where('id', $product_id)->first();
+
+            if($prod_check){
+
+                    $cartItem = new Carrito();
+                    $cartItem->prod_id = $product_id;
+                    $cartItem->user_id = Auth::id();
+                    $cartItem->prod_qty= $product_qty;
+                    $cartItem->save();
+      
+                    return response()->json(["status" => "Producto añadido al carrito"]);
+                }
+                
+        }
+        else{
+            return response()->json(["status" => "Debe hacer login para continuar"]);
+        }
+    }
+
     public function addProduct(Request $request){
         $product_id = $request->input('product_id');
         $product_qty = $request->input('product_qty');
@@ -61,20 +85,30 @@ class CartComponent extends Component
 
 
     //Update Cart Item //Function to update the price of the cart according to the added products
-    public function update_quantity($itemId, $quantity)
+    public function increaseQuantity($itemId)
     {
 
-        $cartItem = Carrito::where(Auth::id())->first();
-        $cartItem->update($itemId,[
-                'quantity' => array(
-                'relative' => false,
-                'value' => $quantity
-                ),
-        ]);
-        
+       $product = Carrito::get($itemId);
+       $qty = $product->prod_qty + 1;
+    
+       Carrito::update($itemId,$qty);
 
-    return redirect()->back();
 }
 
+
+public function decreaseQuantity($itemId)
+    {
+
+       $product = Carrito::get($itemId);
+       $qty = $product->prod_qty - 1;
+    
+       Carrito::update($itemId,$qty);
+
+}
+
+public function deleteAll(){
+    Carrito::truncate();
+    return redirect('/')->with('info', 'Carrito vaciado correctamente');
+}
 
 }

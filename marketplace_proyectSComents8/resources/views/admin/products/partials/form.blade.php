@@ -152,7 +152,6 @@
  </div>
 
   @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 
     <style>
         .image-wrapper{
@@ -176,13 +175,13 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    {{-- <script>
         ClassicEditor
             .create( document.querySelector( '#description') )
             .catch( error => {
                 console.error( error );
             } );
-    </script>
+    </script> --}}
 
 
     <script>
@@ -215,8 +214,6 @@
 
 @endsection
 
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if (session('crear') == 'Producto creado correctamente')
 <script>

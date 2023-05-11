@@ -54,7 +54,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::post('add-to-cart', [CartComponent::class, 'addProduct']);
+Route::post('add-to-single', [CartComponent::class, 'addProductToSingle']);
 Route::post('delete-to-cart', [CartComponent::class, 'deleteProduct']);
+Route::delete('delete-all', [CartComponent::class, 'deleteAll']);
 
 Route::middleware(['cart.is.empty'])->group(function(){
     

@@ -32,14 +32,19 @@
                                     <td class="image product-thumbnail"><img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a href="product-details.html">{{$item->products->name}}</a></h5>
-                                        <p class="font-xs">{{$item->products->description}}.
+                                        <p class="font-xs">{{$item->products->description}}
                                         </p>
                                     </td>
                                     <td class="price" data-title="Price">
                                         <span>{{$item->products->price}} €</span>
                                     </td>
+
                                     <td class="text-center" data-title="Stock">
-                                        <input type="number" id="v{{$item->products->id}}" wire:change="update_quantity({{ $item->products->id }}, $event.target.value)" class="form-control form-control-sm" value="{{$item->products->quantity}}">
+                                        <div class="detail-qty border radius  m-auto">
+                                            <a href="#" class="qty-down" wire:click.prevent="decreaseQuantity('{{$item->products->id}}')"><i class="fi-rs-angle-small-down"></i></a>
+                                            <span class="qty-val">{{$item->products->quantity}}</span>
+                                            <a href="#" class="qty-up" wire:click.prevent="increaseQuantity('{{$item->products->id}}')"><i class="fi-rs-angle-small-up"></i></a>
+                                        </div>
                                     </td>
                                     <td class="text-right" data-title="Cart">
                                         <span> €</span>
@@ -61,7 +66,12 @@
 
                                 <tr>
                                     <td colspan="6" class="text-end">
-                                      <a type="button" wire:click="vaciar_carrito()" class="fas fa-times text-muted"><i class="fi-rs-cross-small"></i>Vaciar carrito</a>
+                                      <form action="{{ url('delete-all') }}" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar todos los productos?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden">
+                                        <a href="#" type="hidden" class="fas fa-times text-muted" onclick="event.preventDefault(); this.closest('form').submit();"><i class="fi-rs-cross-small"></i>Vaciar carrito</a>
+                                    </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -419,6 +429,19 @@
   })
   </script>
   @endif
+
+  @if (session('status') == "Todos los productos han sido eliminados.")
+  <script> 
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: '{{session('status')}}',
+    showConfirmButton: false,
+    timer: 2000
+  })
+  </script>
+  @endif
+
 </body>
 
 </html>

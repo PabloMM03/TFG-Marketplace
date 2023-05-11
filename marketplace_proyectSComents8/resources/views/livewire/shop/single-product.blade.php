@@ -41,13 +41,13 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="/" rel="nofollow">Inicio</a>
-                <span></span> {{$product->id}}
+                <span></span> Product details
                 <span></span> {{$product->name}}
             </div>
         </div>
     </div>
     <section class="mt-50 mb-50">
-        <div class="container product-data">
+        <div class="container product_data">
             <div class="row">
                 <div class="col-lg-9">
                     <div class="product-detail accordion-detail">
@@ -173,24 +173,35 @@
                                         </ul>
                                     </div>
                                     <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                                    <input type="hidden" value="{{$product->id}}" class="prod_id">
+                                    <label for="Quantity">Cantidad:</label>
+                                    <div class="input-group text-center mb-3" style="width:130px;">
+                                        <button class="input-group-text decrement-btn">-</button>
+                                        <input type="text" name="quantity" class="form-control qty-input text-center" value="1">
+                                        <button class="input-group-text increment-btn">+</button>
+                                    </div>
                                     <div class="detail-extralink">
-                                          <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" value="1">
-                                        
+                                          {{-- <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" value="1"> --}}
+                                            
+                                                                   
                                         <div class="product-extra-link2">
                                             @if($product->qty >0)
-                                            <button class="btn btn-outline-dark flex-shrink-0  formulario-add" wire:click="add_to_cart({{$product->id}})" type="button">
+                                            <button class="btn btn-outline-dark flex-shrink-0 addToCartBtn formulario-add" type="button">
                                                 Add to cart
                                             </button>
                                             @else
-                                            <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$product->id}})" type="button">
+                                            <button class="btn btn-outline-dark flex-shrink-0 disabled addToCartBtn" type="button">
                                                 Add to cart
                                             </button>   
                                             @endif
                                             <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
+                                                <a href="#" class="action-btn hover-up" aria-label="Add To Wishlist" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    <i class="fi-rs-heart"></i>
+                                                </a>
                                             </form>
+                                            
                                             <a aria-label="Compare" class="action-btn hover-up" href="#"><i class="fi-rs-shuffle"></i></a>
                                         </div>
                                     </div>
@@ -211,7 +222,7 @@
                                     <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Información adicional</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
+                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{$ratings->count()}})</a>
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab entry-main-content">
@@ -682,21 +693,47 @@
   @endcan
   </div>
   <br>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-{{-- <script>
+ <script>
     $(document).ready(function(){
-        $.('.addToCartBtn').click(function(e){
-      e.preventDefault();
-  
-      let product_id = $(this).closest('.product_data').find('.prod_id').val();
-      let product_qty = $(this).closest('.product_data').find('.qty-input').val();
-     
-            alert(product_id);
-            alert(product_qty);
 
+        $('.addToCartBtn').click(function(e){
+            e.preventDefault();
+        
+            let product_id = $(this).closest('.product_data').find('.prod_id').val();
+            let product_qty = $(this).closest('.product_data').find('.qty-input').val();
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+
+            $.ajax({
+                method: "POST",
+                url: "/add-to-single",
+                data: {
+                    'product_id': product_id,
+                    'product_qty': product_qty,
+                },
+                success: function(response){
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.status,
+                    showConfirmButton: false,
+                    timer: 2000
+                    })
+                }
+
+            });
+ 
     });
 
-    $('increment-btn').click(function(e){
+    $('.increment-btn').click(function(e){
         e.preventDefault();
 
         var inc_value = $('.qty-input').val();
@@ -706,15 +743,31 @@
             value++;
             $('.qty-input').val(value);
         }
+        
+    });
+
+    $('.decrement-btn').click(function(e){
+        e.preventDefault();
+
+        var dec_value = $('.qty-input').val();
+        var value = parseInt(dec_value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value > 1){
+            value --;
+            $('.qty-input').val(value);
+        }
     });
 
     });
 
     
-</script> --}}
+</script> 
 {{--Dynamic alert messages--}}
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
 
 @if (session('status') == "Producto valorado, Gracias por su valoración.")
 <script> 
@@ -799,3 +852,4 @@ text: '{{session('status')}}',
 })
 </script>
 @endif
+
