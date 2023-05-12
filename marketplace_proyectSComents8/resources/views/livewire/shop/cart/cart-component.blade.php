@@ -49,7 +49,8 @@
                                         </div>
                                     </td>
                                     <td class="text-right" data-title="Cart">
-                                        <span> €</span>
+                                        {{-- @php $totalItem = $item->products->price *  $item->prod_qty; @endphp --}}
+                                        <span>{{$totalItem}} €</span>
                                         {{-- {{Cart::session(auth()->id())->get($item->id)->getPriceSum()}} --}}
                                     </td>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
