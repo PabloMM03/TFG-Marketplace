@@ -53,19 +53,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::post('add-to-cart', [CartComponent::class, 'addProduct']);
 Route::post('add-to-single', [CartComponent::class, 'addProductToSingle']);
 Route::post('delete-to-cart', [CartComponent::class, 'deleteProduct']);
 Route::delete('delete-all', [CartComponent::class, 'deleteAll']);
+Route::post('update-cart', [CartComponent::class, 'updateCart']);
 
 Route::middleware(['cart.is.empty'])->group(function(){
     
     //Cart route
-    // Route::get('/cart', CartIndexComponent::class)->name('cart');
 
-    Route::get('cart', CartComponent::class)->name('cart');
-    
-
+    Route::get('cart', CartComponent::class)->name('cart'); 
     //Pay Route
     Route::get('/checkout', CheckoutComponent::class)->name('checkout');
 

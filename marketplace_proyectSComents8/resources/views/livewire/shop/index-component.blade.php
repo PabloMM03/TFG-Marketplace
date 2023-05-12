@@ -238,7 +238,7 @@
 
 <section class="product-tabs section-padding position-relative wow fadeIn animated">
   <div class="bg-square"></div>
-  <div class="container">
+  <div class="container product_data">
       <div class="tab-header">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -303,6 +303,10 @@
                               </div>
                               {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                             however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                            <input type="hidden" value="{{$product->id}}" class="prod_id">
+                             <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
+                             
+                                  
                               @if($product->qty > 0)
                               <label class="badge bg-success">In stock</label>
                               @else
@@ -313,14 +317,11 @@
                                   <span class="old-price">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
                               </div>
                               <div class="product-action-1 show">
+                                
                                 @if($product->qty >0)
-                                <form action="{{url('add-to-cart')}}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{$product->id}}">
-                                    <button type="hidden" class="action-btn hover-up" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
-                                </form>
+                                 <button type="button" class="action-btn hover-up addToCartBtn" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
                                   @else
-                                  <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
+                                  <button class="action-btn hover-up disabled addToCartBtn" type="button" aria-label="No actions">
                                       <i class="fi-rs-shopping-bag-add"></i>
                                   </button>   
                                   @endif
@@ -383,6 +384,10 @@
                             </div>
                             {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                           however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                          <input type="hidden" value="{{$product->id}}" class="prod_id">
+                          <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
+
+                             
                             @if($item->qty > 0)
                             <label class="badge bg-success">In stock</label>
                             @else
@@ -394,7 +399,7 @@
                             </div>
                             <div class="product-action-1 show">
                               @if($item->qty >0)
-                                <button class="action-btn hover-up" wire:click="add_to_cart({{$item->id}})" type="button" aria-label="Add To Cart">
+                                <button class="action-btn hover-up addToCartBtn"type="button" aria-label="Add To Cart">
                                     <i class="fi-rs-shopping-bag-add"></i>
                                 </button>
                                 @else
@@ -459,6 +464,10 @@
                             </div>
                             {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                           however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                          <input type="hidden" value="{{$product->id}}" class="prod_id">
+                          <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
+
+                             
                             @if($product_new->qty > 0)
                             <label class="badge bg-success">In stock</label>
                             @else
@@ -470,7 +479,7 @@
                             </div>
                             <div class="product-action-1 show">
                               @if($product_new->qty >0)
-                                <button class="action-btn hover-up" wire:click="add_to_cart({{$product_new->id}})" type="button" aria-label="Add To Cart">
+                                <button class="action-btn hover-up addToCartBtn" type="button" aria-label="Add To Cart">
                                     <i class="fi-rs-shopping-bag-add"></i>
                                 </button>
                                 @else
@@ -722,6 +731,81 @@
         
     });
 </script>
+
+ 
+{{--Add product to cart with jquery Ajax--}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+   $(document).ready(function(){
+
+       $('.addToCartBtn').click(function(e){
+           e.preventDefault();
+       
+           let product_id = $(this).closest('.product_data').find('.prod_id').val();
+           let product_qty = $(this).closest('.product_data').find('.qty-input').val();
+           
+           $.ajaxSetup({
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               }
+           });
+
+
+
+           $.ajax({
+               method: "POST",
+               url: "/add-to-single",
+               data: {
+                   'product_id': product_id,
+                   'product_qty': product_qty,
+               },
+               success: function(response){
+                setTimeout(function(){
+                        window.location.reload();
+                    }, 2000);
+                   Swal.fire({
+                   position: 'top-end',
+                   icon: 'success',
+                   title: response.status,
+                   showConfirmButton: false,
+                   timer: 2000
+                   })
+               }
+
+           });
+
+   });
+
+   $('.increment-btn').click(function(e){
+       e.preventDefault();
+
+       var inc_value = $('.qty-input').val();
+       var value = parseInt(inc_value, 10);
+       value = isNaN(value) ? 0 : value;
+       if(value < 10){
+           value++;
+           $('.qty-input').val(value);
+       }
+       
+   });
+
+   $('.decrement-btn').click(function(e){
+       e.preventDefault();
+
+       var dec_value = $('.qty-input').val();
+       var value = parseInt(dec_value, 10);
+       value = isNaN(value) ? 0 : value;
+       if(value > 1){
+           value --;
+           $('.qty-input').val(value);
+       }
+   });
+
+   });
+
+   
+</script> 
 
 @endsection
 

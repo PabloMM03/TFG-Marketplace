@@ -722,6 +722,10 @@
                     'product_qty': product_qty,
                 },
                 success: function(response){
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 2000);
+
                     Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -764,6 +768,7 @@
 
     
 </script> 
+
 {{--Dynamic alert messages--}}
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -845,13 +850,4 @@ text: 'Debes hacer el login primero.',
 </script>
 @endif
 
-@if(session('status') == "El carrito está vacio")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@endif
 

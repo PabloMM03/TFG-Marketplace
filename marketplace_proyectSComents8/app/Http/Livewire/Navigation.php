@@ -19,6 +19,7 @@ class Navigation extends Component
         $wishlist = Wishlist::all();
         $tags = Tag::all();
         $cart = Carrito::all();
+        
         return view('livewire.navigation', compact('productos', 'categories', 'tags', 'wishlist', 'cart'));
     }
 }

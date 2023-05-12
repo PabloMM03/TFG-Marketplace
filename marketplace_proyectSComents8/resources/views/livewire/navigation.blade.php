@@ -80,7 +80,7 @@
                                     <!--  Obtiene el total completo-->
                                <!--Acceder de nuevo a la tienda -->
                                @auth
-                               <span class="pro-count blue">{{$cart->count()}}</span>
+                               <span class="pro-count blue cart-count">{{$cart->count()}}</span>
                                @else
                                <span class="pro-count blue">0</span>
                                @endauth
@@ -679,13 +679,3 @@ Swal.fire({
 </script>
 
 @endif
-
-{{-- @if(session('status') == "El carrito está vacio")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@endif --}}

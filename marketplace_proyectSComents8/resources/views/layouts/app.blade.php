@@ -106,7 +106,7 @@
     }
       </script>
       
-
+ 
 
       @if (session('status') == "Producto añadido al carrito")
       <script> 

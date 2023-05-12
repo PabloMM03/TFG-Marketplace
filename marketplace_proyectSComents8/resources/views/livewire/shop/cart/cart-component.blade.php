@@ -10,7 +10,7 @@
     </div>
 {{--Info place orders--}}
     <section class="mt-50 mb-50">
-        <div class="container">
+        <div class="container product_data">
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -20,15 +20,16 @@
                                     <th scope="col">Imagen</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Precio</th>
-                                    <th scope="col">Cantidad</th>
+                                    <th scope="col" style="width:130px;">Cantidad</th>
                                     <th scope="col">Subtotal</th>
                                     <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $total = 0; @endphp
                                 {{--Foreach with product information--}}
                               @foreach ($cart_items->sortBy('id') as $key => $item)
-                                <tr>
+                                <tr class="product_data">
                                     <td class="image product-thumbnail"><img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a href="product-details.html">{{$item->products->name}}</a></h5>
@@ -40,10 +41,11 @@
                                     </td>
 
                                     <td class="text-center" data-title="Stock">
-                                        <div class="detail-qty border radius  m-auto">
-                                            <a href="#" class="qty-down" wire:click.prevent="decreaseQuantity('{{$item->products->id}}')"><i class="fi-rs-angle-small-down"></i></a>
-                                            <span class="qty-val">{{$item->products->quantity}}</span>
-                                            <a href="#" class="qty-up" wire:click.prevent="increaseQuantity('{{$item->products->id}}')"><i class="fi-rs-angle-small-up"></i></a>
+                                        <input type="hidden" value="{{$item->products->id}}" class="prod_id">
+                                        <div class="input-group text-center mb-3" style="width:130px;">
+                                            <button class="input-group-text changeQuantity decrement-btn">-</button>
+                                            <input type="text" name="quantity" class="form-control qty-input text-center" value="{{$item->prod_qty}}">
+                                            <button class="input-group-text changeQuantity increment-btn">+</button>
                                         </div>
                                     </td>
                                     <td class="text-right" data-title="Cart">
@@ -52,16 +54,13 @@
                                     </td>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                         <td>
-                                            <form action="{{url('delete-to-cart')}}" method="POST" style="display: inline;">
-                                            @csrf
                                             <input type="hidden" name="prod_id" value="{{$item->products->id}}">
-                                            <button type="submit" class="action-btn hover-up" aria-label="Delete To Cart"><i class="fi-rs-trash"></i></button>
-                                            </form>
+                                            <button type="submit" class="action-btn hover-up delete-cart-item" aria-label="Delete To Cart"><i class="fi-rs-trash"></i></button>
                                         </td>
                                       {{-- <td><a type="button" class="fas fa-times text-muted" wire:click="deleteProduct({{$item->products->id}})"><i class="fi-rs-trash"></i></a></td> --}}
                                   </div>                                        
                                 </tr>
-
+                                @php $total += $item->products->price * $item->prod_qty; @endphp
                               @endforeach
 
                                 <tr>
@@ -389,7 +388,7 @@
                                             <tr>
                                                 <td class="cart_total_label">Total Items</td>
                                                 <td class="cart_total_amount"><span class="font-lg">{{$item->count()}} productos</span></td>
-                                                {{-- {{Cart::session(auth()->id())->getTotalQuantity()}} --}}
+                                                
                                             </tr>
                                             {{-- <tr>
                                                 <td class="cart_total_label">Shipping</td>
@@ -397,7 +396,7 @@
                                             </tr> --}}
                                             <tr>
                                                 <td class="cart_total_label">Total</td>
-                                                <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand"> €</span></strong></td>
+                                                <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">{{$total}} €</span></strong></td>
                                                 {{-- {{Cart::session(auth()->id())->getTotal()}} --}}
                                             </tr>
                                         </tbody>
@@ -414,7 +413,165 @@
 
 </main>
 
+ {{--Add product to cart with jquery Ajax--}}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+ <script>
+    $(document).ready(function(){
+ 
+    //Add product to cart
+    $('.addToCartBtn').click(function(e){
+            e.preventDefault();
+        
+            let product_id = $(this).closest('.product_data').find('.prod_id').val();
+            let product_qty = $(this).closest('.product_data').find('.qty-input').val();
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+
+            $.ajax({
+                method: "POST",
+                url: "/add-to-single",
+                data: {
+                    'product_id': product_id,
+                    'product_qty': product_qty,
+                },
+                success: function(response){
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 2000);
+
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.status,
+                    showConfirmButton: false,
+                    timer: 2000
+                    })
+                }
+
+            });
+ 
+    });
+
+    //Incrememnt quantity products
+    $('.increment-btn').click(function(e){
+        e.preventDefault();
+
+        let inc_value = $(this).closest('.product_data').find('.qty-input').val();
+        let value = parseInt(inc_value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value < 10)
+        {
+            value++;
+            // $('.qty-input').val(value);
+            $(this).closest('.product_data').find('.qty-input').val(value);
+        }
+        
+    });
+
+    //Decrement quantity products
+    $('.decrement-btn').click(function(e){
+        e.preventDefault();
+
+        let dec_value = $(this).closest('.product_data').find('.qty-input').val();
+        let value = parseInt(dec_value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value > 1)
+        {
+            value --;
+            // $('.qty-input').val(value);
+            $(this).closest('.product_data').find('.qty-input').val(value);
+        }
+    });
+
+    
+
+    //Delete cart item
+    $('.delete-cart-item').click(function(e){
+        e.preventDefault();
+
+        let prod_id = $(this).closest('.product_data').find('.prod_id').val();
+
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        $.ajax({
+                method: "POST",
+                url: "/delete-to-cart",
+                data: {
+                    'prod_id': prod_id,
+                },
+                success: function(response){
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 2000);
+
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.status,
+                    showConfirmButton: false,
+                    timer: 2000
+                    })
+                }
+
+            });
+        
+    });
+
+    //Chaange quantity 
+    $('.changeQuantity').click(function(e){
+        e.preventDefault();
+
+        let prod_id = $(this).closest('.product_data').find('.prod_id').val();
+        let qty = $(this).closest('.product_data').find('.qty-input').val();
+
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        data ={
+            'prod_id': prod_id,
+            'prod_qty': qty,
+        }
+
+        $.ajax({
+                method: "POST",
+                url: "/update-cart",
+                data: data,
+                success: function(response){
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 2000);
+
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.status,
+                    showConfirmButton: false,
+                    timer: 2000
+                    })
+                }
+
+            });
+
+    });
+
+    });
+
+    
+</script> 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
