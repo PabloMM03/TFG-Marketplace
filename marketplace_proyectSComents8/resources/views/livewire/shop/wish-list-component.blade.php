@@ -1,4 +1,13 @@
 <section class="h-100 h-custom">
+  <div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/" rel="nofollow">Inicio</a>
+            <span></span> Tienda
+            <span></span> Wishlist
+        </div>
+    </div>
+</div>
   @if($wishlist->count() > 0) 
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -72,9 +81,6 @@
                         <h6 class="mb-0"><a style="text-decoration: none" href="/" class="text-body"><i
                               class="bi-cart-fill me-1"></i>Back to shop</a></h6>
                       </div>
-                      {{-- <div class="pt-5">
-                        <a type="button" wire:click="vaciar_Wishlist()" class="fas fa-times text-muted"><i class="fi-rs-cross-small"></i>Vaciar Wishlist</a>
-                      </div> --}}
                     </div> 
                   </div>
                   

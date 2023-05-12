@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Mail\OrderPagada;
+use App\Models\Carrito;
 use App\Models\Order;
 use App\Models\Product;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
@@ -24,8 +25,8 @@ class CheckoutComponent extends Component
 
     public function render()
     {
-        
-        return view('livewire.shop.checkout-component')->extends('layouts.app')->section('content');
+        $cartItems = Carrito::where('user_id', Auth::id())->get();
+        return view('livewire.shop.checkout-component', compact('cartItems'))->extends('layouts.app')->section('content');
     }
     
     //Function to create an order and validate the data implemented by the client

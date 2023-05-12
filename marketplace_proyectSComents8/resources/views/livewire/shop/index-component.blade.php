@@ -256,6 +256,8 @@
 
       <!--End nav-tabs-->
       <div class="tab-content wow fadeIn animated" id="myTabContent">
+        
+        <!--En tab two (Featured)-->
           <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
               <div class="row product-grid-4">
 
@@ -271,15 +273,15 @@
                               </div>
                               <div class="product-action-1">
                                 <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product)}}"><i class="fi-rs-eye"></i></a>
+                                {{--Add product to Wishlist--}}
                                   <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                       @csrf
                                       <input type="hidden" name="product_id" value="{{$product->id}}">
                                       <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                                   </form>
-
-                                  {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
-                                  <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                  <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
                               </div>
+                              {{--Check if the product is popular--}}
                               <div class="product-badges product-badges-position product-badges-mrg">
                                 @if($product->trending == 2)
                                 <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
@@ -292,7 +294,7 @@
                           </div>
                           <div class="product-content-wrap">
                               <div class="product-category">
-                                  <a href="shop.html">Clothing</a>
+                                  <a href="/">Clothing</a>
                               </div>
                               <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
                               <div class="rating-result" title="90%">
@@ -306,7 +308,7 @@
                             <input type="hidden" value="{{$product->id}}" class="prod_id">
                              <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
                              
-                                  
+                                  {{--Check that the product is in stock--}}
                               @if($product->qty > 0)
                               <label class="badge bg-success">In stock</label>
                               @else
@@ -317,15 +319,14 @@
                                   <span class="old-price">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
                               </div>
                               <div class="product-action-1 show">
-                                
+                                {{--Add product to cart--}}
                                 @if($product->qty >0)
                                  <button type="button" class="action-btn hover-up addToCartBtn" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
                                   @else
-                                  <button class="action-btn hover-up disabled addToCartBtn" type="button" aria-label="No actions">
+                                  <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
                                       <i class="fi-rs-shopping-bag-add"></i>
                                   </button>   
                                   @endif
-                                  {{-- <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i class="fi-rs-shopping-bag-add"></i></a> --}}
                               </div>
                           </div>
                       </div>
@@ -336,7 +337,9 @@
 
               <!--End product-grid-4-->
           </div>
-          <!--En tab one (Featured)-->
+          
+          
+          <!--En tab two (Popular)-->
           <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
               <div class="row product-grid-4">
 
@@ -359,7 +362,7 @@
                                 </form>
 
                                 {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
-                                <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
                             </div>
                             <div class="product-badges product-badges-position product-badges-mrg">
                               @if($item->trending == 2)
@@ -415,8 +418,10 @@
 
                 @endforeach
                   </div>
-              </div>
-          <!--En tab two (Popular)-->
+          </div>
+
+
+              <!--En tab three (New added)-->
           <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
               <div class="row product-grid-4">
 
@@ -439,7 +444,7 @@
                                 </form>
 
                                 {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
-                                <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
                             </div>
                             <div class="product-badges product-badges-position product-badges-mrg">
                               @if($product_new->trending == 2)
@@ -499,7 +504,7 @@
               </div>
               <!--End product-grid-4-->
           </div>
-          <!--En tab three (New added)-->
+          
 </section>
 
 
@@ -521,7 +526,7 @@
 
 <section class="popular-categories section-padding mt-15 mb-25">
   <div class="container wow fadeIn animated">
-      <h3 class="section-title mb-20"><span>Popular</span> Categories</h3>
+      <h3 class="section-title mb-20"><span>Categorias</span> Populares</h3>
       <div class="carausel-6-columns-cover position-relative">
           <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
           <div class="carausel-6-columns" id="carausel-6-columns">
@@ -639,14 +644,15 @@
                       </div>
                       <div class="product-action-1">
                         <a aria-label="Quick view" class="action-btn small hover-up" href="{{route('publicaciones.show',$product_new)}}"><i class="fi-rs-eye"></i></a>
-                          {{-- <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="wishlist.php" tabindex="0"><i class="fi-rs-heart"></i></a> --}}
+
+                          {{-- Add to wishlist --}}
 
                         <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$product->id}}">
                             <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                         </form>
-                          <a aria-label="Compare" class="action-btn small hover-up" href="compare.php" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                          <a aria-label="Compare" class="action-btn small hover-up" href="/" tabindex="0"><i class="fi-rs-shuffle"></i></a>
                       </div>
                       <div class="product-badges product-badges-position product-badges-mrg">
                         @if($product_new->trending == 2)
@@ -710,106 +716,5 @@
   </div>
 </section>
 
-{{--JAVASCRIPT--}}
-
-@section('js')
-
-<script>
-    let items = document.querySelectorAll('.carousel .carousel-item')
-
-    items.forEach((el) => {
-        const minPerSlide = 4;
-        let next = el.nextElementSibling;
-        for(var i =1; i<minPerSlide; i++){
-            if(!next){
-                next = items[0]
-            }
-            let cloneChild = next.cloneNode(true)
-            el.appendChild(cloneChild.children[0])
-            next = next.nextElementSibling
-        }
-        
-    });
-</script>
-
- 
-{{--Add product to cart with jquery Ajax--}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script>
-   $(document).ready(function(){
-
-       $('.addToCartBtn').click(function(e){
-           e.preventDefault();
-       
-           let product_id = $(this).closest('.product_data').find('.prod_id').val();
-           let product_qty = $(this).closest('.product_data').find('.qty-input').val();
-           
-           $.ajaxSetup({
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-           });
-
-
-
-           $.ajax({
-               method: "POST",
-               url: "/add-to-single",
-               data: {
-                   'product_id': product_id,
-                   'product_qty': product_qty,
-               },
-               success: function(response){
-                setTimeout(function(){
-                        window.location.reload();
-                    }, 2000);
-                   Swal.fire({
-                   position: 'top-end',
-                   icon: 'success',
-                   title: response.status,
-                   showConfirmButton: false,
-                   timer: 2000
-                   })
-               }
-
-           });
-
-   });
-
-   $('.increment-btn').click(function(e){
-       e.preventDefault();
-
-       var inc_value = $('.qty-input').val();
-       var value = parseInt(inc_value, 10);
-       value = isNaN(value) ? 0 : value;
-       if(value < 10){
-           value++;
-           $('.qty-input').val(value);
-       }
-       
-   });
-
-   $('.decrement-btn').click(function(e){
-       e.preventDefault();
-
-       var dec_value = $('.qty-input').val();
-       var value = parseInt(dec_value, 10);
-       value = isNaN(value) ? 0 : value;
-       if(value > 1){
-           value --;
-           $('.qty-input').val(value);
-       }
-   });
-
-   });
-
-   
-</script> 
-
-@endsection
-
-
-@livewireScripts
 </body>
 </html>
