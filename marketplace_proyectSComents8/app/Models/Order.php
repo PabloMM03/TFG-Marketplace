@@ -11,6 +11,7 @@ class Order extends Model
     use HasFactory;
     protected $table = 'orders';
     protected $fillable = [
+            'user_id',
             'shipping_fname',
             'shipping_lname',
             'shipping_address1',
@@ -32,7 +33,7 @@ class Order extends Model
        /**
         * Relationship between tables of orders, products You are specified with withPivot which fields to access
         */
-        return $this->belongsToMany(Product::class, 'order_items', 'order_id', 'product_id')->withPivot('price', 'quantity');
+        return $this->belongsToMany(Product::class, 'order_items', 'order_id', 'prod_id')->withPivot('price', 'qty');
     }
 
     public function user(){

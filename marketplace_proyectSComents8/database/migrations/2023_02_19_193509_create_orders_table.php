@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
 
             $table->id();
-            // $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('shipping_fname');
             $table->string('shipping_lname');
             $table->string('email');
@@ -35,10 +35,9 @@ return new class extends Migration
             $table->string('shipping_state');
             $table->string('shipping_zipcode');
             $table->string('shipping_phone');
-
+            $table->float('total');
             
-            //notas
-            $table->string('notes')->nullable();
+
             $table->timestamps();
         });
     }

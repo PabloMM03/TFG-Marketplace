@@ -409,7 +409,7 @@
             </div>
         </div>
         @else
-        <h4>No hay productos en su carrito de momento de momento.</h4>
+        <h4>No hay productos en su cesta de momento de momento.</h4>
         @endif
     </section>
 

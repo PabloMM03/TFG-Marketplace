@@ -17,14 +17,14 @@ aquí esta su factura
         @foreach ($order->items as $item)
         <tr>
             <td scope="row">{{$item->name}}</td>
-            <td>{{$item->pivot->quantity}}</td>
-            <td>{{$item->pivot->price}}</td>
+            <td>{{$item->pivot->qty}}</td>
+            <td>{{$item->pivot->price}}€</td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
-Total: {{$order->total}} €
+{{-- Total: {{$order->total}} € --}}
 
 <x-mail::button :url="''">
 Button Text

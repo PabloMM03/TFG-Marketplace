@@ -16,13 +16,21 @@
                         <div class="col-md-6 order-details">
                             <h4>Detalles de envío</h4>
                             <hr>
-                        <label for="">Nombre Completo</label>
-                        <div class="border">{{$orders->shipping_fullname}}</div>
-                        <label for="">Dirección</label>
+                        <label for="">Nombre</label>
+                        <div class="border">{{$orders->shipping_fname}}</div>
+                        <label for="">Apellidos</label>
+                        <div class="border">{{$orders->shipping_lname}}</div>
+                        <label for="">Email</label>
+                        <div class="border">{{$orders->email}}</div>
+                        <label for="">Dirección 1</label>
                         <div class="border">
-                            {{$orders->shipping_address}} ,
+                            {{$orders->shipping_address1}} ,
                             {{$orders->shipping_city}} ,
                             {{$orders->shipping_state}} 
+                        </div>
+                        <label for="">Dirección 2</label>
+                        <div class="border">
+                            {{$orders->shipping_address2}} 
                         </div>
                         <label for="">Numero de Contacto</label>
                         <div class="border">{{$orders->shipping_phone}}</div>
@@ -52,8 +60,8 @@
                                     @foreach ($orders->orderitems as $order)                                      
                                     <tr>
                                         <td>{{$order->products->name}}</td>
-                                        <td>{{$order->quantity}}</td>
-                                        <td>{{$order->products->price}} €</td>
+                                        <td>{{$order->qty}}</td>
+                                        <td>{{$order->price}} €</td>
                                         <td>
                                             <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="70px" alt="Product image">
                                             
@@ -63,7 +71,7 @@
                                 </tbody>
                             </table>
 
-                            <h4 class="px-2">Percio Total : <span class="float-end">{{$orders->total}} €</span></h4>
+                            <h3 class="px-2">Percio Total : <span class="float-end">{{$orders->total}} €</span></h3>
                         </div>
                     </div>
                 </div>

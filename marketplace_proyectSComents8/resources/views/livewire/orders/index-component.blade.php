@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{date('d-m-y', strtotime($order->created_at))}}</td>
                                 <td>{{$order->order_number}}</td>   
-                                <td>{{$order->total}} €</td>
+                                <td>{{$order->total}} €</td> 
                                 <?php if($order->payment_method == "cash_on_delivery"){?> 
                                     <td>En efectivo</td> <?php
                                 }elseif ($order->payment_method == "paypal") {

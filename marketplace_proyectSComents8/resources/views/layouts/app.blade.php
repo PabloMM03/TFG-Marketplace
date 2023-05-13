@@ -321,7 +321,7 @@ Swal.fire({
 </script>
 @endif
 
-@if(session('status') == "Pedido realizado con exito")
+@if(session('status') == "Compra realizada correctamente, pronto le llegará su pedido")
 <script> 
 Swal.fire({
   position: 'top-center',

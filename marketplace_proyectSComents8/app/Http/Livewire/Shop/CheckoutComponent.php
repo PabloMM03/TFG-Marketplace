@@ -32,10 +32,20 @@ class CheckoutComponent extends Component
 
     public function placeorder(Request $request){
              ///////////////////////Orders to be made and their data/////////////////////////////////
-             
+            //  $this->validate([
+            //     'fname' => 'required',
+            //     'lname' => 'required',
+            //     'address1' => 'required',
+            //     'city' => 'required',
+            //     'email' => 'required',
+            //     'state' => 'required',
+            //     'zipcode' => 'required',
+            //     'phone' => 'required',
+            //     'payment_method' => 'required'
+            // ]);
             
         $order = new Order();
-
+        $order->user_id = Auth::id(); 
         $order->order_number = uniqid('OrderNumber-');
         //Total products in the cart
         $order->shipping_fname = $request->input('fname');
@@ -47,13 +57,20 @@ class CheckoutComponent extends Component
         $order->shipping_phone = $request->input('phone');
         $order->email = $request->input('email');
         $order->shipping_address2 = $request->input('address2');
-        $order->notes = $request->input('notes');
 
+        /**
+         * We obtain the total of the sum of each product
+         */
+        $total = 0;
+        $cartItems_total = Carrito::where('user_id', Auth::id())->get();
+        foreach($cartItems_total as $prod){
+            $total += $prod->products->price;
+        }
+        $order->total = $total;
         $order->save();
 
-
+        
         $cartItems = Carrito::where('user_id', Auth::id())->get();
-            //$cartItems as $key => $item
         foreach ($cartItems as  $item) {
            
             OrderItem::create([
@@ -76,42 +93,15 @@ class CheckoutComponent extends Component
             $user->email = $request->input('email');
             $user->update();
         }
-
-        $cartItems = Carrito::where('user_id', Auth::id())->get();
-        Carrito::destroy($cartItems);
-        return redirect('/')->with('status', 'Pedido realizado con exito');
-    }
-
-      
-
-    //     //Get total cart and purchase
-    //     // $order->is_paid,
-
-    //     //Creation of items that are in the cart for the order of the order
-
         
-
-    //     //Check payment method
-    //     if ($this->payment_method == 'paypal') {
-    //         Mail::to($order->user->email)->send(new OrderPagada($order));
-
-    //         $order->status = "processing";
-    //         $order->save();
-    //         Cart::session(auth()->id())->clear(); //Empty cart              
-    //         return redirect()->route('paypal.checkout', $order->id);
-    //     }
-    //     if ($this->payment_method == 'cash_on_delivery') {
-    //         //Send payment confirmation email to user
-    //         Mail::to($order->user->email)->send(new OrderPagada($order));
-
-    //         $order->status = "pending";
-    //         $order->save();
-    //         Cart::session(auth()->id())->clear(); //Empty cart
-    //         return redirect('/')->with('info', 'Compra realizada correctamente, pronto le llegará su pedido');
-    //     }
-    // }
-
-    
+        /**
+         * An email is sent to the management center, with the order data to start preparing it
+         */
+        $cartItems = Carrito::where('user_id', Auth::id())->get();
+        Mail::to($user->email)->send(new OrderPagada($order));
+        Carrito::destroy($cartItems);
+        return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
+    }
 
 
 }

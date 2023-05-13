@@ -104,7 +104,6 @@ class SingleProduct extends Component
 
     public function add_to_cart(Product $product){
         // dd($product); -> comprobar
-        // add the product to cart 
                 //Check that the user is logged in
                 if (!auth()->check()) {
                     return redirect()->guest('login');

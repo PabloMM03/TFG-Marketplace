@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <input type="text" placeholder="Nombre *" class="form-control fullname @error('lname') is-invalid @enderror" name="lname"  wire:model="lname">
+                                        <input type="text" placeholder="Apellidos *" class="form-control fullname @error('lname') is-invalid @enderror" name="lname"  wire:model="lname">
                                         @error('lname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -197,16 +197,6 @@
     
                                     </div>
 
-
-                                    <div class="mb-20">
-                                        <h5>Additional information</h5>
-                                    </div>
-                                    <div class="form-group mb-30">
-                                        <textarea rows="5" placeholder="Order notes" wire:model="notes"></textarea>
-                                    </div>
-
-                            
-
                         </div>
                                 <div class="col-md-6">
                                     <div class="order_review">
@@ -258,7 +248,7 @@
                                                 <div class="mb-25">
                                                     <h5>Metodo de pago</h5>
                                                 </div>
-                                                <button type="submit"  class="btn btn-fill-out btn-block mt-30">Hacer pedido</button>
+                                                <button type="submit" name="payment_method" class="btn btn-fill-out btn-block mt-30">Hacer pedido</button>
                                             </div>
                                             
                                     </div>
