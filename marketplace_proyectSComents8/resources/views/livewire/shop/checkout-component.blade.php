@@ -79,7 +79,7 @@
 
                                     <div class="form-group">
 
-                                    <input type="text" placeholder="Nombre *" class="form-control fullname @error('fname') is-invalid @enderror" name="fname"  wire:model="fname">
+                                    <input type="text" placeholder="Nombre *" class="form-control firstname @error('fname') is-invalid @enderror" name="fname"  wire:model="fname">
                                     @error('fname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <input type="text" placeholder="Apellidos *" class="form-control fullname @error('lname') is-invalid @enderror" name="lname"  wire:model="lname">
+                                        <input type="text" placeholder="Apellidos *" class="form-control lastname @error('lname') is-invalid @enderror" name="lname"  wire:model="lname">
                                         @error('lname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -131,14 +131,14 @@
                                         {{--Address--}}
                                     <div class="form-group">   
 
-                                    <input type="text" placeholder="Direccion *" class="form-control address @error('address1') is-invalid @enderror" name="address1"  wire:model="address1">
+                                    <input type="text" placeholder="Direccion *" class="form-control address1 @error('address1') is-invalid @enderror" name="address1"  wire:model="address1">
                         
                                     @error('address1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                    <b id="address_error" class="text-danger" style="font-size:12px"></b> 
+                                    <b id="address1_error" class="text-danger" style="font-size:12px"></b> 
 
                                     </div>
 
@@ -173,7 +173,7 @@
                                     {{--Email--}}   
                                     <div class="form-group">  
 
-                                        <input type="text" placeholder="Email *" class="form-control phone @error('email') is-invalid @enderror" name="email" value="{{Auth::user()->email}}" wire:model="email">
+                                        <input type="text" placeholder="Email *" class="form-control email @error('email') is-invalid @enderror" name="email" value="{{Auth::user()->email}}" wire:model="email">
                             
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -186,7 +186,7 @@
                                         {{--Address 2--}}   
                                     <div class="form-group">  
 
-                                        <input type="text" placeholder="Dirección 2 *" class="form-control phone @error('address2') is-invalid @enderror" name="address2"  wire:model="address2">
+                                        <input type="text" placeholder="Dirección 2 *" class="form-control address2 @error('address2') is-invalid @enderror" name="address2"  wire:model="address2">
                             
                                         @error('address2')
                                         <span class="invalid-feedback" role="alert">
@@ -248,7 +248,9 @@
                                                 <div class="mb-25">
                                                     <h5>Metodo de pago</h5>
                                                 </div>
-                                                <button type="submit" name="payment_method" class="btn btn-fill-out btn-block mt-30">Hacer pedido</button>
+                                                <button type="submit"  class="btn btn-primary btn-block mt-30">Hacer pedido</button>
+                                                <button type="button" class="btn btn-success mt-30 razorpay_btn">Pagar con Razorpay</button>
+                                                <div class="mt-2" id="paypal-button-container"></div>
                                             </div>
                                             
                                     </div>
@@ -276,6 +278,74 @@
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AVCGsMPCx90C2V8xqRjjPTphNI-XbCaJskx4rkLzCAX4fKACmGxSWl5YeLxGTTMzOhDS38kGigcblLXA"></script>
+
+<script>
+    paypal.Buttons({
+  createOrder() {
+    // This function sets up the details of the transaction, including the amount and line item details.
+    return fetch("/my-server/create-paypal-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: [
+          {
+            sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
+            quantity: "YOUR_PRODUCT_QUANTITY"
+          }
+        ]
+      })
+    });
+  },
+  onApprove(data) {
+    // This function captures the funds from the transaction.
+    return fetch("/my-server/capture-paypal-order", {
+      method: "POST",
+      body: JSON.stringify({
+        orderID: data.orderID
+      })
+    })
+    .then((response) => response.json())
+    .then((details) => {
+      // This function shows a transaction success message to your buyer.
+    //   alert('Transaction completed by ' + details.payer.name.given_name);
+
+      var firstname  = $('.firstname').val();
+      var lastname  = $('.lastname').val();
+      var state = $('.state').val();
+      var email = $('.email').val();
+      var city = $('.city').val();
+      var address1 = $('.address1').val();
+      var address2 = $('.address2').val();
+      var zipcode = $('.zipcode').val();
+      var phone = $('.phone').val();
+
+        $.ajax({
+                method: "POST",
+                url: "/place-order",
+                data: {
+                    'firstname':firstname,
+                    'lastname':lastname,
+                    'state':state,
+                    'email':email,
+                    'city':city,
+                    'address':address1,
+                    'address':address2,
+                    'zipcode':zipcode,
+                    'phone':phone,
+                },
+                success: function(response){
+                    alert(response.total_price)
+                }
+            });
+
+    });
+  }
+}).render('#paypal-button-container');
+//This function displays payment buttons on your web page.
+</script>
 
 <script>
 
@@ -283,15 +353,18 @@ $(document).ready(function(){
     $('.razorpay_btn').click(function(e){
       e.preventDefault();
 
-      let fullname  = $('.fullname').val();
-      let state = $('.state').val();
-      let city = $('.city').val();
-      let address = $('.address').val();
-      let zipcode = $('.zipcode').val();
-      let phone = $('.phone').val();
+      var firstname  = $('.firstname').val();
+      var lastname  = $('.lastname').val();
+      var state = $('.state').val();
+      var email = $('.email').val();
+      var city = $('.city').val();
+      var address1 = $('.address1').val();
+      var address2 = $('.address2').val();
+      var zipcode = $('.zipcode').val();
+      var phone = $('.phone').val();
 
 
-        if(!fullname){
+        if(!firstname){
             fname_error = "El campo Nombre completo es obligatorio";
             $('#fname_error').html('')
             $('#fname_error').html(fname_error);
@@ -299,36 +372,60 @@ $(document).ready(function(){
             fname_error = "";
             $('#fname_error').html('')
         }
+        if(!lastname){
+            lname_error = "El campo Nombre completo es obligatorio";
+            $('#lname_error').html('')
+            $('#lname_error').html(lname_error);
+        }else{
+            fname_error = "";
+            $('#lname_error').html('')
+        }
         if(!state){
             state_error = "El campo Región es obligatorio";
             $('#state_error').html('')
             $('#state_error').html(state_error);
         }else{
-            state = "";
+            state_error = "";
             $('#state_error').html('')
         }
+        if(!email){
+             email_error = "El campo email es obligatorio";
+             $('#email_error').html('')
+             $('#email_error').html(email_error);
+         }else{
+             email_error = "";
+             $('#email_error').html('')
+         }
         if(!city){
             city_error = "El campo Ciudad es obligatorio";
             $('#city_error').html('')
             $('#city_error').html(city_error);
         }else{
-            city = "";
+            city_error = "";
             $('#city_error').html('')
         }
-        if(!address){
-            address_error = "El campo Dirección es obligatorio";
-            $('#address_error').html('')
-            $('#address_error').html(address_error);
+        if(!address1){
+            address1_error = "El campo Dirección es obligatorio";
+            $('#address1_error').html('')
+            $('#address1_error').html(address1_error);
         }else{
-            address = "";
-            $('#address_error').html('')
+            address1_error = "";
+            $('#address1_error').html('')
+        }
+        if(!address2){
+            address2_error = "El campo Dirección es obligatorio";
+            $('#address2_error').html('')
+            $('#address2_error').html(address2_error);
+        }else{
+            address2_error = "";
+            $('#address2_error').html('')
         }
         if(!zipcode){
             zipcode_error = "El campo ZIP es obligatorio";
             $('#zipcode_error').html('')
             $('#zipcode_error').html(zipcode_error);
         }else{
-            zipcode = "";
+            zipcode_error = "";
             $('#zipcode_error').html('')
         }
         if(!phone){
@@ -336,32 +433,33 @@ $(document).ready(function(){
             $('#phone_error').html('')
             $('#phone_error').html(phone_error);
         }else{
-            phone = "";
+            phone_error = "";
             $('#phone_error').html('')
         }
 
-        if(fname_error != '' || state_error != '' || city_error != '' || address_error != '' || zipcode_error != '' || phone_error != '')
+        if(fname_error != '' || lname_error != '' || state_error != '' || email_error != '' ||  city_error != '' || address1_error != '' || address2_error != '' || zipcode_error != '' || phone_error != '')
         {
             return false; 
         }else{
 
-            let data = {
-                'fullname':fullname,
+             data = {
+                'firstname':firstname,
+                'lastname':lastname,
                 'state':state,
-                'let':let,
+                'email':email,
                 'city':city,
-                'address':address,
+                'address':address1,
+                'address':address2,
                 'zipcode':zipcode,
                 'phone':phone,
             }
 
             $.ajax({
-                type: "",
+                method: "POST",
                 url: "/proceed-to-pay",
-                data: "data",
-                dataType: "dataType",
+                data: data,
                 success: function(response){
-
+                    alert(response.total_price)
                 }
             });
         }

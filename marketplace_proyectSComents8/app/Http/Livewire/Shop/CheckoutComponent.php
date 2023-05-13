@@ -29,7 +29,6 @@ class CheckoutComponent extends Component
     
     //Function to create an order and validate the data implemented by the client
 
-
     public function placeorder(Request $request){
              ///////////////////////Orders to be made and their data/////////////////////////////////
             //  $this->validate([
@@ -101,6 +100,43 @@ class CheckoutComponent extends Component
         Mail::to($user->email)->send(new OrderPagada($order));
         Carrito::destroy($cartItems);
         return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
+    }
+
+
+    public function razorpaycheck(Request $request){
+
+        $cartItems = Carrito::where('user_id', Auth::id())->get();
+
+        $total_price = 0;
+        foreach($cartItems as $item){
+            $total_price += $item->products->price * $item->prod_qty;
+        }
+
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('firstname');
+        $state = $request->input('state'); 
+        $email = $request->input('email');
+        $city = $request->input('city');
+        $address1  = $request->input('address1');
+        $address2 = $request->input('address2');            
+        $zipcode = $request->input('zipcode');
+        $phone = $request->input('phone');
+        
+        
+
+        return response()->json([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'state' => $state,
+            'email' => $email,
+            'city' => $city,
+            'address1' => $address1,
+            'address2' => $address2,
+            'zipcode' => $zipcode,
+            'phone' => $phone,            
+            'total_price' => $total_price
+        ]);
+
     }
 
 

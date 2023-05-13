@@ -63,6 +63,7 @@ Route::middleware(['cart.is.empty'])->group(function(){
     //Pay Route
     Route::get('checkout', CheckoutComponent::class)->name('checkout');
     Route::post('place-order', [CheckoutComponent::class, 'placeorder'])->name('place.order');
+    Route::post('proceed-to-pay' ,[CheckoutComponent::class, 'razorpaycheck']);
 
     //Payments PayPal
     Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
