@@ -9,6 +9,23 @@ use App\Models\OrderItem;
 class Order extends Model
 {
     use HasFactory;
+    protected $table = 'orders';
+    protected $fillable = [
+            'shipping_fname',
+            'shipping_lname',
+            'shipping_address1',
+            'shipping_address2',
+            'shipping_city',
+            'shipping_state',
+            'shipping_zipcode',
+            'shipping_phone',
+            'payment_method',
+            'status',
+            'email',
+            'notes',
+    ];
+
+
 
     public function items()
     {

@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RatingController;
 use App\Http\Livewire\Shop\About;
 use App\Http\Livewire\Shop\Cart\CartComponent;
-use App\Http\Livewire\Shop\Cart\IndexComponent as CartIndexComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\ContactComponent;
 use App\Http\Livewire\Shop\IndexComponent;
@@ -63,7 +61,8 @@ Route::middleware(['cart.is.empty'])->group(function(){
     
     
     //Pay Route
-    Route::get('/checkout', CheckoutComponent::class)->name('checkout');
+    Route::get('checkout', CheckoutComponent::class)->name('checkout');
+    Route::post('place-order', [CheckoutComponent::class, 'placeorder'])->name('place.order');
 
     //Payments PayPal
     Route::get('/paypal/checkout{order}', [PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');

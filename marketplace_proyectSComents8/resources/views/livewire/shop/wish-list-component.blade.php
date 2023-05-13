@@ -1,4 +1,4 @@
-<section class="h-100 h-custom">
+<main class="main">
   <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
@@ -8,6 +8,9 @@
         </div>
     </div>
 </div>
+<section class="mt-50 mb-50">
+  
+  
   @if($wishlist->count() > 0) 
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -95,6 +98,8 @@
       <h4>No hay productos en su lista de deseados de momento.</h4>
       @endif
 
+    </section>
+  </main>
 {{--Dynamic alert messages--}}
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -133,31 +138,3 @@ text: '{{session('status')}}',
 @endif
 
 
-</section>
-
-{{--Script that removes product from the wish list--}}
-
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
-
-
-<script>
-  $.('.remove-wishlist-item').click(function(e){
-    e.preventDefault();
-
-    let prod_id = $(this).closest('.product_data').find('.prod_id').val();
-
-    $.ajax({
-      method: "POST",
-      url: "delete-wishlist-item",
-      data: {
-        'prod_id': prod_id,
-
-      },
-      success:function(response){
-        window.location.reload();
-        swal("",response.status, "success");
-      }
-    });
-  });
-</script> --}}

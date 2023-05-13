@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use App\Models\Carrito;
 use Closure;
 use Illuminate\Http\Request;
-use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 class CartIsEmpty
 {

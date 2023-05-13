@@ -401,7 +401,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <a href="{{route('checkout')}}" class="btn "> <i class="fi-rs-box-alt mr-10"></i> Proceder a Pagar</a>
+                                <a href="{{route('checkout')}}" class="btn"> <i class="fi-rs-box-alt mr-10"></i> Proceder a Pagar</a>
                             </div>
                         </div>
                     </div>
@@ -414,6 +414,10 @@
     </section>
 
 </main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

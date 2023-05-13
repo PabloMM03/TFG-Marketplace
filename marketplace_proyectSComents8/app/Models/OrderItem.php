@@ -13,9 +13,9 @@ class OrderItem extends Model
     protected $table = 'order_items';
     protected $fillable = [
         'order_id',
-        'product_id',
+        'prod_id',
         'price',
-        'quantity',
+        'qty',
     ];
 
     /**Get the products that owns the OrderItem

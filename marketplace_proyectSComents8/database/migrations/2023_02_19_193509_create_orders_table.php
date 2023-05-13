@@ -17,20 +17,20 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
 
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
+            $table->string('shipping_fname');
+            $table->string('shipping_lname');
+            $table->string('email');
             $table->string('order_number');
             $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending'); //Payment process
-            $table->integer('item_count');
             $table->boolean('is_paid')->default(true); //If paid
             $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('cash_on_delivery'); // Payment method
 
 
             //Fill Form fields
 
-            
-
-            $table->string('shipping_fullname');
-            $table->string('shipping_address');
+            $table->string('shipping_address1');
+            $table->string('shipping_address2');
             $table->string('shipping_city');
             $table->string('shipping_state');
             $table->string('shipping_zipcode');
@@ -39,18 +39,6 @@ return new class extends Migration
             
             //notas
             $table->string('notes')->nullable();
-
-            //Datos de facturacion
-            $table->string('billing_fullname');
-            $table->string('billing_address');
-            $table->string('billing_city');
-            $table->string('billing_state');
-            $table->string('billing_zipcode');
-            $table->string('billing_phone');
-
-            $table->float('total');
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

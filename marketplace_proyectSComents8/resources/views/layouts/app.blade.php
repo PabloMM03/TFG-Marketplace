@@ -105,7 +105,6 @@
       </script>
       
  
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
       <script>
          $(document).ready(function(){
@@ -322,6 +321,17 @@ Swal.fire({
 </script>
 @endif
 
+@if(session('status') == "Pedido realizado con exito")
+<script> 
+Swal.fire({
+  position: 'top-center',
+  icon: 'success',
+  title: '{{session('status')}}',
+  showConfirmButton: false,
+  timer: 2000
+})
+</script>
+@endif
 </body>
 
 <footer class="main">
