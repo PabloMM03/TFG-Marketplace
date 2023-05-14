@@ -13,44 +13,46 @@
                 <div class="col-lg-9">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p> We found <strong class="text-brand">{{$products->count()}}</strong> items for you!</p>
+                            <p> Hemos encontrado <strong class="text-brand">{{$products->total()}}</strong> productos para ti!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
                                 <div class="sort-by-product-wrap">
                                     <div class="sort-by">
-                                        <span><i class="fi-rs-apps"></i>Show:</span>
+                                        <span><i class="fi-rs-apps"></i>Mostrar:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
-                                        <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                        <span> {{$pageSize}} <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
+                                {{--Filtering by quantity of products--}}
                                 <div class="sort-by-dropdown">
                                     <ul>
-                                        <li><a class="active" href="#">50</a></li>
-                                        <li><a href="#">100</a></li>
-                                        <li><a href="#">150</a></li>
-                                        <li><a href="#">200</a></li>
-                                        <li><a href="#">All</a></li>
+                                        <li><a class="{{$pageSize == 12 ? 'active': ''}}" href="#" wire:click.prevent="changePageSize(12)">12</a></li>
+                                        <li><a class="{{$pageSize == 15 ? 'active': ''}}" href="#" wire:click.prevent="changePageSize(15)">15</a></li>
+                                        <li><a class="{{$pageSize == 25 ? 'active': ''}}" href="#" wire:click.prevent="changePageSize(25)">25</a></li>
+                                        <li><a class="{{$pageSize == 32 ? 'active': ''}}" href="#" wire:click.prevent="changePageSize(32)">32</a></li>
+                                        <li><a class="{{$pageSize == 150 ? 'active': ''}}" href="#" wire:click.prevent="changePageSize(150)">Todos</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="sort-by-cover">
                                 <div class="sort-by-product-wrap">
                                     <div class="sort-by">
-                                        <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                        <span><i class="fi-rs-apps-sort"></i>Ordenar:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
-                                        <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                        <span> Por defecto <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
+
+                                {{--Filtering by price of products--}}
                                 <div class="sort-by-dropdown">
                                     <ul>
-                                        <li><a class="active" href="#">Featured</a></li>
-                                        <li><a href="#">Price: Low to High</a></li>
-                                        <li><a href="#">Price: High to Low</a></li>
-                                        <li><a href="#">Release Date</a></li>
-                                        <li><a href="#">Avg. Rating</a></li>
+                                        <li><a class="{{$orderBy == 'Por defecto' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Por defecto')">Por defecto</a></li>
+                                        <li><a class="{{$orderBy == 'Price: Low to High' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Price: Low to High')">Precio: Menor a Mayor</a></li>
+                                        <li><a class="{{$orderBy == 'Price: High to Low' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Price: High to Low')">Precio: Mayor a Menor</a></li>
+                                        <li><a class="{{$orderBy == 'Por más nuevos' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Por más nuevos')">Por más nuevos</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -122,7 +124,6 @@
                                             <i class="fi-rs-shopping-bag-add"></i>
                                         </button>   
                                         @endif
-                                        {{-- <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i class="fi-rs-shopping-bag-add"></i></a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -132,16 +133,7 @@
                     </div>
                     <!--pagination-->
                     <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">16</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="fi-rs-angle-double-small-right"></i></a></li>
-                            </ul>
-                        </nav>
+                        {{$products->links()}}
                     </div>
                 </div>
                 <div class="col-lg-3 primary-sidebar sticky-sidebar">
@@ -162,15 +154,15 @@
                     <!-- Fillter By Price -->
                     <div class="sidebar-widget price_range range mb-30">
                         <div class="widget-header position-relative mb-20 pb-10">
-                            <h5 class="widget-title mb-10">Fill by price</h5>
+                            <h5 class="widget-title mb-10">Filtrar por precio</h5>
                             <div class="bt-1 border-color-1"></div>
                         </div>
                         <div class="price-filter">
                             <div class="price-filter-inner">
-                                <div id="slider-range"></div>
+                                <div id="slider-range" wire:ignore></div>
                                 <div class="price_slider_amount">
                                     <div class="label-input">
-                                        <span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price">
+                                        <span>Rango:</span> <span class="text-info">{{$min_value}}€</span> - <span class="text-info">{{$max_value}}€</span>               
                                     </div>
                                 </div>
                             </div>
@@ -236,6 +228,35 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>       
     </section>
 </main>
+
+@push('scripts')
+    
+
+<script>
+/*---------------------
+    Price Range
+----------------------*/
+
+let sliderrange = $('#slider-range');
+let amountprice = $('#amount');
+
+$(function(){
+    sliderrange.slider({
+        range:true,
+        min:0,
+        max:10000,
+        values: [0,10000],
+        slide: function(event, ui){
+            //amountprice.val("€" + ui.values[0] + " - €" + ui.values[1]);
+            @this.set('min_value', ui.values[0]);
+            @this.set('max_value', ui.values[1]);
+        }
+    });
+});
+
+
+</script>
+@endpush

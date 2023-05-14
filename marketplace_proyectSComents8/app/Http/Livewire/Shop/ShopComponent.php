@@ -14,7 +14,14 @@ use Livewire\WithPagination;
 class ShopComponent extends Component
 {
     use WithPagination;
+    protected $paginationTheme = "bootstrap";
     public $search;
+
+    public $min_value = 0;
+    public $max_value = 10000;
+
+    public $pageSize = 12;
+    public $orderBy = "Por defecto";
 
     public function updatingSearch()
     {
@@ -26,11 +33,23 @@ class ShopComponent extends Component
 
         /**All products */
         
-         $products = Product::where('status', 2)
-                             ->where('name', 'LIKE','%'.$this->search . '%')
-                             ->orWhere('price', 'LIKE', '%'.$this->search.'%')
-                             ->latest('id')
-                             ->paginate(12);
+        if($this->orderBy == 'Price: Low to High')
+        {
+            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->orderBy('price', 'ASC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+
+        }else if($this->orderBy == 'Price: High to Low')
+        {
+            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->orderBy('price', 'ASC')->orderBy('price', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+
+        }else if($this->orderBy == 'Por más nuevos')
+        {
+            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->orderBy('price', 'ASC')->orderBy('created_at', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+
+        }else
+        {
+            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->where('status', 2)->latest('id')->paginate($this->pageSize);
+        }
+
 
         /*Featured products */
         $featured_products = Product::where('status', 2)
@@ -42,16 +61,33 @@ class ShopComponent extends Component
                         ->where('status', 2)
                         ->take(3)->get();
 
-                        $categories = Category::all();
+        $categories = Category::all();
 
-        return view('livewire.shop.shop-component',compact('products', 'featured_products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
+                        
+
+        return view('livewire.shop.shop-component', compact('products', 'featured_products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
 
     }
 
-    public function add_to_cart(Product $product){
-            // dd($product); -< comprobar
+    /**
+     * Sorting system by quantity of products
+     */
+    public function changePageSize($size){
+        $this->pageSize = $size;
+    }
 
-                // add the product to cart 
+    /**
+     * Sorting system by price
+     */
+    public function changeOrderBy($order){
+        $this->orderBy = $order;
+    }
+
+    /**
+     * Function that allows us to add to cart
+     */
+    public function add_to_cart(Product $product){
+
                 //Check that the user is logged in
                 if (!auth()->check()) {
                     return redirect()->guest('login');

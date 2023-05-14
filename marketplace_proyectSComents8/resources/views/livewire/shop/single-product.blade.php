@@ -41,7 +41,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="/" rel="nofollow">Inicio</a>
-                <span></span> Product details
+                <span></span> Detalles del producto
                 <span></span> {{$product->name}}
             </div>
         </div>
