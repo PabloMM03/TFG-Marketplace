@@ -33,40 +33,35 @@ class ShopComponent extends Component
     {
 
         /**All products */
-        
+        /**
+         * Filter by price and order
+         */
         if($this->orderBy == 'Price: Low to High')
         {
             $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->where('status', 2)->latest('id')->paginate($this->pageSize);
 
         }else if($this->orderBy == 'Price: High to Low')
         {
-            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->orderBy('price', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
 
         }else if($this->orderBy == 'Por más nuevos')
         {
-            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->orderBy('created_at', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('created_at', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
 
         }else
         {
             $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->where('status', 2)->latest('id')->paginate($this->pageSize);
         }
 
-
-        /*Featured products */
-        $featured_products = Product::where('status', 2)
-                                    ->where('trending' ,2)
-                                    ->take(15)->get();
-
          /**Products news */                           
-        $products_news = Product::latest()
+        $products_news = Product::latest('id')
                         ->where('status', 2)
                         ->take(3)->get();
 
-        $categories = Category::all();
+        $categories = Category::orderBy('name', 'ASC')->get();
+    
 
-                        
-
-        return view('livewire.shop.shop-component', compact('products', 'featured_products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
+        return view('livewire.shop.shop-component', compact('products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
 
     }
 

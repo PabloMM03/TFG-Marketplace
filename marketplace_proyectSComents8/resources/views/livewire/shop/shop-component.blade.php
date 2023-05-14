@@ -42,7 +42,7 @@
                                         <span><i class="fi-rs-apps-sort"></i>Ordenar:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
-                                        <span> Por defecto <i class="fi-rs-angle-small-down"></i></span>
+                                        <span> {{$orderBy}} <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
 

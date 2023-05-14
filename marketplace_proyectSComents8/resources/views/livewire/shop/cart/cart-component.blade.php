@@ -56,7 +56,8 @@
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                         <td>
                                             <input type="hidden" name="prod_id" value="{{$item->products->id}}">
-                                            <button type="submit" class="action-btn hover-up delete-cart-item" aria-label="Delete To Cart"><i class="fi-rs-trash"></i></button>
+                                            <a href="#" type="hidden" class="action-btn hover-up delete-cart-item text-muted" aria-label="Delete To Cart" onclick="event.preventDefault(); this.closest('form').submit();"><i class="fi-rs-trash"></i></a>
+
                                         </td>
                                   </div>                                        
                                 </tr>

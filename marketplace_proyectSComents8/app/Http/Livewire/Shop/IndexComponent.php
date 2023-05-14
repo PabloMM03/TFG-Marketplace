@@ -4,11 +4,9 @@ namespace App\Http\Livewire\Shop;
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Wishlist;
 use Livewire\Component;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class IndexComponent extends Component
@@ -34,7 +32,7 @@ class IndexComponent extends Component
                             //  ->paginate(50);
 
         /*Featured products */
-        $featured_products = Product::where('status', 2)
+        $popular_products = Product::where('status', 2)
                                     ->where('trending' ,2)
                                     ->take(8)->get();
 
@@ -45,7 +43,7 @@ class IndexComponent extends Component
 
         
 
-        return view('livewire.shop.index-component',compact('products', 'featured_products', 'products_news'))->extends('layouts.app')->section('content');
+        return view('livewire.shop.index-component',compact('products', 'popular_products', 'products_news'))->extends('layouts.app')->section('content');
 
     }
     

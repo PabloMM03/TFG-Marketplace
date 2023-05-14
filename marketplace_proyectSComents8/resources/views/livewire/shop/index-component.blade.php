@@ -242,13 +242,13 @@
       <div class="tab-header">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Featured</button>
+                  <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Destacados</button>
               </li>
               <li class="nav-item" role="presentation">
                   <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Popular</button>
               </li>
               <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">New added</button>
+                  <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">Nuevos</button>
               </li>
           </ul>
           <a href="#" class="view-more d-none d-md-flex">View More<i class="fi-rs-angle-double-small-right"></i></a>
@@ -343,7 +343,7 @@
           <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
               <div class="row product-grid-4">
 
-                @foreach ($featured_products as $item)
+                @foreach ($popular_products as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
                     <div class="product-cart-wrap mb-30">
                         <div class="product-img-action-wrap">
@@ -650,7 +650,7 @@
                         <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
+                            <button type="hidden" class="action-btn small hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                         </form>
                           <a aria-label="Compare" class="action-btn small hover-up" href="/" tabindex="0"><i class="fi-rs-shuffle"></i></a>
                       </div>
@@ -686,7 +686,7 @@
 {{--Nuevas marcas--}}
 <section class="section-padding">
   <div class="container">
-      <h3 class="section-title mb-20 wow fadeIn animated"><span>Featured</span> Brands</h3>
+      <h3 class="section-title mb-20 wow fadeIn animated"><span>Marcas</span> Destacadas</h3>
       <div class="carausel-6-columns-cover position-relative wow fadeIn animated">
           <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-3-arrows"></div>
           <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
