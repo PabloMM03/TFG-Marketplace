@@ -17,12 +17,13 @@ class ShopComponent extends Component
     protected $paginationTheme = "bootstrap";
     public $search;
 
-    public $min_value = 0;
-    public $max_value = 10000;
-
+   
     public $pageSize = 12;
     public $orderBy = "Por defecto";
 
+    public $min_value = 0;
+    public $max_value = 20000;
+    
     public function updatingSearch()
     {
         $this->resetPage();
@@ -35,19 +36,19 @@ class ShopComponent extends Component
         
         if($this->orderBy == 'Price: Low to High')
         {
-            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->orderBy('price', 'ASC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->where('status', 2)->latest('id')->paginate($this->pageSize);
 
         }else if($this->orderBy == 'Price: High to Low')
         {
-            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->orderBy('price', 'ASC')->orderBy('price', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->orderBy('price', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
 
         }else if($this->orderBy == 'Por más nuevos')
         {
-            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->orderBy('price', 'ASC')->orderBy('created_at', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->orderBy('created_at', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
 
         }else
         {
-            $products = Product::whereBetween('price', [$this->min_value, $this->max_value])->where('status', 2)->latest('id')->paginate($this->pageSize);
+            $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->where('status', 2)->latest('id')->paginate($this->pageSize);
         }
 
 

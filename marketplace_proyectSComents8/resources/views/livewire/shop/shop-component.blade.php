@@ -158,11 +158,11 @@
                             <div class="bt-1 border-color-1"></div>
                         </div>
                         <div class="price-filter">
-                            <div class="price-filter-inner">
+                            <div class="price-filter-inner" >
                                 <div id="slider-range" wire:ignore></div>
                                 <div class="price_slider_amount">
                                     <div class="label-input">
-                                        <span>Rango:</span> <span class="text-info">{{$min_value}}€</span> - <span class="text-info">{{$max_value}}€</span>               
+                                        <span>Rango:</span> <span >{{$min_value}}€</span> - <span >{{$max_value}}</span> 
                                     </div>
                                 </div>
                             </div>
@@ -232,31 +232,29 @@
     </section>
 </main>
 
-@push('scripts')
-    
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
-/*---------------------
-    Price Range
-----------------------*/
-
-let sliderrange = $('#slider-range');
-let amountprice = $('#amount');
-
-$(function(){
-    sliderrange.slider({
-        range:true,
-        min:0,
-        max:10000,
-        values: [0,10000],
-        slide: function(event, ui){
-            //amountprice.val("€" + ui.values[0] + " - €" + ui.values[1]);
-            @this.set('min_value', ui.values[0]);
-            @this.set('max_value', ui.values[1]);
-        }
+    /*---------------------
+        Price Range
+    ----------------------*/
+    
+    let sliderrange = $('#slider-range');
+    let amountprice = $('#amount');
+    
+    $(function(){
+        sliderrange.slider({
+            range:true,
+            min: 0,
+            max: 20000,
+            values: [0, 20000],
+            slide: function(event, ui){
+                //amountprice.val("€" + ui.values[0] + " - €" + ui.values[1]);
+                @this.set('min_value',ui.values[0]);
+                @this.set('max_value',ui.values[1]);
+            }
+        });
     });
-});
-
-
-</script>
-@endpush
+    
+    
+    </script>
