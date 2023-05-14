@@ -15,8 +15,6 @@ use Livewire\WithPagination;
 
 class SingleProduct extends Component
 {
-    use WithPagination;
-
     public $search;
     public $product;
 
@@ -52,6 +50,7 @@ class SingleProduct extends Component
                                 ->where('status', 2)
                                 ->take(3)->get();
 
+        //Products related
         $this->relacionados = Product::where('category_id', $product->category_id)
                                       ->where('status', 2)
                                       ->where('id', '!=', $product->id)
@@ -80,7 +79,6 @@ class SingleProduct extends Component
      */
     public function category(Category $category){
      $products = Product::where('category_id', $category->id)
-                        ->where('name', 'LIKE','%'.$this->search . '%')
                         ->where('status', 2)
                         ->latest('id')
                         ->paginate(20);
@@ -91,7 +89,6 @@ class SingleProduct extends Component
     /**Filter by tag */
     public function tag(Tag $tag){
         $products =  $tag->products()->where('status',2)
-                                ->where('name', 'LIKE','%'.$this->search . '%') 
                                 ->latest('id')
                                 ->paginate(20);
     
@@ -103,7 +100,6 @@ class SingleProduct extends Component
      */
 
     public function add_to_cart(Product $product){
-        // dd($product); -> comprobar
                 //Check that the user is logged in
                 if (!auth()->check()) {
                     return redirect()->guest('login');
@@ -147,10 +143,11 @@ class SingleProduct extends Component
         if(auth()->check()){
             $product_id = $request->input('product_id');
             $user_id = Auth::id();
-    
+
+            //It is checked if it is already on the wish list   
             $existingWish = Wishlist::where('user_id', $user_id)->where('prod_id', $product_id)->first();
             if($existingWish){
-                // El producto ya está en la lista de deseos del usuario
+                //  The product is already on the user's wish list
                 return redirect()->back()->with('status', "El producto ya está en su Wishlist");
             }else{
 

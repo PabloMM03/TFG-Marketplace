@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                {{--Filtering by price of products--}}
+                                {{--Order by price of products--}}
                                 <div class="sort-by-dropdown">
                                     <ul>
                                         <li><a class="{{$orderBy == 'Por defecto' ? 'active': ''}}" href="#" wire:click.prevent="changeOrderBy('Por defecto')">Por defecto</a></li>
@@ -232,6 +232,8 @@
     </section>
 </main>
 
+{{--Script que nos permitira filtrar por precio mediante un slider dinamico --}}
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
@@ -255,6 +257,5 @@
             }
         });
     });
-    
     
     </script>
