@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Shop;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Wishlist;
-use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -79,36 +78,7 @@ class ShopComponent extends Component
         $this->orderBy = $order;
     }
 
-    /**
-     * Function that allows us to add to cart
-     */
-    public function add_to_cart(Product $product){
-
-                //Check that the user is logged in
-                if (!auth()->check()) {
-                    return redirect()->guest('login');
-                }else{
-
-                    Cart::session(auth()->id())->add(array( //Obtenemos el usuario loguedado
-                        'id' => $product->id,
-                        'name' => $product->name,
-                        'price' => $product->price,
-                        'image' => $product->product_image,
-                        'quantity' => 1,
-                        'attributes' => array(),
-                        'associatedModel' => $product
-                    ));
-
-                    //Mensaje de confirmacion
-                    $this->emit('message', 'El producto se ha añadido correctemente.');
-                    $this->emitTo('shop.cart-component', 'add_to_cart');   
-         
-                }
-
-
-    }
-
-
+   
     /**
      * Method to add products to the wishlist
      */

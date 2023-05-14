@@ -12,88 +12,89 @@
   
   
   @if($wishlist->count() > 0) 
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12">
-            <div class="card card-registration card-registration-2 product_data" style="border-radius: 15px;">
-              <div class="card-body p-0">
-                <div class="row g-0">
-                  <div class="col-lg-8">
-                    <div class="p-5">
+  <div class="container">
+    <div class="row product-grid-4">
 
-                      <div class="d-flex justify-content-between align-items-center mb-5">
-                        <h1 class="fw-bold mb-0 text-black">Lista de deseados</h1>
-                      </div>
-                      <hr class="my-4">
-
-                        {{--Foreach that goes through all the data of a product and then shows them little by little--}}
-                      <div class="row mb-4 d-flex justify-content-between align-items-center">
-    
-                          @foreach ($wishlist->sortBy('id') as $key => $item)
-                      <div class="col-md-2 my-auto">
-                        <input type="hidden" class="prod_id" value="{{$item->prod_id}}">
-                        <a style="text-decoration: none" href="{{route('publicaciones.show',$item->products)}}">
-                        <img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
-                        </a> 
-                           {{--Shows the products that are popular--}}
-                        <div class="info">
-                            @if($item->products->trending == 2)
-                            <label class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-                            </label>                                                  
-                            @endif
-                        </div>                
-                     </div>
-                        <div class="col-md-2 my-auto">
-                          <h6 class="text-muted" style="text-align: center">{{$item->products->name}}</h6>
-                        </div>
-                        {{--Shows if products are in stock--}}
-                        <div class="col-md-2 my-auto " style="text-align: center">
-                            @if($item->products->qty > 0)
-                            <label class="badge bg-success">In stock</label>
-                            @else
-                            <label class="badge bg-danger">Out of stock</label>
-                            @endif
-                        </div>
-                        <div class="col-md-3 my-auto">
-                            @if($item->products->qty >0)
-                            <button class="btn btn-outline-dark flex-shrink-0 formulario-add" wire:click="add_to_cart({{$item->products->id}})" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
-                            @else
-                            <button class="btn btn-outline-dark flex-shrink-0 disabled" wire:click="add_to_cart({{$item->products->id}})" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>   
-                            @endif
-                        </div>
-                        <div class="col-md-2 my-auto">                     
-                        <form action="{{url('delete-wishlist-item')}}" method="POST" style="display: inline;">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{$item->products->id}}">
-                            <button type="submit" class="action-btn hover-up remove-wishlist-item" aria-label="Delete To Wishlist"><i class="bi bi-trash"></i></button>
-                        </form>                       
-                        </div>
-                        <div class="mb-4 mr-4"></div>
-                        @endforeach
-                      </div>
-    
-                      <hr class="my-4">
-    
-                       <div class="pt-5">
-                        <h6 class="mb-0"><a style="text-decoration: none" href="/" class="text-body"><i
-                              class="bi-cart-fill me-1"></i>Back to shop</a></h6>
-                      </div>
-                    </div> 
+      @foreach ($wishlist->sortBy('id') as $key => $item)
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
+          <div class="product-cart-wrap mb-30">
+              <div class="product-img-action-wrap">
+                  <div class="product-img product-img-zoom">
+                      <a href="{{route('publicaciones.show',$item)}}">
+                          <img class="default-img" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                          <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="">
+                      </a>
                   </div>
-                  
-                </div>
+                  <div class="product-action-1">
+                    <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$item)}}"><i class="fi-rs-eye"></i></a>
+                    {{--Add product to Wishlist--}}
+                      <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
+                          @csrf
+                          <input type="hidden" name="product_id" value="{{$item->products->id}}">
+                          <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
+                      </form>
+                      <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
+                  </div>
+                  {{--Check if the product is popular--}}
+                  <div class="product-badges product-badges-position product-badges-mrg">
+                    @if($item->products->trending == 2)
+                    <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
+                    </span>    
+                    @elseif($item->products->id == 'latest')
+                    <span class="new">New</span>                                  
+                    @endif
+                      {{-- <span class="hot">Hot</span> --}}
+                  </div>
               </div>
-            </div>
+              <div class="product-content-wrap">
+                  <div class="product-category">
+                      <a href="/">Clothing</a>
+                  </div>
+                  <h2><a href="{{route('publicaciones.show',$item)}}">{{$item->products->name}}</a></h2>
+                  <div class="rating-result" title="90%">
+                      <span>
+                          <span>90%</span>
+                      </span>
+                      
+                  </div>
+                  {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
+                however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
+                <input type="hidden" value="{{$item->products->id}}" class="prod_id">
+                <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
+                
+                      {{--Check that the product is in stock--}}
+                  @if($item->products->qty > 0)
+                  <label class="badge bg-success">In stock</label>
+                  @else
+                  <label class="badge bg-danger">Out of stock</label>
+                  @endif
+                  <div class="product-price">
+                      <span>{{$item->products->price}} €</span>
+                      <span class="old-price">@if($item->products->original_price){{$item->products->original_price}} € @else {{$item->products->original_price = ""}}@endif </span>
+                  </div>
+                  <div class="product-action-1 show">
+                    {{--Remove product to Wishlist--}}
+                    <form action="{{url('delete-wishlist-item')}}" method="POST" style="display: inline;">
+                      @csrf
+                      <input type="hidden" name="product_id" value="{{$item->products->id}}">
+                      <button type="hidden" class="action-btn hover-up remove-wishlist-item" aria-label="Remove To Wishlist"><i class="fi-rs-trash"></i></button>
+                    </form>
+                    {{--Add product to cart--}}
+                    @if($item->products->qty >0)
+                    <button type="button" class="action-btn hover-up addToCartBtn" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
+                      @else
+                      <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
+                          <i class="fi-rs-shopping-bag-add"></i>
+                      </button>   
+                      @endif
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
 
+      @endforeach
+  </div>
+</div>
       @else
       <h4>No hay productos en su lista de deseados de momento.</h4>
       @endif

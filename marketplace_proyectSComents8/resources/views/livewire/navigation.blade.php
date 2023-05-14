@@ -362,7 +362,7 @@
                                       @can('admin.home')
                                       <li><a href="{{route('admin.home')}}">Admin Panel</a></li>
                                       @endcan
-                                      <li><a href="#">Products</a></li>
+                                      <li><a href="{{url('shop')}}">Productos</a></li>
                                    
                                       {{-- Accion de logout--}}
                                         <form id="logout-form"  action="{{ route('logout') }}" method="POST">

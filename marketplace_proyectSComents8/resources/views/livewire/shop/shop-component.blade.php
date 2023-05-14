@@ -115,15 +115,13 @@
                                         <span class="old-price">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
                                     </div>
                                     <div class="product-action-1 show">
-                                      @if($product->qty >0)
-                                        <button class="action-btn hover-up" wire:click="add_to_cart({{$product->id}})" type="button" aria-label="Add To Cart">
-                                            <i class="fi-rs-shopping-bag-add"></i>
-                                        </button>
-                                        @else
-                                        <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
-                                            <i class="fi-rs-shopping-bag-add"></i>
-                                        </button>   
-                                        @endif
+                                        @if($product->qty >0)
+                                        <button type="button" class="action-btn hover-up addToCartBtn" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
+                                         @else
+                                         <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
+                                             <i class="fi-rs-shopping-bag-add"></i>
+                                         </button>   
+                                         @endif
                                     </div>
                                 </div>
                             </div>
@@ -233,6 +231,7 @@
 </main>
 
 {{--Script que nos permitira filtrar por precio mediante un slider dinamico --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -259,3 +258,5 @@
     });
     
     </script>
+
+    

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shop;
 
+use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,8 +10,14 @@ use Livewire\WithPagination;
 class ProducRecentComponent extends Component
 {
     use WithPagination;
-    
-    public $search;
+    protected $paginationTheme = "bootstrap";
+
+   
+    public $pageSize = 12;
+    public $orderBy = "Por defecto";
+
+    public $min_value = 0;
+    public $max_value = 20000;
 
     public function updatingSearch()
     {
@@ -21,10 +28,50 @@ class ProducRecentComponent extends Component
     //Collect the most recent products created
     public function render()
     {
-        $recents = Product::latest()
-                            ->where('status', 2)
-                            ->where('name', 'LIKE','%'.$this->search . '%')
-                            ->take(20)->get();
-        return view('livewire.shop.produc-recent-component', compact('recents'))->extends('layouts.app')->section('content');
+
+        /**
+         * Filter by price and order
+         */
+        if($this->orderBy == 'Price: Low to High')
+        {
+            $recents = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+
+        }else if($this->orderBy == 'Price: High to Low')
+        {
+            $recents = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+
+        }else if($this->orderBy == 'Por más nuevos')
+        {
+            $recents = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('created_at', 'DESC')->where('status', 2)->latest('id')->paginate($this->pageSize);
+
+        }else
+        {
+            $recents = Product::whereBetween('price',[$this->min_value,$this->max_value])->where('status', 2)->latest('id')->paginate($this->pageSize);
+        }
+
+         /**Products news */                           
+        $products_news = Product::latest('id')
+                        ->where('status', 2)
+                        ->take(3)->get();
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+
+        return view('livewire.shop.produc-recent-component', compact('recents', 'products_news', 'categories'))->extends('layouts.app')->section('content');
+    }
+
+
+     /**
+     * Sorting system by quantity of products
+     */
+    public function changePageSize($size){
+        $this->pageSize = $size;
+    }
+
+    /**
+     * Sorting system by price
+     */
+    public function changeOrderBy($order){
+        $this->orderBy = $order;
     }
 }

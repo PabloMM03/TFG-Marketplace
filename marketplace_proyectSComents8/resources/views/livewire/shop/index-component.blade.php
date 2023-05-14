@@ -286,7 +286,7 @@
                                 @if($product->trending == 2)
                                 <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
                                 </span>    
-                                @elseif($product->id == 'latest')
+                                @elseif($product->creates_at == 'latest')
                                 <span class="new">New</span>                                  
                                 @endif
                                   {{-- <span class="hot">Hot</span> --}}
