@@ -47,11 +47,11 @@
 
 {{--NAV--}}
 
-  <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+  <div class="header-middle d-none d-lg-block">
       <div class="container">
           <div class="header-wrap">
-              <div class="logo logo-width-1">
-                  <a href="/"><img src="{{asset('assets/imgs/logo/logo.png')}}" alt="logo"></a>
+              <div class="logo ">
+                  <a href="/"><img src="{{asset('assets/imgs/logo/Mi proyecto2.png')}}" alt="logo"></a>
               </div>
               <div class="header-right">
                   <div class="search-style-1">
@@ -87,7 +87,7 @@
       <div class="container">
           <div class="header-wrap header-space-between position-relative">
               <div class="logo logo-width-1 d-block d-lg-none">
-                  <a href="/"><img src="{{asset('assets/imgs/logo/logo.png')}}" alt="logo"></a>
+                  <a href="/"><img src="{{asset('assets/imgs/logo/Mi proyecto2.png')}}" alt="logo"></a>
               </div>
 
               <div class="header-nav d-none d-lg-flex">
@@ -456,7 +456,7 @@
   <div class="mobile-header-wrapper-inner">
       <div class="mobile-header-top">
           <div class="mobile-header-logo">
-              <a href="/"><img src="{{asset('assets/imgs/logo/logo.png')}}" alt="logo"></a>
+              <a href="/"><img src="{{asset('assets/imgs/logo/Mi proyecto2.png')}}" alt="logo"></a>
           </div>
           <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
               <button class="close-style search-close">
