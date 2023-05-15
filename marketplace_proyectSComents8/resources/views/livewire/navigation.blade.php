@@ -301,7 +301,7 @@
                                                       <span class="new-price text-success">Save to 50%</span>
                                                   </div>
                                                   <div class="menu-banner-btn">
-                                                      <a href="#">Shop now</a>
+                                                      <a href="{{url('shop')}}">Shop now</a>
                                                   </div>
                                               </div>
                                               <div class="menu-banner-discount">
@@ -339,7 +339,7 @@
                                                     <span class="new-price text-success">Save to 50%</span>
                                                 </div>
                                                 <div class="menu-banner-btn">
-                                                    <a href="#">Shop now</a>
+                                                    <a href="{{url('shop')}}">Shop now</a>
                                                 </div>
                                             </div>
                                             <div class="menu-banner-discount">
