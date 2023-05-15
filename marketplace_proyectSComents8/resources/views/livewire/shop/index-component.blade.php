@@ -285,11 +285,11 @@
                               <div class="product-badges product-badges-position product-badges-mrg">
                                 @if($product->trending == 2)
                                 <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-                                </span>    
-                                @elseif($product->creates_at == 'latest')
-                                <span class="new">New</span>                                  
+                                </span>
+                                @elseif($product->qty == 0)
+                                <span class="sale">Sale</span>                                                       
                                 @endif
-                                  {{-- <span class="hot">Hot</span> --}}
+                                <span class="hot">Hot</span>
                               </div>
                           </div>
                           <div class="product-content-wrap">
@@ -357,8 +357,8 @@
                               @if($item->trending == 2)
                               <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
                               </span>    
-                              @elseif($item->id == 'latest')
-                              <span class="new">New</span>                                  
+                              @elseif($product->qty == 0)
+                                <span class="sale">Sale</span>                                      
                               @endif
                                 {{-- <span class="hot">Hot</span> --}}
                             </div>
@@ -424,11 +424,12 @@
                             <div class="product-badges product-badges-position product-badges-mrg">
                               @if($product_new->trending == 2)
                               <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-                              </span>    
-                              @elseif($product_new->id == 'latest')
-                              <span class="new">New</span>                                  
+                              </span>  
+                              @elseif($product->qty == 0)
+                                <span class="sale">Sale</span>        
                               @endif
                                 {{-- <span class="hot">Hot</span> --}}
+                                <span class="new">New</span> 
                             </div>
                         </div>
                         <div class="product-content-wrap">

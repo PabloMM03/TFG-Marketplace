@@ -553,7 +553,9 @@
                                                   <div class="info">
                                                     @if($relacionado->trending == 2)
                                                     <span class="badge bg-warning mt-2" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
-                                                    </span>                                                  
+                                                    </span>   
+                                                    @elseif($relacionado->qty == 0)
+                                                    <span class="sale">Sale</span>                                                   
                                                     @endif
                                                 </div>
                                                 </div>

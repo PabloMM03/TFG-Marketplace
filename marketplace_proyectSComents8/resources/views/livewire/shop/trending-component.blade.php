@@ -79,7 +79,7 @@
                                         </form>
       
                                         {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
-                                        <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                       @if($product->trending == 2)
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop.html">Clothing</a>
+                                        <a href="/">Clothing</a>
                                     </div>
                                     <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
                                     <div class="rating-result" title="90%">

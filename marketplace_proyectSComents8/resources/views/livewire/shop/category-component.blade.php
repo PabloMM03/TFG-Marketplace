@@ -5,7 +5,7 @@
         <h1 class="uppercase text-center text-3xl font-bold">Categoria: {{$category->name}}</h1>
 
         @if ($products->count())  
-        <div class="container px-4 px-lg-5 mt-5">
+        <div class="container ">
     
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
