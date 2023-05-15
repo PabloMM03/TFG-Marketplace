@@ -305,8 +305,6 @@
                               </div>
                               {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                             however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                            <input type="hidden" value="{{$product->id}}" class="prod_id">
-                             <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
                              
                                   {{--Check that the product is in stock--}}
                               @if($product->qty > 0)
@@ -318,16 +316,7 @@
                                   <span>{{$product->price}} €</span>
                                   <span class="old-price">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span>
                               </div>
-                              <div class="product-action-1 show">
-                                {{--Add product to cart--}}
-                                @if($product->qty >0)
-                                 <button type="button" class="action-btn hover-up addToCartBtn" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
-                                  @else
-                                  <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
-                                      <i class="fi-rs-shopping-bag-add"></i>
-                                  </button>   
-                                  @endif
-                              </div>
+                             
                           </div>
                       </div>
                   </div>
@@ -376,7 +365,7 @@
                         </div>
                         <div class="product-content-wrap">
                             <div class="product-category">
-                                <a href="shop.html">Clothing</a>
+                                <a href="/">Clothing</a>
                             </div>
                             <h2><a href="{{route('publicaciones.show',$item)}}">{{$item->name}}</a></h2>
                             <div class="rating-result" title="90%">
@@ -387,9 +376,6 @@
                             </div>
                             {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                           however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                          <input type="hidden" value="{{$product->id}}" class="prod_id">
-                          <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
-
                              
                             @if($item->qty > 0)
                             <label class="badge bg-success">In stock</label>
@@ -400,18 +386,7 @@
                                 <span>{{$item->price}} €</span>
                                 <span class="old-price">@if($item->original_price){{$item->original_price}} € @else {{$item->original_price = ""}}@endif </span>
                             </div>
-                            <div class="product-action-1 show">
-                              @if($item->qty >0)
-                                <button class="action-btn hover-up addToCartBtn"type="button" aria-label="Add To Cart">
-                                    <i class="fi-rs-shopping-bag-add"></i>
-                                </button>
-                                @else
-                                <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
-                                    <i class="fi-rs-shopping-bag-add"></i>
-                                </button>   
-                                @endif
-                                {{-- <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i class="fi-rs-shopping-bag-add"></i></a> --}}
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -469,10 +444,7 @@
                             </div>
                             {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                           however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
-                          <input type="hidden" value="{{$product->id}}" class="prod_id">
-                          <input type="hidden" name="quantity" class="form-control qty-input text-center" value="1">
-
-                             
+               
                             @if($product_new->qty > 0)
                             <label class="badge bg-success">In stock</label>
                             @else
@@ -481,18 +453,6 @@
                             <div class="product-price">
                                 <span>{{$product_new->price}} €</span>
                                 <span class="old-price">@if($product_new->original_price){{$product_new->original_price}} € @else {{$product_new->original_price = ""}}@endif </span>
-                            </div>
-                            <div class="product-action-1 show">
-                              @if($product_new->qty >0)
-                                <button class="action-btn hover-up addToCartBtn" type="button" aria-label="Add To Cart">
-                                    <i class="fi-rs-shopping-bag-add"></i>
-                                </button>
-                                @else
-                                <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
-                                    <i class="fi-rs-shopping-bag-add"></i>
-                                </button>   
-                                @endif
-                                {{-- <a aria-label="Add To Cart" class="action-btn hover-up" href="cart.html"><i class="fi-rs-shopping-bag-add"></i></a> --}}
                             </div>
                         </div>
                     </div>
@@ -504,7 +464,7 @@
               </div>
               <!--End product-grid-4-->
           </div>
-          
+  </div>
 </section>
 
 
@@ -716,7 +676,7 @@
   </div>
 </section>
 
-
+</main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 </body>

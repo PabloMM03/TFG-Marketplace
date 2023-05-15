@@ -187,11 +187,11 @@
                                         <div class="product-extra-link2">
                                             @if($product->qty >0)
                                             <button class="btn btn-outline-dark flex-shrink-0 addToCartBtn" type="button">
-                                                Add to cart
+                                                Añadir al carrito
                                             </button>
                                             @else
                                             <button class="btn btn-outline-dark flex-shrink-0 disabled" type="button">
-                                                Add to cart
+                                                Comprar
                                             </button>   
                                             @endif
                                             <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
@@ -654,7 +654,6 @@
 {{--Dynamic alert messages--}}
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 
 
 

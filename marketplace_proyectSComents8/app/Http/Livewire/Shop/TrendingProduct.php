@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Shop;
 use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
-use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\WithPagination;
 
 class TrendingProduct extends Component
