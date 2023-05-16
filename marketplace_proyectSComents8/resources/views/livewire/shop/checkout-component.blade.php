@@ -278,7 +278,7 @@
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=AVCGsMPCx90C2V8xqRjjPTphNI-XbCaJskx4rkLzCAX4fKACmGxSWl5YeLxGTTMzOhDS38kGigcblLXA"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AV4epPFuK55nWaQ6GMswIhe_DZxPupiPXOxpYkVh4G_IkSg3nldSTI1AWdbFJddZiw1XTeuf8F0jsuvg"></script>
 
 <script>
     paypal.Buttons({
