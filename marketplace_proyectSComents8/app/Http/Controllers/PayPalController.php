@@ -20,6 +20,7 @@ class PaypalController extends Controller
 	public function payment()
 	{
 	$total = 500;
+  
 
 		$apiContext = new ApiContext(
 		new OAuthTokenCredential(

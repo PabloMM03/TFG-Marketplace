@@ -66,7 +66,7 @@ Route::middleware(['cart.is.empty'])->group(function(){
     Route::post('proceed-to-pay' ,[CheckoutComponent::class, 'razorpaycheck']);
 
     //Payments PayPal
-    Route::get('paypal-payment', [PayPalController::class, 'payment'])->name('paypal.checkout');
+    Route::get('paypal-payment', [PayPalController::class, 'payment'])->name('paypal.payment');
     Route::get('paypal-success', [PayPalController::class, 'success'])->name('paypal.success');
     Route::get('paypal-cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
 
