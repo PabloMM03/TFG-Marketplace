@@ -1,4 +1,53 @@
+<style>
+   .loader-page {
+  position: fixed;
+  z-index: 25000;
+  background: rgb(255, 255, 255);
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
 
+.loader-page::before {
+  content: "";
+  position: absolute;
+  border: 2px solid rgb(50, 150, 176);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-left: 2px solid rgba(50, 150, 176,0);
+  border-top: 2px solid rgba(50, 150, 176,0);
+  animation: rotarload 1s linear infinite;
+  transform: rotate(0deg);
+}
+
+@keyframes rotarload {
+  0%   { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+
+.loader-page::after {
+  content: "";
+  position: absolute;
+  border: 2px solid rgba(50, 150, 176,.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-left: 2px solid rgba(50, 150, 176, 0);
+  border-top: 2px solid rgba(50, 150, 176, 0);
+  animation: rotarload 1s ease-out infinite;
+  transform: rotate(0deg);
+}
+
+
+</style>
 
 <main class="main">
             <div class="page-header breadcrumb-wrap">
@@ -248,11 +297,11 @@
                                                 <div class="mb-25">
                                                     <h5>Metodo de pago</h5>
                                                 </div>
-                                                <button type="submit"  class="btn btn-primary btn-block mt-30">Hacer pedido</button>
+                                                {{-- <button type="submit"  class="btn btn-primary btn-block mt-30">Hacer pedido</button> --}}
+                                                <button id="myButton" class="btn btn-primary btn-block mt-30">Hacer pedido</button>                                             
                                                 <button type="button" class="btn btn-success mt-30 razorpay_btn">Pagar con Razorpay</button>
                                                 <div class="mt-2" id="paypal-button-container"></div>
                                             </div>
-                                            
                                     </div>
                                 </div>
                         
@@ -279,6 +328,22 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=AV4epPFuK55nWaQ6GMswIhe_DZxPupiPXOxpYkVh4G_IkSg3nldSTI1AWdbFJddZiw1XTeuf8F0jsuvg"></script>
+
+{{--Upload icon at checkout--}}
+<script>
+    document.getElementById('myButton').addEventListener('click', function() {
+  var loader = document.createElement('div');
+  loader.classList.add('loader-page');
+  document.body.appendChild(loader);
+
+  // Aquí puedes agregar cualquier lógica adicional antes de redirigir a otra vista
+  // Por ejemplo, puedes realizar una llamada AJAX o cualquier otro proceso asíncrono
+  
+  // Después de realizar cualquier lógica adicional, redirige a la otra vista
+  window.location.href = '/';
+});
+
+</script>
 
 <script>
     paypal.Buttons({
