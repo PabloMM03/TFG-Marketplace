@@ -9,6 +9,7 @@ use Livewire\Component;
 
 class TermsConditions extends Component
 {
+     /**Page which shows the terms and conditions of the marketplace and shows some sections of content */
     public function render()
     {
         $categories = Category::all();

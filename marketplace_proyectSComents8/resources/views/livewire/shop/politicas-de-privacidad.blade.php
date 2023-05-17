@@ -2,8 +2,8 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow">Home</a>                    
-                <span></span> Privacy Policy
+                <a href="/" rel="nofollow">Inicio</a>                    
+                <span></span> politicas de privacidad
             </div>
         </div>
     </div>
@@ -13,36 +13,34 @@
                 <div class="col-lg-9">
                     <div class="single-page pr-30 mb-lg-0 mb-sm-5">
                         <div class="single-header style-2">
-                            <h2>Privacy Policy</h2>                                
+                            <h2>Términos y condiciones</h2>                                
                         </div>                            
                         <div class="single-content">
-                            <p> Please read these Terms of Service (“Terms”, “Terms of Service”) carefully before using the https://tradevibes.in website (the “Service”) operated by TradeVibes (“us”, “we”, or “our”).</p>
-                            <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>
-                            <p>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.</p>
-                            <h4>Rights & restrictions</h4>
+                            <p> Lea detenidamente estos Términos de servicio ("Términos", "Términos de servicio") antes de utilizar el sitio web https://tradevibes.in (el "Servicio") operado por TradeVibes ("nosotros", "nosotros", o “nuestro”).</p>                            <p>Su acceso y uso del Servicio está condicionado a su aceptación y cumplimiento de estos Términos. Estos Términos se aplican a todos los visitantes, usuarios y otras personas que acceden o utilizan el Servicio.</p>
+                            <p>Al acceder o utilizar el Servicio, usted acepta estar sujeto a estos Términos. Si no está de acuerdo con alguna parte de los términos, no podrá acceder al Servicio.</p>
+                            <h4>Derechos y restricciones</h4>
                             <ol>
-                                <li>Members must be at least 18 years of age.</li>
-                                <li>Members are granted a time-limited, non-exclusive, revocable, nontransferable, and non-sublicensable right to access that portion of the online course corresponding to the purchase.</li>
-                                <li>The portion of the online course corresponding to the purchase will be available to the Member as long as the course is maintained by the Company, which will be a minimum of one year after Member’s purchase.</li>
+                                <li>Los miembros deben tener al menos 18 años de edad.</li>
+                                <li>A los miembros se les otorga un derecho por tiempo limitado, no exclusivo, revocable, intransferible y no sublicenciable para acceder a la parte del curso en línea correspondiente a la compra.</li>
+                                <li>La parte del curso en línea correspondiente a la compra estará disponible para el Miembro siempre que la Compañía mantenga el curso, que será un mínimo de un año después de la compra del Miembro.</li>                                
                                 <li>The videos in the course are provided as a video stream and are not downloadable.</li>
-                                <li>By agreeing to grant such access, the Company does not obligate itself to maintain the course, or to maintain it in its present form.</li>
+                                <li>Al aceptar otorgar dicho acceso, la Compañía no se obliga a mantener el curso ni a mantenerlo en su forma actual.</li>
                             </ol>
-                            <h4>Links To Other Web Sites</h4>
-                            <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by Surfside Media.</p>
-                            <p>Surfside Media has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that Surfside Media shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
-                            <p>We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.</p>
-                            <h4>Termination</h4>
-                            <p>We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
-                            <p>All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.</p>
-                            <h4>Governing Law</h4>
-                            <p>These Terms shall be governed and construed in accordance with the laws of Viet Nam, without regard to its conflict of law provisions.</p>
-                            <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.</p>
-                            <h4>Changes</h4>
-                            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
-                            <p>By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
-                            <h4>Contact Us</h4>
-                            <p>If you have any questions about these Terms, please <a href="contact.html">contact us</a>.</p>
-                        </div>
+
+                            <h4>Enlaces a otros sitios web</h4>
+                            <p>Nuestro Servicio puede contener enlaces a sitios web o servicios de terceros que no son propiedad ni están controlados por Surfside Media.</p>
+                            <p>Surfside Media no tiene control ni asume ninguna responsabilidad por el contenido, las políticas de privacidad o las prácticas de los sitios web o servicios de terceros. Además, reconoce y acepta que Surfside Media no será responsable, directa o indirectamente, de ningún daño o pérdida causada o presuntamente causada por o en relación con el uso o la confianza en dicho contenido, bienes o servicios disponibles en o a través de tales sitios web o servicios.</p>                            
+                            <p>Le recomendamos encarecidamente que lea los términos y condiciones y las políticas de privacidad de cualquier sitio web o servicio de terceros que visite.</p>
+                            <h4>Terminación</h4>
+                            <p>Podemos rescindir o suspender el acceso a nuestro Servicio de inmediato, sin previo aviso ni responsabilidad, por cualquier motivo, incluido, entre otros, si incumple los Términos.</p>                            
+                            <p>Todas las disposiciones de los Términos que, por su naturaleza, deban sobrevivir a la rescisión, sobrevivirán a la rescisión, incluidas, entre otras, las disposiciones de propiedad, las exenciones de garantía, la indemnización y las limitaciones de responsabilidad.</p>                            <h4>Ley aplicable</h4>
+                            <p>Estos Términos se regirán e interpretarán de conformidad con las leyes de Vietnam, sin tener en cuenta sus disposiciones sobre conflicto de leyes.</p>                            
+                            <p>El hecho de que no hagamos valer cualquier derecho o disposición de estos Términos no se considerará una renuncia a esos derechos. Si alguna disposición de estos Términos se considera inválida o inaplicable por un tribunal, las disposiciones restantes de estos Términos permanecerán en vigor. Estos Términos constituyen el acuerdo completo entre nosotros con respecto a nuestro Servicio, y sustituyen y reemplazan cualquier acuerdo anterior que podamos tener entre nosotros con respecto al Servicio.</p>                            
+                            <h4>Cambios</h4>
+                            <p>Nos reservamos el derecho, a nuestro exclusivo criterio, de modificar o reemplazar estos Términos en cualquier momento. Si una revisión es material, intentaremos proporcionar un aviso de al menos 30 días antes de que entren en vigencia los nuevos términos. Lo que constituye un cambio material se determinará a nuestro exclusivo criterio.</p>                            <p>By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+                            <h4>Contactanos</h4>
+                            <p>Si tiene alguna pregunta sobre estos Términos, <a href="{{url('contact')}}">póngase en contacto con nosotros</a>.</p>
+                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 primary-sidebar sticky-sidebar">
@@ -58,95 +56,41 @@
                         <!--Widget categories-->
                         <div class="sidebar-widget widget_categories mb-40">
                             <div class="widget-header position-relative mb-20 pb-10">
-                                <h5 class="widget-title">Categories</h5>
+                                <h5 class="widget-title">Categorias</h5>
                             </div>
                             <div class="post-block-list post-module-1 post-module-5">
-                                <ul>
-                                    <li class="cat-item cat-item-2"><a href="blog.html">Beauty</a> (3)</li>
-                                    <li class="cat-item cat-item-3"><a href="blog.html">Book</a> (6)</li>
-                                    <li class="cat-item cat-item-4"><a href="blog.html">Design</a> (4)</li>
-                                    <li class="cat-item cat-item-5"><a href="blog.html">Fashion</a> (3)</li>
-                                    <li class="cat-item cat-item-6"><a href="blog.html">Lifestyle</a> (6)</li>
-                                    <li class="cat-item cat-item-7"><a href="blog.html">Travel</a> (2)</li>
-                                </ul>
+                                @foreach ($categories as $category)
+                                    <ul class="categories">       
+                                        <li class="cat-item cat-item-2"><a href="{{route('products.category', $category)}}">{{$category->name}}</a></li>
+                                        
+                                    </ul>
+                                @endforeach
                             </div>
                         </div>
                         <!--Widget latest posts style 1-->
                         <div class="sidebar-widget widget_alitheme_lastpost mb-20">
                             <div class="widget-header position-relative mb-20 pb-10">
-                                <h5 class="widget-title">Trending Now</h5>
+                                <h5 class="widget-title">Popular ahora</h5>
                             </div>
-                            <div class="row">
-                                <div class="col-12 sm-grid-content mb-30">
-                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                        <a href="blog-details.html">
-                                            <img src="assets/imgs/blog/blog-1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h4 class="post-title mb-10 text-limit-2-row">The litigants on the screen are not actors </h4>
-                                        <div class="entry-meta meta-13 font-xxs color-grey">
-                                            <span class="post-on mr-10">25 April</span>
-                                            <span class="hit-count has-dot ">126k Views</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row">    
                                 <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                        <a href="blog-details.html">
-                                            <img src="assets/imgs/blog/blog-3.jpg" alt="">
+                                    @foreach ($products_news as $product_new)
+                                    <div class="single-post clearfix">
+                                        <div class="image">
+                                        <a href="{{route('publicaciones.show',$product_new)}}">
+                                            <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
                                         </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row">Water Partners With Rag &amp; Bone To Consume</h6>
-                                        <div class="entry-meta meta-13 font-xxs color-grey">
-                                            <span class="post-on mr-10">25 April</span>
-                                            <span class="hit-count has-dot ">126k Views</span>
+                                        </div>
+                                        <div class="content pt-10">
+                                            <h5><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h5>
+                                            <p class="price mb-0 mt-5">{{$product_new->price}} €</p>
+                                            <div class="product-rate">
+                                                <div class="product-rating" style="width:90%"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                        <a href="blog-details.html">
-                                            <img src="assets/imgs/blog/blog-4.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row">The loss is not all that surprising</h6>
-                                        <div class="entry-meta meta-13 font-xxs color-grey">
-                                            <span class="post-on mr-10">25 April</span>
-                                            <span class="hit-count has-dot ">126k Views</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                        <a href="blog-details.html">
-                                            <img src="assets/imgs/blog/blog-5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row">We got a right to pick a little fight, Bonanza </h6>
-                                        <div class="entry-meta meta-13 font-xxs color-grey">
-                                            <span class="post-on mr-10">25 April</span>
-                                            <span class="hit-count has-dot ">126k Views</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 sm-grid-content mb-30">
-                                    <div class="post-thumb d-flex border-radius-5 img-hover-scale mb-15">
-                                        <a href="blog-details.html">
-                                            <img src="assets/imgs/blog/blog-6.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row">My entrance exam was on a book of matches </h6>
-                                        <div class="entry-meta meta-13 font-xxs color-grey">
-                                            <span class="post-on mr-10">25 April</span>
-                                            <span class="hit-count has-dot ">126k Views</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                </div>                    
                             </div>
                         </div>
                         <!--Widget ads-->
@@ -155,22 +99,20 @@
                             <div class="banner-text">
                                 <span>Women Zone</span>
                                 <h4>Save 17% on <br>Office Dress</h4>
-                                <a href="shop.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                <a href="{{url('shop')}}">Comprar ahora <i class="fi-rs-arrow-right"></i></a>
                             </div>
                         </div>
                         <!--Widget Tags-->
                         <div class="sidebar-widget widget_tags mb-50">
                             <div class="widget-header position-relative mb-20 pb-10">
-                                <h5 class="widget-title">Popular tags </h5>
+                                <h5 class="widget-title">Etiquetas</h5>
                             </div>
+                            {{--Tags--}}
                             <div class="tagcloud">
-                                <a class="tag-cloud-link" href="blog.html">beautiful</a>
-                                <a class="tag-cloud-link" href="blog.html">New York</a>
-                                <a class="tag-cloud-link" href="blog.html">droll</a>
-                                <a class="tag-cloud-link" href="blog.html">intimate</a>
-                                <a class="tag-cloud-link" href="blog.html">loving</a>
-                                <a class="tag-cloud-link" href="blog.html">travel</a>
-                                <a class="tag-cloud-link" href="blog.html">fighting </a>
+                                @foreach ($tags as $tag)
+                                <a class="tag-cloud-link" href="{{route('products.tag', $tag)}}">{{$tag->name}}</a>                              
+                                @endforeach
+                             
                             </div>
                         </div>
                     </div>

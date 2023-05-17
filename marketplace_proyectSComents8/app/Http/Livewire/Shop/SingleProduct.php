@@ -95,46 +95,6 @@ class SingleProduct extends Component
 
        return view('livewire.shop.tag-component', compact('products','tag'));
     }
-    /**
-     * Add the product to cart
-     */
-
-    public function add_to_cart(Product $product){
-                //Check that the user is logged in
-                if (!auth()->check()) {
-                    return redirect()->guest('login');
-                }else{
-
-                Cart::session(auth()->id())->add(array( //We get the user logged in
-                    'id' => $product->id,
-                    'name' => $product->name,
-                    'price' => $product->price,
-                    'quantity' => 1,
-                    'attributes' => array(),
-                    'associatedModel' => $product
-                ));
-                
-
-            //Confirmation message
-            $this->emit('message', 'El producto se ha añadido correctemente.');
-            $this->emitTo('shop.cart-component', 'add_to_cart');
-            return redirect()->back()->with('status', "Producto añadido correctamente"); 
- }
-}
-
- //Update Cart Item //Function to update the price of the cart according to the added products
- public function update_quantity($productID, $quantity)
- {
- Cart::session(auth()->id())->update($productID,[
-     'quantity' => array(
-     'relative' => false,
-     'value' => $quantity
-     ),
- ]);
-
- return redirect()->back();
-}
-
 
  /**
      * Method to add products to the wishlist

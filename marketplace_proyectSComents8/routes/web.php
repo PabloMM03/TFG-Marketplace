@@ -8,6 +8,7 @@ use App\Http\Livewire\Shop\Cart\CartComponent;
 use App\Http\Livewire\Shop\CheckoutComponent;
 use App\Http\Livewire\Shop\ContactComponent;
 use App\Http\Livewire\Shop\IndexComponent;
+use App\Http\Livewire\Shop\PoliticasDePrivacidad;
 use App\Http\Livewire\Shop\ProducRecentComponent;
 use App\Http\Livewire\Shop\ShopComponent;
 use App\Http\Livewire\Shop\SingleProduct;
@@ -103,7 +104,7 @@ Route::post('searchproduct', [IndexComponent::class,'searchProduct']);
 //About Us Section
 Route::get('about', About::class);
 Route::get('terms-conditions', TermsConditions::class);
-Route::get('politicas-de-privacidad', TermsConditions::class);
+Route::get('politicas-de-privacidad', PoliticasDePrivacidad::class);
 Route::get('contact', ContactComponent::class);
 
 //Shop
