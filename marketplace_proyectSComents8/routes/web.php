@@ -11,6 +11,7 @@ use App\Http\Livewire\Shop\IndexComponent;
 use App\Http\Livewire\Shop\ProducRecentComponent;
 use App\Http\Livewire\Shop\ShopComponent;
 use App\Http\Livewire\Shop\SingleProduct;
+use App\Http\Livewire\Shop\TermsConditions;
 use App\Http\Livewire\Shop\TrendingProduct;
 use App\Http\Livewire\Shop\UserConmponent;
 use App\Http\Livewire\Shop\WishListComponent;
@@ -87,7 +88,7 @@ Route::post('comments', [CommentController::class, 'store']);
 //Rating system
 Route::post('add-rating' ,[RatingController::class, 'add']);
 
-//Test path
+//Products news
 Route::get('recents', ProducRecentComponent::class)->name('shop.recents');
 
 //WishList
@@ -101,8 +102,9 @@ Route::post('searchproduct', [IndexComponent::class,'searchProduct']);
 
 //About Us Section
 Route::get('about', About::class);
-
-//Contact Section
+Route::get('terms-conditions', TermsConditions::class);
+Route::get('politicas-de-privacidad', TermsConditions::class);
 Route::get('contact', ContactComponent::class);
 
+//Shop
 Route::get('shop', ShopComponent::class)->name('view.more');

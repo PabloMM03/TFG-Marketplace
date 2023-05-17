@@ -1,3 +1,5 @@
+{{--Mini cart that unfolds when hovering over it and is located in the navigation bar--}}
+
 <div class="header-action-icon-2">
     <a class="mini-cart-icon" href="{{route('cart')}}">
         <img alt="" src="{{asset('assets/imgs/theme/icons/icon-cart.svg')}}">

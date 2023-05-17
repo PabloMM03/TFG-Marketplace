@@ -1,41 +1,5 @@
 @section('style')
-<style>
-    @media (max-width:767px){
-        .carousel-inner .carousel-item > div{
-            display: none;
-        }
-
-        .carousel-inner .carousel-item > div:first-child {
-            display: block;
-        }
-    }
-
-    .carousel-inner .carousel-item.active,
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev{
-        display: flex;
-    }
-
-    @media (min-width:760px){
-        .carousel-inner .carousel-item-end.active,
-        .carousel-inner .carousel-item-next {
-            transform: translateX(25%);
-        }
-
-        .carousel-inner .carousel-item-start.active,
-        .carousel-inner .carousel-item-prev {
-            transform: translateX(-25%);
-        }
-    }
-
-    .carousel-inner .carousel-item-end,
-    .carousel-inner .carousel-item-start {
-        transform: translateX(0);
-    }
-
-    
-
-
+<style> 
     .badge:hover {
   background-color: #fff;
   color: #000;
@@ -78,62 +42,6 @@
   z-index: 1;
 }
 
-/**
-*Careousel
-*/
-
-.carousel-control-prev {
-  margin-left: 120px;
-  border: 2px solid white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-}
-
-.carousel-control-prev:before {
-  content: "";
-  border-style: solid;
-  border-width: 6px 8px 6px 0;
-  border-color: transparent  transparent transparent ;
-  display: inline-block;
-  height: 0;
-  width: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.carousel-control-next {
-  margin-right: 50px;
-  border: 2px solid white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: white;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
-
-.carousel-control-next:before {
-  content: "";
-  border-style: solid;
-  border-width: 6px 0 6px 8px;
-  border-color: transparent transparent transparent;
-  display: inline-block;
-  height: 0;
-  width: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 </style>
 

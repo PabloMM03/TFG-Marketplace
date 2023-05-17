@@ -13,14 +13,10 @@
        @endauth
              
        </a>
-    
 
 
 
 
-    {{-- In work, do what you enjoy. --}}
-
-<!--Se mostrarán el icono del carrito mas los productos que se han añadido, y se actualiza automaticamente -->
 
    
    

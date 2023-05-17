@@ -382,7 +382,7 @@
               </div>
 
                <div class="d-none d-lg-block">
-                  <p><i class="fi-rs-smartphone"></i><span>Llamanos</span> (+1) 0000-000-000 </p>
+                  <p><i class="fi-rs-smartphone"></i><span>Llamanos</span> (+34) 123-456-789</p>
               </div> 
 
               <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p>
@@ -529,41 +529,6 @@
       </div>
   </div>
 </div>        
-
-
-<style>
-  .dropdown-menu{
-    padding-bottom: 30px;
-  }
-  .dropdown-menu li{
-    list-style: none;
-    color: #fff;
-    cursor:pointer;
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius:6px;
-    font-size: 15px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .dropdown-menu li::before{
-    content:"";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 0%;
-    height: 100%;
-    background-color: var(-azul);
-    transition: .6s ease;
-    border-radius: 6px;
-    z-index: -1;
-  }
-
-  .search-bar{
-    width: 30%;
-    margin-top: 4px;
-  }
 
 </style>
 

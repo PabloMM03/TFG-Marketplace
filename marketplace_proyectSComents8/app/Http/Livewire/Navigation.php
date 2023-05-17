@@ -11,7 +11,7 @@ use App\Models\Wishlist;
 
 class Navigation extends Component
 {
-    //Crear Nav personalizado
+    //Create custom Nav
     public function render()
     {
         $productos = Product::all();
