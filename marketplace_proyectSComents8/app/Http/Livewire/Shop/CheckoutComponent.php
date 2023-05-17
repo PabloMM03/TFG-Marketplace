@@ -102,43 +102,6 @@ class CheckoutComponent extends Component
         return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
     }
 
-    //Function which allows us to pay with razorpay, obtaining the data provided when paying
-
-    public function razorpaycheck(Request $request){
-
-        $cartItems = Carrito::where('user_id', Auth::id())->get();
-
-        $total_price = 0;
-        foreach($cartItems as $item){
-            $total_price += $item->products->price * $item->prod_qty;
-        }
-
-        $firstname = $request->input('firstname');
-        $lastname = $request->input('firstname');
-        $state = $request->input('state'); 
-        $email = $request->input('email');
-        $city = $request->input('city');
-        $address1  = $request->input('address1');
-        $address2 = $request->input('address2');            
-        $zipcode = $request->input('zipcode');
-        $phone = $request->input('phone');
-        
-        
-
-        return response()->json([
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'state' => $state,
-            'email' => $email,
-            'city' => $city,
-            'address1' => $address1,
-            'address2' => $address2,
-            'zipcode' => $zipcode,
-            'phone' => $phone,            
-            'total_price' => $total_price
-        ]);
-
-    }
 
 
 }

@@ -62,7 +62,7 @@
                           <h2 class="animated fw-900">Supper value deals</h2>
                           <h1 class="animated fw-900 text-brand">On all products</h1>
                           <p class="animated">Save more with coupons & up to 70% off</p>
-                          <a class="animated btn btn-brush btn-brush-3" href="product-details.html"> Shop Now </a>
+                          <a class="animated btn btn-brush btn-brush-3" href="{{url('shop')}}"> Shop Now </a>
                       </div>
                   </div>
                   <div class="col-lg-7 col-md-6">
@@ -462,7 +462,7 @@
                   <div class="banner-text">
                       <span>Smart Offer</span>
                       <h4>Save 20% on <br>Woman Bag</h4>
-                      <a href="shop.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                      <a href="{{url('shop')}}">Comprar ahora<i class="fi-rs-arrow-right"></i></a>
                   </div>
               </div>
           </div>
@@ -472,7 +472,7 @@
                   <div class="banner-text">
                       <span>Sale off</span>
                       <h4>Great Summer <br>Collection</h4>
-                      <a href="shop.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                      <a href="{{url('shop')}}">Comprar ahora <i class="fi-rs-arrow-right"></i></a>
                   </div>
               </div>
           </div>
@@ -482,7 +482,7 @@
                   <div class="banner-text">
                       <span>New Arrivals</span>
                       <h4>Shop Today’s <br>Deals & Offers</h4>
-                      <a href="{{route('shop.recents')}}">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                      <a href="{{route('shop.recents')}}">Comprar ahora <i class="fi-rs-arrow-right"></i></a>
                   </div>
               </div>
           </div>
