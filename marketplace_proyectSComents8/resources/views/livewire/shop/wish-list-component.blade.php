@@ -20,13 +20,13 @@
           <div class="product-cart-wrap mb-30">
               <div class="product-img-action-wrap">
                   <div class="product-img product-img-zoom">
-                      <a href="{{route('publicaciones.show',$item)}}">
+                      <a href="{{route('publicaciones.show',$item->products->id)}}">
                           <img class="default-img" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
                           <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="">
                       </a>
                   </div>
                   <div class="product-action-1">
-                    <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$item)}}"><i class="fi-rs-eye"></i></a>
+                    <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$item->products->id)}}"><i class="fi-rs-eye"></i></a>
                     {{--Add product to Wishlist--}}
                       <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                           @csrf
@@ -79,14 +79,6 @@
                       <input type="hidden" name="product_id" value="{{$item->products->id}}">
                       <button type="hidden" class="action-btn hover-up remove-wishlist-item" aria-label="Remove To Wishlist"><i class="fi-rs-trash"></i></button>
                     </form>
-                    {{--Add product to cart--}}
-                    @if($item->products->qty >0)
-                    <button type="button" class="action-btn hover-up addToCartBtn" aria-label="Add To Cart"><i class="fi-rs-shopping-bag-add"></i></button>
-                      @else
-                      <button class="action-btn hover-up disabled" type="button" aria-label="No actions">
-                          <i class="fi-rs-shopping-bag-add"></i>
-                      </button>   
-                      @endif
                   </div>
               </div>
           </div>
