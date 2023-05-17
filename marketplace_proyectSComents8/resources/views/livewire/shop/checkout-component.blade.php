@@ -1,3 +1,4 @@
+{{--Charge icon when paying--}}
 <style>
    .loader-page {
   position: fixed;
@@ -70,7 +71,7 @@
                             <div class="panel-collapse collapse login_form" id="loginform">
                                 <div class="panel-body">
                                     <p class="mb-30 font-sm">If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
-                                    {{-- <form method="post">
+                                     <form method="post">
                                         <div class="form-group">
                                             <input type="text" name="email" placeholder="Username Or Email">
                                         </div>
@@ -89,7 +90,7 @@
                                         <div class="form-group">
                                             <button class="btn btn-md" name="login">Log in</button>
                                         </div>
-                                    </form> --}}
+                                    </form> 
                                 </div>
                             </div>
                         </div>
@@ -100,14 +101,14 @@
                             <div class="panel-collapse collapse coupon_form " id="coupon">
                                 <div class="panel-body">
                                     <p class="mb-30 font-sm">If you have a coupon code, please apply it below.</p>
-                                    {{-- <form method="post">
+                                     <form method="post">
                                         <div class="form-group">
                                             <input type="text" placeholder="Enter Coupon Code...">
                                         </div>
                                         <div class="form-group">
                                             <button class="btn  btn-md" name="login">Apply Coupon</button>
                                         </div>
-                                    </form> --}}
+                                    </form> 
                                 </div>
                             </div>
                         </div>
@@ -324,7 +325,7 @@
   var loader = document.createElement('div');
   loader.classList.add('loader-page');
   document.body.appendChild(loader);
-  
+
   window.location.href = '/';
 });
 
