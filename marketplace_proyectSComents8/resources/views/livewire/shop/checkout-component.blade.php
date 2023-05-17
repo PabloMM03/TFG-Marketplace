@@ -299,6 +299,7 @@
       })
     });
   },
+  
   onApprove(data) {
     // This function captures the funds from the transaction.
     return fetch("/my-server/capture-paypal-order", {
@@ -344,6 +345,7 @@
     });
   }
 }).render('#paypal-button-container');
+console.log(sku);
 //This function displays payment buttons on your web page.
 </script>
 
@@ -470,3 +472,4 @@ $(document).ready(function(){
   });
 
 </script>
+

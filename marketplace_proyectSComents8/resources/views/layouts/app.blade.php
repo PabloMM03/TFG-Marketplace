@@ -16,7 +16,7 @@
 <meta property="og:image" content="">
 <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/imgs/logo/Mi proyecto2.png')}}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> 
 <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"></head>
 
@@ -80,11 +80,31 @@
 <script src="{{asset('assets/js/main.js?v=3.3')}}"></script>
 <script src="{{asset('assets/js/shop.js?v=3.3')}}"></script>    
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   
+
+{{--If you are logged in you will see the Customer Help Center --}}
+
+<!--Start of Tawk.to Script-->
+@if(Auth::check())
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/64563e396a9aad4bc5793d54/1h0l1gdch';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+@endif
+ <!--End of Tawk.to Script-->
+
+
   {{--Search system with autocomplete method--}}
     <script>
         let availableTags = [];
@@ -256,34 +276,33 @@
       </script> 
 
 
+{{--Add product to cart Notification--}}
+
+@if (session('status') == "Producto añadido al carrito")
+<script> 
+Swal.fire({
+position: 'top-end',
+icon: 'success',
+title: '{{session('status')}}',
+showConfirmButton: false,
+timer: 2000
+})
+</script>
+@endif
 
 
-      @if (session('status') == "Producto añadido al carrito")
-      <script> 
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: '{{session('status')}}',
-        showConfirmButton: false,
-        timer: 2000
-      })
-      </script>
-      @endif
+@if(session('status') == "El carrito está vacio")
+<script> 
+Swal.fire({
+icon: 'error',
+title: 'Oops...',
+text: '{{session('status')}}',
+})
+</script>
+@endif 
 
 
-      @if(session('status') == "El carrito está vacio")
-      <script> 
-        Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: '{{session('status')}}',
-      })
-      </script>
-      @endif 
-
-
-      {{--Wishlist--}}
-
+{{--Wishlist Notifications--}}
 
 @if (session('status') == "Producto añadido correctamente a su Wishlist")
 <script> 

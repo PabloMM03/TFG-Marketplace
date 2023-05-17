@@ -67,14 +67,10 @@
                   <div class="header-action-right">
                     @auth
                       <div class="header-action-2">
-                          <div class="header-action-icon-2">
-                              <a href="{{url('wishlist')}}">
-                                  <img class="svgInject" alt="" src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}">
-                                  <span class="pro-count blue">{{$wishlist->count()}}</span>
-                              </a>
-                          </div>
-                          {{--Cart--}}
-                          @livewire('shop.cart-icon-component')
+                        {{--Wishlist--}}
+                        @livewire('shop.wish-list-icon-component')
+                        {{--Cart--}}
+                        @livewire('shop.cart-icon-component')
                       </div>
                       @endauth
                   </div>

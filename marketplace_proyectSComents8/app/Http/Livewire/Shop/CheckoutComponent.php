@@ -102,6 +102,7 @@ class CheckoutComponent extends Component
         return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
     }
 
+    //Function which allows us to pay with razorpay, obtaining the data provided when paying
 
     public function razorpaycheck(Request $request){
 
