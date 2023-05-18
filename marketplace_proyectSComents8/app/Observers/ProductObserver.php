@@ -15,7 +15,7 @@ class ProductObserver
      */
     public function creating(Product $product)
     {
-        //Comprobar si se ejecuta la creacion del producto desde la consola
+        //Check if the product creation is running from the console
         if(! \App::runningInConsole()){
             $product->user_id = auth()->user()->id;
         }

@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->id();
             $table->unsignedBigInteger('user_id');
+
+                //Fill Form fields
             $table->string('shipping_fname');
             $table->string('shipping_lname');
             $table->string('email');
@@ -25,19 +27,16 @@ return new class extends Migration
             $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending'); //Payment process
             $table->boolean('is_paid')->default(true); //If paid
             $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('cash_on_delivery'); // Payment method
-
-
-            //Fill Form fields
-
             $table->string('shipping_address1');
             $table->string('shipping_address2');
             $table->string('shipping_city');
             $table->string('shipping_state');
             $table->string('shipping_zipcode');
             $table->string('shipping_phone');
+
             $table->float('total');
             
-
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
