@@ -240,7 +240,8 @@
       <script>
          $(document).ready(function(){
 
-          //Add product to cart
+          //Add product to cart 
+          //We obtain the ID and quantity of the product and through AJAX sends the data to the server
              $('.addToCartBtn').click(function(e){
                  e.preventDefault();
              
@@ -279,6 +280,7 @@
       
          });
          //Increment quantity
+         //We get the value of the quantity and increase it
          $('.increment-btn').click(function(e){
              e.preventDefault();
       
@@ -293,6 +295,7 @@
          });
       
          //Decrement quantity
+         //We get the value of the quantity and decrease it
          $('.decrement-btn').click(function(e){
              e.preventDefault();
       
@@ -306,6 +309,7 @@
          });
 
          //Delete cart item
+        //We obtain the ID of the product and through AJAX sends the data to the server
         $('.delete-cart-item').click(function(e){
             e.preventDefault();
 
@@ -342,6 +346,7 @@
         });
 
         //Change quantity 
+       //We obtain the ID and quantity of the product and through AJAX sends the data to the server
         $('.changeQuantity').click(function(e){
             e.preventDefault();
 
@@ -374,7 +379,7 @@
                         // title: response.status,
                         // showConfirmButton: false,
                         // timer: 2000
-                        // })
+                        //  })
                     }
 
                 });
@@ -386,81 +391,81 @@
       </script> 
 
 
-{{--Add product to cart Notification--}}
+        {{--Add product to cart Notification--}}
 
-@if (session('status') == "Producto añadido al carrito")
-<script> 
-Swal.fire({
-position: 'top-end',
-icon: 'success',
-title: '{{session('status')}}',
-showConfirmButton: false,
-timer: 2000
-})
-</script>
-@endif
-
-
-@if(session('status') == "El carrito está vacio")
-<script> 
-Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@endif 
+        @if (session('status') == "Producto añadido al carrito")
+        <script> 
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{session('status')}}',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @endif
 
 
-{{--Wishlist Notifications--}}
+        @if(session('status') == "El carrito está vacio")
+        <script> 
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @endif 
 
-@if (session('status') == "Producto añadido correctamente a su Wishlist")
-<script> 
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: '{{session('status')}}',
-  showConfirmButton: false,
-  timer: 2000
-})
-</script>
-@elseif(session('status') == "El producto no existe")
-<script> 
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "Necesita hacer el login para continuar")
-<script> 
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "El producto ya está en su Wishlist")
-<script> 
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: '{{session('status')}}',
-})
-</script>
-@endif
 
-@if(session('status') == "Compra realizada correctamente, pronto le llegará su pedido")
-<script> 
-Swal.fire({
-  position: 'top-center',
-  icon: 'success',
-  title: '{{session('status')}}',
-  showConfirmButton: false,
-  timer: 2000
-})
-</script>
-@endif
+        {{--Wishlist Notifications--}}
+
+        @if (session('status') == "Producto añadido correctamente a su Wishlist")
+        <script> 
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{session('status')}}',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @elseif(session('status') == "El producto no existe")
+        <script> 
+            Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @elseif(session('status') == "Necesita hacer el login para continuar")
+        <script> 
+            Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @elseif(session('status') == "El producto ya está en su Wishlist")
+        <script> 
+            Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @endif
+
+        @if(session('status') == "Compra realizada correctamente, pronto le llegará su pedido")
+        <script> 
+        Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: '{{session('status')}}',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @endif
 </body>
 
 
