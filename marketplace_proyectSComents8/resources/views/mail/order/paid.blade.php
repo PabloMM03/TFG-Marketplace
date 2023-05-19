@@ -1,7 +1,7 @@
 <x-mail::message>
 # Factura 
 
-Gracias pro la compra
+Gracias por la compra
 aquí esta su factura
 
 {{--Invoice generation--}}

@@ -119,8 +119,10 @@
                         </div>
                     </div>
 
-                    <form action="{{route('place.order')}}" method="POST">
-                        {{csrf_field()}}
+                    <form action="{{route('place.order')}}" id="shipping-form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                        {{-- {{csrf_field()}} --}}
                         <div class="row">
                             <div class="col-md-6">
                                     <div class="mb-25">
@@ -129,7 +131,7 @@
 
                                     <div class="form-group">
 
-                                    <input type="text" placeholder="Nombre *" class="form-control firstname @error('fname') is-invalid @enderror" value="{{Auth::user()->name}}" name="fname"  wire:model="fname">
+                                    <input type="text" placeholder="Nombre *" class="form-control firstname @error('fname') is-invalid @enderror" value="{{Auth::user()->name}}" name="fname" id="firstname"  wire:model="fname">
                                     @error('fname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -139,7 +141,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <input type="text" placeholder="Apellidos *" class="form-control lastname @error('lname') is-invalid @enderror"  name="lname"  wire:model="lname">
+                                        <input type="text" placeholder="Apellidos *" class="form-control lastname @error('lname') is-invalid @enderror"  name="lname" id="lastname" wire:model="lname">
                                         @error('lname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -151,7 +153,7 @@
                                     {{--Region--}}
                                     <div class="form-group">
 
-                                    <input type="text" placeholder="Region *" class="form-control state @error('state') is-invalid @enderror" name="state"  wire:model="state">
+                                    <input type="text" placeholder="Region *" class="form-control state @error('state') is-invalid @enderror" name="state" id="state" wire:model="state">
                             
                                     @error('state')
                                     <span class="invalid-feedback" role="alert">
@@ -165,7 +167,7 @@
                                     <div class="form-group">   
 
                                         <div class="form-group">       
-                                        <input type="text" placeholder="Ciudad *" class="form-control city @error('city') is-invalid @enderror" name="city"  wire:model="city">
+                                        <input type="text" placeholder="Ciudad *" class="form-control city @error('city') is-invalid @enderror" name="city" id="city" wire:model="city">
                                         @error('city')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -177,7 +179,7 @@
                                         {{--Address--}}
                                     <div class="form-group">   
 
-                                    <input type="text" placeholder="Direccion *" class="form-control address1 @error('address1') is-invalid @enderror" name="address1"  wire:model="address1">
+                                    <input type="text" placeholder="Direccion *" class="form-control address1 @error('address1') is-invalid @enderror" name="address1" id="address1" wire:model="address1">
                         
                                     @error('address1')
                                     <span class="invalid-feedback" role="alert">
@@ -190,7 +192,7 @@
                                     {{--ZIP code--}}
                                     <div class="form-group">
 
-                                    <input type="text" placeholder="Codigo postal *" class="form-control zipcode @error('zipcode') is-invalid @enderror" name="zipcode"  wire:model="zipcode">
+                                    <input type="text" placeholder="Codigo postal *" class="form-control zipcode @error('zipcode') is-invalid @enderror" name="zipcode" id="zipcode" wire:model="zipcode">
                         
                                     @error('zipcode')
                                     <span class="invalid-feedback" role="alert">
@@ -203,7 +205,7 @@
                                         {{--Phone--}}   
                                     <div class="form-group">  
 
-                                    <input type="text" placeholder="Teléfono" class="form-control phone @error('phone') is-invalid @enderror"  name="phone"  wire:model="phone">
+                                    <input type="text" placeholder="Teléfono" class="form-control phone @error('phone') is-invalid @enderror"  name="phone" id="phone" wire:model="phone">
                         
                                     @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -216,7 +218,7 @@
                                     {{--Email--}}   
                                     <div class="form-group">  
 
-                                        <input type="text" placeholder="Email *" class="form-control email @error('email') is-invalid @enderror" name="email" value="{{Auth::user()->email}}" wire:model="email">
+                                        <input type="text" placeholder="Email *" class="form-control email @error('email') is-invalid @enderror" name="email" id="email" value="{{Auth::user()->email}}" wire:model="email">
                             
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -228,7 +230,7 @@
                                         {{--Address 2--}}   
                                     <div class="form-group">  
 
-                                        <input type="text" placeholder="Dirección 2 *" class="form-control address2 @error('address2') is-invalid @enderror" name="address2"  wire:model="address2">
+                                        <input type="text" placeholder="Dirección 2 *" class="form-control address2 @error('address2') is-invalid @enderror" name="address2" id="address2" wire:model="address2">
                             
                                         @error('address2')
                                         <span class="invalid-feedback" role="alert">
@@ -289,8 +291,9 @@
                                                 <div class="mb-25">
                                                     <h5>Metodo de pago</h5>
                                                 </div>
-                                                <button id="myButton" class="btn btn-primary btn-block mt-30">Hacer pedido</button>                                             
+                                                <button id="myButton" class="btn btn-primary btn-block mt-30">Hacer pedido</button> 
                                                 <div class="mt-2" id="paypal-button-container"></div>
+
                                             </div>
                                     </div>
                                 </div>
@@ -317,12 +320,13 @@
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=AV4epPFuK55nWaQ6GMswIhe_DZxPupiPXOxpYkVh4G_IkSg3nldSTI1AWdbFJddZiw1XTeuf8F0jsuvg"></script>
+{{-- <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_SANDBOX_CLIENT_ID')}}&components=buttons,funding-eligibility"></script> --}}
+
 
 {{--Upload icon at checkout--}}
 <script>
     document.getElementById('myButton').addEventListener('click', function() {
-  var loader = document.createElement('div');
+  let loader = document.createElement('div');   
   loader.classList.add('loader-page');
   document.body.appendChild(loader);
 
@@ -331,7 +335,289 @@
 
 </script>
 
-<script>
+
+{{--BIEN BOTONES--}}
+ <script>
+    paypal.Buttons({
+  // Otras configuraciones de PayPal...
+
+  onApprove: function(data, actions) {
+    // Obtener los datos del formulario
+    var form = document.getElementById('shipping-form');
+    var formData = new FormData(form);
+
+    // Enviar los datos al backend utilizando una solicitud AJAX con jQuery
+    $.ajax({
+      url: '/place-order',
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: response.status,
+            showConfirmButton: false,
+            timer: 3000
+         })
+        // Realizar acciones adicionales después de que los datos se hayan guardado correctamente
+        // alert('Datos de envío guardados en la base de datos');
+
+        // Continuar con la captura de pago en PayPal
+        return actions.order.capture().then(function(details) {
+        //   alert('Transacción completada por ' + details.payer.name.given_name);
+          // Redireccionar a la vista principal
+          window.location.href = '/';
+        });
+      },
+      error: function(xhr, status, error) {
+        // Manejar errores de la solicitud AJAX, si los hay
+        alert('Error al guardar los datos de envío');
+      }
+    });
+  },
+
+  // Otros eventos y configuraciones de PayPal...
+}).render('#paypal-button-container');
+
+</script> 
+
+
+
+
+
+
+
+
+
+
+
+    
+{{--Envia los datos a la base de datos--}}
+ {{-- <script>
+   paypal.Buttons({
+    fundingSource: paypal.FUNDING.CARD,
+  // Configuración de PayPal
+  createOrder: function(data, actions) {
+    // Obtener los datos del formulario
+    var form = document.getElementById('shipping-form');
+    var formData = new FormData(form);
+
+    // Enviar los datos al backend utilizando una solicitud AJAX con jQuery
+    $.ajax({
+      url: '/place-order',
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // Realizar acciones adicionales después de que los datos se hayan guardado correctamente
+        alert('Datos de envío guardados en la base de datos');
+
+        // Continuar con la creación de la orden en PayPal
+        return actions.order.create({
+                application_context: {
+                    shipping_preference: "NO_SHIPPING"
+                },
+                payer: {
+                    email_address: '{{Auth::user()->email}}',
+                    name: {
+                        given_name: '{{Auth::user()->name}}',
+                        surname: 'x'
+                    }
+                },
+                purchase_units: [{
+                    amount: {
+                        value: '3.99'
+                    }
+                }]
+            });
+        },
+      error: function(xhr, status, error) {
+        // Manejar errores de la solicitud AJAX, si los hay
+        alert('Error al guardar los datos de envío');
+      }
+    });
+  },
+  onApprove: function(data, actions){
+        return actions.order.capture().then(function(details){
+            alert('Transacction completed by ' + details.payer.name.given_name);
+        });
+    },
+  onError: function(err) {
+    // Manejar errores de PayPal
+    alert('Ha habido un error en el pago');
+  }
+}).render('#paypal-button-container');
+</script> --}}
+     
+{{-- <script>
+    paypal.Buttons({
+  fundingSource: paypal.FUNDING.CARD,
+  createOrder: function(data, actions) {
+    // Obtener los datos del formulario
+    var form = document.getElementById('shipping-form');
+    var formData = new FormData(form);
+
+    // Enviar los datos al backend utilizando una solicitud AJAX con jQuery
+    $.ajax({
+      url: '/place-order',
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // Realizar acciones adicionales después de que los datos se hayan guardado correctamente
+        alert('Datos de envío guardados en la base de datos');
+
+        // Continuar con la creación de la orden en PayPal
+        return actions.order.create({
+          application_context: {
+            shipping_preference: "NO_SHIPPING"
+          },
+          payer: {
+            email_address: '{{Auth::user()->email}}',
+            name: {
+              given_name: '{{Auth::user()->name}}',
+              surname: 'x'
+            }
+          },
+          purchase_units: [{
+            amount: {
+              value: '3.99'
+            }
+          }]
+        });
+      },
+      error: function(xhr, status, error) {
+        // Manejar errores de la solicitud AJAX, si los hay
+        alert('Error al guardar los datos de envío');
+      }
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert('Transacción completada por ' + details.payer.name.given_name);
+    });
+  },
+  onError: function(err) {
+    // Manejar errores de PayPal
+    alert('Ha habido un error en el pago');
+  }
+}).render('#paypal-button-container');
+
+</script> --}}
+
+
+     
+
+{{-- MAS O MENOS --}}
+ 
+ {{-- <script>
+    
+    paypal.Buttons({
+        fundingSource: paypal.FUNDING.CARD,
+        createOrder: function(data, actions){
+            return actions.order.create({
+                application_context: {
+                    shipping_preference: "NO_SHIPPING"
+                },
+                payer: {
+                    email_address: '{{Auth::user()->email}}',
+                    name: {
+                        given_name: '{{Auth::user()->name}}',
+                        surname: 'x'
+                    }
+                },
+                purchase_units: [{
+                    amount: {
+                        value: '3.99'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions){
+            return actions.order.capture().then(function(details){
+                alert('Transacction completed by ' + details.payer.name.given_name);
+            });
+        }
+
+        
+        // onError: function(err) {
+        //    alert('Ha habido un error en el pago');
+        // }
+    }).render('#paypal-button-container');
+</script>  --}}
+
+
+
+{{--PAYPAL CON TODOS LOS BOTONES --}}
+{{-- <script>
+    paypal.Buttons({
+        createOrder: function(data, actions){
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '5'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions){
+            return actions.order.capture().then(function(details){
+                alert('Transacction completed by ' + details.payer.name.given_name);
+            });
+        }
+
+    }).render('#paypal-button-container');
+</script>  --}}
+
+
+{{-- <script>
+    paypal.Buttons({
+        createOrder: function(data, actions){
+            
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '5'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions){
+            return actions.order.capture().then(function(orderData){
+                console.log('Capture result', orderData, JSON.stringify(orderData,null, 2));
+                const transacction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transacction ${transacction.status}: ${transaccion.id}\n\nSee console for a');
+            });
+        }
+
+    }).render('#paypal-button-container');
+</script>   --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {{-- <script>
     paypal.Buttons({
   createOrder() {
     // This function sets up the details of the transaction, including the amount and line item details.
@@ -398,9 +684,68 @@
 }).render('#paypal-button-container');
 console.log(sku);
 //This function displays payment buttons on your web page.
-</script>
-
-<script>
+</script>  --}}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- <script>
+    
+    paypal.Buttons({
+        fundingSource: paypal.FUNDING.CARD,
+        createOrder: function(data, actions){
+            return actions.order.create({
+                application_context: {
+                    shipping_preference: "NO_SHIPPING"
+                },
+                payer: {
+                    email_address: '{{Auth::user()->email}}',
+                    name: {
+                        given_name: '{{Auth::user()->name}}',
+                        surname: 'x'
+                    }
+                },
+                purchase_units: [{
+                    amount: {
+                        value: '3.99'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions){
+            return fetch('/paypal/process/' + data.orderID)
+            .then(res => res.json())
+            .then(function(orderData){
+                var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
+                if(errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED'){
+                    return actions.restart();
+                }
+
+                if(errorDetail){
+                    var msg = 'Sorry, your transacction could not be processed.';
+                    if(errorDetail.description) msg += '\n\n' + errorDetail.description;
+                    if(orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
+                    return alert(msg);
+                }
+                alert('Transacction completed by ' + orderData.payer.name.given_name);
+            });
+            
+        }
+        // onError: function(err) {
+        //    alert('Ha habido un error en el pago');
+        // }
+    }).render('#paypal-button-container');
+</script> --}}

@@ -72,6 +72,11 @@ Route::middleware(['cart.is.empty'])->group(function(){
     Route::get('paypal-success', [PayPalController::class, 'success'])->name('paypal.success');
     Route::get('paypal-cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
 
+    //Pay with paypal Javascript (Card)
+
+    // Route::get('/paypal/process/{orderId}', 'Payments\PaypalCardController@process')->name('paypal.process');
+
+
 });
 
 //Orders System

@@ -42,6 +42,7 @@ class CheckoutComponent extends Component
             //     'phone' => 'required',
             //     'payment_method' => 'required'
             // ]);
+
             
         $order = new Order();
         $order->user_id = Auth::id(); 
@@ -99,7 +100,9 @@ class CheckoutComponent extends Component
         $cartItems = Carrito::where('user_id', Auth::id())->get();
         Mail::to($user->email)->send(new OrderPagada($order));
         Carrito::destroy($cartItems);
-        return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
+        return response()->json(["status" => "Compra realizada correctamente, pronto le llegará su pedido"]);
+
+        // return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
     }
 
 
