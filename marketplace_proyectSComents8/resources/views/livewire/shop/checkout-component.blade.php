@@ -320,8 +320,6 @@
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{{-- <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_SANDBOX_CLIENT_ID')}}&components=buttons,funding-eligibility"></script> --}}
-
 
 {{--Upload icon at checkout--}}
 <script>
@@ -336,17 +334,18 @@
 </script>
 
 
-{{--BIEN BOTONES--}}
+{{--BUTTONS PAYPAL--}}
  <script>
     paypal.Buttons({
-  // Otras configuraciones de PayPal...
+  //Other PayPal configurations...
 
   onApprove: function(data, actions) {
-    // Obtener los datos del formulario
+    // Get the form data
     var form = document.getElementById('shipping-form');
     var formData = new FormData(form);
 
-    // Enviar los datos al backend utilizando una solicitud AJAX con jQuery
+    // Send the data to the backend using an AJAX request with jQuery    
+
     $.ajax({
       url: '/place-order',
       method: 'POST',
@@ -361,391 +360,27 @@
             showConfirmButton: false,
             timer: 3000
          })
-        // Realizar acciones adicionales después de que los datos se hayan guardado correctamente
-        // alert('Datos de envío guardados en la base de datos');
-
-        // Continuar con la captura de pago en PayPal
+        // Perform additional actions after data has been successfully saved
+        // Continue with payment capture on PayPal
         return actions.order.capture().then(function(details) {
-        //   alert('Transacción completada por ' + details.payer.name.given_name);
-          // Redireccionar a la vista principal
+          // Redirect to main view
           window.location.href = '/';
         });
       },
       error: function(xhr, status, error) {
-        // Manejar errores de la solicitud AJAX, si los hay
-        alert('Error al guardar los datos de envío');
+        // Handle AJAX request errors, if any
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al guardar los datos de envío',
+            showConfirmButton: false,
+            timer: 3000
+         })
       }
     });
   },
 
-  // Otros eventos y configuraciones de PayPal...
+  // Other events and PayPal settings...
 }).render('#paypal-button-container');
 
 </script> 
-
-
-
-
-
-
-
-
-
-
-
-    
-{{--Envia los datos a la base de datos--}}
- {{-- <script>
-   paypal.Buttons({
-    fundingSource: paypal.FUNDING.CARD,
-  // Configuración de PayPal
-  createOrder: function(data, actions) {
-    // Obtener los datos del formulario
-    var form = document.getElementById('shipping-form');
-    var formData = new FormData(form);
-
-    // Enviar los datos al backend utilizando una solicitud AJAX con jQuery
-    $.ajax({
-      url: '/place-order',
-      method: 'POST',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-        // Realizar acciones adicionales después de que los datos se hayan guardado correctamente
-        alert('Datos de envío guardados en la base de datos');
-
-        // Continuar con la creación de la orden en PayPal
-        return actions.order.create({
-                application_context: {
-                    shipping_preference: "NO_SHIPPING"
-                },
-                payer: {
-                    email_address: '{{Auth::user()->email}}',
-                    name: {
-                        given_name: '{{Auth::user()->name}}',
-                        surname: 'x'
-                    }
-                },
-                purchase_units: [{
-                    amount: {
-                        value: '3.99'
-                    }
-                }]
-            });
-        },
-      error: function(xhr, status, error) {
-        // Manejar errores de la solicitud AJAX, si los hay
-        alert('Error al guardar los datos de envío');
-      }
-    });
-  },
-  onApprove: function(data, actions){
-        return actions.order.capture().then(function(details){
-            alert('Transacction completed by ' + details.payer.name.given_name);
-        });
-    },
-  onError: function(err) {
-    // Manejar errores de PayPal
-    alert('Ha habido un error en el pago');
-  }
-}).render('#paypal-button-container');
-</script> --}}
-     
-{{-- <script>
-    paypal.Buttons({
-  fundingSource: paypal.FUNDING.CARD,
-  createOrder: function(data, actions) {
-    // Obtener los datos del formulario
-    var form = document.getElementById('shipping-form');
-    var formData = new FormData(form);
-
-    // Enviar los datos al backend utilizando una solicitud AJAX con jQuery
-    $.ajax({
-      url: '/place-order',
-      method: 'POST',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-        // Realizar acciones adicionales después de que los datos se hayan guardado correctamente
-        alert('Datos de envío guardados en la base de datos');
-
-        // Continuar con la creación de la orden en PayPal
-        return actions.order.create({
-          application_context: {
-            shipping_preference: "NO_SHIPPING"
-          },
-          payer: {
-            email_address: '{{Auth::user()->email}}',
-            name: {
-              given_name: '{{Auth::user()->name}}',
-              surname: 'x'
-            }
-          },
-          purchase_units: [{
-            amount: {
-              value: '3.99'
-            }
-          }]
-        });
-      },
-      error: function(xhr, status, error) {
-        // Manejar errores de la solicitud AJAX, si los hay
-        alert('Error al guardar los datos de envío');
-      }
-    });
-  },
-  onApprove: function(data, actions) {
-    return actions.order.capture().then(function(details) {
-      alert('Transacción completada por ' + details.payer.name.given_name);
-    });
-  },
-  onError: function(err) {
-    // Manejar errores de PayPal
-    alert('Ha habido un error en el pago');
-  }
-}).render('#paypal-button-container');
-
-</script> --}}
-
-
-     
-
-{{-- MAS O MENOS --}}
- 
- {{-- <script>
-    
-    paypal.Buttons({
-        fundingSource: paypal.FUNDING.CARD,
-        createOrder: function(data, actions){
-            return actions.order.create({
-                application_context: {
-                    shipping_preference: "NO_SHIPPING"
-                },
-                payer: {
-                    email_address: '{{Auth::user()->email}}',
-                    name: {
-                        given_name: '{{Auth::user()->name}}',
-                        surname: 'x'
-                    }
-                },
-                purchase_units: [{
-                    amount: {
-                        value: '3.99'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions){
-            return actions.order.capture().then(function(details){
-                alert('Transacction completed by ' + details.payer.name.given_name);
-            });
-        }
-
-        
-        // onError: function(err) {
-        //    alert('Ha habido un error en el pago');
-        // }
-    }).render('#paypal-button-container');
-</script>  --}}
-
-
-
-{{--PAYPAL CON TODOS LOS BOTONES --}}
-{{-- <script>
-    paypal.Buttons({
-        createOrder: function(data, actions){
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '5'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions){
-            return actions.order.capture().then(function(details){
-                alert('Transacction completed by ' + details.payer.name.given_name);
-            });
-        }
-
-    }).render('#paypal-button-container');
-</script>  --}}
-
-
-{{-- <script>
-    paypal.Buttons({
-        createOrder: function(data, actions){
-            
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '5'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions){
-            return actions.order.capture().then(function(orderData){
-                console.log('Capture result', orderData, JSON.stringify(orderData,null, 2));
-                const transacction = orderData.purchase_units[0].payments.captures[0];
-                alert('Transacction ${transacction.status}: ${transaccion.id}\n\nSee console for a');
-            });
-        }
-
-    }).render('#paypal-button-container');
-</script>   --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- {{-- <script>
-    paypal.Buttons({
-  createOrder() {
-    // This function sets up the details of the transaction, including the amount and line item details.
-    return fetch("/my-server/create-paypal-order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        cart: [
-          {
-            sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
-            quantity: "YOUR_PRODUCT_QUANTITY"
-          }
-        ]
-      })
-    });
-  },
-  
-  onApprove(data) {
-    // This function captures the funds from the transaction.
-    return fetch("/my-server/capture-paypal-order", {
-      method: "POST",
-      body: JSON.stringify({
-        orderID: data.orderID
-      })
-    })
-    .then((response) => response.json())
-    .then((details) => {
-      // This function shows a transaction success message to your buyer.
-    //   alert('Transaction completed by ' + details.payer.name.given_name);
-
-      var firstname  = $('.firstname').val();
-      var lastname  = $('.lastname').val();
-      var state = $('.state').val();
-      var email = $('.email').val();
-      var city = $('.city').val();
-      var address1 = $('.address1').val();
-      var address2 = $('.address2').val();
-      var zipcode = $('.zipcode').val();
-      var phone = $('.phone').val();
-
-        $.ajax({
-                method: "POST",
-                url: "/place-order",
-                data: {
-                    'firstname':firstname,
-                    'lastname':lastname,
-                    'state':state,
-                    'email':email,
-                    'city':city,
-                    'address':address1,
-                    'address':address2,
-                    'zipcode':zipcode,
-                    'phone':phone,
-                },
-                success: function(response){
-                    alert(response.total_price)
-                }
-            });
-
-    });
-  }
-}).render('#paypal-button-container');
-console.log(sku);
-//This function displays payment buttons on your web page.
-</script>  --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- <script>
-    
-    paypal.Buttons({
-        fundingSource: paypal.FUNDING.CARD,
-        createOrder: function(data, actions){
-            return actions.order.create({
-                application_context: {
-                    shipping_preference: "NO_SHIPPING"
-                },
-                payer: {
-                    email_address: '{{Auth::user()->email}}',
-                    name: {
-                        given_name: '{{Auth::user()->name}}',
-                        surname: 'x'
-                    }
-                },
-                purchase_units: [{
-                    amount: {
-                        value: '3.99'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions){
-            return fetch('/paypal/process/' + data.orderID)
-            .then(res => res.json())
-            .then(function(orderData){
-                var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
-                if(errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED'){
-                    return actions.restart();
-                }
-
-                if(errorDetail){
-                    var msg = 'Sorry, your transacction could not be processed.';
-                    if(errorDetail.description) msg += '\n\n' + errorDetail.description;
-                    if(orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
-                    return alert(msg);
-                }
-                alert('Transacction completed by ' + orderData.payer.name.given_name);
-            });
-            
-        }
-        // onError: function(err) {
-        //    alert('Ha habido un error en el pago');
-        // }
-    }).render('#paypal-button-container');
-</script> --}}

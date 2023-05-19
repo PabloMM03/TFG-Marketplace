@@ -341,7 +341,7 @@
             
         });
 
-        //Chaange quantity 
+        //Change quantity 
         $('.changeQuantity').click(function(e){
             e.preventDefault();
 
@@ -366,15 +366,15 @@
                     success: function(response){
                         setTimeout(function(){
                             window.location.reload();
-                        }, 2000);
+                        }, 1000);
 
-                        Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: response.status,
-                        showConfirmButton: false,
-                        timer: 2000
-                        })
+                        // Swal.fire({
+                        // position: 'top-end',
+                        // icon: 'success',
+                        // title: response.status,
+                        // showConfirmButton: false,
+                        // timer: 2000
+                        // })
                     }
 
                 });

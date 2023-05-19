@@ -54,6 +54,9 @@ public function addProductToSingle(Request $request)
 }
 
     //Delete product to cart
+    /**
+     * Function that allows us to remove products from the cart, obtaining the authenticated user id and the product id
+     */
 
     public function deleteProduct(Request $request){
 
@@ -70,6 +73,10 @@ public function addProductToSingle(Request $request)
         }
     }
 
+    /**
+     * Function that allows us to update the quantity of the products, 
+     * obtaining the id and the quantity of products, these products will be added to the user's cart that is authenticated
+     */
     public function updateCart(Request $request){
 
         $prod_id = $request->input('prod_id');
@@ -91,13 +98,13 @@ public function addProductToSingle(Request $request)
         }
     }
 
+    /**
+     * Function that allows us to remove all the products from the cart
+     */
 
-
-
-
-public function deleteAll(){
-    Carrito::truncate();
-    return redirect('/')->with('info', 'Carrito vaciado correctamente');
-}
+    public function deleteAll(){
+        Carrito::truncate();
+        return redirect('/')->with('info', 'Carrito vaciado correctamente');
+    }
 
 }

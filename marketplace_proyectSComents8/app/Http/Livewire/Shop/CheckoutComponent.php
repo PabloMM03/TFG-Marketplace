@@ -31,17 +31,17 @@ class CheckoutComponent extends Component
 
     public function placeorder(Request $request){
              ///////////////////////Orders to be made and their data/////////////////////////////////
-            //  $this->validate([
-            //     'fname' => 'required',
-            //     'lname' => 'required',
-            //     'address1' => 'required',
-            //     'city' => 'required',
-            //     'email' => 'required',
-            //     'state' => 'required',
-            //     'zipcode' => 'required',
-            //     'phone' => 'required',
-            //     'payment_method' => 'required'
-            // ]);
+              $this->validate([
+                 'fname' => 'required',
+                 'lname' => 'required',
+                 'address1' => 'required',
+                 'city' => 'required',
+                 'email' => 'required',
+                 'state' => 'required',
+                 'zipcode' => 'required',
+                 'phone' => 'required',
+                //  'payment_method' => 'required'
+             ]);
 
             
         $order = new Order();
@@ -102,7 +102,6 @@ class CheckoutComponent extends Component
         Carrito::destroy($cartItems);
         return response()->json(["status" => "Compra realizada correctamente, pronto le llegará su pedido"]);
 
-        // return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
     }
 
 
