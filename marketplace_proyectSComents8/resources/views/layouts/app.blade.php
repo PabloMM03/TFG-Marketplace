@@ -466,6 +466,19 @@
         })
         </script>
         @endif
+
+        @if(session('status') == "Carrito vaciado correctamente")
+        <script> 
+        Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: '{{session('status')}}',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @endif
+
 </body>
 
 

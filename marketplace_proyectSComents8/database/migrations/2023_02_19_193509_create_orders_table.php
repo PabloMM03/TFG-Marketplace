@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('order_number');
             $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending'); //Payment process
             $table->boolean('is_paid')->default(true); //If paid
-            $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('cash_on_delivery'); // Payment method
+            $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('paypal'); // Payment method
             $table->string('shipping_address1');
             $table->string('shipping_address2');
             $table->string('shipping_city');

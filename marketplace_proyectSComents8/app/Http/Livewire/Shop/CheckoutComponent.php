@@ -31,17 +31,17 @@ class CheckoutComponent extends Component
 
     public function placeorder(Request $request){
              ///////////////////////Orders to be made and their data/////////////////////////////////
-              $this->validate([
-                 'fname' => 'required',
-                 'lname' => 'required',
-                 'address1' => 'required',
-                 'city' => 'required',
-                 'email' => 'required',
-                 'state' => 'required',
-                 'zipcode' => 'required',
-                 'phone' => 'required',
-                //  'payment_method' => 'required'
-             ]);
+            //   $this->validate([
+            //      'fname' => 'required',
+            //      'lname' => 'required',
+            //      'address1' => 'required',
+            //      'city' => 'required',
+            //      'email' => 'required',
+            //      'state' => 'required',
+            //      'zipcode' => 'required',
+            //      'phone' => 'required',
+            //     //  'payment_method' => 'required'
+            //  ]);
 
             
         $order = new Order();
@@ -61,6 +61,8 @@ class CheckoutComponent extends Component
         /**
          * We obtain the total of the sum of each product
          */
+        $order->payment_method = $request->input('payment_method', 'paypal');
+
         $total = 0;
         $cartItems_total = Carrito::where('user_id', Auth::id())->get();
         foreach($cartItems_total as $prod){
@@ -96,11 +98,40 @@ class CheckoutComponent extends Component
         
         /**
          * An email is sent to the management center, with the order data to start preparing it
+         * It is established whether the payment method is with PayPal or with cash
          */
-        $cartItems = Carrito::where('user_id', Auth::id())->get();
-        Mail::to($user->email)->send(new OrderPagada($order));
-        Carrito::destroy($cartItems);
-        return response()->json(["status" => "Compra realizada correctamente, pronto le llegará su pedido"]);
+
+        if ($order->payment_method == 'paypal') {
+            Mail::to($order->user->email)->send(new OrderPagada($order));
+        
+            $order->status = "processing";
+            $order->payment_method = "paypal";
+            $order->is_paid = true;
+            $order->save(); 
+            //Delete products cart
+            foreach ($cartItems as $item) {
+                $item->delete();
+            }
+
+            return response()->json(["status" => "Compra realizada correctamente, pronto le llegará su pedido"]);
+
+        } elseif ($order->payment_method == 'cash_on_delivery') {
+            // Send payment order information by email to the user
+            Mail::to($order->user->email)->send(new OrderPagada($order));
+        
+            $order->status = "pending";
+            $order->payment_method = "cash_on_delivery";
+            $order->is_paid = false;
+            $order->save();
+            //Delete products cart
+            foreach ($cartItems as $item) {
+                $item->delete();
+            }
+
+            return redirect('/')->with('status', 'Compra realizada correctamente, pronto le llegará su pedido');
+
+        }
+        
 
     }
 

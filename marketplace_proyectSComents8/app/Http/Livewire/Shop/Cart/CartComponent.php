@@ -103,8 +103,11 @@ public function addProductToSingle(Request $request)
      */
 
     public function deleteAll(){
-        Carrito::truncate();
-        return redirect('/')->with('info', 'Carrito vaciado correctamente');
+        $cart_items = Carrito::where('user_id', Auth::id())->get();
+        foreach ($cart_items as $item) {
+            $item->delete();
+        }
+        return redirect('/')->with('status', 'Carrito vaciado correctamente');
     }
 
 }
