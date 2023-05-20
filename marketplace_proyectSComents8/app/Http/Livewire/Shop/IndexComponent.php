@@ -23,12 +23,10 @@ class IndexComponent extends Component
 
         /**All products */
         
-         $products = Product::where('status', 2)
-                             ->where('name', 'LIKE','%'.$this->search . '%')
-                             ->orWhere('price', 'LIKE', '%'.$this->search.'%')
-                             ->latest('id')
-                             ->take(8)->get();
-                            //  ->paginate(50);
+        $products = Product::where('status', 2)
+                            ->latest('id')
+                            ->take(8)->get();
+       
 
         /*Featured products */
         $popular_products = Product::where('status', 2)
