@@ -319,7 +319,6 @@
   }
 </style>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 {{--Upload icon at checkout--}}
 <script>
@@ -338,7 +337,25 @@
  <script>
     paypal.Buttons({
   //Other PayPal configurations...
-
+createOrder: function(data, actions){
+    return actions.order.create({
+        application_context: {
+            shipping_preference: "NO_SHIPPING"
+        },
+        payer: {
+            email_address: '{{Auth::user()->email}}',
+            name: {
+                given_name: '{{Auth::user()->name}}',
+                surname: 'x'
+            },
+        },
+        purchase_units: [{
+            amount: {
+                value: '{{$total}}'
+            }
+        }]
+    });
+},
   onApprove: function(data, actions) {
     // Get the form data
     var form = document.getElementById('shipping-form');

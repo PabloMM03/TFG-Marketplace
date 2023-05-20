@@ -31,17 +31,18 @@ class CheckoutComponent extends Component
 
     public function placeorder(Request $request){
              ///////////////////////Orders to be made and their data/////////////////////////////////
-            //   $this->validate([
-            //      'fname' => 'required',
-            //      'lname' => 'required',
-            //      'address1' => 'required',
-            //      'city' => 'required',
-            //      'email' => 'required',
-            //      'state' => 'required',
-            //      'zipcode' => 'required',
-            //      'phone' => 'required',
-            //     //  'payment_method' => 'required'
-            //  ]);
+            $request->validate([
+                  'fname' => 'required',
+                  'lname' => 'required',
+                  'address1' => 'required',
+                  'address2' => 'required', 
+                  'city' => 'required',
+                  'email' => 'required',
+                  'state' => 'required',
+                  'zipcode' => 'required',
+                  'phone' => 'required',
+                  'payment_method' => 'required'
+              ]);
 
             
         $order = new Order();
@@ -106,7 +107,7 @@ class CheckoutComponent extends Component
         
             $order->status = "processing";
             $order->payment_method = "paypal";
-            $order->is_paid = true;
+            $order->is_paid = "Pagado";
             $order->save(); 
             //Delete products cart
             foreach ($cartItems as $item) {
@@ -121,7 +122,7 @@ class CheckoutComponent extends Component
         
             $order->status = "pending";
             $order->payment_method = "cash_on_delivery";
-            $order->is_paid = false;
+            $order->is_paid = "No_pagado";
             $order->save();
             //Delete products cart
             foreach ($cartItems as $item) {
