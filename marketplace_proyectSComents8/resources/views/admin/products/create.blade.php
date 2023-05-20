@@ -13,11 +13,6 @@
         {{--No autocompletar al excribir--}}
         {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-{{--Id del usuario el cual añade el producto--}}
-
-
-{{--formulario de creacionde productos--}}
-
         @include('admin.products.partials.form')
 
         {!! Form::submit('Crear producto', ['class' => 'btn btn-primary btn-sm formulario-crear']) !!}

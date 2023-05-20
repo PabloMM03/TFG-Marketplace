@@ -20,28 +20,9 @@
 
 <div class="card">
     <div class="card-body">
-        {!! Form::model($category, ['route' => ['admin.categories.update',$category], 'method' => 'PUT']) !!}
+        {!! Form::model($category, ['route' => ['admin.categories.update',$category],'autocomplete' => 'off', 'files' => true, 'method' => 'PUT']) !!}
 
-            <div class="form-group">
-                {!! Form::label('name', 'Nombre') !!}
-                {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Introduzca el nombre de categoria']) !!}
-
-                @error('name')
-                    <span class="text-danger">
-                        {{$message}}
-                    </span>       
-                @enderror
-            </div>
-            <div class="form-group">
-                {!! Form::label('slug', 'Slug') !!}
-                {!! Form::text('slug', null, ['class' => 'form-control','placeholder' => 'Introduzca el slug de categoria', 'readonly']) !!}
-
-                @error('slug')
-                    <span class="text-danger">
-                        {{$message}}
-                    </span>       
-                @enderror
-            </div>
+        @include('admin.categories.partials.form')
             {!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary btn-sm formulario-editar']) !!}
 
         {!! Form::close() !!}
@@ -49,21 +30,9 @@
 </div>
 @stop
 
+
+
 @section('js')
-
-    <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
-
-    <script>
-
-    $(document).ready( function() {
-    $("#name").stringToSlug({
-        setEvents: 'keyup keydown blur',
-        getPut: '#slug',
-        space: '-'
-    });
-    });
-
-    </script>
 
 {{--Update--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -82,19 +51,19 @@
         e.preventDefault();
 
         Swal.fire({
-title: 'Estás seguro?',
-text: "Esta categoria se actualizará!",
-icon: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Si, actualizar!',
-cancelButtonText: 'Cancelar!'
-}).then((result) => {
-if (result.isConfirmed) {
-this.submit();
-}
-})
-    });
+        title: 'Estás seguro?',
+            text: "Esta categoria se actualizará!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, actualizar!',
+            cancelButtonText: 'Cancelar!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+        this.submit();
+        }
+    })
+});
 </script>
 @endsection

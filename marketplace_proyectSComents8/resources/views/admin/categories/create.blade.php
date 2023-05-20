@@ -15,7 +15,7 @@
 @endif
     <div class="card">
         <div class="card-body">
-            {!! Form::open(['route' => 'admin.categories.store']) !!}
+            {!! Form::open(['route' => 'admin.categories.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
             @include('admin.categories.partials.form')
                 {!! Form::submit('Crear Categoria', ['class' => 'btn btn-primary btn-sm formulario-crear']) !!}

@@ -399,12 +399,16 @@
       <div class="carausel-6-columns-cover position-relative">
           <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
           <div class="carausel-6-columns" id="carausel-6-columns">
+            @foreach ($categories as $category)
               <div class="card-1">
-                  <figure class=" img-hover-scale overflow-hidden">
-                      <a href="shop.html"><img src="assets/imgs/shop/category-thumb-1.jpg" alt=""></a>
+                  <figure class="img-hover-scale overflow-hidden">
+                    <a href="{{route('products.category', $category)}}">
+                        <img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                    </a>
                   </figure>
-                  <h5><a href="shop.html">T-Shirt</a></h5>
+                  <h5><a href="{{route('products.category', $category)}}">{{$category->name}}</a></h5>
               </div>
+              @endforeach
               <div class="card-1">
                   <figure class=" img-hover-scale overflow-hidden">
                       <a href="shop.html"> <img src="assets/imgs/shop/category-thumb-2.jpg" alt=""></a>

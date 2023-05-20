@@ -67,16 +67,6 @@ Route::middleware(['cart.is.empty'])->group(function(){
     Route::post('place-order', [CheckoutComponent::class, 'placeorder'])->name('place.order');
     Route::post('proceed-to-pay' ,[CheckoutComponent::class, 'razorpaycheck']);
 
-    //Payments PayPal
-    Route::get('paypal-payment', [PayPalController::class, 'payment'])->name('paypal.payment');
-    Route::get('paypal-success', [PayPalController::class, 'success'])->name('paypal.success');
-    Route::get('paypal-cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
-
-    //Pay with paypal Javascript (Card)
-
-    // Route::get('/paypal/process/{orderId}', 'Payments\PaypalCardController@process')->name('paypal.process');
-
-
 });
 
 //Orders System

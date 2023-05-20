@@ -40,9 +40,10 @@ class IndexComponent extends Component
                         ->where('status', 2)
                         ->take(8)->get();
 
-        
+        $categories = Category::all();
 
-        return view('livewire.shop.index-component',compact('products', 'popular_products', 'products_news'))->extends('layouts.app')->section('content');
+
+        return view('livewire.shop.index-component',compact('products', 'popular_products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
 
     }
     

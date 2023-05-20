@@ -14,7 +14,7 @@
 
 @section('content')
 
-{{--Alerta de confirmacion de eliminacion categoria--}}
+{{--Deletion confirmation alert category--}}
 @if (session('info'))
     <div class="alert alert-success">
         <strong>{{session('info')}}</strong>
@@ -29,6 +29,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Imagen</th>
                         <th>Name</th>
                         <th colspan="2"></th>
                     </tr>
@@ -37,6 +38,7 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{$category->id}}</td>
+                            <td><img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('img/default_product.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
                             <td>{{$category->name}}</td>
                             @can('admin.categories.edit')
                             <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a></td>
@@ -88,11 +90,6 @@
   cancelButtonText: 'Cancelar!'
 }).then((result) => {
   if (result.isConfirmed) {
-    // Swal.fire(
-    //   'Deleted!',
-    //   'Your file has been deleted.',
-    //   'success'
-    // )
     this.submit();
   }
 })

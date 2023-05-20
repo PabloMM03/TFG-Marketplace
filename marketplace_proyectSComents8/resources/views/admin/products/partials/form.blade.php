@@ -166,7 +166,7 @@
             height: 100%;
         }
     </style>
-@stop
+  @stop
 
 {{--Formato de edicion de texto--}}
   @section('js')

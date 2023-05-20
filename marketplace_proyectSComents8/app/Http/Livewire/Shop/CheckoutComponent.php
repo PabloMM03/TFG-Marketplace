@@ -35,7 +35,7 @@ class CheckoutComponent extends Component
                   'fname' => 'required',
                   'lname' => 'required',
                   'address1' => 'required',
-                  'address2' => 'required', 
+                  'address2' => '', 
                   'city' => 'required',
                   'email' => 'required',
                   'state' => 'required',

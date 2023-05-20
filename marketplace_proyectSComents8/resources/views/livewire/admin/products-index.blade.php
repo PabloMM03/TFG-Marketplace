@@ -23,7 +23,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{$product->id}}</td>
-                            <td><img src="{{asset('storage/products/'.$product->product_image)}}" width="80px" height="70px" alt="Image"></td>
+                            <td><img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->price}} €</td>
                             <td>{{$product->category_id}}</td>

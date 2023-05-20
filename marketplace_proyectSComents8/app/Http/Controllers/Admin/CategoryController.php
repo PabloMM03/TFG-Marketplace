@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -50,20 +50,32 @@ class CategoryController extends Controller
      */
 
      /**
-      * Crear categoria, que no este creada ya
+      * Create category, which is not already created
       */
     public function store(Request $request)
     {
 
         $request->validate([
             'name'=> 'required',
-            'slug'=> 'required|unique:categories'
-
+            'slug'=> 'required|unique:categories',
+            'file' =>'image'
         ]);
 
 
       $category = Category::create($request->all());
 
+       /**
+        * Store image in storage
+        */
+        if($request->hasfile('file')){
+            $url = $request->file('file');
+             $extension = $url->getClientOriginalExtension();
+             $filename = time().'.'.$extension;
+             $url->move('storage/category/', $filename);
+             $category->category_image = $filename;
+            }
+     
+      $category->save();
       return redirect()->route('admin.categories.edit', $category)->with('crear', 'Categoria creada correctamente');
        
     }
@@ -89,18 +101,35 @@ class CategoryController extends Controller
      */
 
      /**
-      * Actulizar categoria, no se podria repetir el nombre
+      * Actulizar categoria, could not repeat the name
       */
     public function update(Request $request,Category $category)
     {
         $request->validate([
             'name'=> 'required',
-            'slug'=> "required|unique:categories,slug,$category->id"
-
+            'slug'=> "required|unique:categories,slug,$category->id",
+            'file' =>'image'
         ]);
 
         $category->update($request->all());
 
+         /**
+        * Store image in storage
+        */
+       if($request->hasfile('file'))
+       {
+        $destination = 'storage/category/'.$category->category_image;
+        if(File::exists($destination)){
+            File::delete($destination);
+        }
+        $url = $request->file('file');
+        $extension = $url->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $url->move('storage/category/', $filename);
+        $category->category_image = $filename;
+       }
+
+       $category->update();
         return redirect()->route('admin.categories.edit', $category)->with('editar', 'Categoria actualizada correctamente');
 
 
@@ -114,6 +143,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $destination = 'storage/products/'.$category->category_image;
+        if(File::exists($destination)){
+           File::delete($destination);
+        }
         $category->delete();
         return redirect()->route('admin.categories.index')->with('eliminar', 'Categoria eliminada correctamente');
         

@@ -11,7 +11,8 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'category_image'
     ];
 
     /**
@@ -25,5 +26,11 @@ class Category extends Model
     //Ralaciones 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    //Relacion polimorfica
+    public function image(){
+        return $this->morphOne(Image::class, 'imagen');
+
     }
 }

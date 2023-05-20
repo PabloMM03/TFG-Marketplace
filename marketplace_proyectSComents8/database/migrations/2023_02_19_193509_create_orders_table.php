@@ -29,7 +29,7 @@ return new class extends Migration
             $table->enum('is_paid', ['Pagado', 'No_pagado'])->default('No_pagado');
             $table->enum('payment_method', ['cash_on_delivery', 'paypal', 'stripe', 'card'])->default('paypal'); // Payment method
             $table->string('shipping_address1');
-            $table->string('shipping_address2');
+            $table->string('shipping_address2')->nullable();
             $table->string('shipping_city');
             $table->string('shipping_state');
             $table->string('shipping_zipcode');
