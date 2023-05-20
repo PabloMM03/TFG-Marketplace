@@ -167,6 +167,7 @@ class ProductController extends Controller
         $this->authorize('author', $product);  
         $destination = 'storage/products/'.$product->product_image;
         if(File::exists($destination)){
+            // unlink($destination);
            File::delete($destination);
         }
         $product->delete();
