@@ -46,4 +46,10 @@ class Product extends Model
         return $this->hasMany(Comment::class, 'product_id', 'id');
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transactions::class);
+    }
+
+
 }

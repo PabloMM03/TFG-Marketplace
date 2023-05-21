@@ -7,6 +7,7 @@ use App\Models\Carrito;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Transactions;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Http\Request;
@@ -72,24 +73,53 @@ class CheckoutComponent extends Component
         $order->total = $total;
         $order->save();
 
+   
         
         $cartItems = Carrito::where('user_id', Auth::id())->get();
-        foreach ($cartItems as  $item) {
+        // foreach ($cartItems as  $item) {
            
+        //     OrderItem::create([
+        //         'order_id' => $order->id,
+        //         'prod_id' => $item->prod_id,
+        //         'qty' => $item->prod_qty,
+        //         'price' => $item->products->price,
+        //     ]);
+            
+        //         //Reduce products as they run out
+        //         $prod = Product::where('id', $item->prod_id)->first();
+        //         $prod->qty = $prod->qty - $item->prod_qty;
+        //         $prod->update();
+            
+            
+        // }
+
+
+        foreach ($cartItems as $item) {
+            $total += $item->products->price;
+    
             OrderItem::create([
                 'order_id' => $order->id,
                 'prod_id' => $item->prod_id,
                 'qty' => $item->prod_qty,
                 'price' => $item->products->price,
             ]);
-            
-                //Reduce products as they run out
-                $prod = Product::where('id', $item->prod_id)->first();
-                $prod->qty = $prod->qty - $item->prod_qty;
-                $prod->update();
-            
-            
+    
+            $prod = Product::where('id', $item->prod_id)->first();
+            $prod->qty -= $item->prod_qty;
+            $prod->update();
+    
+            $transaction = new Transactions();
+            $transaction->product_id = $item->prod_id;
+            $transaction->user_id = Auth::id();
+            $transaction->quantity = $item->prod_qty;
+            $transaction->price = $item->products->price;
+            $transaction->save();
+    
+            $item->delete();
         }
+
+
+
 
         if(Auth::user()->shipping_address1 == NULL){
             $user = User::where('id', Auth::id())->first(); 

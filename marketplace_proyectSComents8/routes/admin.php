@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\Admin\UserController;
 
 //Admin routes
@@ -25,3 +26,7 @@ Route::resource('products', ProductController::class)->except('show')->names('ad
 
 //User Roles Path
 Route::resource('roles', RoleController::class)->names('admin.roles');
+
+//Route admin sales products
+Route::get('sales', [SalesController::class, 'index'])->name('admin.sales.index');
+

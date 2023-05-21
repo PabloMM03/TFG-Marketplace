@@ -23,7 +23,6 @@ return new class extends Migration
             $table->float('price')->nullable();
             $table->float('original_price')->nullable();
             $table->string('qty')->nullable();
-            // $table->string('cover_img')->nullable();
             $table->enum('status', [1,2])->default(1); //Estado publicado o en espera
             $table->enum('trending', [1,2])->default(1); //Estado popular o no popular
 

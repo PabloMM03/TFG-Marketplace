@@ -65,7 +65,6 @@ Route::middleware(['cart.is.empty'])->group(function(){
     //Pay Route
     Route::get('checkout', CheckoutComponent::class)->name('checkout');
     Route::post('place-order', [CheckoutComponent::class, 'placeorder'])->name('place.order');
-    Route::post('proceed-to-pay' ,[CheckoutComponent::class, 'razorpaycheck']);
 
 });
 
@@ -104,3 +103,5 @@ Route::get('contact', ContactComponent::class);
 
 //Shop
 Route::get('shop', ShopComponent::class)->name('view.more');
+
+Route::get('/products/{productId}/purchased-users', [ProductController::class, 'showPurchasedUsers'])->name('products.purchased-users');

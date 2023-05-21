@@ -9,7 +9,8 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\File;
 
 use App\Http\Requests\ProductRequest;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -29,11 +30,20 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     $products = Product::all(); 
+    //     return view('admin.products.index', compact('products'));
+    // }
     public function index()
     {
-        $products = Product::all(); 
-        return view('admin.products.index', compact('products'));
+        $userId = Auth::id();
+        $user = User::find($userId);
+        $products = $user->products;
+    
+        return view('admin.products.index', compact('user', 'products'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -60,7 +70,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        // return Storage::put('products',$request->file('file'));
 
        $product = Product::create($request->all());
 

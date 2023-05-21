@@ -392,6 +392,12 @@ return [
             'can'         => 'admin.products.index',
         ],
         [
+            'text'       => 'Tus ventas',
+            'icon' => 'fas fa-fw fa-clipboard',
+            'route'        => 'admin.sales.index',
+            // 'can'         => 'admin.sales.index',
+        ],
+        [
             'text'       => 'Crear nuevo producto',
             'icon' => 'fas fa-fw fa-file',
             'route'        => 'admin.products.create',
