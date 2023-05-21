@@ -7,7 +7,9 @@ use App\Models\Product;
 
 class SalesController extends Controller
 {
-
+/**
+ * obtain the sale of the products that users have bought and who has done so
+ */
      public function index()
      {
          $userId = auth()->id();
