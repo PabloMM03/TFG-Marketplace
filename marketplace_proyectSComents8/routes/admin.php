@@ -29,4 +29,5 @@ Route::resource('roles', RoleController::class)->names('admin.roles');
 
 //Route admin sales products
 Route::get('sales', [SalesController::class, 'index'])->name('admin.sales.index');
-
+// Route::get('view-sales/{order}', [SalesController::class, 'view'])->name('admin.sales.view');
+Route::get('view-sales/{id}', [SalesController::class, 'view'])->name('admin.sales.view');

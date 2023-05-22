@@ -16,6 +16,7 @@
 
     @if ($products->count())  
    
+    {{--We show sales made by sellers--}}
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -25,6 +26,7 @@
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Comprador</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +38,7 @@
                                 <td>{{ $transaction->quantity }}</td>
                                 <td>{{ $product->price }}€</td>
                                 <td>{{ $transaction->user->name }} - {{ $transaction->user->email }}</td>
+                                <td><a href="{{ route('admin.sales.view', ['id' => $transaction->id]) }}" class="btn btn-outline-dark flex-shrink-0">Ver detalles</a></td> 
                             </tr>
                         @endforeach
                     @endforeach
