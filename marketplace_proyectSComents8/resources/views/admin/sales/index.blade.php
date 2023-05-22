@@ -16,7 +16,6 @@
 
     @if ($products->count())  
    
-    {{--We show sales made by sellers--}}
         <div class="card-body">
             <table class="table table-striped">
                 <thead>

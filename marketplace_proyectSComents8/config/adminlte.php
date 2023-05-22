@@ -327,7 +327,7 @@ return [
             'text'        => 'Roles usuario',
             'route'         => 'admin.roles.index',
             'icon'        => 'fas fa-users-cog fa-fw',
-        
+            'can'       => 'admin.roles.index',
         ],
 
         ['header' => 'ADMINISTRADOR'],
@@ -395,7 +395,7 @@ return [
             'text'       => 'Tus ventas',
             'icon' => 'fas fa-fw fa-clipboard',
             'route'        => 'admin.sales.index',
-            // 'can'         => 'admin.sales.index',
+            'can'         => 'admin.sales.index',
         ],
         [
             'text'       => 'Crear nuevo producto',
