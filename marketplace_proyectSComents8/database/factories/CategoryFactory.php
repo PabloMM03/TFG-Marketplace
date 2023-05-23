@@ -17,12 +17,11 @@ class CategoryFactory extends Factory
 
     public function definition()
     {
-        //Genera un nuevo nombre con formato slug
+        //Generate a new name in slug format
         $name = $this->faker->unique()->word(30);
 
         return [
             'name' => $this->faker->word(30),
-            // 'name' => $this->faker->randomElement(['Electronica', 'Informatica', 'Cocina', 'Jardineria', 'Deportes']),
             'slug' => Str::slug($name),  
         ];
     }

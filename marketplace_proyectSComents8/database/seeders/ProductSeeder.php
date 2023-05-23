@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
     {
         $products = Product::factory(20)->create();
 
-        //Asginar una imagen cada vez que se cree un producto
+        //Assign an image every time a product is created
         foreach($products as $product){
             Image::factory(1)->create([
 
@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
             ]);
 
             $product->tags()->attach([
-                rand(1, 4),  //Asigna etiquetas random
+                rand(1, 4),  //Assign random tags
                 rand(5, 8)
             ]);
         }
