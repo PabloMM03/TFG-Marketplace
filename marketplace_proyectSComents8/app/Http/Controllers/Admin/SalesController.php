@@ -5,39 +5,32 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class SalesController extends Controller
 {
-/**
- * obtain the sale of the products that users have bought and who has done so
- */
-public function index()
-{
-    $userId = auth()->id();
-    $user = User::find($userId);
-    $products = Product::whereHas('transactions')->with('transactions.user')->paginate(2);
+    /**
+     * Shows authenticated seller sales
+     * 
+     */
+    public function index()
+    {
+        
+        $userId = Auth::id();
+        $products = Product::where('user_id', $userId)->whereHas('transactions')->with('transactions.user')->paginate(10);
+        return view('admin.sales.index', compact('products'));
+    }
 
-    return view('admin.sales.index', compact('products'));
-}
-
-
-// $userId = auth()->id();
-// $user = User::find($userId);
-// $products = Product::where('user_id', $userId)->whereHas('transactions')->with('transactions.user')->paginate(2);
-
-// return view('admin.sales.index', compact('products'));
-
-
-      /**
-     * Gets the details of orders placed by the authenticated user
+    /**
+     * Displays the details of an order
      */
     public function view($id)
     {
+        //  Get the order details with the ID provided
+        $order = Order::findOrFail($id);
 
-        $orders = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-        return view('admin.sales.view', compact('orders'));
+        // Get the products associated with the order
+        $products = Product::whereIn('id', $order->orderitems->pluck('product_id'))->get();
+        return view('admin.sales.view', compact('order', 'products'));
     }
-
 }

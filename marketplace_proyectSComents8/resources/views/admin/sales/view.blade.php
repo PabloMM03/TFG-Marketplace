@@ -11,81 +11,90 @@
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="d-flex justify-content-between">
-                        <h4>Número de orden: {{ $orders->order_number }}</h4>
+                        <h4>Número de orden: {{ $order->order_number }}</h4>
                         <a href="{{ route('admin.sales.index') }}" class="btn btn-warning text-white">Volver</a>
-                      </div>
-                      
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        {{--We show the details of the order placed by the user--}}
+                        {{-- Detalles de envío --}}
                         <div class="col-md-6 order-details">
                             <h4>Detalles de envío</h4>
                             <hr>
-                        <label for="">Nombre</label>
-                        <div class="border">{{$orders->shipping_fname}}</div>
-                        <label for="">Apellidos</label>
-                        <div class="border">{{$orders->shipping_lname}}</div>
-                        <label for="">Email</label>
-                        <div class="border">{{$orders->email}}</div>
-                        <label for="">Dirección 1</label>
-                        <div class="border">
-                            {{$orders->shipping_address1}} ,
-                            {{$orders->shipping_city}} ,
-                            {{$orders->shipping_state}} 
+                            <label for="">Nombre</label>
+                            <div class="border">{{ $order->shipping_fname }}</div>
+                            <label for="">Apellidos</label>
+                            <div class="border">{{ $order->shipping_lname }}</div>
+                            <label for="">Email</label>
+                            <div class="border">{{ $order->email }}</div>
+                            <label for="">Dirección 1</label>
+                            <div class="border">
+                                {{ $order->shipping_address1 }},
+                                {{ $order->shipping_city }},
+                                {{ $order->shipping_state }}
+                            </div>
+                            <label for="">Dirección 2</label>
+                            <div class="border">
+                                {{ $order->shipping_address2 }}
+                            </div>
+                            <label for="">Número de Contacto</label>
+                            <div class="border">{{ $order->shipping_phone }}</div>
+                            <label for="">Código postal</label>
+                            <div class="border">{{ $order->shipping_zipcode }}</div>
+                            <label for="">Método de Pago</label>
+                            <div class="border">
+                                @if ($order->payment_method == "cash_on_delivery")
+                                    En efectivo
+                                @elseif ($order->payment_method == "paypal")
+                                    Paypal
+                                @endif
+                            </div>
+                            <label for="">¿Pagado?</label>
+                            <div class="border">
+                                @if ($order->payment_method == "cash_on_delivery")
+                                    No Pagado, esperando a recogida
+                                @elseif ($order->payment_method == "paypal")
+                                    Pagado
+                                @endif
+                            </div>
                         </div>
-                        <label for="">Dirección 2</label>
-                        <div class="border">
-                            {{$orders->shipping_address2}} 
-                        </div>
-                        <label for="">Numero de Contacto</label>
-                        <div class="border">{{$orders->shipping_phone}}</div>
-                        <label for="">Código postal</label>
-                        <div class="border ">{{$orders->shipping_zipcode}}</div>
-                        <label for="">Método de Pago</label>
-                        <?php if($orders->payment_method == "cash_on_delivery"){?> 
-                            <div class="border ">En efectivo</div><?php
-                        }elseif ($orders->payment_method == "paypal") {
-                            ?><div class="border ">Paypal</div> <?php
-                        }?>
-                        </div>
-                        
+
+                        {{-- Detalles del pedido --}}
                         <div class="col-md-6">
                             <h4>Detalles del pedido</h4>
                             <hr>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Nombre</th>
                                         <th>Cantidad</th>
-                                        <th>Price</th>
+                                        <th>Precio</th>
                                         <th>Imagen</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders->orderitems as $order)                                      
-                                    <tr>
-                                        <td>{{$order->products->name}}</td>
-                                        <td>{{$order->qty}}</td>
-                                        <td>{{$order->price}} €</td>
-                                        <td>
-                                            <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="70px" alt="Product image">
-                                            
-                                        </td>
-                                    </tr>
+                                    @foreach ($order->orderItems as $orderItem)
+                                        <tr>
+                                            <td>{{ $orderItem->products->name }}</td>
+                                            <td>{{ $orderItem->qty }}</td>
+                                            <td>{{ $orderItem->price }}€</td>
+                                            <td>
+                                                <img src="{{ asset('storage/products/' . $orderItem->products->product_image) }}" width="70px" alt="Product image">
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
 
-                            <h3 class="px-2">Percio Total : <span class="float-end">{{$orders->total}} €</span></h3>
+                            <h3 class="px-2">Precio Total: <span class="float-end">{{ $order->total }}€</span></h3>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
 
 @stop
 

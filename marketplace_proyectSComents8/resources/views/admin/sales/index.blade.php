@@ -16,40 +16,42 @@
 
     @if ($products->count())  
    
-        <div class="card-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nombre del producto</th>
-                        <th>Imagen</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Comprador</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($products as $product)
-                        @foreach ($product->transactions as $transaction)
-                            <tr>
-                                <td>{{ $product->name }}</td>
-                                <td><img src="{{asset('storage/products/'. $transaction->product->product_image)}}" width="70px" alt="Product image"></td>
-                                <td>{{ $transaction->quantity }}</td>
-                                <td>{{ $product->price }}€</td>
-                                <td>{{ $transaction->user->name }} - {{ $transaction->user->email }}</td>
-                                <td><a href="{{ route('admin.sales.view', ['id' => $transaction->id]) }}" class="btn btn-outline-dark flex-shrink-0">Ver detalles</a></td> 
-                            </tr>
-                        @endforeach
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre del producto</th>
+                    <th>Imagen</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Comprador</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    @foreach ($product->transactions as $transaction)
+                        <tr>
+                            <td>{{ $product->name }}</td>
+                            <td>
+                                <img src="{{ asset('storage/products/' . $transaction->product->product_image) }}" width="70px" alt="Product image">
+                            </td>
+                            <td>{{ $transaction->quantity }}</td>
+                            <td>{{ $product->price }}€</td>
+                            <td>{{ $transaction->user->name }} - {{ $transaction->user->email }}</td>
+                            <td>
+                                <a href="{{ route('admin.sales.view', ['id' => $transaction->id]) }}" class="btn btn-outline-dark flex-shrink-0">Ver detalles</a>
+                            </td>
+                        </tr>
                     @endforeach
-                </tbody>
-            </table>
-            
-            
-       </div>
+                @endforeach
+            </tbody>
+        </table>
+        {{ $products->links() }}
+    </div>
+    
 
-       <div class="card-footer">
-        {{$products->links()}}
-       </div>
+  
         
      @else
     <div class="card-body">
