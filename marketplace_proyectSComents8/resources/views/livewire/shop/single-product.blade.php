@@ -1,38 +1,5 @@
 <div class="container" py-8>
-  <style>
-      /* rating */
-.rating-css div {
-  color: #ffe400;
-  font-size: 30px;
-  font-family: sans-serif;
-  font-weight: 800;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 20px 0;
-}
-.rating-css input {
-  display: none;
-}
-.rating-css input + label {
-  font-size: 60px;
-  text-shadow: 1px 1px 0 #8f8420;
-  cursor: pointer;
-}
-.rating-css input:checked + label ~ label {
-  color: #b4afaf;
-}
-.rating-css label:active {
-  transform: scale(0.8);
-  transition: 0.3s ease;
-}
-.checked{
-  color:#ffd900
-}
-
-/* End of Star Rating */
-  </style>
-
-  @can('published', $product)
+    @can('published', $product)
 
 
 
@@ -562,24 +529,32 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <h2><a href="{{route('publicaciones.show',$relacionado)}}" tabindex="0">{{$relacionado->name}}</a></h2>
-                                                {{-- <div class="rating-result" title="90%"> --}}
-                                                  @php $ratenum  = number_format($rating_value) @endphp
-                                                  <div class="rating  mb-2">
-                                                      @for($i = 1; $i<= $ratenum; $i++)
-                                                      <i class=" fa bi-star checked"></i>
-                                                      @endfor
-                                                      @for($j = $ratenum+1; $j <= 5; $j++)
-                                                      <i class=" fa bi-star"></i>
-                                                      @endfor
-                                                      <br>
-                                                      <span>
-                                                          @if($ratings->count() > 0)
-                                                          {{$ratings->count()}} reviews
-                                                          @else
-                                                          0 reviews
-                                                          @endif
-                                                      </span>
-                                                  </div>
+                                                      {{--We get the rating and show it--}}
+                                                        <div class="product-item">
+                                                    
+                                                            @if ($relacionado->ratings->count() > 0)
+                                                                @php
+                                                                    $rating_value = $relacionado->rating_value;
+                                                                    $review_count = $relacionado->review_count;
+                                                                @endphp
+                                                    
+                                                                <div class="rating">
+                                                                    @for($i = 1; $i<= $rating_value; $i++)
+                                                                    <i class=" fa bi-star checked"></i>
+                                                                    @endfor
+                                                                    @for($j = $rating_value+1; $j <= 5; $j++)
+                                                                    <i class=" fa bi-star"></i>
+                                                                    @endfor
+                                                                    ({{ $review_count }})
+
+                                                                </div>
+
+                                                            @else
+                                                                <span class="font-small ml-5 text-muted">
+                                                                    Sin valoraciones
+                                                                </span>
+                                                            @endif
+                                                        </div>
                                                     <span>
                                                     </span>
                                                 <div class="product-price">
@@ -632,8 +607,32 @@
                             <div class="content pt-10">
                                 <h5><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h5>
                                 <p class="price mb-0 mt-5">{{$product_new->price}} €</p>
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width:90%"></div>
+
+                                  {{--We get the rating and show it--}}
+                                <div class="product-item">
+                            
+                                    @if ($product_new->ratings->count() > 0)
+                                        @php
+                                            $rating_value = $product_new->rating_value;
+                                            $review_count = $product_new->review_count;
+                                        @endphp
+                            
+                                        <div class="rating">
+                                            @for($i = 1; $i<= $rating_value; $i++)
+                                            <i class=" fa bi-star checked"></i>
+                                            @endfor
+                                            @for($j = $rating_value+1; $j <= 5; $j++)
+                                            <i class=" fa bi-star"></i>
+                                            @endfor
+                                            ({{ $review_count }})
+
+                                        </div>
+
+                                    @else
+                                        <span class="font-small ml-5 text-muted">
+                                            Sin valoraciones
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

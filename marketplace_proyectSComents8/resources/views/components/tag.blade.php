@@ -79,12 +79,7 @@
                       <a href="/">Clothing</a>
                   </div>
                   <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
-                  <div class="rating-result" title="90%">
-                      <span>
-                          <span>90%</span>
-                      </span>
-                      
-                  </div>
+                  
                   {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                 however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
                  

@@ -43,6 +43,8 @@
 }
 
 
+  
+
 </style>
 
 @endsection
@@ -142,6 +144,8 @@
   </div>
 </section>
 
+
+
 {{--Products--}}
 
 <section class="product-tabs section-padding position-relative wow fadeIn animated">
@@ -205,12 +209,33 @@
                                   <a href="/">Clothing</a>
                               </div>
                               <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
-                              <div class="rating-result" title="90%">
-                                  <span>
-                                      <span>90%</span>
-                                  </span>
-                                  
-                              </div>
+                              {{--We get the rating and show it--}}
+                              <div class="product-item">
+                          
+                                @if ($product->ratings->count() > 0)
+                                    @php
+                                        $rating_value = $product->rating_value;
+                                        $review_count = $product->review_count;
+                                    @endphp
+                        
+                                    <div class="rating">
+                                        @for($i = 1; $i<= $rating_value; $i++)
+                                        <i class=" fa bi-star checked"></i>
+                                        @endfor
+                                        @for($j = $rating_value+1; $j <= 5; $j++)
+                                        <i class=" fa bi-star"></i>
+                                        @endfor
+                                        ({{ $review_count }})
+
+                                    </div>
+
+                                @else
+                                    <span class="font-small ml-5 text-muted">
+                                        Sin valoraciones
+                                    </span>
+                                @endif
+                            </div>
+                            
                               {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                             however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
                              
@@ -276,12 +301,34 @@
                                 <a href="/">Clothing</a>
                             </div>
                             <h2><a href="{{route('publicaciones.show',$item)}}">{{$item->name}}</a></h2>
-                            <div class="rating-result" title="90%">
-                                <span>
-                                    <span>90%</span>
-                                </span>
-                                
+
+                            {{--We get the rating and show it--}}
+                            <div class="product-item">
+                          
+                                @if ($item->ratings->count() > 0)
+                                    @php
+                                        $rating_value = $item->rating_value;
+                                        $review_count = $item->review_count;
+                                    @endphp
+                        
+                                    <div class="rating">
+                                        @for($i = 1; $i<= $rating_value; $i++)
+                                        <i class=" fa bi-star checked"></i>
+                                        @endfor
+                                        @for($j = $rating_value+1; $j <= 5; $j++)
+                                        <i class=" fa bi-star"></i>
+                                        @endfor
+                                        ({{ $review_count }})
+
+                                    </div>
+
+                                @else
+                                    <span class="font-small ml-5 text-muted">
+                                        Sin valoraciones
+                                    </span>
+                                @endif
                             </div>
+
                             {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                           however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
                              
@@ -345,12 +392,34 @@
                                 <a href="shop.html">Clothing</a>
                             </div>
                             <h2><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h2>
-                            <div class="rating-result" title="90%">
-                                <span>
-                                    <span>90%</span>
-                                </span>
-                                
+
+                            {{--We get the rating and show it--}}
+                            <div class="product-item">
+                          
+                                @if ($product->ratings->count() > 0)
+                                    @php
+                                        $rating_value = $product->rating_value;
+                                        $review_count = $product->review_count;
+                                    @endphp
+                        
+                                    <div class="rating">
+                                        @for($i = 1; $i<= $rating_value; $i++)
+                                        <i class=" fa bi-star checked"></i>
+                                        @endfor
+                                        @for($j = $rating_value+1; $j <= 5; $j++)
+                                        <i class=" fa bi-star"></i>
+                                        @endfor
+                                        ({{ $review_count }})
+
+                                    </div>
+
+                                @else
+                                    <span class="font-small ml-5 text-muted">
+                                        Sin valoraciones
+                                    </span>
+                                @endif
                             </div>
+
                             {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                           however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
                
@@ -489,18 +558,44 @@
                         @if($product_new->trending == 2)
                            <span class="badge bg-warning mt-2 mb-2 ml-20" style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending 
                              <i class="bi bi-info-circle"></i> </span>                                          
-                        @else    
-                           <span></span>                                     
+                        @elseif($product->qty == 0)
+                             <span class="sale">Sale</span>        
                         @endif
                           {{-- <span class="hot">Hot</span> --}}
                       </div>
                   </div>
                   <div class="product-content-wrap">
                       <h2><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h2>
-                      <div class="rating-result" title="90%">
-                          <span>
-                          </span>
-                      </div>
+                      
+                        {{--We get the rating and show it--}}
+                            <div class="product-item">
+                          
+                                @if ($product_new->ratings->count() > 0)
+                                    @php
+                                        $rating_value = $product_new->rating_value;
+                                        $review_count = $product_new->review_count;
+                                    @endphp
+                        
+                                    <div class="rating">
+                                        @for($i = 1; $i<= $rating_value; $i++)
+                                        <i class=" fa bi-star checked"></i>
+                                        @endfor
+                                        @for($j = $rating_value+1; $j <= 5; $j++)
+                                        <i class=" fa bi-star"></i>
+                                        @endfor
+                                        ({{ $review_count }})
+
+                                    </div>
+
+                                @else
+                                    <span class="font-small ml-5 text-muted">
+                                        Sin valoraciones
+                                    </span>
+                                @endif
+                            </div>
+                      
+                       
+                   
                       <div class="product-price">
                           <span>{{$product_new->price}} €</span>
                           <span class="old-price">{{$product_new->original_price}} €</span>

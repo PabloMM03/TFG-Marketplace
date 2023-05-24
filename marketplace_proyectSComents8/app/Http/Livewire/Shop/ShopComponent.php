@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Shop;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Rating;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +34,10 @@ class ShopComponent extends Component
 
         /**All products */
         /**
-         * Filter by price and order
+         * Filter by price and order,The minimum and maximum declared above are obtained and 
+         * ordered by the price, and the way of ordering that collects it from the view is specified.
          */
+
         if($this->orderBy == 'Price: Low to High')
         {
             $products = Product::whereBetween('price',[$this->min_value,$this->max_value])->orderBy('price', 'ASC')->where('status', 2)->latest('id')->paginate($this->pageSize);
@@ -59,8 +62,34 @@ class ShopComponent extends Component
 
         $categories = Category::orderBy('name', 'ASC')->get();
     
+         // Get the ratings and number of reviews for each product through the product id
 
-        return view('livewire.shop.shop-component', compact('products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
+         foreach ($products as $product) {
+            $ratings = Rating::where('prod_id', $product->id)->get();
+            $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+            $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+
+            $product->ratings = $ratings;
+            $product->rating_value = $rating_value;
+            $product->review_count = $ratings->count();
+        }
+
+         // Get the ratings and number of reviews for each product through the new  product id
+
+         foreach ($products_news as $product) {
+            $ratings = Rating::where('prod_id', $product->id)->get();
+            $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+            $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+
+            $product->ratings = $ratings;
+            $product->rating_value = $rating_value;
+            $product->review_count = $ratings->count();
+        }
+
+        $overall_rating = $products->avg('rating_value');
+
+
+        return view('livewire.shop.shop-component', compact('products', 'products_news', 'categories', 'overall_rating'))->extends('layouts.app')->section('content');
 
     }
 
@@ -80,7 +109,7 @@ class ShopComponent extends Component
 
    
     /**
-     * Method to add products to the wishlist
+     * Method to add products to the wishlist, The product ID is obtained and checked if it already exists in your wishlist If not, it is added
      */
     public function add(Request $request){
         if(auth()->check()){
@@ -89,7 +118,7 @@ class ShopComponent extends Component
     
             $existingWish = Wishlist::where('user_id', $user_id)->where('prod_id', $product_id)->first();
             if($existingWish){
-                // El producto ya está en la lista de deseos del usuario
+                // The product is already on the user's wish list
                 return redirect()->back()->with('status', "El producto ya está en su Wishlist");
             }else{
 

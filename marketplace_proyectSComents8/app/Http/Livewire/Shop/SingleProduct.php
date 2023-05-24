@@ -32,6 +32,9 @@ class SingleProduct extends Component
         $this->product = $product;
 
         //System Rating products
+        /**
+         * The product id is obtained and added as long as the user is authenticated
+         */
         $this->ratings = Rating::where('prod_id', $product->id)->get();
         $this->rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
        
@@ -57,7 +60,36 @@ class SingleProduct extends Component
                                       ->latest('id')
                                       ->take(6)
                                       ->get();
+
+
+        // Get the ratings and number of reviews for each product through the new product id
+
+            foreach ($this->products_news as $product) {
+                $ratings = Rating::where('prod_id', $product->id)->get();
+                $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+                $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+    
+                $product->ratings = $ratings;
+                $product->rating_value = $rating_value;
+                $product->review_count = $ratings->count();
+            }
+
+            // Get the ratings and number of reviews for each product through the product id
+
+            foreach ($this->relacionados as $product) {
+                $ratings = Rating::where('prod_id', $product->id)->get();
+                $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+                $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+    
+                $product->ratings = $ratings;
+                $product->rating_value = $rating_value;
+                $product->review_count = $ratings->count();
+            }
+            
+            $this->overall_rating = $this->relacionados->avg('rating_value');
+
     }
+    
 
     /**
      * Show the product in detail

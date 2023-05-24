@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Shop;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Rating;
 use App\Models\Tag;
 use Livewire\Component;
 
@@ -14,6 +15,9 @@ class TermsConditions extends Component
     {
         $categories = Category::all();
         $tags = Tag::all();
+
+       
+
 
         $products_news = Product::latest()
                                 ->where('status', 2)
