@@ -396,10 +396,10 @@
                             {{--We get the rating and show it--}}
                             <div class="product-item">
                           
-                                @if ($product->ratings->count() > 0)
+                                @if ($product_new->ratings->count() > 0)
                                     @php
-                                        $rating_value = $product->rating_value;
-                                        $review_count = $product->review_count;
+                                        $rating_value = $product_new->rating_value;
+                                        $review_count = $product_new->review_count;
                                     @endphp
                         
                                     <div class="rating">
