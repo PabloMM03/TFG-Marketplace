@@ -25,37 +25,18 @@
                                     <!-- MAIN SLIDES -->
                                     <div class="product-image-slider">
                                         <figure class="border-radius-10">
-                                          <img src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} 
-                                          @else {{asset('img/default_product.jpg')}}  @endif" alt="product image">
+                                            <img src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
                                         </figure>
                                         <figure class="border-radius-10">
-                                            <img src="{{asset('assets/imgs/shop/product-16-1.jpg')}}" alt="product image">
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{asset('assets/imgs/shop/product-16-3.jpg')}}" alt="product image">
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{asset('assets/imgs/shop/product-16-4.jpg')}}" alt="product image">
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{asset('assets/imgs/shop/product-16-5.jpg')}}" alt="product image">
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{asset('assets/imgs/shop/product-16-6.jpg')}}" alt="product image">
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{asset('assets/imgs/shop/product-16-7.jpg')}}" alt="product image">
+                                            <img src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
                                         </figure>
                                     </div>
                                     <!-- THUMBNAILS -->
                                     <div class="slider-nav-thumbnails pl-15 pr-15">
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-3.jpg"')}}" ></div>
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-4.jpg"')}}" ></div>
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-5.jpg"')}}" ></div>
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-6.jpg"')}}" ></div>
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-7.jpg"')}}" ></div>
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-8.jpg"')}}" ></div>
-                                        <div><img src="{{asset('assets/imgs/shop/thumbnail-9.jpg"')}}" ></div>
+                                        <div><img src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
+                                        </div>
+                                        <div><img src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- End Gallery -->
@@ -509,7 +490,7 @@
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="{{route('publicaciones.show',$relacionado)}}" tabindex="0">
-                                                        <img class="default-img" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="Card image cap">
+                                                        <img class="default-img" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="Card image cap">
                                                         {{-- <img class="hover-img" src="{{asset('assets/imgs/shop/product-2-2.jpg')}}" alt=""> --}}
                                                     </a>
                                                 </div>
@@ -607,7 +588,7 @@
                         <div class="single-post clearfix">
                             <div class="image">
                             <a href="{{route('publicaciones.show',$product_new)}}">
-                                <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                                <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
                             </a>
                             </div>
                             <div class="content pt-10">

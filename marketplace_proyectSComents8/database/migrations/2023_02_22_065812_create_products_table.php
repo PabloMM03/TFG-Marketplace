@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->string('description')->nullable();
             $table->string('product_image')->nullable();
+            $table->string('product_image2')->nullable();
             $table->float('price')->nullable();
             $table->float('original_price')->nullable();
             $table->string('qty')->nullable();

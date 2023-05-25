@@ -66,8 +66,8 @@
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href="{{route('publicaciones.show',$product)}}">
-                                            <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
-                                            <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="">
+                                            <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
+                                            <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
                                         </a>
                                     </div>
                                     <div class="product-action-1">
@@ -217,7 +217,7 @@
                         <div class="single-post clearfix">
                             <div class="image">
                             <a href="{{route('publicaciones.show',$product_new)}}">
-                                <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                                <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
                             </a>
                             </div>
                             <div class="content pt-10">
@@ -268,7 +268,7 @@
     </section>
   </main>
   
-  {{--Script que nos permitira filtrar por precio mediante un slider dinamico --}}
+  {{--Script that will allow us to filter by price through a dynamic slider --}}
   
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -287,7 +287,6 @@
             max: 20000,
             values: [0, 20000],
             slide: function(event, ui){
-                //amountprice.val("€" + ui.values[0] + " - €" + ui.values[1]);
                 @this.set('min_value',ui.values[0]);
                 @this.set('max_value',ui.values[1]);
             }

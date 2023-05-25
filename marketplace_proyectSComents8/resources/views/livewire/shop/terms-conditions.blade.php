@@ -78,14 +78,37 @@
                                     <div class="single-post clearfix">
                                         <div class="image">
                                         <a href="{{route('publicaciones.show',$product_new)}}">
-                                            <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                                            <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
                                         </a>
                                         </div>
                                         <div class="content pt-10">
                                             <h5><a href="{{route('publicaciones.show',$product_new)}}">{{$product_new->name}}</a></h5>
                                             <p class="price mb-0 mt-5">{{$product_new->price}} €</p>
-                                            <div class="product-rate">
-                                                <div class="product-rating" style="width:90%"></div>
+                                             {{--We get the rating and show it--}}
+                                             <div class="product-item">
+                                            
+                                                @if ($product_new->ratings->count() > 0)
+                                                    @php
+                                                        $rating_value = $product_new->rating_value;
+                                                        $review_count = $product_new->review_count;
+                                                    @endphp
+                                        
+                                                    <div class="rating">
+                                                        @for($i = 1; $i<= $rating_value; $i++)
+                                                        <i class=" fa bi-star checked"></i>
+                                                        @endfor
+                                                        @for($j = $rating_value+1; $j <= 5; $j++)
+                                                        <i class=" fa bi-star"></i>
+                                                        @endfor
+                                                        ({{ $review_count }})
+
+                                                    </div>
+
+                                                @else
+                                                    <span class="font-small ml-5 text-muted">
+                                                        Sin valoraciones
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

@@ -31,7 +31,7 @@
                                 {{--Foreach with product information--}}
                               @foreach ($cart_items->sortBy('id') as $key => $item)
                                 <tr class="product_data">
-                                    <td class="image product-thumbnail"><img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="#"></td>
+                                    <td class="image product-thumbnail"><img class="card-img-top" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="#"></td>
                                     <td class="product-des product-name">
                                         <h5 class="product-name"><a href="product-details.html">{{$item->products->name}}</a></h5>
                                         <p class="font-xs">{{$item->products->description}}

@@ -21,9 +21,9 @@
               <div class="product-img-action-wrap">
                   <div class="product-img product-img-zoom">
                       <a href="{{route('publicaciones.show',$item->products->id)}}">
-                          <img class="default-img" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
-                          <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt="">
-                      </a>
+                          <img class="default-img" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
+                          <img class="hover-img" src="@if($item->products->product_image2) {{asset('storage/products/'. $item->products->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                        </a>
                   </div>
                   <div class="product-action-1">
                     <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$item->products->id)}}"><i class="fi-rs-eye"></i></a>
@@ -51,12 +51,32 @@
                       <a href="/">Clothing</a>
                   </div>
                   <h2><a href="{{route('publicaciones.show',$item)}}">{{$item->products->name}}</a></h2>
-                  <div class="rating-result" title="90%">
-                      <span>
-                          <span>90%</span>
-                      </span>
-                      
-                  </div>
+                   {{--We get the rating and show it--}}
+                   <div class="product-item">
+                            
+                    @if ($item->ratings->count() > 0)
+                        @php
+                            $rating_value = $item->rating_value;
+                            $review_count = $item->review_count;
+                        @endphp
+            
+                        <div class="rating">
+                            @for($i = 1; $i<= $rating_value; $i++)
+                            <i class=" fa bi-star checked"></i>
+                            @endfor
+                            @for($j = $rating_value+1; $j <= 5; $j++)
+                            <i class=" fa bi-star"></i>
+                            @endfor
+                            ({{ $review_count }})
+
+                        </div>
+
+                    @else
+                        <span class="font-small ml-5 text-muted">
+                            Sin valoraciones
+                        </span>
+                    @endif
+                </div>
                   {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                 however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
                 <input type="hidden" value="{{$item->products->id}}" class="prod_id">

@@ -10,13 +10,14 @@
        @endauth
              
   </a>
+  {{--The properties of the product are obtained and displayed, apart from the total price is calculated.--}}
       <div class="cart-dropdown-wrap cart-dropdown-hm2">
           <ul>
             @php $total = 0; @endphp
             @foreach ($cart_items as $item)
                 <li>
                     <div class="shopping-cart-img">
-                        <a href="{{route('publicaciones.show',$item)}}"><img alt="{{$item->products->name}}" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif"></a>
+                        <a href="{{route('publicaciones.show',$item)}}"><img alt="{{$item->products->name}}" src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif"></a>
                     </div>
                     <div class="shopping-cart-title">
                         <h4><a href="{{route('publicaciones.show',$item)}}">{{substr($item->products->name,0,20)}}</a></h4>

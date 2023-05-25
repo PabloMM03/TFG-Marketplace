@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Models\Product;
+use App\Models\Rating;
 use App\Models\Wishlist;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
@@ -15,6 +16,20 @@ class WishListComponent extends Component
     {
 
         $wishlist = Wishlist::where('user_id', Auth::id())->get();
+
+         // Get the ratings and number of reviews for each product through the product related id
+
+         foreach ($wishlist as $product) {
+            $ratings = Rating::where('prod_id', $product->id)->get();
+            $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+            $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+
+            $product->ratings = $ratings;
+            $product->rating_value = $rating_value;
+            $product->review_count = $ratings->count(); 
+        }
+        
+        $overall_rating = $wishlist->avg('rating_value');
 
         return view('livewire.shop.wish-list-component', compact('wishlist'))->extends('layouts.app')->section('content');
     }

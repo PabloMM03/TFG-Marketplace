@@ -20,7 +20,7 @@
       {!! Form::label('category_id', 'Categoría') !!}
       {!! Form::select('category_id', $categories,null, ['class' => 'form-control']) !!}
 
-      {{--Añadir error en caso de validacion--}}
+      {{--Add error in case of validation--}}
       @error('category_id')
           <small class="text-danger">{{$message}}</small>
       @enderror
@@ -97,17 +97,31 @@
               @isset ($product->product_image)
               <img id="imagenProd" src="{{asset('storage/products/'. $product->product_image)}}" alt="">                  
               @else
-                  <img id="imagenProd" src="{{asset('img/default_product.jpg')}}    " alt="Imagen por defecto">
+                  <img id="imagenProd" src="{{asset('img/default_product.jpg')}}" alt="Imagen por defecto">
               @endisset
           </div>
       </div>
       <div class="col">
           <div class="form-group">
-              {!! Form::label('file', 'Imagen producto') !!}
-              {!! Form::file('file', ['class' => 'form-control-file']) !!}
+              {!! Form::label('file1', 'Imagen producto') !!}
+              {!! Form::file('file1', ['class' => 'form-control-file', 'id'=> 'file1']) !!}
           </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel praesentium sequi incidunt, dolores rem, accusantium maxime vitae a fuga in ab suscipit eaque sunt, voluptates sint modi. Nulla, suscipit deserunt!</p>
       </div>
+      <div class="col">
+        <div class="image-wrapper">
+            @isset ($product->product_image)
+            <img id="imagenProd2" src="{{asset('storage/products/'. $product->product_image)}}" alt="">                  
+            @else
+                <img id="imagenProd2" src="{{asset('img/default_product.jpg')}}" alt="Imagen por defecto">
+            @endisset
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            {!! Form::label('file2', 'Imagen producto') !!}
+            {!! Form::file('file2', ['class' => 'form-control-file', 'id' => 'file2']) !!}
+        </div>
+    </div>
   </div>
 
   <div class="form-group">
@@ -175,15 +189,6 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- <script>
-        ClassicEditor
-            .create( document.querySelector( '#description') )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script> --}}
-
-
     <script>
 
 //Hacer slug automatico
@@ -197,9 +202,10 @@
     });
 
     //Cambiar Imagen
-    document.getElementById("file").addEventListener('change', cambiarImagen);
+    document.getElementById("file1").addEventListener('change', cambiarImagen1);
+    document.getElementById("file2").addEventListener('change', cambiarImagen2);
 
-    function cambiarImagen(e){
+    function cambiarImagen1(e) {
         const file = e.target.files[0];
 
         const reader = new FileReader();
@@ -207,6 +213,19 @@
         reader.onload = (e) => {
             document.getElementById('imagenProd').setAttribute('src', e.target.result);
         };
+
+        reader.readAsDataURL(file);
+    }
+
+    function cambiarImagen2(e) {
+        const file = e.target.files[0];
+
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            document.getElementById('imagenProd2').setAttribute('src', e.target.result);
+        };
+
         reader.readAsDataURL(file);
     }
 

@@ -68,30 +68,39 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     /**
+      * Function which allows us to add the images to the database and save them on the server
+      */
     public function store(ProductRequest $request)
-    {
+{
+    $product = Product::create($request->all());
 
-       $product = Product::create($request->all());
-
-       /**
-        * Store image in storage
-        */
-       if($request->hasfile('file')){
-       $url = $request->file('file');
-        $extension = $url->getClientOriginalExtension();
-        $filename = time().'.'.$extension;
-        $url->move('storage/products/', $filename);
-        $product->product_image = $filename;
-       }
-
-       if($request->tags){
-            $product->tags()->attach($request->tags);
-            
-       }
-
-       $product->save();
-       return redirect()->route('admin.products.edit', $product)->with('crear', 'Producto creado correctamente');
+    /**
+     * Store images in storage
+     */
+    if ($request->hasfile('file1')) {
+        $file1 = $request->file('file1');
+        $extension1 = $file1->getClientOriginalExtension();
+        $filename1 = time() . '_1.' . $extension1;
+        $file1->move('storage/products/', $filename1);
+        $product->product_image = $filename1;
     }
+
+    if ($request->hasfile('file2')) {
+        $file2 = $request->file('file2');
+        $extension2 = $file2->getClientOriginalExtension();
+        $filename2 = time() . '_2.' . $extension2;
+        $file2->move('storage/products/', $filename2);
+        $product->product_image2 = $filename2;
+    }
+
+    if ($request->tags) {
+        $product->tags()->attach($request->tags);
+    }
+
+    $product->save();
+    return redirect()->route('admin.products.edit', $product)->with('crear', 'Producto creado correctamente');
+}
 
 
     /**

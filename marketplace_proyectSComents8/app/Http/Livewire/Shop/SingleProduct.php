@@ -112,7 +112,7 @@ class SingleProduct extends Component
                 $product->review_count = $ratings->count();
             }
 
-            // Get the ratings and number of reviews for each product through the product realted id
+            // Get the ratings and number of reviews for each product through the product related id
 
             foreach ($this->relacionados as $product) {
                 $ratings = Rating::where('prod_id', $product->id)->get();
