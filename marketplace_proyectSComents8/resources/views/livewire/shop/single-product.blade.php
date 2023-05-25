@@ -154,7 +154,7 @@
                                         <div class="product-extra-link2">
                                             @if($product->qty >0)
                                             <button class="btn btn-outline-dark flex-shrink-0 addToCartBtn" type="button">
-                                                Añadir al carrito
+                                                Comprar
                                             </button>
                                             @else
                                             <button class="btn btn-outline-dark flex-shrink-0 disabled" type="button">
@@ -322,16 +322,12 @@
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
                                                                 <img src="{{asset('assets/imgs/page/avatar-6.jpg')}}" alt="">
-                                                                <h6><a href="#"> 
-                                                                  @if ($comment->user)
-                                                                  {{$comment->user->name}}
-                                                                  @endif</a></h6>
+                                                                <h6><a href="#"> @if ($comment->user){{$comment->user->name}}@endif</a></h6>
                                                                 <p class="font-xxs">Since {{$comment->user->created_at->format('d-m-Y')}}</p>
                                                             </div>
                                                             <div class="desc">
                                                                 <div class="d-inline-block">
-                                                                    {{-- <div class="product-rating" style="width:90%">
-                                                                    </div> --}}
+                                                                    
                                                                     @php $ratenum  = number_format($rating_value) @endphp
                                                                     <div class="rating  mb-2">
                                                                         @for($i = 1; $i<= $ratenum; $i++)
@@ -344,12 +340,20 @@
                                                                     </div>
                                                                 </div>
                                                                 <p>{!! $comment->comment_body !!}</p>
+
                                                                 <div class="d-flex justify-content-between">
                                                                     <div class="d-flex align-items-center">
                                                                         <p class="font-xs mr-30">{{$comment->created_at->format('d-m-Y')}} {{$comment->created_at->format('l jS \\of F Y')}} </p>
                                                                         <a href="#" class="text-brand btn-reply">Reply <i class="fi-rs-arrow-right"></i> </a>
                                                                     </div>
                                                                 </div>
+                                                                <!-- Botón de "Me gusta" -->
+                                                               <form action="{{ route('comments.like', $comment->id) }}" method="POST">
+                                                                @csrf
+                                                               <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                                                   Opinión util ({{$comment->likes_count}})
+                                                                </button> 
+                                                               </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -362,36 +366,31 @@
                                                     <!--single-comment -->
                                                 </div>
                                             </div>
+                                            {{--In each <div class="progress">, we use the syntax {{ $variable }} to 
+                                                Print the value of the corresponding variable in the style, aria-valuenow, and inside the element<div>.--}}
                                             <div class="col-lg-4">
                                                 <h4 class="mb-30">Customer reviews</h4>
-                                                <div class="d-flex mb-30">
-                                                    <div class="product-rate d-inline-block mr-15">
-                                                        <div class="product-rating" style="width:90%">
-                                                        </div>
-                                                    </div>
-                                                    <h6>4.8 out of 5</h6>
-                                                </div>
+                                               
                                                 <div class="progress">
                                                     <span>5 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{ $fiveStarPercentage }}%;" aria-valuenow="{{ $fiveStarPercentage }}" aria-valuemin="0" aria-valuemax="100">{{ $fiveStarPercentage }}%</div>
                                                 </div>
                                                 <div class="progress">
                                                     <span>4 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{ $fourStarPercentage }}%;" aria-valuenow="{{ $fourStarPercentage }}" aria-valuemin="0" aria-valuemax="100">{{ $fourStarPercentage }}%</div>
                                                 </div>
                                                 <div class="progress">
                                                     <span>3 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{ $threeStarPercentage }}%;" aria-valuenow="{{ $threeStarPercentage }}" aria-valuemin="0" aria-valuemax="100">{{ $threeStarPercentage }}%</div>
                                                 </div>
                                                 <div class="progress">
                                                     <span>2 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{ $twoStarPercentage }}%;" aria-valuenow="{{ $twoStarPercentage }}" aria-valuemin="0" aria-valuemax="100">{{ $twoStarPercentage }}%</div>
                                                 </div>
                                                 <div class="progress mb-30">
                                                     <span>1 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                                                    <div class="progress-bar" role="progressbar" style="width: {{ $oneStarPercentage }}%;" aria-valuenow="{{ $oneStarPercentage }}" aria-valuemin="0" aria-valuemax="100">{{ $oneStarPercentage }}%</div>
                                                 </div>
-                                                <a href="#" class="font-xs text-muted">How are ratings calculated?</a>
                                             </div>
                                         </div>
                                     </div>
@@ -452,8 +451,7 @@
                                             Valorar
                                         </button>
                          
-                                        {{-- <div class="product-rate d-inline-block mb-30">
-                                        </div> --}}
+                                  
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
                                               <form class="form-contact comment_form" action="{{url('comments')}}" method="POST">
@@ -467,19 +465,14 @@
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                                                <input class="form-control" name="name" id="name" type="text" value="{{Auth::user()->name}}" placeholder="Name">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                                                                <input class="form-control" name="email" id="email" type="email" value="{{Auth::user()->email}}" placeholder="Email">
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-                                                            </div>
-                                                        </div> 
                                                     </div>
                                                     <div class="form-group">
                                                       <button type="submit" class="button button-contactForm">Comentar</button>

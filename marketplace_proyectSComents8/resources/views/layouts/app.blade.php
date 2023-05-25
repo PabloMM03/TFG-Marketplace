@@ -479,6 +479,19 @@
         </script>
         @endif
 
+        @if(session('message') == "Te ha gustado este comentario")
+        <script> 
+        Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Te ha gustado este comentario',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @endif
+
+
 
 <style>
           /* rating */

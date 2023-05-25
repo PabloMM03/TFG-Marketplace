@@ -79,6 +79,7 @@ Route::get('tags/{tag}', [SingleProduct::class, 'tag'])->name('products.tag');
 //Comment System
 
 Route::post('comments', [CommentController::class, 'store']);
+Route::post('comments/like/{comment}', [CommentController::class, 'likeComment'])->name('comments.like');
 
 //Rating system
 Route::post('add-rating' ,[RatingController::class, 'add']);

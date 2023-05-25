@@ -56,7 +56,7 @@ class User extends Authenticatable
     // ];
 
 
-    //Ralaciones 
+    //Relaciones 
     public function products(){
         return $this->hasMany(Product::class);
     }
@@ -66,4 +66,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class, 'transactions', 'user_id', 'product_id');
     }
 
+    public function likeComments()
+{
+    return $this->belongsToMany(Comment::class, 'comment_likes', 'user_id', 'comment_id');
+}
+
+
+    
+
+    
 }

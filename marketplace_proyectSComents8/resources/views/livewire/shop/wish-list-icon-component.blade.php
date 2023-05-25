@@ -1,3 +1,4 @@
+{{--Displays the counter of products found in our wishlist--}}
 <div class="header-action-icon-2">
     <a href="{{url('wishlist')}}">
         <img class="svgInject" alt="" src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}">

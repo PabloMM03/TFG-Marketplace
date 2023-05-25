@@ -47,8 +47,35 @@ class SingleProduct extends Component
             $this->rating_value = 0;
         }
 
+
+        // You get the specific product for which you want to calculate the percentages of reviews. It is assumed that $product is the object of the product.
+        $this->product = Product::findOrFail($product->id);
+
+        // Get the total number of reviews for the product
+        $this->totalReviews = Rating::where('prod_id', $product->id)->count();
+
+
+        // Get the number of ratings for each number of stars
+        $this->fiveStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 5)->count();
+        $this->fourStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 4)->count();
+        $this->threeStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 3)->count();
+        $this->twoStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 2)->count();
+        $this->oneStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 1)->count();
+
+
+        // Calculate the percentage of ratings for each number of stars
+        $this->fiveStarPercentage = ($this->fiveStarReviews / $this->totalReviews) * 100;
+        $this->fourStarPercentage = ($this->fourStarReviews / $this->totalReviews) * 100;
+        $this->threeStarPercentage = ($this->threeStarReviews / $this->totalReviews) * 100;
+        $this->twoStarPercentage = ($this->twoStarReviews / $this->totalReviews) * 100;
+        $this->oneStarPercentage = ($this->oneStarReviews / $this->totalReviews) * 100;
+
+
+
+        /**Get all categories */
         $this->categories = Category::all();
 
+        /**Get products news */
         $this->products_news = Product::latest()
                                 ->where('status', 2)
                                 ->take(3)->get();
@@ -63,6 +90,10 @@ class SingleProduct extends Component
 
 
         // Get the ratings and number of reviews for each product through the new product id
+        /**All ratings associated with that product are obtained using the Rating model. 
+         * The sum total of the stars classified for that product is calculated
+         * The average value of the ratings is calculated by dividing the total sum of the stars ranked by the number of ratings
+         */
 
             foreach ($this->products_news as $product) {
                 $ratings = Rating::where('prod_id', $product->id)->get();
@@ -100,7 +131,9 @@ class SingleProduct extends Component
         
         return view('livewire.shop.single-product', ['product' => $this->product, 'relacionados' => $this->relacionados, 'ratings' 
                                                                => $this->ratings, 'rating_value' => $this->rating_value, 'user_rating' => $this->user_rating, 
-                                                               'categories' => $this->categories, 'products_news' => $this->products_news])
+                                                               'categories' => $this->categories, 'products_news' => $this->products_news, 'fiveStarPercentage' => $this->fiveStarPercentage,
+                                                               'fourStarPercentage' =>$this->fourStarPercentage, 'threeStarPercentage' => $this->threeStarPercentage, 'twoStarPercentage' => $this->twoStarPercentage,
+                                                               'oneStarPercentage' =>$this->twoStarPercentage])
                                                     ->extends('layouts.app')->section('content');
 
     }
