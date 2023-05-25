@@ -14,6 +14,7 @@
   @if($wishlist->count() > 0) 
   <div class="container">
     <div class="row product-grid-4">
+{{--The product data is obtained and displayed--}}
 
       @foreach ($wishlist->sortBy('id') as $key => $item)
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">

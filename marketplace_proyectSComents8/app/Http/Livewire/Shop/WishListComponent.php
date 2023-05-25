@@ -34,6 +34,10 @@ class WishListComponent extends Component
         return view('livewire.shop.wish-list-component', compact('wishlist'))->extends('layouts.app')->section('content');
     }
 
+    /**
+     * It is checked if the user is logged in, if so, the id of the product 
+     * and the user is obtained and it is checked if a produt has already been added. If it is the first one is added
+     */
     public function add(Request $request){
         
         if(auth()->check()){
@@ -63,7 +67,7 @@ class WishListComponent extends Component
     }
     
 
-    //Delete Wishlist Item
+    //The product is deleted by obtaining the product id and the user id
     public function deleteItem(Request $request){
         
         if(auth()->check()){
