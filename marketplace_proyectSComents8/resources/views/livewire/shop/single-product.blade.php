@@ -198,11 +198,7 @@
                                     <div class="">
                                         <p>{{$product->description}}</p>
                                         
-                                        <ul class="product-more-infor mt-30">
-                                            <li><span>Tipo de empaquetado</span> Bottle</li>
-                                            <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
-                                            <li><span>Cantidad por caja</span> 100ml</li>
-                                        </ul>
+                                       
                                         <hr class="wp-block-separator is-style-dots">
                                         <p>Laconic overheard dear woodchuck wow this outrageously taut beaver hey hello far meadowlark imitatively egregiously hugged that yikes minimally unanimous pouted flirtatiously as beaver beheld above forward
                                             energetic across this jeepers beneficently cockily less a the raucously that magic upheld far so the this where crud then below after jeez enchanting drunkenly more much wow callously irrespective limpet.</p>
