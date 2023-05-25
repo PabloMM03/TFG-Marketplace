@@ -83,7 +83,7 @@ class SingleProduct extends Component
     
                 $product->ratings = $ratings;
                 $product->rating_value = $rating_value;
-                $product->review_count = $ratings->count();
+                $product->review_count = $ratings->count(); 
             }
             
             $this->overall_rating = $this->relacionados->avg('rating_value');
