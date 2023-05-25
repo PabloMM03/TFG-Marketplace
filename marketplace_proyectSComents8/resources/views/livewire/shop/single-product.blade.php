@@ -347,7 +347,7 @@
                                                                         <a href="#" class="text-brand btn-reply">Reply <i class="fi-rs-arrow-right"></i> </a>
                                                                     </div>
                                                                 </div>
-                                                                <!-- Botón de "Me gusta" -->
+                                                                <!-- Allows us to like or dislike a comment-->
                                                                <form action="{{ route('comments.like', $comment->id) }}" method="POST">
                                                                 @csrf
                                                                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
@@ -369,7 +369,7 @@
                                             {{--In each <div class="progress">, we use the syntax {{ $variable }} to 
                                                 Print the value of the corresponding variable in the style, aria-valuenow, and inside the element<div>.--}}
                                             <div class="col-lg-4">
-                                                <h4 class="mb-30">Customer reviews</h4>
+                                                <h4 class="mb-30">Opiniones de clientes</h4>
                                                
                                                 <div class="progress">
                                                     <span>5 star</span>
@@ -454,6 +454,7 @@
                                   
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
+                                                {{--Create comment form--}}
                                               <form class="form-contact comment_form" action="{{url('comments')}}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_slug" value="{{$product->slug}}">
@@ -463,7 +464,10 @@
                                                               <textarea class="form-control w-100" name="comment_body" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
                                                             </div>
                                                         </div>
+                                                        {{--Check if it is authenticated--}}
+                                                        @if(Auth::check())
                                                         <div class="col-sm-6">
+                                                           
                                                             <div class="form-group">
                                                                 <input class="form-control" name="name" id="name" type="text" value="{{Auth::user()->name}}" placeholder="Name">
                                                             </div>
@@ -473,6 +477,19 @@
                                                                 <input class="form-control" name="email" id="email" type="email" value="{{Auth::user()->email}}" placeholder="Email">
                                                             </div>
                                                         </div>
+                                                        @else
+                                                        <div class="col-sm-6">
+                                                           
+                                                            <div class="form-group">
+                                                                <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                                                            </div>
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                     <div class="form-group">
                                                       <button type="submit" class="button button-contactForm">Comentar</button>
@@ -645,84 +662,8 @@
   </div>
   <br>
 
-{{--Dynamic alert messages--}}
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 
-@if (session('status') == "Producto valorado, Gracias por su valoración.")
-<script> 
-Swal.fire({
-position: 'top-end',
-icon: 'success',
-title: '{{session('status')}}',
-showConfirmButton: false,
-timer: 2000
-})
-</script>
-@elseif(session('status') == "No puedes valorar este producto sin haberlo comprado.")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "El enlace que ha seguido no esta operativo.")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@elseif(session('status') == "Debes hacer el login primero.")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: '{{session('status')}}',
-})
-</script>
-@endif
-
-{{--Comments message--}}
-
-@if (session('message') == "Comentario creado correctamente.")
-<script> 
-Swal.fire({
-position: 'top-end',
-icon: 'success',
-title: 'Comentario creado correctamente.',
-showConfirmButton: false,
-timer: 2000
-})
-</script>
-@elseif(session('message') == "El area del comentario es obligatoria.")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: 'El area del comentario es mandatoria.',
-})
-</script>
-@elseif(session('message') == "No puedes opinar sobre este producto sin haberlo comprado.")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: 'No puedes opinar sobre este producto sin haberlo comprado.',
-})
-</script>
-@elseif(session('message') == "Debes hacer el login primero.")
-<script> 
-  Swal.fire({
-icon: 'error',
-title: 'Oops...',
-text: 'Debes hacer el login primero.',
-})
-</script>
-@endif
 
 

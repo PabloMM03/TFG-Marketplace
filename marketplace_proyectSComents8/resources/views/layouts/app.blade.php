@@ -493,6 +493,81 @@
 
 
 
+        @if (session('status') == "Producto valorado, Gracias por su valoración.")
+        <script> 
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{session('status')}}',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @elseif(session('status') == "No puedes valorar este producto sin haberlo comprado.")
+        <script> 
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @elseif(session('status') == "El enlace que ha seguido no esta operativo.")
+        <script> 
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @elseif(session('status') == "Debes hacer el login primero.")
+        <script> 
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{session('status')}}',
+        })
+        </script>
+        @endif
+        
+        {{--Comments message--}}
+        
+        @if (session('message') == "Comentario creado correctamente.")
+        <script> 
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Comentario creado correctamente.',
+        showConfirmButton: false,
+        timer: 2000
+        })
+        </script>
+        @elseif(session('message') == "El area del comentario es obligatoria.")
+        <script> 
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El area del comentario es mandatoria.',
+        })
+        </script>
+        @elseif(session('message') == "No puedes opinar sobre este producto sin haberlo comprado.")
+        <script> 
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No puedes opinar sobre este producto sin haberlo comprado.',
+        })
+        </script>
+        @elseif(session('message') == "Debes hacer el login primero.")
+        <script> 
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debes hacer el login primero.',
+        })
+        </script>
+        @endif
+        
+
 <style>
           /* rating */
 .rating-css div {

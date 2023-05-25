@@ -54,7 +54,7 @@ class SingleProduct extends Component
         // Get the total number of reviews for the product
         $this->totalReviews = Rating::where('prod_id', $product->id)->count();
 
-
+        if ($this->totalReviews > 0) {
         // Get the number of ratings for each number of stars
         $this->fiveStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 5)->count();
         $this->fourStarReviews = Rating::where('prod_id', $product->id)->where('stars_rated', 4)->count();
@@ -70,7 +70,14 @@ class SingleProduct extends Component
         $this->twoStarPercentage = ($this->twoStarReviews / $this->totalReviews) * 100;
         $this->oneStarPercentage = ($this->oneStarReviews / $this->totalReviews) * 100;
 
-
+        }else{
+            // Set percentages to zero if there are no ratings
+            $this->fiveStarPercentage = 0;
+            $this->fourStarPercentage = 0;
+            $this->threeStarPercentage = 0;
+            $this->twoStarPercentage = 0;
+            $this->oneStarPercentage = 0;
+        }    
 
         /**Get all categories */
         $this->categories = Category::all();
