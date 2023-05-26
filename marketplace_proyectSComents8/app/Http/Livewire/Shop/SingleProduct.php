@@ -9,9 +9,7 @@ use App\Models\Tag;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Livewire\Component;
-use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Support\Facades\Auth;
-use Livewire\WithPagination;
 
 class SingleProduct extends Component
 {
@@ -136,11 +134,11 @@ class SingleProduct extends Component
     public function render()
     {
         
-        return view('livewire.shop.single-product', ['product' => $this->product, 'relacionados' => $this->relacionados, 'ratings' 
-                                                               => $this->ratings, 'rating_value' => $this->rating_value, 'user_rating' => $this->user_rating, 
-                                                               'categories' => $this->categories, 'products_news' => $this->products_news, 'fiveStarPercentage' => $this->fiveStarPercentage,
-                                                               'fourStarPercentage' =>$this->fourStarPercentage, 'threeStarPercentage' => $this->threeStarPercentage, 'twoStarPercentage' => $this->twoStarPercentage,
-                                                               'oneStarPercentage' =>$this->twoStarPercentage])
+        return view('livewire.shop.single-product', ['product' => $this->product, 'relacionados' => $this->relacionados, 
+                                                     'ratings' => $this->ratings, 'rating_value' => $this->rating_value, 'user_rating' => $this->user_rating, 
+                                                     'categories' => $this->categories, 'products_news' => $this->products_news, 'fiveStarPercentage' => $this->fiveStarPercentage,
+                                                     'fourStarPercentage' =>$this->fourStarPercentage, 'threeStarPercentage' => $this->threeStarPercentage, 'twoStarPercentage' => $this->twoStarPercentage,
+                                                     'oneStarPercentage' =>$this->twoStarPercentage])
                                                     ->extends('layouts.app')->section('content');
 
     }

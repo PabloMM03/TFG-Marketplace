@@ -8,48 +8,75 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-
     /**
-     * Campos a evitar por asignacion masiva
+     * Fields to avoid by bulk assignment.
+     *
+     * @var array
      */
     protected $guarded = [
-        
         'id', 'created_at', 'updated_at'
     ];
 
-
-    //Relacion uno a muchos invert
-
-    public function user(){
+    /**
+     * Define a belongs-to relationship with the User model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function category(){
+    /**
+     * Define a belongs-to relationship with the Category model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    //Relacion Much to much
-
-    public function tags(){
+    /**
+     * Define a many-to-many relationship with the Tag model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
-    //Relacion polimorfica
-    public function image(){
+    /**
+     * Define a polymorphic relationship with the Image model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
         return $this->morphOne(Image::class, 'imagen');
-
     }
 
-    //Relacion con los comentarios
+    /**
+     * Define a one-to-many relationship with the Comment model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
         return $this->hasMany(Comment::class, 'product_id', 'id');
     }
 
+    /**
+     * Define a one-to-many relationship with the Transactions model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function transactions()
     {
         return $this->hasMany(Transactions::class);
     }
+
 
 
 }

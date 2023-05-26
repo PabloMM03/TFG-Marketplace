@@ -11,6 +11,7 @@
                         <a href="{{url('my-orders')}}" class="btn btn-warning text-white float-end">Volver</a>
                     </h4>
                 </div>
+                <!--Displays all order data -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 order-details">
@@ -43,7 +44,8 @@
                             ?><div class="border ">Paypal</div> <?php
                         }?>
                         </div>
-                        
+                        @php $total = 0; @endphp
+
                         <div class="col-md-6">
                             <h4>Detalles del pedido</h4>
                             <hr>
@@ -61,17 +63,20 @@
                                     <tr>
                                         <td>{{$order->products->name}}</td>
                                         <td>{{$order->qty}}</td>
-                                        <td>{{$order->price}} €</td>
+                                        <td>{{$order->price * $order->qty}} €</td>
                                         <td>
                                             <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="70px" alt="Product image">
                                             
                                         </td>
                                     </tr>
+                                    <!--Get the total price from the sum of the total price all products -->
+                                    @php $total += $order->price * $order->qty; @endphp
                                     @endforeach
                                 </tbody>
                             </table>
+                           
 
-                            <h3 class="px-2">Percio Total : <span class="float-end">{{$orders->total}} €</span></h3>
+                            <h3 class="px-2">Precio Total : <span class="float-end">{{$total }} €</span></h3>
                         </div>
                     </div>
                 </div>

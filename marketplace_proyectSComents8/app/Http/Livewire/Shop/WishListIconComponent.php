@@ -10,7 +10,10 @@ class WishListIconComponent extends Component
 {
     public function render()
     {
-        $wishlist_items = Wishlist::where('user_id', Auth::id())->get();       
+        // Retrieve wishlist items for the currently authenticated user
+        $wishlist_items = Wishlist::where('user_id', Auth::id())->get();
+
+        // Render the 'livewire.shop.wish-list-icon-component' view, passing the 'wishlist_items' variable to it
         return view('livewire.shop.wish-list-icon-component', compact('wishlist_items'));
     }
 }

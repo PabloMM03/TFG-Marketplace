@@ -13,6 +13,9 @@ use Livewire\WithPagination;
 
 class ShopComponent extends Component
 {
+    /**
+     * Declaring variables for paging and filtering
+     */
     use WithPagination;
     protected $paginationTheme = "bootstrap";
     public $search;
@@ -65,8 +68,15 @@ class ShopComponent extends Component
          // Get the ratings and number of reviews for each product through the product id
 
          foreach ($products as $product) {
+            // Retrieve all ratings for the current product
             $ratings = Rating::where('prod_id', $product->id)->get();
+
+            // Calculate the sum of all ratings for the current product
             $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+
+            // Calculate the average rating value for the current product,
+            // which is the sum of ratings divided by the count of ratings,
+            // or set it to 0 if there are no ratings
             $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
 
             $product->ratings = $ratings;
@@ -75,7 +85,7 @@ class ShopComponent extends Component
         }
 
          // Get the ratings and number of reviews for each product through the new  product id
-
+        //The same as before but for new products
          foreach ($products_news as $product) {
             $ratings = Rating::where('prod_id', $product->id)->get();
             $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
@@ -121,7 +131,7 @@ class ShopComponent extends Component
                 // The product is already on the user's wish list
                 return redirect()->back()->with('status', "El producto ya está en su Wishlist");
             }else{
-
+                /**The product is added if it does not already exist */
             if(Product::find($product_id)){
                 $wish = new Wishlist();
                 $wish->prod_id = $product_id;

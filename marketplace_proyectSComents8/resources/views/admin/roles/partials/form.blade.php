@@ -12,14 +12,17 @@
 </h2>
 
 <div class="form-check">
+        <!-- Iterate over each permission -->
     @foreach ($permisos as $permiso)
+            <!-- Create a checkbox input -->
         <input class="form-check-input" type="checkbox" name="cod_permiso[]" value="{{$permiso->id}}" 
             @foreach($role->permissions as $permissions)
                 @if ($permissions->id == $permiso->id)
-                    checked
+                    checked 
                 @endif
             @endforeach
         id="cod_permiso">
+                <!-- Display the permission description as label -->
         <label class="form-check-label" for="flexCheckDefault">
             {{ $permiso->description }} 
         </label>
@@ -46,24 +49,22 @@
             e.preventDefault();
 
             Swal.fire({
-  title: 'Estás seguro?',
-  text: "Este rol se creará!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, crear!',
-  cancelButtonText: 'Cancelar!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-})
-        });
+        title: 'Estás seguro?',
+        text: "Este rol se creará!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, crear!',
+        cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    })
+});
     </script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if (session('actualizar') == 'Rol actualizado correctamente')
 <script>
      Swal.fire(
@@ -78,19 +79,19 @@
             e.preventDefault();
 
             Swal.fire({
-  title: 'Estás seguro?',
-  text: "Este rol se actualizará!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, actualizar!',
-  cancelButtonText: 'Cancelar!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-})
-        });
+        title: 'Estás seguro?',
+        text: "Este rol se actualizará!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, actualizar!',
+        cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    })
+});
     </script>
 @endsection

@@ -148,8 +148,10 @@ return [
 
     'attributes' => [
 
-        'fullname' => 'Nombre completo', 
-        'address' => 'Dirección', 
+        'fname' => 'Nombre', 
+        'lname' => 'Apellidos', 
+        'address1' => 'Dirección', 
+        'address2' => 'Dirección 2',
         'city' => 'Ciudad', 
         'state' => 'Región', 
         'zipcode' => 'ZIP', 

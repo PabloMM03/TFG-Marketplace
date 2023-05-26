@@ -61,19 +61,19 @@
             e.preventDefault();
 
             Swal.fire({
-  title: 'Estás seguro?',
-  text: "Este rol se asignará!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, asginar!',
-  cancelButtonText: 'Cancelar!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-})
-        });
+        title: 'Estás seguro?',
+        text: "Este rol se asignará!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, asginar!',
+        cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    })
+});
     </script>
 @endsection

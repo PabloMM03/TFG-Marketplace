@@ -18,6 +18,10 @@ class WishListComponent extends Component
         $wishlist = Wishlist::where('user_id', Auth::id())->get();
 
          // Get the ratings and number of reviews for each product through the product related id
+        /**All ratings associated with that product are obtained using the Rating model. 
+         * The sum total of the stars classified for that product is calculated
+         * The average value of the ratings is calculated by dividing the total sum of the stars ranked by the number of ratings
+         */
 
          foreach ($wishlist as $product) {
             $ratings = Rating::where('prod_id', $product->id)->get();
@@ -46,7 +50,7 @@ class WishListComponent extends Component
     
             $existingWish = Wishlist::where('user_id', $user_id)->where('prod_id', $product_id)->first();
             if($existingWish){
-                // El producto ya está en la lista de deseos del usuario
+                // The product is already on the user's wish list
                 return redirect()->back()->with('status', "El producto ya está en su Wishlist");
             }else{
 
@@ -83,33 +87,5 @@ class WishListComponent extends Component
 
     }
 
-    /**
-     * Add the product to cart
-     */
-
-     public function add_to_cart(Product $product){
-        // dd($product); -> comprobar
-        // add the product to cart 
-                //Check that the user is logged in
-                if (!auth()->check()) {
-                    return redirect()->guest('login');
-                }else{
-                    Cart::session(auth()->id())->add(array( //We get the user logged in
-                        'id' => $product->id,
-                        'name' => $product->name,
-                        'price' => $product->price,
-                        'quantity' => 1,
-                        'attributes' => array(),
-                        'associatedModel' => $product
-                    ));
-    
-
-            //Confirmation message
-            $this->emit('message', 'El producto se ha añadido correctemente.');
-            $this->emitTo('shop.wish-list-component', 'add_to_cart');
-            return redirect()->back()->with('status', "Producto añadido correctamente"); 
- }
-}
-
-
+ 
 }

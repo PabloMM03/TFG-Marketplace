@@ -13,7 +13,7 @@ class UsersIndex extends Component
     protected $paginationTheme = "bootstrap";
 
 
-    //Resetear pagina para buscar usuarios 
+    //Reset page to find users
     
     public function updatingSearch()
     {
@@ -22,7 +22,7 @@ class UsersIndex extends Component
 
     public function render()
     {
-        //Buscar usuarios y mostrarlos
+        //Search for users by name or email and display them
         $users = User::where('name', 'LIKE' ,'%'.$this->search.'%')
                       ->orWhere('email', 'LIKE', '%'.$this->search.'%')
                       ->paginate();

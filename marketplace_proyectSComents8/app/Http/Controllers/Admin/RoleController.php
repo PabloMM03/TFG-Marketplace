@@ -16,7 +16,7 @@ class RoleController extends Controller
      */
 
     /**
-      * Crear vista de visualizacion de roles
+      * Create Role Visualization View
       */
     public function index()
     {
@@ -31,7 +31,7 @@ class RoleController extends Controller
      */
 
      /**
-      * Crear vista de creacion de roles
+      * Create Role Creation View
       */
     public function create()
     {
@@ -46,9 +46,10 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //Validar que el campo nombre se rellana , en caso de que si, se crea el rol
+     //Validate that the name field is filled in, if yes, the role is created
     public function store(Request $request)
     {
+        //Validate fields
         $request->validate([
             'name' => 'required',
 
@@ -78,6 +79,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Role $role)
     {
 
@@ -92,8 +94,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+/**Update user roles, getting all roles and permissions */
+
     public function update(Request $request, Role $role)
     {
+        //Validate fields
       $request->validate([
         'name' => 'required',
       ]);
@@ -111,6 +117,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    //Delete the role
     public function destroy(Role $role)
     {
         $role->delete();

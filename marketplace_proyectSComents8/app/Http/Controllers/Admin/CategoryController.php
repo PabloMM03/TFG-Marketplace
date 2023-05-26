@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 class CategoryController extends Controller
 {
 
-
+  // Apply middleware for authorization based on user roles and permissions
     public function __construct()
     {
         $this->middleware('can:admin.categories.index')->only('index');
@@ -26,6 +26,8 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     /**Returns all categories */
     public function index()
     {
         $categories = Category::all();
@@ -37,6 +39,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         return view('admin.categories.create');
@@ -54,7 +57,7 @@ class CategoryController extends Controller
       */
     public function store(Request $request)
     {
-
+        //Fields are validated
         $request->validate([
             'name'=> 'required',
             'slug'=> 'required|unique:categories',
@@ -64,9 +67,8 @@ class CategoryController extends Controller
 
       $category = Category::create($request->all());
 
-       /**
-        * Store image in storage
-        */
+      // Check if the request contains a file
+
         if($request->hasfile('file')){
             $url = $request->file('file');
              $extension = $url->getClientOriginalExtension();
@@ -87,6 +89,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Category $category)
     {
         return view('admin.categories.edit', compact('category'));
@@ -101,10 +104,11 @@ class CategoryController extends Controller
      */
 
      /**
-      * Actulizar categoria, could not repeat the name
+      * Update categories, could not repeat the name
       */
     public function update(Request $request,Category $category)
     {
+        //Fields are validated
         $request->validate([
             'name'=> 'required',
             'slug'=> "required|unique:categories,slug,$category->id",
@@ -113,9 +117,8 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
-         /**
-        * Store image in storage
-        */
+              // Check if the request contains a file
+            //If it already contains an image it is replaced
        if($request->hasfile('file'))
        {
         $destination = 'storage/category/'.$category->category_image;
@@ -141,6 +144,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     /**Delete a category with your image */
+     
     public function destroy(Category $category)
     {
         $destination = 'storage/products/'.$category->category_image;

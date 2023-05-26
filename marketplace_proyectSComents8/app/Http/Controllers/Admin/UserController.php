@@ -9,6 +9,16 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
+    // Apply middleware for authorization based on user roles and permissions
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -54,16 +64,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // $this->authorize('author', $user); 
         $user->delete();
         return redirect()->route('admin.users.index')->with('info', 'Usuario eliminado correctamente');
     }
 
-    public function __construct()
-    {
-        $this->middleware('can:admin.users.index')->only('index');
-        $this->middleware('can:admin.users.edit')->only('edit', 'update');
-
-    }
+  
 
 }

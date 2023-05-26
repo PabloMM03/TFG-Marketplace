@@ -12,13 +12,7 @@ use Livewire\WithPagination;
 class IndexComponent extends Component
 {
     use WithPagination;
-    public $search;
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
+    
     public function render()
     {
 
@@ -30,28 +24,41 @@ class IndexComponent extends Component
        
 
 
-        // Get the ratings and number of reviews for each product through the product id
+        /**
+         * Get the ratings and number of reviews for each product through the product id 
+         */ 
 
+            // Iterate through each product in the $products array
             foreach ($products as $product) {
+                // Retrieve all ratings for the current product
                 $ratings = Rating::where('prod_id', $product->id)->get();
+
+                // Calculate the sum of all ratings for the current product
                 $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+
+                // Calculate the average rating value for the current product,
+                // which is the sum of ratings divided by the count of ratings,
+                // or set it to 0 if there are no ratings
+
                 $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
-    
+
                 $product->ratings = $ratings;
                 $product->rating_value = $rating_value;
                 $product->review_count = $ratings->count();
             }
+
             
             $overall_rating = $products->avg('rating_value');
 
 
-        /*Featured products */
+        /*popular products */
         $popular_products = Product::where('status', 2)
                                     ->where('trending' ,2)
                                     ->take(8)->get();
 
             // Get the ratings and number of reviews for each product through the product new id
 
+            //The same as before but for popular products
             foreach ($popular_products as $product) {
                 $ratings = Rating::where('prod_id', $product->id)->get();
                 $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
@@ -69,7 +76,7 @@ class IndexComponent extends Component
                         ->take(8)->get();
 
         // Get the ratings and number of reviews for each product through the product new id
-
+            //The same as before but for new products
                         foreach ($products_news as $product) {
                             $ratings = Rating::where('prod_id', $product->id)->get();
                             $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');

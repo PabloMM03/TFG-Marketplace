@@ -14,14 +14,6 @@
 
 @section('content')
 
-{{--Deletion confirmation alert category--}}
-@if (session('info'))
-    <div class="alert alert-success">
-        <strong>{{session('info')}}</strong>
-    </div>
-    
-@endif
-   
     <div class="card">
         
         <div class="card-body">
@@ -80,19 +72,19 @@
             e.preventDefault();
 
             Swal.fire({
-  title: 'Estás seguro?',
-  text: "Esta categoria se eliminará definitivamente!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, eliminar!',
-  cancelButtonText: 'Cancelar!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.submit();
-  }
-})
-        });
+        title: 'Estás seguro?',
+        text: "Esta categoria se eliminará definitivamente!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!',
+        cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    })
+});
     </script>
 @endsection

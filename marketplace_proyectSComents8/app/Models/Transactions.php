@@ -9,14 +9,25 @@ class Transactions extends Model
 {
     use HasFactory;
 
+   /**
+     * Define a belongs-to relationship with the User model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function product()
-{
-    return $this->belongsTo(Product::class);
-}
+    /**
+     * Define a belongs-to relationship with the Product model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 
 }

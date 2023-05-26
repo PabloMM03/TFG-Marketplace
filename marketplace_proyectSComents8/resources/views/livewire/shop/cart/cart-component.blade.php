@@ -50,6 +50,7 @@
                                         </div>
                                     </td>
                                     <td class="text-right" data-title="Cart">
+                                        <!--The price of the products is multiplied by the quantity to calculate the total of the product. -->
                                          @php $totalItem = $item->products->price *  $item->prod_qty; @endphp 
                                         <span>{{$totalItem}} €</span>
                                     </td>
@@ -61,7 +62,7 @@
                                         </td>
                                   </div>                                        
                                 </tr>
-
+                                <!--The total of each product is added and multiplied by the quantity to obtain the total order -->
                                 @php $total += $item->products->price * $item->prod_qty; @endphp
                               @endforeach
 

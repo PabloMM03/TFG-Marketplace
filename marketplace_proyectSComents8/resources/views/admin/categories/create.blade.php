@@ -7,12 +7,8 @@
 @stop
 
 @section('content')
-@if (session('info'))
-    <div class="alert alert-success">
-        <strong>{{session('info')}}</strong>
-    </div>
-    
-@endif
+
+{{--Reference is made to the view where the creation form of the category is.--}}
     <div class="card">
         <div class="card-body">
             {!! Form::open(['route' => 'admin.categories.store', 'autocomplete' => 'off', 'files' => true]) !!}
@@ -33,11 +29,16 @@
     <script>
 
     $(document).ready( function() {
-    $("#name").stringToSlug({
-        setEvents: 'keyup keydown blur',
-        getPut: '#slug',
-        space: '-'
-    });
+        $("#name").stringToSlug({
+            // Select the element with the id "name" and apply the "stringToSlug" plugin
+            setEvents: 'keyup keydown blur',
+            // Define the events that will trigger the plugin: keyup, keydown, and blur
+            getPut: '#slug',
+            // Get the element with the id "slug" and set the generated slug as its value
+            space: '-'
+            // Define the character that will replace white spaces in the generated slug
+        });
+
     });
 
     </script>

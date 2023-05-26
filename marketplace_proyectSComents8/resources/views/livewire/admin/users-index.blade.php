@@ -2,7 +2,7 @@
     <div class="card-header">
         <input class="form-control" placeholder="Introduzca el nombre del Usuario" type="text" wire:model="search">
     </div>
-
+<!--Displays all users with their data -->
    @if ($users->count())  
    
         <div class="card-body">

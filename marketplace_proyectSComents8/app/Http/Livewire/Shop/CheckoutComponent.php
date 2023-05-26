@@ -22,16 +22,25 @@ class CheckoutComponent extends Component
     public $payment_method;
 
 
+    /**
+ * Render method.
+ */
     public function render()
     {
+        // Retrieve cart items for the currently authenticated user
         $cartItems = Carrito::where('user_id', Auth::id())->get();
+
+        // Render the 'livewire.shop.checkout-component' view, passing the 'cartItems' variable to it,
+        // and extend the 'layouts.app' layout while specifically rendering the 'content' section
         return view('livewire.shop.checkout-component', compact('cartItems'))->extends('layouts.app')->section('content');
     }
+
     
     //Function to create an order and validate the data implemented by the client
 
     public function placeorder(Request $request){
              ///////////////////////Orders to be made and their data/////////////////////////////////
+             //Validate the fields
             $request->validate([
                   'fname' => 'required',
                   'lname' => 'required',
@@ -45,10 +54,11 @@ class CheckoutComponent extends Component
                   'payment_method' => 'required'
               ]);
 
-            
+            /**Create new order with the data provided by the user */
         $order = new Order();
         $order->user_id = Auth::id(); 
         $order->order_number = uniqid('OrderNumber-');
+
         //Total products in the cart
         $order->shipping_fname = $request->input('fname');
         $order->shipping_lname = $request->input('lname');
@@ -59,14 +69,15 @@ class CheckoutComponent extends Component
         $order->shipping_phone = $request->input('phone');
         $order->email = $request->input('email');
         $order->shipping_address2 = $request->input('address2');
+        $order->payment_method = $request->input('payment_method', 'paypal');
 
         /**
          * We obtain the total of the sum of each product
          */
-        $order->payment_method = $request->input('payment_method', 'paypal');
 
         $total = 0;
         $cartItems_total = Carrito::where('user_id', Auth::id())->get();
+
         foreach($cartItems_total as $prod){
             $total += $prod->products->price;
         }
@@ -76,56 +87,53 @@ class CheckoutComponent extends Component
    
         
         $cartItems = Carrito::where('user_id', Auth::id())->get();
-        // foreach ($cartItems as  $item) {
-           
-        //     OrderItem::create([
-        //         'order_id' => $order->id,
-        //         'prod_id' => $item->prod_id,
-        //         'qty' => $item->prod_qty,
-        //         'price' => $item->products->price,
-        //     ]);
-            
-        //         //Reduce products as they run out
-        //         $prod = Product::where('id', $item->prod_id)->first();
-        //         $prod->qty = $prod->qty - $item->prod_qty;
-        //         $prod->update();
-            
-            
-        // }
 
-
+        // Iterate through each item in the cart
         foreach ($cartItems as $item) {
+            // Calculate the total by adding the price of each item
             $total += $item->products->price;
-    
+
+            // Create a new order item
             OrderItem::create([
                 'order_id' => $order->id,
                 'prod_id' => $item->prod_id,
                 'qty' => $item->prod_qty,
                 'price' => $item->products->price,
             ]);
-    
+
+            // Retrieve the product associated with the item
             $prod = Product::where('id', $item->prod_id)->first();
+
+            // Update the quantity of the product by subtracting the quantity in the item
             $prod->qty -= $item->prod_qty;
             $prod->update();
-    
+
+            // Create a new transaction record
             $transaction = new Transactions();
             $transaction->product_id = $item->prod_id;
             $transaction->user_id = Auth::id();
             $transaction->quantity = $item->prod_qty;
             $transaction->price = $item->products->price;
             $transaction->save();
-    
+
+            // Delete the item from the cart
             $item->delete();
         }
 
 
 
+        // Check if the shipping address is not set for the authenticated user
+        if (Auth::user()->shipping_address1 == NULL) {
+            // Retrieve the user record from the database based on the authenticated user's ID
+            $user = User::where('id', Auth::id())->first();
 
-        if(Auth::user()->shipping_address1 == NULL){
-            $user = User::where('id', Auth::id())->first(); 
+            // Update the email address of the user with the value from the request input
             $user->email = $request->input('email');
+
+            // Save the updated user record
             $user->update();
         }
+
         
         /**
          * An email is sent to the management center, with the order data to start preparing it

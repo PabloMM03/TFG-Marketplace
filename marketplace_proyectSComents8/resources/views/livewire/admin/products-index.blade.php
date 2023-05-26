@@ -3,6 +3,7 @@
         <input class="form-control" placeholder="Introduzca el nombre del Producto" type="text" wire:model="search">
     </div>
 
+    <!-- Displays all products with their data-->
    @if ($products->count())  
    
         <div class="card-body">

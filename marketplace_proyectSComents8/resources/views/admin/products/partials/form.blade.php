@@ -1,3 +1,6 @@
+
+{{--Product creation and editing form--}}
+
 <div class="form-group">
     {!! Form::label('name', 'Nombre') !!}
     {!! Form::text('name', null, ['class' => 'form-control' , 'placeholder' => 'Introduzca el nombre del producto']) !!}
@@ -191,17 +194,21 @@
 
     <script>
 
-//Hacer slug automatico
-    $(document).ready( function() {
-    $("#name").stringToSlug({
-        setEvents: 'keyup keydown blur',
-        getPut: '#slug',
-        space: '-'
-    });
+//Make automatic slug
+$(document).ready( function() {
+        $("#name").stringToSlug({
+            // Select the element with the id "name" and apply the "stringToSlug" plugin
+            setEvents: 'keyup keydown blur',
+            // Define the events that will trigger the plugin: keyup, keydown, and blur
+            getPut: '#slug',
+            // Get the element with the id "slug" and set the generated slug as its value
+            space: '-'
+            // Define the character that will replace white spaces in the generated slug
+        });
 
     });
 
-    //Cambiar Imagen
+    //Change images to preview them
     document.getElementById("file1").addEventListener('change', cambiarImagen1);
     document.getElementById("file2").addEventListener('change', cambiarImagen2);
 
@@ -232,8 +239,8 @@
     </script>
 
 @endsection
-
-
+ 
+{{--Product creation alert--}}
 @if (session('crear') == 'Producto creado correctamente')
 <script>
  Swal.fire(

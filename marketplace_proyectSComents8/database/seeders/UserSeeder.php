@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -15,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //Generar mis credenciales
+        //Generate my credentials
         User::create([
             'name' =>'Pablo Millán Montero',
             'email' =>'pablo.millan@gmail.com',
@@ -23,7 +22,7 @@ class UserSeeder extends Seeder
 
         ])->assignRole('Admin');
 
-        //generar 10 usuarios random
+        //Generate 10 random users
         User::factory(15)->create();
     }
 }

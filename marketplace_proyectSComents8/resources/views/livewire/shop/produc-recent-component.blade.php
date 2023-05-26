@@ -59,15 +59,16 @@
                       </div>
                   </div>
                   <div class="row product-grid-3">
-
+                    <!--Foreach to display all new product data -->
                       @foreach ($recents as $product)
                       <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                           <div class="product-cart-wrap mb-30">
                               <div class="product-img-action-wrap">
                                   <div class="product-img product-img-zoom">
+                                    <!--Show product images -->
                                       <a href="{{route('publicaciones.show',$product)}}">
-                                          <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
-                                          <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                                          <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
+                                          <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
                                         </a>
                                   </div>
                                   <div class="product-action-1">
@@ -77,9 +78,7 @@
                                           <input type="hidden" name="product_id" value="{{$product->id}}">
                                           <button type="hidden" class="action-btn hover-up" aria-label="Add To Wishlist"><i class="fi-rs-heart"></i></button>
                                       </form>
-    
-                                      {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="wishlist.php"><i class="fi-rs-heart"></i></a> --}}
-                                      <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
+                                          <a aria-label="Compare" class="action-btn hover-up" href="compare.php"><i class="fi-rs-shuffle"></i></a>
                                   </div>
                                   <div class="product-badges product-badges-position product-badges-mrg">
                                     @if($product->trending == 2)
@@ -97,8 +96,8 @@
                                       <a href="shop.html">Clothing</a>
                                   </div>
                                   <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
-                                  {{--We get the rating and show it--}}
-                                  
+
+                                  {{--We get the rating and show it--}}                                 
                                   <div class="product-item">
                           
                                     @if ($product->ratings->count() > 0)
@@ -206,12 +205,15 @@
                       </div>
                       <a href="shop.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
                   </div>
+                  
                   <!-- Product sidebar Widget -->
                   <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                       <div class="widget-header position-relative mb-20 pb-10">
                           <h5 class="widget-title mb-10">Nuevos productos</h5>
                           <div class="bt-1 border-color-1"></div>
                       </div>
+
+                      <!--Foreach to display all new product data -->
                       @foreach ($products_news as $product_new)
                       <div class="single-post clearfix">
                           <div class="image">
@@ -276,21 +278,31 @@
       Price Range
   ----------------------*/
   
-  let sliderrange = $('#slider-range');
-  let amountprice = $('#amount');
-  
-  $(function(){
-      sliderrange.slider({
-          range:true,
-          min: 0,
-          max: 20000,
-          values: [0, 20000],
-          slide: function(event, ui){
-              @this.set('min_value',ui.values[0]);
-              @this.set('max_value',ui.values[1]);
-          }
-      });
-  });
+    // Select the slider-range element and store it in the sliderrange variable
+    let sliderrange = $('#slider-range');
+
+    // Select the amount element and store it in the amountprice variable
+    let amountprice = $('#amount');
+
+    // Wait for the document to be ready before executing the following code
+    $(function(){
+        // Initialize the slider widget on the sliderrange element
+        sliderrange.slider({
+            range: true, // Enable the range mode for the slider
+            // Set the minimum and maximun value 
+            min: 0, 
+            max: 20000, 
+            // Set the initial values of the slider to cover the full range from 0 to 20000
+            values: [0, 20000], 
+            slide: function(event, ui){ 
+                // Update the 'min_value' property with the lower or upper value of the selected range
+                @this.set('min_value', ui.values[0]);
+                @this.set('max_value', ui.values[1]);
+            }
+        });
+    });
+
+
   
   </script>
 

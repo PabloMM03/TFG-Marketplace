@@ -179,14 +179,13 @@
                           <div class="product-img-action-wrap">
                               <div class="product-img product-img-zoom">
                                   <a href="{{route('publicaciones.show',$product)}}">
-                                      <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
-                                      <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
-
-                                      {{-- <img class="hover-img" src="assets/imgs/shop/product-1-2.jpg" alt=""> --}}
+                                      <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
+                                      <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
                                   </a>
                               </div>
                               <div class="product-action-1">
                                 <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product)}}"><i class="fi-rs-eye"></i></a>
+
                                 {{--Add product to Wishlist--}}
                                   <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                                       @csrf
@@ -195,6 +194,7 @@
                                   </form>
                                   <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
                               </div>
+
                               {{--Check if the product is popular--}}
                               <div class="product-badges product-badges-position product-badges-mrg">
                                 @if($product->trending == 2)
@@ -211,6 +211,7 @@
                                   <a href="/">Clothing</a>
                               </div>
                               <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
+
                               {{--We get the rating and show it--}}
                               <div class="product-item">
                           
@@ -273,8 +274,8 @@
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
                                 <a href="{{route('publicaciones.show',$item)}}">
-                                    <img class="default-img" src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
-                                    <img class="hover-img" src="@if($item->product_image2) {{asset('storage/products/'. $item->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                                    <img class="default-img" src="@if($item->product_image) {{asset('storage/products/'. $item->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
+                                    <img class="hover-img" src="@if($item->product_image2) {{asset('storage/products/'. $item->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
                                 </a>
                             </div>
                             <div class="product-action-1">
@@ -363,8 +364,8 @@
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
                                 <a href="{{route('publicaciones.show',$product_new)}}">
-                                    <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
-                                    <img class="hover-img" src="@if($product_new->product_image2) {{asset('storage/products/'. $product_new->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                                    <img class="default-img" src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
+                                    <img class="hover-img" src="@if($product_new->product_image2) {{asset('storage/products/'. $product_new->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
                                 </a>
                             </div>
                             <div class="product-action-1">
@@ -474,7 +475,7 @@
               <div class="card-1">
                   <figure class="img-hover-scale overflow-hidden">
                     <a href="{{route('products.category', $category)}}">
-                        <img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="">
+                        <img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="height: 200px; width: 600px">
                     </a>
                   </figure>
                   <h5><a href="{{route('products.category', $category)}}">{{$category->name}}</a></h5>
@@ -536,8 +537,8 @@
                   <div class="product-img-action-wrap">
                       <div class="product-img product-img-zoom">
                         <a href="{{route('publicaciones.show',$product_new)}}">
-                            <img src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif">
-                            <img class="hover-img" src="@if($product_new->product_image2) {{asset('storage/products/'. $product_new->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                            <img src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" style="height: 200px;">
+                            <img class="hover-img" src="@if($product_new->product_image2) {{asset('storage/products/'. $product_new->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="height: 200px;">
                         </a>   
                       </div>
                       <div class="product-action-1">

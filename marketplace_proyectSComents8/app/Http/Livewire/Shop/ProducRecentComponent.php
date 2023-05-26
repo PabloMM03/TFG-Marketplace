@@ -61,8 +61,16 @@ class ProducRecentComponent extends Component
          // Get the ratings and number of reviews for each product through the product id
 
          foreach ($recents as $product) {
+            
+             // Retrieve all ratings for the current product
             $ratings = Rating::where('prod_id', $product->id)->get();
+
+            // Calculate the sum of all ratings for the current product
             $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+
+             // Calculate the average rating value for the current product,
+            // which is the sum of ratings divided by the count of ratings,
+            // or set it to 0 if there are no ratings
             $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
 
             $product->ratings = $ratings;
@@ -70,7 +78,7 @@ class ProducRecentComponent extends Component
             $product->review_count = $ratings->count();
         }
         // Get the ratings and number of reviews for each product through the product id
-
+         //The same as before but for new products
         foreach ($products_news as $product) {
             $ratings = Rating::where('prod_id', $product->id)->get();
             $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');

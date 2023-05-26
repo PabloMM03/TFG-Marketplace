@@ -9,12 +9,7 @@
 
 @section('content')
 
-@if (session('info'))
-    <div class="alert alert-success">
-        {{session('info')}}
-    </div>
-@endif
-   
+   <!--Reference is made to the view where the role edit form is -->
     <div class="card">
         <div class="card-body">
             

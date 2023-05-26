@@ -24,6 +24,7 @@
                         <h4><span>{{$item->prod_qty}} × </span>{{$item->products->price}}€</h4>
                     </div>
                 </li>
+                 <!--The total of each product is added and multiplied by the quantity to obtain the total order -->
                 @php $total += $item->products->price * $item->prod_qty; @endphp
             @endforeach
    

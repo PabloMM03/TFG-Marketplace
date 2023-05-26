@@ -10,7 +10,18 @@ class OrderItem extends Model
 {
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'order_items';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'order_id',
         'prod_id',
@@ -18,15 +29,16 @@ class OrderItem extends Model
         'qty',
     ];
 
-    /**Get the products that owns the OrderItem
+    /**
+     * Get the product that owns the OrderItem.
      *
-     *  
-     * @returns \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-
-    public function products():BelongsTo{
+    public function products(): BelongsTo
+    {
         return $this->belongsTo(Product::class, 'prod_id', 'id');
     }
+
 
 
 }

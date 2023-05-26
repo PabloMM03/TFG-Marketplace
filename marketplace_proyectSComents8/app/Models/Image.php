@@ -9,14 +9,24 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['url'];
 
     use HasFactory;
 
-    //Relacion polimorfica
-
-    public function imagen(){
+    /**
+     * Define a polymorphic relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function imagen()
+    {
         return $this->morphTo();
     }
+
 
 }

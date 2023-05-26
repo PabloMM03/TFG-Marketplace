@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
     {
 
         $product = $this->route()->parameter('product');
-        // Si no esta publicado solo guarda estos datos
+        // If it is not published only save this data
         $rules = [ 
             'name' => 'required',
             'slug' => 'required|unique:products',
@@ -41,7 +41,7 @@ class ProductRequest extends FormRequest
             $rules['slug'] = 'required|unique:products,slug,' . $product->id;
         }
 
-        // Si el estado es publicado guarda todos estos datos
+        // If the status is published it saves all this data
         if($this->status == 2 ){
             $rules = array_merge($rules, [
 

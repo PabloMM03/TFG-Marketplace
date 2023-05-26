@@ -57,7 +57,11 @@ class TrendingProduct extends Component
         $categories = Category::orderBy('name', 'ASC')->get();
 
         // Get the ratings and number of reviews for each product through the product id
-
+        /**All ratings associated with that product are obtained using the Rating model. 
+         * The sum total of the stars classified for that product is calculated
+         * The average value of the ratings is calculated by dividing the total sum of the stars ranked by the number of ratings
+         */
+        
         foreach ($products as $product) {
             $ratings = Rating::where('prod_id', $product->id)->get();
             $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');

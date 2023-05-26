@@ -59,7 +59,8 @@
                         </div>
                     </div>
                     <div class="row product-grid-3">
-  
+
+                        <!--Foreach to display all products data -->
                         @foreach ($products as $product)
                         <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                             <div class="product-cart-wrap mb-30">
@@ -163,6 +164,7 @@
                         @endforeach
    
                     </div>
+
                     <!-- Fillter By Price -->
                     <div class="sidebar-widget price_range range mb-30">
                         <div class="widget-header position-relative mb-20 pb-10">
@@ -207,6 +209,7 @@
                         </div>
                         <a href="shop.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i> Fillter</a>
                     </div>
+                    
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
                         <div class="widget-header position-relative mb-20 pb-10">

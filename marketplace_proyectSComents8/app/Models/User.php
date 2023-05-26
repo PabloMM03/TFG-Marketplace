@@ -56,20 +56,35 @@ class User extends Authenticatable
     // ];
 
 
-    //Relaciones 
-    public function products(){
+    /**
+     * Define a one-to-many relationship with the Product model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
+    /**
+     * Define a many-to-many relationship with the Product model through the "transactions" table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function purchasedProducts()
     {
         return $this->belongsToMany(Product::class, 'transactions', 'user_id', 'product_id');
     }
 
+    /**
+     * Define a many-to-many relationship with the Comment model through the "comment_likes" table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function likeComments()
-{
-    return $this->belongsToMany(Comment::class, 'comment_likes', 'user_id', 'comment_id');
-}
+    {
+        return $this->belongsToMany(Comment::class, 'comment_likes', 'user_id', 'comment_id');
+    }
 
 
     

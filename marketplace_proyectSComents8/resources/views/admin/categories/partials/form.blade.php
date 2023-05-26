@@ -1,3 +1,6 @@
+
+{{--Form for creating and editing the categories with Laravel Collective--}}
+
 <div class="form-group">
     {!! Form::label('name', 'Nombre') !!}
     {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Introduzca el nombre de categoria']) !!}
@@ -69,29 +72,41 @@
 
 
 <script>
-    //Hacer slug automatico
+    //Make automatic slug
     $(document).ready( function() {
-    $("#name").stringToSlug({
-        setEvents: 'keyup keydown blur',
-        getPut: '#slug',
-        space: '-'
-    });
+        $("#name").stringToSlug({
+            // Select the element with the id "name" and apply the "stringToSlug" plugin
+            setEvents: 'keyup keydown blur',
+            // Define the events that will trigger the plugin: keyup, keydown, and blur
+            getPut: '#slug',
+            // Get the element with the id "slug" and set the generated slug as its value
+            space: '-'
+            // Define the character that will replace white spaces in the generated slug
+        });
 
     });
 
-     //Cambiar Imagen
-     document.getElementById("file").addEventListener('change', cambiarImagen);
+
+    //Change image
+    document.getElementById("file").addEventListener('change', cambiarImagen);
 
     function cambiarImagen(e){
-        const file = e.target.files[0];
+    // Get the selected file
+    const file = e.target.files[0];
 
-        const reader = new FileReader();
+    // Create a FileReader object
+    const reader = new FileReader();
 
-        reader.onload = (e) => {
-            document.getElementById('imagenProd').setAttribute('src', e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
+    // Define the onload event handler for the FileReader
+    reader.onload = (e) => {
+        // Set the source of the image with id "imagenProd" to the result of the FileReader
+        document.getElementById('imagenProd').setAttribute('src', e.target.result);
+    };
+
+    // Read the selected file as a data URL
+    reader.readAsDataURL(file);
+}
+
 </script>
 
 @endsection

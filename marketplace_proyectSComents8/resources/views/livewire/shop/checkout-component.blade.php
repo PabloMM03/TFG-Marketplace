@@ -118,11 +118,9 @@
                             <div class="divider mt-50 mb-50"></div>
                         </div>
                     </div>
-
+                    <!--Order form -->
                     <form action="{{route('place.order')}}" id="shipping-form" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                        {{-- {{csrf_field()}} --}}
                         <div class="row">
                             <div class="col-md-6">
                                     <div class="mb-25">

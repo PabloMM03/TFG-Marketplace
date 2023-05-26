@@ -128,9 +128,7 @@
                                         <input type="text" name="quantity" class="form-control qty-input text-center" value="1">
                                         <button class="input-group-text increment-btn">+</button>
                                     </div>
-                                    <div class="detail-extralink">
-                                          {{-- <input type="number" id="v{{$product->id}}" wire:change="update_quantity({{ $product->id }}, $event.target.value)" style="max-width: 3rem" value="1"> --}}
-                                            
+                                    <div class="detail-extralink">                                          
                                                                    
                                         <div class="product-extra-link2">
                                             @if($product->qty >0)
@@ -294,6 +292,7 @@
                                                 <h4 class="mb-30">Preguntas y respuestas de los clientes</h4>
                                                 <div class="comment-list">
 
+                                                    <!--Foreach to display all the data of each comment -->
                                                   @forelse ($product->comments as $comment)                                         
                                                     <div class="single-comment justify-content-between d-flex">
                                                         <div class="user justify-content-between d-flex">
@@ -303,6 +302,7 @@
                                                                 <p class="font-xxs">Since {{$comment->user->created_at->format('d-m-Y')}}</p>
                                                             </div>
                                                             <div class="desc">
+
                                                                 <div class="d-inline-block">
                                                                     
                                                                     @php $ratenum  = number_format($rating_value) @endphp
@@ -480,20 +480,24 @@
                         </div>
                         <div class="row mt-60">
                             <div class="col-12">
-                                <h3 class="section-title style-1 mb-30">Related products</h3>
+                                <h3 class="section-title style-1 mb-30">Productos relacionados</h3>
                             </div>
                             <div class="col-12">
                                 <div class="row related-products">
+
+                                    <!--Foreach to display all the data of each related product -->
                                   @foreach ($relacionados as $relacionado)
                                     <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                         <div class="product-cart-wrap small hover-up">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
+                                                    <!-- We show the images of the product-->
                                                     <a href="{{route('publicaciones.show',$relacionado)}}" tabindex="0">
-                                                        <img class="default-img" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="Card image cap">
-                                                        {{-- <img class="hover-img" src="{{asset('assets/imgs/shop/product-2-2.jpg')}}" alt=""> --}}
+                                                        <img class="default-img" src="@if($relacionado->product_image) {{asset('storage/products/'. $relacionado->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="Card image cap" style="width: 600px; height: 200px;">
+                                                        <img class="hover-img" src="@if($relacionado->product_image2) {{asset('storage/products/'. $relacionado->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 200px;">
                                                     </a>
                                                 </div>
+                                                <!-- Buttons to interact-->
                                                 <div class="product-action-1">
                                                     <a aria-label="Quick view" class="action-btn small hover-up" href="{{route('publicaciones.show',$relacionado)}}"><i class="fi-rs-search"></i></a>
                                                     <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">

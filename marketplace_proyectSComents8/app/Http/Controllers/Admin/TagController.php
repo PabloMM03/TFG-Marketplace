@@ -8,6 +8,7 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
+  // Apply middleware for authorization based on user roles and permissions
 
     public function __construct()
     {
@@ -36,6 +37,7 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         return view('admin.tags.create');
@@ -47,9 +49,10 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-
+        //validate the fields
         $request->validate([
             'name'=> 'required',
             'slug'=> 'required|unique:tags'
@@ -80,8 +83,10 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request,Tag $tag)
     {
+        //validate the fields
         $request->validate([
             'name'=> 'required',
             'slug'=> "required|unique:tags,slug,$tag->id"

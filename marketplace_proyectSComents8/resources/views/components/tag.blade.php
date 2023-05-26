@@ -49,12 +49,13 @@
               <div class="product-img-action-wrap">
                   <div class="product-img product-img-zoom">
                       <a href="{{route('publicaciones.show',$product)}}">
-                          <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
-                          <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                          <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
+                          <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
                         </a>
                   </div>
                   <div class="product-action-1">
                     <a aria-label="Quick view" class="action-btn hover-up" href="{{route('publicaciones.show',$product)}}"><i class="fi-rs-eye"></i></a>
+                    
                     {{--Add product to Wishlist--}}
                       <form action="{{url('add-to-wishlist')}}" method="POST" style="display: inline;">
                           @csrf
@@ -63,6 +64,7 @@
                       </form>
                       <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="fi-rs-shuffle"></i></a>
                   </div>
+
                   {{--Check if the product is popular--}}
                   <div class="product-badges product-badges-position product-badges-mrg">
                     @if($product->trending == 2)

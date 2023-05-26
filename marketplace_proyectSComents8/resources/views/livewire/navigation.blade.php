@@ -249,6 +249,7 @@
                                       </ul>
                                   </div>
                               </li>
+                              <!--Foreach to show all categories -->
                                 @foreach ($categories as $category)
                                     <li><a href="{{route('products.category', $category)}}"><i class="surfsidemedia-font-desktop"></i>{{$category->name}}</a></li>                         
                                 @endforeach
@@ -274,6 +275,7 @@
                                   <ul class="mega-menu">
                                     <li class="sub-mega-menu sub-mega-menu-width-22">
                                       <a class="menu-title" href="#">Categorias</a>
+                                      <!--Foreach to show all categories and their data -->
                                       @foreach ($categories as $category)
                                       <ul>  
                                           <li><a href="{{route('products.category', $category)}}">{{$category->name}}</a></li>
@@ -310,6 +312,7 @@
                                       </li>
                                   </ul>
                               </li>
+
                               {{--List of products--}}
                               <li class="position-static"><a href="#">Productos <i class="fi-rs-angle-down"></i></a>
                                 <ul class="mega-menu">
@@ -393,6 +396,7 @@
                      {{--Cart--}}
                      @livewire('shop.cart-icon-component')
                       </div>
+
                       <div class="header-action-icon-2 d-block d-lg-none">
                           <div class="burger-icon burger-icon-white">
                               <span class="burger-icon-top"></span>
@@ -458,6 +462,7 @@
                           <ul class="dropdown">
                               <li class="menu-item-has-children"><span class="menu-expand"></span><a class="menu-title" href="#">Categorias</a>
                                   <ul class="dropdown">
+                                    <!--Foreach to show all categories and their data -->
                                     @foreach ($categories as $category)
                                     <ul>  
                                         <li><a href="{{route('products.category', $category)}}">{{$category->name}}</a></li>
@@ -488,33 +493,34 @@
                       </li>
                   </ul>
               </nav>
+              
               <!-- mobile menu end -->
           </div>
           <div class="mobile-header-info-wrap mobile-header-border">
             @auth
               <div class="single-mobile-header-info mt-30">
-                  <a href="contact.html"> Our location </a>
+                  <a href="{{url('contact')}}"> Contact </a>
               </div>
             
               <div class="single-mobile-header-info">
-                  <a href="#">(+1) 0000-000-000 </a>
+                  <a href="#">(+34) 123-456-789 </a>
               </div>
 
               @else
               <div class="single-mobile-header-info mt-30">
-                <a href="contact.html"> Our location </a>
+                <a href="{{url('contact')}}"> Contact </a>
               </div>
 
               <div class="single-mobile-header-info">
-                <a href="login.html">Log In </a>                        
+                <a href="{{route('login')}}">Log In </a>                        
               </div>
 
               <div class="single-mobile-header-info">                        
-                  <a href="register.html">Sign Up</a>
+                  <a href="{{route('register')}}">Sign Up</a>
               </div>
 
               <div class="single-mobile-header-info">
-                <a href="#">(+1) 0000-000-000 </a>
+                <a href="#">(+34) 123-456-789</a>
               </div>
               @endauth
           </div>

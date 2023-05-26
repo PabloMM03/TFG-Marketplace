@@ -27,7 +27,9 @@ class CommentController extends Controller
             }
             /**
              * If the product exists, the comment is created, and the pertinent checks are made
+             * The comment is created with its corresponding fields and the data is saved in the database
              */
+
             $product = Product::where('slug', $request->product_slug)
                                 ->where('status', '2')->first();
             if($product)

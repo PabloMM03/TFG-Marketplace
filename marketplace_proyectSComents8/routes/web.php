@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\RatingController;
 use App\Http\Livewire\Shop\About;
 use App\Http\Livewire\Shop\Cart\CartComponent;

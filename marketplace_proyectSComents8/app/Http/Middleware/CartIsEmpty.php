@@ -15,19 +15,22 @@ class CartIsEmpty
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+
     public function handle(Request $request, Closure $next)
     {
+        // Retrieve all items from the Carrito model
         $carrito = Carrito::all();
 
-
+        // Count the number of items in the cart
         $cart = $carrito->count();
 
-        if($cart < 1){
-            
-            return redirect()->back()->with('status', "El carrito está vacio");
+        // Check if the cart is empty
+        if ($cart < 1) {
+            // Redirect back to the previous page with a flash message indicating that the cart is empty
+            return redirect()->back()->with('status', "El carrito está vacío");
         }
 
-
+        // If the cart is not empty, proceed to the next middleware or request handler
         return $next($request);
     }
 }

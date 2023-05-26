@@ -9,6 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'slug',
@@ -16,21 +21,33 @@ class Category extends Model
     ];
 
     /**
-     * Obtener ruta slug de categoria en vez de id 
+     * Get the route key for the model.
+     *
+     * @return string
      */
     public function getRouteKeyName()
     {
         return "slug";
     }
 
-    //Ralaciones 
-    public function products(){
+    /**
+     * Define a one-to-many relationship with the Product model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
-    //Relacion polimorfica
-    public function image(){
+    /**
+     * Define a polymorphic relationship with the Image model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
         return $this->morphOne(Image::class, 'imagen');
-
     }
+
 }

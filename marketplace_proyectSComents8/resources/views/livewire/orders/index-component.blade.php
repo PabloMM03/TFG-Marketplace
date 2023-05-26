@@ -23,6 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!--Depending on the payment method, it shows whether it is PayPal or cash apart from the other data -->
                             @foreach ($orders as $order)                                      
                             <tr>
                                 <td>{{date('d-m-y', strtotime($order->created_at))}}</td>
