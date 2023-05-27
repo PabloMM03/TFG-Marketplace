@@ -43,14 +43,15 @@
                     @if($item->products->trending == 2)
                     <span class="badge bg-warning " style="w-70px" title="Con esta etiqueta seleccionamos los productos que actualmente son tendencia, pero asegurando la mejor calidad y disponibilidad.">Trending <i class="bi bi-info-circle"></i> 
                     </span>    
-                    @elseif($item->products->id == 'latest')
-                    <span class="new">New</span>                                  
+                    @elseif($item->products->qty == 0)   
+                    <span class="sale">Sale</span>   
                     @endif
+                    <span class="new">New</span>                                
                   </div>
               </div>
               <div class="product-content-wrap">
                   <div class="product-category">
-                      <a href="/">Clothing</a>
+                    <a href="{{route('products.category', $item->products->category)}}">{{$item->products->category->name}}</a>   
                   </div>
                   <h2><a href="{{route('publicaciones.show',$item)}}">{{$item->products->name}}</a></h2>
 

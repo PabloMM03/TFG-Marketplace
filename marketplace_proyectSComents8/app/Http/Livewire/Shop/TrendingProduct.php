@@ -84,9 +84,8 @@ class TrendingProduct extends Component
             $product->review_count = $ratings->count();
         }
 
-            $overall_rating = $products_news->avg('rating_value');
                     
-            return view('livewire.shop.trending-component', compact('products',  'products_news', 'categories', 'overall_rating'))->extends('layouts.app')->section('content');
+            return view('livewire.shop.trending-component', compact('products',  'products_news', 'categories'))->extends('layouts.app')->section('content');
         
     }
 

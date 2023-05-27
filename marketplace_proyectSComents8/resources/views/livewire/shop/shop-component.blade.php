@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop.html">Clothing</a>
+                                        <a href="{{route('products.category', $product->category)}}">{{$product->category->name}}</a>   
                                     </div>
                                     <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
                                     {{--We get the rating and show it--}}

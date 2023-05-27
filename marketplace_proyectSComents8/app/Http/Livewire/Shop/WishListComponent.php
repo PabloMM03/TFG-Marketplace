@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Shop;
 use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Wishlist;
-use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -33,8 +32,6 @@ class WishListComponent extends Component
             $product->review_count = $ratings->count(); 
         }
         
-        $overall_rating = $wishlist->avg('rating_value');
-
         return view('livewire.shop.wish-list-component', compact('wishlist'))->extends('layouts.app')->section('content');
     }
 

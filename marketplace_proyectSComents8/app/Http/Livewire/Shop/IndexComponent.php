@@ -47,8 +47,6 @@ class IndexComponent extends Component
                 $product->review_count = $ratings->count();
             }
 
-            
-            $overall_rating = $products->avg('rating_value');
 
 
         /*popular products */
@@ -91,7 +89,7 @@ class IndexComponent extends Component
 
 
         // return view('livewire.shop.index-component',compact('products', 'popular_products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
-        return view('livewire.shop.index-component', compact('products', 'popular_products', 'products_news', 'categories', 'overall_rating'))->extends('layouts.app')->section('content');
+        return view('livewire.shop.index-component', compact('products', 'popular_products', 'products_news', 'categories'))->extends('layouts.app')->section('content');
     }
     
     /**

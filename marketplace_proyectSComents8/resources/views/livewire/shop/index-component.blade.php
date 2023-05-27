@@ -207,8 +207,8 @@
                               </div>
                           </div>
                           <div class="product-content-wrap">
-                              <div class="product-category">
-                                  <a href="/">Clothing</a>
+                              <div class="product-category">  
+                                  <a href="{{route('products.category', $product->category)}}">{{$product->category->name}}</a>                             
                               </div>
                               <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
 

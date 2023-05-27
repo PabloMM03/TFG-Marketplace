@@ -93,12 +93,12 @@ class SingleProduct extends Component
                                       ->take(6)
                                       ->get();
 
-
-        // Get the ratings and number of reviews for each product through the new product id
         /**All ratings associated with that product are obtained using the Rating model. 
          * The sum total of the stars classified for that product is calculated
          * The average value of the ratings is calculated by dividing the total sum of the stars ranked by the number of ratings
          */
+
+        // Get the ratings and number of reviews for each product through the new product id
 
             foreach ($this->products_news as $product) {
                 $ratings = Rating::where('prod_id', $product->id)->get();
@@ -122,8 +122,6 @@ class SingleProduct extends Component
                 $product->review_count = $ratings->count(); 
             }
             
-            $this->overall_rating = $this->relacionados->avg('rating_value');
-
     }
     
 
@@ -153,6 +151,22 @@ class SingleProduct extends Component
                         ->latest('id')
                         ->paginate(20);
 
+            // Get the ratings and number of reviews for each product through the product id
+
+            /**All ratings associated with that product are obtained using the Rating model. 
+             * The sum total of the stars classified for that product is calculated
+             * The average value of the ratings is calculated by dividing the total sum of the stars ranked by the number of ratings
+             */
+         foreach ($products as $product) {
+                $ratings = Rating::where('prod_id', $product->id)->get();
+                $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+                $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+                
+                $product->ratings = $ratings;
+                $product->rating_value = $rating_value;
+                $product->review_count = $ratings->count(); 
+        }
+                        
         return view('livewire.shop.category-component', compact('products','category'));
     }
 
@@ -161,7 +175,22 @@ class SingleProduct extends Component
         $products =  $tag->products()->where('status',2)
                                 ->latest('id')
                                 ->paginate(20);
-    
+
+            // Get the ratings and number of reviews for each product through the product id
+            
+            /**All ratings associated with that product are obtained using the Rating model. 
+             * The sum total of the stars classified for that product is calculated
+             * The average value of the ratings is calculated by dividing the total sum of the stars ranked by the number of ratings
+             */
+        foreach ($products as $product) {
+                $ratings = Rating::where('prod_id', $product->id)->get();
+                $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+                $rating_value = $ratings->count() > 0 ? $rating_sum / $ratings->count() : 0;
+                                    
+                $product->ratings = $ratings;
+                $product->rating_value = $rating_value;
+                $product->review_count = $ratings->count(); 
+        }
 
        return view('livewire.shop.tag-component', compact('products','tag'));
     }

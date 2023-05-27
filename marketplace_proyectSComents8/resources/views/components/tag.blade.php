@@ -78,10 +78,34 @@
               </div>
               <div class="product-content-wrap">
                   <div class="product-category">
-                      <a href="/">Clothing</a>
+                    <a href="{{route('products.category', $product->category)}}">{{$product->category->name}}</a>   
                   </div>
                   <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
-                  
+                  <div class="product-item">
+                          
+                    @if ($product->ratings->count() > 0)
+                        @php
+                            $rating_value = $product->rating_value;
+                            $review_count = $product->review_count;
+                        @endphp
+            
+                        <div class="rating">
+                            @for($i = 1; $i<= $rating_value; $i++)
+                            <i class=" fa bi-star checked"></i>
+                            @endfor
+                            @for($j = $rating_value+1; $j <= 5; $j++)
+                            <i class=" fa bi-star"></i>
+                            @endfor
+                            ({{ $review_count }})
+
+                        </div>
+
+                    @else
+                        <span class="font-small ml-5 text-muted">
+                            Sin valoraciones
+                        </span>
+                    @endif
+                </div>
                   {{--It is checked if the amount of remaining products is greater than 0, if so the product is in stock, 
                 however if it is equal to or less than 0 would show in the mesaje that is not in stock--}}
                  

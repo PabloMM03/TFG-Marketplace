@@ -67,8 +67,8 @@
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href="{{route('publicaciones.show',$product)}}">
-                                            <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="">
-                                            <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="">
+                                            <img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
+                                            <img class="hover-img" src="@if($product->product_image2) {{asset('storage/products/'. $product->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="width: 600px; height: 300px;">
                                         </a>
                                     </div>
                                     <div class="product-action-1">
@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="/">Clothing</a>
+                                        <a href="{{route('products.category', $product->category)}}">{{$product->category->name}}</a>   
                                     </div>
                                     <h2><a href="{{route('publicaciones.show',$product)}}">{{$product->name}}</a></h2>
                                     
