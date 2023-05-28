@@ -123,7 +123,7 @@ class CategoryController extends Controller
        {
         $destination = 'storage/category/'.$category->category_image;
         if(File::exists($destination)){
-            File::delete($destination);
+            unlink($destination);
         }
         $url = $request->file('file');
         $extension = $url->getClientOriginalExtension();
@@ -151,7 +151,7 @@ class CategoryController extends Controller
     {
         $destination = 'storage/products/'.$category->category_image;
         if(File::exists($destination)){
-           File::delete($destination);
+            unlink($destination);
         }
         $category->delete();
         return redirect()->route('admin.categories.index')->with('eliminar', 'Categoria eliminada correctamente');

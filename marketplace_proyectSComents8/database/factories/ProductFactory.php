@@ -29,9 +29,12 @@ class ProductFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->text(250),
-            'price' => $this->faker->numberBetween(100, 10000),
+            'price' => $this->faker->numberBetween(10, 500),
+            'original_price' => $this->faker->numberBetween(10, 500),
             'status' => $this->faker->randomElement([1, 2]),
-            
+            'trending' => $this->faker->randomElement([1, 2]),
+            'brand' => $this->faker->text(10),
+            'qty' =>  $this->faker->randomElement([0, 10]),
             //Get id categories and user random and choose between the ids
             'category_id' => Category::all()->random()->id,
             'user_id' => User::all()->random()->id,

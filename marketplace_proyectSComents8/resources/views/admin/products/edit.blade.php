@@ -17,11 +17,11 @@
 
 <div class="crad">
     <div class="card-body">
-        {{--No autocompletar al excribir--}}
+        {{--Do not autocomplete when typing--}}
         {!! Form::model($product,['route' => ['admin.products.update', $product], 'autocomplete' => 'off', 'files' => true, 'method' => 'PUT']) !!}
 
 
-{{--formulario de creacionde productos--}}
+{{--Product Creation Form--}}
 
         @include('admin.products.partials.form')
 

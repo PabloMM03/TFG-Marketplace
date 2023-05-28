@@ -24,7 +24,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{$product->id}}</td>
-                            <td><img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
+                            <td><img class="default-img" src="@if($product->product_image) {{asset('storage/products/'. $product->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->price}} €</td>
                             <td>{{$product->category_id}}</td>

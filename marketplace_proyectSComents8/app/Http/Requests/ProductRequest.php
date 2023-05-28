@@ -49,9 +49,10 @@ class ProductRequest extends FormRequest
                 'tags' => 'required',
                 'description' => 'required',
                 'price' => 'required',
-                'original_price' => 'required',
                 'brand' => 'required',
-                'qty' => 'required'
+                'qty' => 'required',
+                'file1' => 'required',
+                'file2' => 'required'
             ]);
         }
 

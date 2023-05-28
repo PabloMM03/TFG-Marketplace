@@ -155,7 +155,15 @@ return [
         'city' => 'Ciudad', 
         'state' => 'Región', 
         'zipcode' => 'ZIP', 
-        'phone' => 'Teléfono'
+        'phone' => 'Teléfono',
+        'file1' => 'Imagen 1',
+        'file2' => 'Imagen 2',
+        'name' => 'Nombre',
+        'tags' => 'Etiquetas',
+        'brand' => 'Marca',
+        'description' => 'Descripción',
+        'price' => 'Precio',
+        'qty' => 'Cantidad',
 
     ],
 

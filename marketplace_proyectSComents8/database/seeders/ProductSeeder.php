@@ -19,11 +19,11 @@ class ProductSeeder extends Seeder
 
         //Assign an image every time a product is created
         foreach($products as $product){
-            Image::factory(1)->create([
+            // Image::factory(1)->create([
 
-                'imagen_id' => $product->id,
-                'imagen_type' => Product::class,
-            ]);
+            //     'imagen_id' => $product->id,
+            //     'imagen_type' => Product::class,
+            // ]);
 
             $product->tags()->attach([
                 rand(1, 4),  //Assign random tags

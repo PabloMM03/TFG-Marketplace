@@ -10,7 +10,7 @@
 
 <div class="card">
     <div class="card-body">
-        {{--No autocompletar al excribir--}}
+        {{--Do not autocomplete when typing--}}
         {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
         @include('admin.products.partials.form')

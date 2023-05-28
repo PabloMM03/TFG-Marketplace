@@ -108,12 +108,16 @@
           <div class="form-group">
               {!! Form::label('file1', 'Imagen producto') !!}
               {!! Form::file('file1', ['class' => 'form-control-file', 'id'=> 'file1']) !!}
+
+                @error('file1')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
           </div>
       </div>
       <div class="col">
         <div class="image-wrapper">
             @isset ($product->product_image)
-            <img id="imagenProd2" src="{{asset('storage/products/'. $product->product_image)}}" alt="">                  
+            <img id="imagenProd2" src="{{asset('storage/products/'. $product->product_image2)}}" alt="">                  
             @else
                 <img id="imagenProd2" src="{{asset('img/default_product.jpg')}}" alt="Imagen por defecto">
             @endisset
@@ -123,6 +127,10 @@
         <div class="form-group">
             {!! Form::label('file2', 'Imagen producto') !!}
             {!! Form::file('file2', ['class' => 'form-control-file', 'id' => 'file2']) !!}
+
+            @error('file2')
+            <small class="text-danger">{{$message}}</small>
+            @enderror
         </div>
     </div>
   </div>

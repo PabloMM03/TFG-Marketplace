@@ -84,7 +84,9 @@
                                         <div class="product-price primary-color float-left">
                                             <ins><span class="text-brand">{{$product->price}} €</span></ins>
                                             <ins><span class="old-price font-md ml-15">@if($product->original_price){{$product->original_price}} € @else {{$product->original_price = ""}}@endif </span></ins>
-                                            <span class="save-price  font-md color3 ml-15">25% Off</span>
+                                          <!--Calculate discount -->
+                                            @php $percentageDiscount = (($product->original_price - $product->price) / $product->original_price) * 100;  @endphp
+                                            <span class="save-price  font-md color3 ml-15">{{$percentageDiscount = round($percentageDiscount, 2)}} % Off</span>
                                         </div>
                                     </div>
                                     <div class="bt-1 border-color-1 mt-15 mb-15"></div>

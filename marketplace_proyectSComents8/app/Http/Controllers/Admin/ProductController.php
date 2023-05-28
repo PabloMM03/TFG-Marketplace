@@ -148,7 +148,7 @@ class ProductController extends Controller
           if ($request->hasfile('file1')) {
               $destination = 'storage/products/' . $product->product_image;
               if (File::exists($destination)) {
-                  File::delete($destination);
+                unlink($destination);
               }
       
               $file1 = $request->file('file1');
@@ -159,9 +159,9 @@ class ProductController extends Controller
           }
       
           if ($request->hasfile('file2')) {
-              $destination = 'storage/products/' . $product->product_image2;
-              if (File::exists($destination)) {
-                  File::delete($destination);
+              $destination2 = 'storage/products/' . $product->product_image2;
+              if (File::exists($destination2)) {
+                unlink($destination2);
               }
       
               $file2 = $request->file('file2');
@@ -197,10 +197,13 @@ class ProductController extends Controller
         
         $this->authorize('author', $product);  
         $destination = 'storage/products/'.$product->product_image;
+        $destination2 = 'storage/products/'.$product->product_image2;
         if(File::exists($destination)){
-            // unlink($destination);
-           File::delete($destination);
+         unlink($destination);
         }
+        if(File::exists($destination2)){
+            unlink($destination2);
+           }
         $product->delete();
         return redirect()->route('admin.products.index')->with('eliminar', 'Producto eliminado correctamente');
     }
