@@ -3,9 +3,12 @@
 @section('title', 'Tienda PM')
 
 @section('content_header')
+
+{{--Solo tiene permiso el administrador--}}
+
 @can('admin.categories.create')
     <a class="btn btn-primary btn-sm float-right" href="{{route('admin.categories.create')}}">Añadir Categoria</a>
-    @endcan
+@endcan
     <h1>Editar categoria</h1>
 @stop
 

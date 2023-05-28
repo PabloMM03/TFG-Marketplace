@@ -27,16 +27,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{--Foreach showing data from all categories--}}
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{$category->id}}</td>
                             <td><img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
                             <td>{{$category->name}}</td>
+                            {{--Permissions--}}
                             @can('admin.categories.edit')
                             <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a></td>
                             @endcan
                             
                             <td width="10px">
+
                                 @can('admin.categories.destroy')
                                 <form action="{{route('admin.categories.destroy', $category)}}" method="POST" class="formulario-eliminar">
                                     @csrf    
