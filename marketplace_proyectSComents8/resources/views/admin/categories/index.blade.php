@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Tienda PM')
+@section('title', 'TradeVibes')
 
 @section('content_header')
 <div class="card-header">
@@ -30,7 +30,7 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{$category->id}}</td>
-                            <td><img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('img/default_product.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
+                            <td><img class="default-img" src="@if($category->category_image) {{asset('storage/category/'.$category->category_image)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" width="80px" height="70px" alt=""></td>
                             <td>{{$category->name}}</td>
                             @can('admin.categories.edit')
                             <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a></td>

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Tienda PM')
+@section('title', 'TradeVibes')
 
 @section('content_header')
 

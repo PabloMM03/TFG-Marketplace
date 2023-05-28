@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Tienda PM')
+@section('title', 'TradeVibes')
 
 @section('content_header')
 <a class="btn btn-primary btn-sm float-right" href="{{route('admin.products.create')}}">Añadir Producto</a>      
