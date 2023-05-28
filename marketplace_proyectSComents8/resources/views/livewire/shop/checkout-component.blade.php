@@ -289,7 +289,7 @@
                                                 <div class="mb-25">
                                                     <h5>Metodo de pago</h5>
                                                 </div>
-                                                <button id="myButton" name="payment_method" value="cash_on_delivery" class="btn btn-primary btn-block mt-30">Hacer pedido</button> 
+                                                <button id="myButton" name="payment_method" value="cash_on_delivery" class="btn btn-primary btn-block mt-30">Efectivo</button> 
                                                 <div class="mt-2" id="paypal-button-container"></div>
 
                                             </div>
