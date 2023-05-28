@@ -228,7 +228,7 @@
                                         {{--Address 2--}}   
                                     <div class="form-group">  
 
-                                        <input type="text" placeholder="Dirección 2" class="form-control address2 @error('address2') is-invalid @enderror" name="address2" id="address2" wire:model="address2">
+                                        <input type="text" placeholder="Dirección 2 (Opcional)" class="form-control address2 @error('address2') is-invalid @enderror" name="address2" id="address2" wire:model="address2">
                             
                                         @error('address2')
                                         <span class="invalid-feedback" role="alert">
