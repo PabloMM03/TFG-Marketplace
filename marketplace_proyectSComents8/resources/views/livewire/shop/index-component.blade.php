@@ -52,7 +52,7 @@
     
 
 <main class="main">
-      {{--Carrousel por defecto--}}
+      {{--Default carousel--}}
 <section class="home-slider position-relative pt-50">
   <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
       <div class="single-hero-slider single-animation-wrap">
@@ -99,7 +99,7 @@
   <div class="slider-arrow hero-slider-1-arrow"></div>    
 </section>
 
-{{--Apartados varios--}}
+{{--Miscellaneous--}}
 
 <section class="featured section-padding position-relative">
   <div class="container">
@@ -145,7 +145,6 @@
 </section>
 
 
-
 {{--Products--}}
 
 <section class="product-tabs section-padding position-relative wow fadeIn animated">
@@ -173,6 +172,7 @@
           <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
               <div class="row product-grid-4">
 
+                <!--Foreach showing data for all products -->
                   @foreach ($products as $product)
                   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-6">
                       <div class="product-cart-wrap mb-30">
@@ -455,9 +455,9 @@
       <div class="banner-img banner-big wow fadeIn animated f-none">
           <img src="assets/imgs/banner/banner-4.png" alt="">
           <div class="banner-text d-md-block d-none">
-              <h4 class="mb-15 mt-40 text-brand">Repair Services</h4>
-              <h1 class="fw-600 mb-20">We're an Apple <br>Authorised Service Provider</h1>
-              <a href="shop.html" class="btn">Learn More <i class="fi-rs-arrow-right"></i></a>
+              <h4 class="mb-15 mt-40 text-brand">Servicios de reparación</h4>
+              <h1 class="fw-600 mb-20">Somos un <br>proveedor de servicios autorizado por Apple</h1>
+              <a href="{{url('shop')}}" class="btn">Aprende más <i class="fi-rs-arrow-right"></i></a>
           </div>
       </div>
   </div>
@@ -471,6 +471,7 @@
       <div class="carausel-6-columns-cover position-relative">
           <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
           <div class="carausel-6-columns" id="carausel-6-columns">
+            <!--Foreach que obtiene y muestra los datos de las categorias -->
             @foreach ($categories as $category)
               <div class="card-1">
                   <figure class="img-hover-scale overflow-hidden">
@@ -532,10 +533,12 @@
       <div class="carausel-6-columns-cover position-relative">
           <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
           <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
+            <!--Foreach que obtiene y muestra los datos de los productos nuevos -->
             @foreach ($products_news as $product_new)
               <div class="product-cart-wrap small hover-up">
                   <div class="product-img-action-wrap">
                       <div class="product-img product-img-zoom">
+
                         <a href="{{route('publicaciones.show',$product_new)}}">
                             <img src="@if($product_new->product_image) {{asset('storage/products/'. $product_new->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" style="height: 200px;">
                             <img class="hover-img" src="@if($product_new->product_image2) {{asset('storage/products/'. $product_new->product_image2)}} @else {{asset('assets/imgs/shop/product-1-2.jpg')}}  @endif" alt="" style="height: 200px;">
@@ -560,7 +563,6 @@
                         @elseif($product->qty == 0)
                              <span class="sale">Sale</span>        
                         @endif
-                          {{-- <span class="hot">Hot</span> --}}
                       </div>
                   </div>
                   <div class="product-content-wrap">
@@ -608,7 +610,7 @@
   </div>
 </section>
 
-{{--Nuevas marcas--}}
+{{--New Brands--}}
 <section class="section-padding">
   <div class="container">
       <h3 class="section-title mb-20 wow fadeIn animated"><span>Marcas</span> Destacadas</h3>
@@ -642,7 +644,6 @@
 </section>
 
 </main>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 </body>
 </html>

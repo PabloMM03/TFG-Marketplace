@@ -50,8 +50,7 @@ class CheckoutComponent extends Component
                   'email' => 'required',
                   'state' => 'required',
                   'zipcode' => 'required',
-                  'phone' => 'required',
-                  'payment_method' => 'required'
+                  'phone' => 'required',                
               ]);
 
             /**Create new order with the data provided by the user */
