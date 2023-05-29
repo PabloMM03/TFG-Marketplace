@@ -23,6 +23,15 @@ class UserSeeder extends Seeder
 
         ])->assignRole('Admin');
 
+        //Generate test seller user credentials
+        User::create([
+            'name' =>'Tom Holland',
+            'email' =>'tom.holland@gmail.com',
+            'password' => bcrypt("Tom1234"),
+            'remember_token' =>'43fwj5k0TH',
+
+        ])->assignRole('Vendedores');
+
         //Generate 10 random users
         User::factory(15)->create();
     }
