@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
         $product = $this->route()->parameter('product');
         // If it is not published only save this data
         $rules = [ 
-            'name' => 'required',
+            'name' => 'required|min:30',
             'slug' => 'required|unique:products',
             'status' => 'required|in:1,2',
             'trending' => 'required|in:1,2',
@@ -47,7 +47,7 @@ class ProductRequest extends FormRequest
 
                 'category_id' => 'required',
                 'tags' => 'required',
-                'description' => 'required',
+                'description' => 'required|max:40',
                 'price' => 'required',
                 'brand' => 'required',
                 'qty' => 'required',
