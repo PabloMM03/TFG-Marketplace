@@ -257,7 +257,7 @@
                                                 @php $total = 0; @endphp
                                                     @foreach ($cartItems as $item)
                                                     <tr>
-                                                        <td class="image product-thumbnail"><img  src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('img/default_product.jpg')}}  @endif" alt="#"></td>
+                                                        <td class="image product-thumbnail"><img  src="@if($item->products->product_image) {{asset('storage/products/'. $item->products->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" alt="#"></td>
                                                         <td>
                                                             <h5><a href="product-details.html">{{$item->products->name}}</a></h5> <span class="product-qty">x{{$item->prod_qty}}</span>
                                                         </td>
