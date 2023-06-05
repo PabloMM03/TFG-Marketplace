@@ -65,8 +65,7 @@
                                         <td>{{$order->qty}}</td>
                                         <td>{{$order->price * $order->qty}} €</td>
                                         <td>
-                                            <img src="{{asset('storage/products/'. $order->products->product_image)}}" width="70px" alt="Product image">
-                                            
+                                            <img  src="@if($order->products->product_image) {{asset('storage/products/'. $order->products->product_image)}} @else {{asset('assets/imgs/shop/product-2-1.jpg')}}  @endif" width="70px"  alt="Product image">                                            
                                         </td>
                                     </tr>
                                     <!--Get the total price from the sum of the total price all products -->
